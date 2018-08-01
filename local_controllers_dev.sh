@@ -13,7 +13,6 @@ up=6000000
 
 #Define a periodicidade em segundos, na qual os controladores verificam o status da rede local
 t=5
-
 appb_bw=1000000
 appc_bw=3000000
 
@@ -22,7 +21,7 @@ function calc {
 
 	#se tem veiculo na RAN
 	if [[ $(echo $x | wc -w) -gt 0 ]]; then
-		#calcula consumo com base dos MACs dos veiculos na RAN
+		#calcula consumo com base nos MACs dos veiculos na RAN
 		y=$(
 		for i in $x;
 		do
@@ -63,13 +62,12 @@ function calc {
 	sd=$(echo $up-$y-$dec+$inc|bc)
 	#echo -e "\n rsu: " $rsu " dec: " $dec " inc: " $inc " sd: " $sd "y: " $y
 
-	#zera arquivo de saldos que será utilizado como referência
-	#Salva saldo calculado em arquivo temporario de controle, para uso nos demais algoritmos
-	#echo $(echo $j | cut -d'-' -f1) $sd >> saldo.txt
+	#Salva saldo calculado em arquivo temporario de controle, para uso nos demais passos
 	cat saldo.txt | grep -v $rsu > temp.tmp
 	echo $rsu $sd >> temp.tmp
 	rm saldo.txt
 	mv temp.tmp saldo.txt
+	#echo $(echo $j | cut -d'-' -f1) $sd >> saldo.txt
 }
 
 while true;
@@ -87,7 +85,7 @@ do
 		#Identifica MACs dos veiculos na RSU
 		x=$(hostapd_cli -i $j all_sta | grep :)
 
-		#identifica MACs em redirecionamento cuja rsu local seja origem
+		#identifica MACs em redirecionamento cuja rsu local seja origem (verificar...)
 		mac_rec=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o= '"$rsu"' " framework 2> /dev/null | grep -v mac)
 
 		#Verifica se esses MACs na base ainda estao na RAN local e os apaga da tabela (desfazendo as configuracoes relacionadas - ex. flows) em caso negativo
@@ -122,7 +120,8 @@ do
 		c=0
 		inc=0
 		dec=0
-
+		
+		#salva valores no arquivo temporario de controle
 		cat saldo.txt | grep -v $rsu > temp.tmp
 		echo $rsu $up >> temp.tmp
 		rm saldo.txt
@@ -158,10 +157,13 @@ do
 							#sPara cada mac (veiculo) na rsu1, verifica se está associado a aplicação C
 						for i in $mac_rsu1;
 						do
-							#Enquanto tiver saldo no vizinho para suportar alguma aplicação C
+							#Se tiver saldo no vizinho (rsu2) para suportar alguma aplicação C e o saldo da rsu1 ainda estiver negativo
 							if [[ $(cat saldo.txt | grep rsu2 | cut -d' ' -f2) -ge $appc_bw ]] && [[ $(cat saldo.txt | grep rsu1 | cut -d' ' -f2) -lt 0 ]] ; then
+							#variavel para verificar se veiculo com MAC analisado possui aplicação C (só serve para uma)
 								res_c=$(mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"C"'" framework 2> /dev/null |tail -1)
+							#variavel para verificar o MAC em questão já não foi redirecionado
 								red_c=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"rsu1"'" 2> /dev/null framework | tail -1)
+								#se MAC é de aplicação C, nao foi redirecionado e o saldo da RAN local ainda e negativo, redireciona
 								if [[ $res_c -ne "NULL" ]] && [[ $red_c = "NULL" ]] && [[ $(cat saldo.txt | grep rsu1 | cut -d' ' -f2) -lt 0 ]]; then
 									echo $i " esta associado a aplicacao C"
 									echo "redireciona " $i " de rsu1 para rsu2"
@@ -177,10 +179,10 @@ do
 									ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x10, in_port=1,dl_dst=$i, udp,tp_src=5004 actions=3" -O Openflow13
 									#Deleta flows no backbone para evitar confusao
 									ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=$i -O Openflow13
-									ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=$i -O Openflow13
-									#cadastra na banco
+									ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=$i -O Openflow13
+									#cadastra na banco a informacao do redirecionamento
 									mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"rsu1\", \"rsu2\", $appc_bw)" framework 2> /dev/null
-									#para calcular o saldo na rsu2
+									#Recalcula saldos da rsu local e de redirecionamento
 									rsu=rsu2
 									x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
 									calc 
@@ -190,16 +192,19 @@ do
 								fi
 							fi
 						done
-						#se a RSU1 continua congestionada e o vizinho não suporta aplcação C, verifica se suporta B
+						#se a RSU1 continua congestionada e o vizinho não suporta aplicacao C, verifica se suporta B
 					elif [[ $(cat saldo.txt | grep rsu2 | cut -d' ' -f2) -ge $appb_bw ]]; then
 						#mensagem de controle
 						echo -e "\n RSU1 continua congestionada. RSU2 suporta ao menos uma aplicacao B."
-						#Enquanto o vizinho suportar aplicação B e a celula estiver congestionada procede com os redirecionamentos
+						#Se vizinho suporta ao menos uma aplicação B e o saldo da RSU em analise ainda esta negativo
 						if [[ $(cat saldo.txt | grep rsu2 | cut -d' ' -f2) -ge $appb_bw ]] && [[ $(cat saldo.txt | grep rsu1 | cut -d' ' -f2) -lt 0 ]]; then
 							for i in $mac_rsu1;
 							do
+								#variavel para verificar se veiculo com MAC analisado possui aplicação B (só serve para uma)
 								res_b=$(mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"B"'" framework 2> /dev/null |tail -1)
+								#variavel para verificar o MAC em questão já não foi redirecionado
 								red_b=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"rsu1"'" 2> /dev/null framework | tail -1)
+								#se MAC é de aplicação B, nao foi redirecionado e o saldo da RAN local ainda e negativo, redireciona
 								if [[ $res_b -ne "NULL" ]] && [[ $red_b = "NULL" ]] && [[ $(cat saldo.txt | grep rsu1 | cut -d' ' -f2) -lt 0 ]]; then
 									echo $i " esta associado a aplicacao B"
 									echo "redireciona " $i " de rsu1 para rsu2"
@@ -215,10 +220,10 @@ do
 									ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x10, in_port=1,dl_dst=$i, udp,tp_src=5003 actions=3" -O Openflow13
 									#Deleta flows no backbone para evitar confusao
 									ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=$i -O Openflow13
-									ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=$i -O Openflow13
-									#cadastra na banco
+									ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=$i -O Openflow13
+									#cadastra redirecionamento no banco
 									mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"rsu1\", \"rsu2\", $appb_bw)" framework
-									#Calcula saldos
+									#Recalcula saldos
 									rsu=rsu2
 									x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
 									calc 
@@ -236,6 +241,7 @@ do
 						echo "verificando"
 						for i in $mac_rsu1;
 						do
+							#Faz as verificacoes para saber se o MAC e de aplicacao C 
 							res_c=$(mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"C"'" framework 2> /dev/null |tail -1)
 							red_c=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"rsu1"'" 2> /dev/null framework | tail -1)
 							if [[ $res_c != "NULL" ]] && [[ $red_c = "NULL" ]] && [[ $(cat saldo.txt | grep rsu1 | cut -d' ' -f2) -lt 0 ]]; then
