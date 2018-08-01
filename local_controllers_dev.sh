@@ -29,9 +29,6 @@ function calc {
 			mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"')" framework 2> /dev/null |tail -1
 		done | paste -s | expand | tr -s ' ' | sed 's/ /+/g' |sed 's/NULL/0/g'| bc)	
 
-
-
-
 		#calcula consumo especifico das aplicações B
 		b=$(
 		for i in $x;
@@ -290,13 +287,6 @@ do
 
 	# 	# 	#se consegue ao menos atender as aplicacoes B
 	# 	# 	if [[ $b -lt $up ]]; then
-
-		
-
-
-
-
-
 
 	# 	# 		macc=$(mysql -u root -pwifi -e "select mac from vehicle where app_id in (select id from appkpi where class='"C"')" framework 2> /dev/null)
 
