@@ -11,7 +11,6 @@ appc_bw=3000000
 
 #Funcao que calcula saldo
 function calc {
-
 	#se tem veiculo na RAN
 	if [[ $(echo $x | wc -w) -gt 0 ]]; then
 		#calcula consumo com base dos MACs dos veiculos na RAN
@@ -20,21 +19,18 @@ function calc {
 		do
 			mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"')" framework 2> /dev/null |tail -1
 		done | paste -s | expand | tr -s ' ' | sed 's/ /+/g' |sed 's/NULL/0/g'| bc)	
-
 		#calcula consumo especifico das aplicações B
 		b=$(
 		for i in $x;
 		do
 			mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"B"'" framework 2> /dev/null |tail -1
 		done | paste -s | expand | tr -s ' ' | sed 's/ /+/g' |sed 's/NULL/0/g'| bc)
-
 		#calcula consumo especifico das aplicações C
 		c=$(
 		for i in $x;
 		do
 			mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"C"'" framework 2> /dev/null |tail -1
 		done | paste -s | expand | tr -s ' ' | sed 's/ /+/g' |sed 's/NULL/0/g'| bc)
-
 	fi
 
 	#Verifica se existem fluxos cadastrados cuja RSUS em análise é destino (para debitar do saldo)
@@ -135,7 +131,7 @@ do
 	do
 		rm -f appc.txt
 		rm -f appb.txt
-	# 	#se o saldo for menor que zero (precisa de acao). Se for a rsu1 
+	 	#se o saldo for menor que zero (precisa de acao). Se for a rsu1 
 	 	if [[ $(cat saldo.txt | grep $i | cut -d' ' -f2) -lt 0 ]] && [[ $i = "rsu1" ]]; then
 			#enquanto o saldo for negativo na RSU1
 			while [[ $(cat saldo.txt | grep $i | cut -d' ' -f2) -lt 0 ]]; do
