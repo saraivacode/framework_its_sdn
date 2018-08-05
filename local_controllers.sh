@@ -265,7 +265,7 @@ do
 						fi
 					done
 				#Verifica possibilidade de bloqueio dos redirecionamentos de aplicacao C redirecionadas para nao ter que bloquear B
-				elif [[ $(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw" framework 2> /dev/null | grep -v mac | tail -1) != "NULL" ]]; then
+				elif [[ $(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw and rsu_dst!='"x"'" framework 2> /dev/null | grep -v mac | tail -1) != "NULL" ]]; then
 					echo -e "\n $rsu continua congestionada. RSU2 esta sem saldo disponivel. Aplicacoes C direcionadas serao bloqueadas ate haver saldo no vizinho."
 					#identifica aplicação C anteriormente redirecionada
 					i=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw" framework 2> /dev/null | grep -v mac | tail -1)
@@ -483,6 +483,29 @@ do
 						calc 
 					fi
 				done
+			#Verifica possibilidade de bloqueio dos redirecionamentos de aplicacao C redirecionadas para nao ter que bloquear B
+			elif [[ $(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw and rsu_dst!='"x"'" framework 2> /dev/null | grep -v mac | tail -1) != "NULL" ]]; then
+				echo -e "\n $rsu continua congestionada. RSUs 1 e 3 estao sem saldo disponivel. Aplicacoes C direcionadas serao bloqueadas ate haver saldo no vizinho."
+				#identifica aplicação C anteriormente redirecionada
+				i=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw" framework 2> /dev/null | grep -v mac | tail -1)
+				#identifica rsu de destino
+				rsudst=$(mysql -u root -pwifi -e "select rsu_dst from redirect where rsu_o='"$rsu"' and mac='"$i"'" framework 2> /dev/null | grep -v dst | tail -1)
+				
+				echo "Aplicacao C em $i estava redirecionada e sera bloqueada."
+				#Bloqueia aplicacao C na fonte
+				ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
+				#Apaga redirecionamentos da aplicacao C
+				ovs-ofctl del-flows $rsu cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
+				ovs-ofctl del-flows $rsudst cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$i,udp,tp_src=5004 -O Openflow13
+				ovs-ofctl del-flows $rsudst cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
+				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$i,udp,tp_src=5004 -O Openflow13
+				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
+				#Atualiza tabela de redirecionamento com a informacao de bloqueio
+				mysql -u root -pwifi -e "update redirect set rsu_dest=\"x\" where mac=\"$i\" and bw_value=$appc_bw" framework 2> /dev/null
+				#recalcula saldo no vizinho
+				rsu_calc=$rsudst
+				x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
+				calc
 		fi
 done
 	sleep $t
