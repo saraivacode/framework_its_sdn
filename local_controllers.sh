@@ -60,49 +60,44 @@ function calc {
 	mv temp.tmp saldo.txt
 }
 
+function limpeza {
+	#identifica MACs em redirecionamento cuja rsu local seja origem
+	mac_rec=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o= '"$rsu"' " framework 2> /dev/null | grep -v mac)
+
+	#Verifica se esses MACs na base ainda estao na RAN local e os apaga da tabela (desfazendo as configuracoes relacionadas - ex. flows) em caso negativo
+	for m in $mac_rec;
+	do
+		if [[ $(hostapd_cli -i $j all_sta | grep $m -c) -eq 0 ]]; then
+			echo -e "\n Apagando MAC indevido " $m" em " $rsu
+			mysql -u root -pwifi -e "delete from redirect where mac  = \"$m\" and rsu_o = \"$rsu\"" framework 2> /dev/null
+			#Falta apagar os flows
+			if [[ $rsu = "rsu1" ]]; then
+				#ovs-ofctl del-flows rsu1 cookie=0x10/-1,dl_dst=$m -O Openflow13
+				ovs-ofctl del-flows rsu1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+				ovs-ofctl del-flows rsu1 cookie=0x$(echo $rsu | cut -d'u' -f2)5/-1,dl_src=$m -O Openflow13
+				ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
+				ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
+				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+			fi
+		fi
+	done
+}
+
+#inicio do programa
 while true;
 do
 	#zera arquivo de saldos que será utilizado como referência
 	rm -f saldo.txt
 	touch saldo.txt
-
 	#Para cada interface wlan de cada RSU no ambiente de analise
 	for j in $(ifconfig | grep wlan | cut -d' ' -f1);
 	do
 		#separa o nome da rsu na interface em analise
 		rsu=$(echo $j | cut -d'-' -f1)
-
 		#Identifica MACs dos veiculos na RSU
 		x=$(hostapd_cli -i $j all_sta | grep :)
-
-		#identifica MACs em redirecionamento cuja rsu local seja origem
-		mac_rec=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o= '"$rsu"' " framework 2> /dev/null | grep -v mac)
-
-		#Verifica se esses MACs na base ainda estao na RAN local e os apaga da tabela (desfazendo as configuracoes relacionadas - ex. flows) em caso negativo
-		for m in $mac_rec;
-		do
-			if [[ $(hostapd_cli -i $j all_sta | grep $m -c) -eq 0 ]]; then
-				echo -e "\n Apagando MAC indevido " $m" em " $rsu
-				mysql -u root -pwifi -e "delete from redirect where mac  = \"$m\" and rsu_o = \"$rsu\"" framework 2> /dev/null
-				#Falta apagar os flows
-				if [[ $rsu = "rsu1" ]]; then
-					#ovs-ofctl del-flows rsu1 cookie=0x10/-1,dl_dst=$m -O Openflow13
-					ovs-ofctl del-flows rsu1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
-					ovs-ofctl del-flows rsu1 cookie=0x$(echo $rsu | cut -d'u' -f2)5/-1,dl_src=$m -O Openflow13
-					ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
-					ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
-					ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
-					ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
-				fi
-			fi
-		done
-
-		#verifica se existe registro de redirecionamento relacionado a RAN em analise (motivo para calcular saldo)
-		r=$(mysql -u root -pwifi -e "select * from redirect" framework 2> /dev/null | grep -c $rsu)
-			if [ $r = "NULL" ]; then
-				r=0
-			fi
-
+		limpeza
 		#inicializa valores de saldo para celulas vazias
 		sd=$up
 		y=0
@@ -110,24 +105,26 @@ do
 		c=0
 		inc=0
 		dec=0
-
+		#Inicializa arquivo de saldos
 		cat saldo.txt | grep -v $rsu > temp.tmp
 		echo $rsu $up >> temp.tmp
 		rm saldo.txt
 		mv temp.tmp saldo.txt
-
+		#verifica se existe registro de redirecionamento relacionado a RAN em analise (motivo para calcular saldo)
+		r=$(mysql -u root -pwifi -e "select * from redirect" framework 2> /dev/null | grep -c $rsu)
+		if [ $r = "NULL" ]; then
+			r=0
+		fi
 		rsu_calc=$rsu
-
 		#se existem veiculos ou registro de redirecionamento para RAN, calcula saldo
 		if [[ $(echo $x | wc -w) -gt 0 ]] || [[ $r -gt 0 ]]; then
 			calc			
 		fi
-
 		#Imprime resultado dos calculos de saldo na tela
 		echo -e $rsu " tem ocupado " $(echo $y|bc)   " ($b com B e $c com C)." " dec: " $dec " inc: " $inc " sd: " $sd ". " $(echo $x| wc -w) "veiculos. r " $r
 	done
 	echo -e "\n =========================================//==============================================================="
-	####################Parte 2 do codigo, que lida com a parte dos redirecionamentos
+	##################################Parte 2 do codigo, que lida com a parte dos redirecionamentos#####################################
 	#para cada rsu no arquivo de saldos
 	for rsu in $(cat saldo.txt | cut -d' ' -f1);
 	do
