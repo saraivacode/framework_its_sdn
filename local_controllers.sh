@@ -212,7 +212,7 @@ do
 				elif [[ $(cat saldo.txt | grep rsu2 | cut -d' ' -f2) -ge $appb_bw ]] && [[ $(cat appb.txt | wc -l) -gt 0 ]]; then
 					for i in $( cat appb.txt);
 					do
-						#se a RSU1 continua congestionada e o vizinho não suporta aplcação C, verifica se suporta B
+						#se a RSU1 continua congestionada e o vizinho não suporta aplicação C, verifica se suporta B
 						if [[ $(cat saldo.txt | grep rsu2 | cut -d' ' -f2) -ge $appb_bw ]] && [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]]; then
 							#mensagem de controle
 							echo -e "\n $rsu continua congestionada. RSU2 suporta ao menos uma aplicacao B. Aplicacoes B serao redirecionadas ate haver saldo"
@@ -433,80 +433,105 @@ do
 					done
 				#Se vizinhos (RSU3) tem saldo para ao menos uma aplicação B e existe aplicação B	
 				elif [[ $(cat saldo.txt | grep rsu3 | cut -d' ' -f2) -ge $appb_bw ]] && [[ $(cat appb.txt | wc -l) -gt 0 ]]; then
-				for i in $( cat appb.txt);
-				do
-					#se a RSU2 continua congestionada e o vizinho (rsu3) não suporta aplcação C, verifica se suporta B e redireciona
-					if [[ $(cat saldo.txt | grep rsu3 | cut -d' ' -f2) -ge $appb_bw ]] && [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]]; then
-						#mensagem de controle
-						echo -e "\n $rsu continua congestionada. RSU1 suporta ao menos uma aplicacao B. Aplicacoes B serao redirecionadas ate haver saldo"
-						echo $i " esta associado a aplicacao B"
-						echo "redireciona " $i " de $rsu para rsu2"
-						#Redireciona tráfego de aplicação B, da RSU2 para RSU3
-						#insere flows na rsu origem de maior prioridade
-						ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1, dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=3" -O Openflow13
-						#ovs-ofctl add-flow rsu1 "table=1, priority=2, cookie=0x10, dl_dst=$i actions=1" -O Openflow13
-						#Insere flows na RSU de redirecionamento
-						ovs-ofctl add-flow rsu3 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2) ,in_port=2,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=3" -O Openflow13
-						ovs-ofctl add-flow rsu3 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=3,dl_dst=$i, udp,tp_src=5003 actions=2" -O Openflow13
-						#Insere flows de maior prioridade no backbone
-						ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=(rsu3tosw1),dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=1" -O Openflow13
-						ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1,dl_dst=$i, udp,tp_src=5003 actions=(rsu3tosw1)" -O Openflow13
-						#Deleta flows no backbone para evitar confusao
-						ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=$i -O Openflow13
-						ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=$i -O Openflow13
-						#cadastra na banco
-						mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"rsu3\", $appb_bw)" framework 2> /dev/null
-						#Calcula saldos
-						rsu_calc=rsu3
-						x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
-						calc 
-						rsu_calc=$rsu
-						x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
-						calc
-					fi
-				done
-			#Verifica a possibilidade de bloquear aplicações C
-			elif [[ $(cat appc.txt | wc -l) -gt 0 ]]; then
-				for i in $( cat appc.txt);
-				do				
-					if [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]]; then
-						echo -e "\n $rsu continua congestionada. RSU1 esta sem saldo disponivel. Aplicacao C sera bloqueada ate haver saldo."
-						echo $i " esta associado a aplicacao C e será bloqueada"
-						echo "bloqueando " $i " em $rsu..."
-						#bloqueia trafego
-						ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
-						#cadastra na banco
-						mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appc_bw)" framework 2> /dev/null
-						#recalcula saldo
-						rsu_calc=$rsu
-						x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
-						calc 
-					fi
-				done
-			#Verifica possibilidade de bloqueio dos redirecionamentos de aplicacao C redirecionadas para nao ter que bloquear B
-			elif [[ $(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw and rsu_dst!='"x"'" framework 2> /dev/null | grep -v mac | tail -1) != "NULL" ]]; then
-				echo -e "\n $rsu continua congestionada. RSUs 1 e 3 estao sem saldo disponivel. Aplicacoes C direcionadas serao bloqueadas ate haver saldo no vizinho."
-				#identifica aplicação C anteriormente redirecionada
-				i=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw" framework 2> /dev/null | grep -v mac | tail -1)
-				#identifica rsu de destino
-				rsudst=$(mysql -u root -pwifi -e "select rsu_dst from redirect where rsu_o='"$rsu"' and mac='"$i"'" framework 2> /dev/null | grep -v dst | tail -1)
-				
-				echo "Aplicacao C em $i estava redirecionada e sera bloqueada."
-				#Bloqueia aplicacao C na fonte
-				ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
-				#Apaga redirecionamentos da aplicacao C
-				ovs-ofctl del-flows $rsu cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
-				ovs-ofctl del-flows $rsudst cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$i,udp,tp_src=5004 -O Openflow13
-				ovs-ofctl del-flows $rsudst cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
-				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$i,udp,tp_src=5004 -O Openflow13
-				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
-				#Atualiza tabela de redirecionamento com a informacao de bloqueio
-				mysql -u root -pwifi -e "update redirect set rsu_dest=\"x\" where mac=\"$i\" and bw_value=$appc_bw" framework 2> /dev/null
-				#recalcula saldo no vizinho
-				rsu_calc=$rsudst
-				x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
+					for i in $( cat appb.txt);
+					do
+						#se a RSU2 continua congestionada e o vizinho (rsu3) não suporta aplcação C, verifica se suporta B e redireciona
+						if [[ $(cat saldo.txt | grep rsu3 | cut -d' ' -f2) -ge $appb_bw ]] && [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]]; then
+							#mensagem de controle
+							echo -e "\n $rsu continua congestionada. RSU1 suporta ao menos uma aplicacao B. Aplicacoes B serao redirecionadas ate haver saldo"
+							echo $i " esta associado a aplicacao B"
+							echo "redireciona " $i " de $rsu para rsu2"
+							#Redireciona tráfego de aplicação B, da RSU2 para RSU3
+							#insere flows na rsu origem de maior prioridade
+							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1, dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=3" -O Openflow13
+							#ovs-ofctl add-flow rsu1 "table=1, priority=2, cookie=0x10, dl_dst=$i actions=1" -O Openflow13
+							#Insere flows na RSU de redirecionamento
+							ovs-ofctl add-flow rsu3 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2) ,in_port=2,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=3" -O Openflow13
+							ovs-ofctl add-flow rsu3 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=3,dl_dst=$i, udp,tp_src=5003 actions=2" -O Openflow13
+							#Insere flows de maior prioridade no backbone
+							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=(rsu3tosw1),dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=1" -O Openflow13
+							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1,dl_dst=$i, udp,tp_src=5003 actions=(rsu3tosw1)" -O Openflow13
+							#Deleta flows no backbone para evitar confusao
+							ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=$i -O Openflow13
+							ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=$i -O Openflow13
+							#cadastra na banco
+							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"rsu3\", $appb_bw)" framework 2> /dev/null
+							#Calcula saldos
+							rsu_calc=rsu3
+							x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
+							calc 
+							rsu_calc=$rsu
+							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							calc
+						fi
+					done
+				#Verifica a possibilidade de bloquear aplicações C
+				elif [[ $(cat appc.txt | wc -l) -gt 0 ]]; then
+					for i in $( cat appc.txt);
+					do				
+						if [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]]; then
+							echo -e "\n $rsu continua congestionada. RSU1 esta sem saldo disponivel. Aplicacao C sera bloqueada ate haver saldo."
+							echo $i " esta associado a aplicacao C e será bloqueada"
+							echo "bloqueando " $i " em $rsu..."
+							#bloqueia trafego
+							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
+							#cadastra na banco
+							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appc_bw)" framework 2> /dev/null
+							#recalcula saldo
+							rsu_calc=$rsu
+							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							calc 
+						fi
+					done
+				#Verifica possibilidade de bloqueio dos redirecionamentos de aplicacao C redirecionadas para nao ter que bloquear B
+				elif [[ $(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw and rsu_dst!='"x"'" framework 2> /dev/null | grep -v mac | tail -1) != "NULL" ]]; then
+					echo -e "\n $rsu continua congestionada. RSUs 1 e 3 estao sem saldo disponivel. Aplicacoes C direcionadas serao bloqueadas ate haver saldo no vizinho."
+					#identifica aplicação C anteriormente redirecionada
+					i=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw" framework 2> /dev/null | grep -v mac | tail -1)
+					#identifica rsu de destino
+					rsudst=$(mysql -u root -pwifi -e "select rsu_dst from redirect where rsu_o='"$rsu"' and mac='"$i"'" framework 2> /dev/null | grep -v dst | tail -1)
+
+					echo "Aplicacao C em $i estava redirecionada e sera bloqueada."
+					#Bloqueia aplicacao C na fonte
+					ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
+					#Apaga redirecionamentos da aplicacao C
+					ovs-ofctl del-flows $rsu cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
+					ovs-ofctl del-flows $rsudst cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$i,udp,tp_src=5004 -O Openflow13
+					ovs-ofctl del-flows $rsudst cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
+					ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$i,udp,tp_src=5004 -O Openflow13
+					ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
+					#Atualiza tabela de redirecionamento com a informacao de bloqueio
+					mysql -u root -pwifi -e "update redirect set rsu_dest=\"x\" where mac=\"$i\" and bw_value=$appc_bw" framework 2> /dev/null
+					#recalcula saldo no vizinho
+					rsu_calc=$rsudst
+					x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
+					calc
+				#último caso, bloqueia aplicações B
+				elif [[ $(cat appb.txt | wc -l) -gt 0 ]]; then
+					for i in $( cat appb.txt);
+					do
+						if [[ $(cat saldo.txt | grep rsu1 | cut -d' ' -f2) -lt 0 ]]; then
+							echo -e "\n $rsu continua congestionada. RSUs 1 e 3 estao sem saldo disponivel. Sem acoes em aplicacoes C. Aplicacoes B serao bloqueadas ate haver saldo."
+							echo $i " esta associado a aplicacao B e será bloqueada"
+							echo "bloqueando " $i " em $rsu..."
+							#bloqueia trafego (limitacao desbloquear caso a ran fique livre)
+							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=drop" -O Openflow13
+							#cadastra na banco
+							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appb_bw)" framework 2> /dev/null
+							#recalcula saldo
+							rsu_calc=$rsu
+							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							calc
+						fi 
+					done
+				else
+					echo "so bloqueando o trafego de redirecionamento para essa celula...."
+				fi
+				rsu_calc=$rsu
+				x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
 				calc
+			done		
 		fi
-done
+	done
 	sleep $t
 done
