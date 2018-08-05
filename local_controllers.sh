@@ -32,12 +32,10 @@ function calc {
 			mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"C"'" framework 2> /dev/null |tail -1
 		done | paste -s | expand | tr -s ' ' | sed 's/ /+/g' |sed 's/NULL/0/g'| bc)
 	fi
-
 	#Verifica se existem fluxos cadastrados cuja RSUS em análise é destino (para debitar do saldo)
 	dec=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where rsu_dest= '"$rsu_calc"' " framework 2> /dev/null | tail -1)
 	#Verifica se esxistem fluxos cadastrados cuja RSUS em análise é origem (para incrementar do saldo)
 	inc=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where rsu_o= '"$rsu_calc"' " framework 2> /dev/null | tail -1)
-
 	#quando o resultado das funções anteriores é nulo transforma em 0 para efetuar os calculos posteriores
 	if [ $inc = "NULL" ]; then
 		inc=0
@@ -46,11 +44,9 @@ function calc {
 	if [ $dec = "NULL" ]; then
 		dec=0
 	fi					
-
 	#Calcula o saldo da RSU em análise
 	sd=$(echo $up-$y-$dec+$inc|bc)
 	#echo -e "\n rsu: " $rsu " dec: " $dec " inc: " $inc " sd: " $sd "y: " $y
-
 	#zera arquivo de saldos que será utilizado como referência
 	#Salva saldo calculado em arquivo temporario de controle, para uso nos demais algoritmos
 	#echo $(echo $j | cut -d'-' -f1) $sd >> saldo.txt
@@ -63,14 +59,13 @@ function calc {
 function limpeza {
 	#identifica MACs em redirecionamento cuja rsu local seja origem
 	mac_rec=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o= '"$rsu"' " framework 2> /dev/null | grep -v mac)
-
-	#Verifica se esses MACs na base ainda estao na RAN local e os apaga da tabela (desfazendo as configuracoes relacionadas - ex. flows) em caso negativo
+	#Verifica se esses MACs na base ainda não estão mais na RAN local e os apaga da tabela (desfazendo as configuracoes relacionadas - ex. flows) em caso negativo
 	for m in $mac_rec;
 	do
 		if [[ $(hostapd_cli -i $j all_sta | grep $m -c) -eq 0 ]]; then
 			echo -e "\n Apagando MAC indevido " $m" em " $rsu
 			mysql -u root -pwifi -e "delete from redirect where mac  = \"$m\" and rsu_o = \"$rsu\"" framework 2> /dev/null
-			#Falta apagar os flows
+			#Apaga os flows
 			if [[ $rsu = "rsu1" ]]; then
 				#ovs-ofctl del-flows rsu1 cookie=0x10/-1,dl_dst=$m -O Openflow13
 				ovs-ofctl del-flows rsu1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
@@ -79,6 +74,29 @@ function limpeza {
 				ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
 				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
 				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+			elif [[ $rsu = "rsu3" ]]; then
+				ovs-ofctl del-flows rsu3 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+				ovs-ofctl del-flows rsu3 cookie=0x$(echo $rsu | cut -d'u' -f2)5/-1,dl_src=$m -O Openflow13
+				ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
+				ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
+				ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+			else
+				if [[ $(mysql -u root -pwifi -e "select rsu_d from redirect where mac  = \"$m\" and rsu_o = \"$rsu\"" framework 2> /dev/null) = "rsu1"]]; then
+					ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+					ovs-ofctl del-flows rsu2 cookie=0x$(echo $rsu | cut -d'u' -f2)5/-1,dl_src=$m -O Openflow13
+					ovs-ofctl del-flows rsu1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
+					ovs-ofctl del-flows rsu1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+					ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
+					ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+				else
+					ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+					ovs-ofctl del-flows rsu2 cookie=0x$(echo $rsu | cut -d'u' -f2)5/-1,dl_src=$m -O Openflow13
+					ovs-ofctl del-flows rsu1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
+					ovs-ofctl del-flows rsu1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
+					ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$m -O Openflow13
+					ovs-ofctl del-flows sw1 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13				
+				fi
 			fi
 		fi
 	done
@@ -130,8 +148,8 @@ do
 	do
 		rm -f appc.txt
 		rm -f appb.txt
-	 	#se o saldo for menor que zero (precisa de acao). Se for a rsu1 ou rsu3 (que só tem a rsu2 como vizinhos)
-	 	if [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]] && [[ $rsu != "rsu2" ]]; then
+		#se o saldo for menor que zero (precisa de acao). Se for a rsu1 ou rsu3 (que só tem a rsu2 como vizinhos)
+		if [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]] && [[ $rsu != "rsu2" ]]; then
 			#enquanto o saldo for negativo na RSU1 ou RSU3
 			while [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]]; do
 				#identifica os MACs na RSU1 ou RSU3
@@ -292,7 +310,7 @@ do
 				calc 
 			done
 		fi
-	done
+done
 
 	# 	# 	#se consegue ao menos atender as aplicacoes B
 	# 	# 	if [[ $b -lt $up ]]; then
