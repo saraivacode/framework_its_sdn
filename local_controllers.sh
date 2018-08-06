@@ -51,7 +51,7 @@ function calc {
 	fi					
 	#Calcula o saldo da RSU em análise
 	sd=$(echo $up-$y-$dec+$inc|bc)
-	#echo -e "\n rsu: " $rsu_calc " dec: " $dec " inc: " $inc " sd: " $sd "y: " $y
+	echo -e "\n rsu: " $rsu_calc " dec: " $dec " inc: " $inc " sd: " $sd "y: " $y
 	#zera arquivo de saldos que será utilizado como referência
 	#Salva saldo calculado em arquivo temporario de controle, para uso nos demais algoritmos
 	#echo $(echo $j | cut -d'-' -f1) $sd >> saldo.txt
@@ -149,8 +149,8 @@ do
 				do
 					res_c=$(mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"C"'" framework 2> /dev/null |tail -1)
 					res_b=$(mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"B"'" framework 2> /dev/null |tail -1)
-					red_c=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"$rsu"'" 2> /dev/null framework | tail -1)
-					red_b=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"$rsu"'" 2> /dev/null framework | tail -1)
+					red_c=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"$rsu"' and bw_value=$appc_bw" 2> /dev/null framework | tail -1)
+					red_b=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"$rsu"' and bw_value=$appb_bw" 2> /dev/null framework | tail -1)
 					if [ $res_b != "NULL" ] && [ $red_b = "NULL" ]; then
 						echo $i >> appb.txt
 					fi
@@ -255,7 +255,7 @@ do
 						fi
 					done
 				#Verifica possibilidade de bloqueio dos redirecionamentos de aplicacao C redirecionadas para nao ter que bloquear B
-				elif [[ $(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw and rsu_dest!='"x"'" framework 2> /dev/null | grep -v mac | tail -1) != "NULL" ]]; then
+				elif [[ $(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw and rsu_dest!='"x"'" framework 2> /dev/null | grep -v mac | tail -1 | grep : -c ) -gt 0 ]]; then
 					echo -e "\n $rsu continua congestionada. RSU2 esta sem saldo disponivel. Aplicacoes C direcionadas serao bloqueadas ate haver saldo no vizinho."
 					#identifica aplicação C anteriormente redirecionada
 					i=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw" framework 2> /dev/null | grep -v mac | tail -1)
@@ -315,8 +315,8 @@ do
 				do
 					res_c=$(mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"C"'" framework 2> /dev/null |tail -1)
 					res_b=$(mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"B"'" framework 2> /dev/null |tail -1)
-					red_c=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"$rsu"'" 2> /dev/null framework | tail -1)
-					red_b=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"$rsu"'" 2> /dev/null framework | tail -1)
+					red_c=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"$rsu"' and bw_value=$appc_bw" 2> /dev/null framework | tail -1)
+					red_b=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where mac='"$i"' and rsu_o='"$rsu"' and bw_value=$appb_bw" 2> /dev/null framework | tail -1)
 					if [ $res_b != "NULL" ] && [ $red_b = "NULL" ]; then
 						echo $i >> appb.txt
 					fi
@@ -484,7 +484,7 @@ do
 						fi
 					done
 				#Verifica possibilidade de bloqueio dos redirecionamentos de aplicacao C redirecionadas para nao ter que bloquear B
-				elif [[ $(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw and rsu_dest!='"x"'" framework 2> /dev/null | grep -v mac | tail -1) != "NULL" ]]; then
+				elif [[ $(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw and rsu_dest!='"x"'" framework 2> /dev/null | grep -v mac | tail -1 | grep : -c ) -gt 0 ]]; then
 					echo -e "\n $rsu continua congestionada. RSUs 1 e 3 estao sem saldo disponivel. Aplicacoes C direcionadas serao bloqueadas ate haver saldo no vizinho."
 					#identifica aplicação C anteriormente redirecionada
 					i=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw and rsu_dest!='"x"'" framework 2> /dev/null | grep -v mac | tail -1)
