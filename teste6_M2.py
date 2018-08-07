@@ -5,24 +5,24 @@
 """
 
 import os
-import time
-import matplotlib.pyplot as plt
+import random
 
-from mininet.log import setLogLevel
-from mininet.node import RemoteController, OVSKernelSwitch
-from mininet.wifi.node import OVSKernelAP
-from mininet.wifi.net import Mininet_wifi
+from mininet.node import Controller, OVSKernelSwitch
+from mininet.log import setLogLevel, info
 from mininet.wifi.cli import CLI_wifi
-from mininet.link import TCLink
-from mininet.term import makeTerm
+from mininet.wifi.net import Mininet_wifi
+from mininet.wifi.link import wmediumd
+from mininet.wifi.wmediumdConnector import interference
 
 
 def topology():
 
+    "Create a network."
+    net = Mininet_wifi(controller=Controller, switch=OVSKernelSwitch,
+                       link=wmediumd, wmediumd_mode=interference
+
     ncars = 10
 
-    "Create a network."
-    net = Mininet_wifi(controller=None, autoStaticArp=True, switch=OVSKernelSwitch, accessPoint=OVSKernelAP)
     c1 = net.addController( 'c1', controller=RemoteController, ip='127.0.0.1', port=6633 )
 
     print("*** Creating nodes")
