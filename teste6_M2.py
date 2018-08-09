@@ -7,7 +7,7 @@ import random
 import time
 
 from mininet.node import OVSKernelSwitch, RemoteController
-from mininet.wifi.node import OVSKernelAP
+# from mininet.wifi.node import OVSKernelAP
 from mininet.log import setLogLevel, info
 from mininet.wifi.cli import CLI_wifi
 from mininet.wifi.net import Mininet_wifi
@@ -132,8 +132,8 @@ def topology():
 
     net.associationControl('ssf')
 
-    print( "*** Ploting Graph" )
-    net.plotGraph(max_x=2500, max_y=2500)
+    # print( "*** Ploting Graph" )
+    # net.plotGraph(max_x=2500, max_y=2500)
 
     print("*** Starting network")
     net.build()
