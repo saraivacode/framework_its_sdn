@@ -108,7 +108,7 @@ def topology():
     info("*** Configuring Propagation Model\n")
     net.propagationModel(model="logDistance", exp=4.5)
 
-    net.useIFB()
+    # net.useIFB()
 
     print("*** Configuring wifi nodes")
     net.configureWifiNodes()
