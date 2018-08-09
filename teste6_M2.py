@@ -93,16 +93,16 @@ def topology():
     server_e2 = net.addHost ('server_e2', ip='200.0.10.4/8')
     server_g = net.addHost ('server_g', ip='200.0.10.5/8')
     
-    server_s1.plot(position='1000,1150,0')
-    server_s2.plot(position='1500,1150,0')
-    server_s3.plot(position='2150,1150,0')
+    # server_s1.plot(position='1000,1150,0')
+    # server_s2.plot(position='1500,1150,0')
+    # server_s3.plot(position='2150,1150,0')
 
-    server_e.plot(position='2000,1700,0')
-    server_e2.plot(position='2000,1900,0')
-    server_g.plot(position='2000,2100,0')
+    # server_e.plot(position='2000,1700,0')
+    # server_e2.plot(position='2000,1900,0')
+    # server_g.plot(position='2000,2100,0')
 
-    sw1.plot(position='1600,1750,0')
-    sw2.plot(position='1800,1750,0')
+    # sw1.plot(position='1600,1750,0')
+    # sw2.plot(position='1800,1750,0')
 
 
     info("*** Configuring Propagation Model\n")
@@ -207,8 +207,12 @@ def topology():
 
     time.sleep(1)
 
-    os.system('./mininet-wifi/scripts/lc_mob.sh > j.txt &')  
-    os.system('./mininet-wifi/scripts/local_controllers.sh > k.txt &')
+    # os.system('./mininet-wifi/scripts/lc_mob.sh > j.txt &')  
+    # os.system('./mininet-wifi/scripts/local_controllers.sh > k.txt &')
+
+    os.system('./framework_its_sdn/lc_mob.sh > j.txt &')  
+    os.system('./framework_its_sdn/local_controllers.sh > k.txt &')
+
 
     time.sleep(10)
 
@@ -248,8 +252,13 @@ def topology():
     
     time.sleep(210)
 
-    os.system('fuser -k ./mininet-wifi/scripts/lc_mob.sh')  
-    os.system('fuser -k ./mininet-wifi/scripts/local_controllers.sh')
+    # os.system('fuser -k ./mininet-wifi/scripts/lc_mob.sh')  
+    # os.system('fuser -k ./mininet-wifi/scripts/local_controllers.sh')
+
+    os.system('fuser -k ./framework_its_sdn/lc_mob.sh > j.txt &')  
+    os.system('fuser -k ./framework_its_sdn/local_controllers.sh > k.txt &')
+
+
 
     # print( "*** Verificando Status das conexoes nas RSUs" )
 

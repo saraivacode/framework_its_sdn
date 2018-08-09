@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #define capacidade dos links de upload em mbps
-up=6000000
+up=30000000
 
 #Define a periodicidade em segundos, na qual os controladores verificam o status da rede local
 t=5
 
 appb_bw=1000000
-appc_bw=3000000
+appc_bw=2000000
 
 #Funcao que calcula saldo
 function calc {
@@ -51,7 +51,7 @@ function calc {
 	fi					
 	#Calcula o saldo da RSU em análise
 	sd=$(echo $up-$y-$dec+$inc|bc)
-	echo -e "\n rsu: " $rsu_calc " dec: " $dec " inc: " $inc " sd: " $sd "y: " $y
+	# echo -e "\n rsu: " $rsu_calc " dec: " $dec " inc: " $inc " sd: " $sd "y: " $y
 	#zera arquivo de saldos que será utilizado como referência
 	#Salva saldo calculado em arquivo temporario de controle, para uso nos demais algoritmos
 	#echo $(echo $j | cut -d'-' -f1) $sd >> saldo.txt

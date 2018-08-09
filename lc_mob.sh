@@ -8,7 +8,7 @@ do
 	p=2
 	for i in $(hostapd_cli -i rsu1-wlan1 all_sta | grep :);
 	do
-		x=$(ovs-ofctl dump-flows sw1 -O Openflow13 | grep dl_dst=$i | grep output:$p -c)
+		x=$(ovs-ofctl dump-flows sw1 -O Openflow13 | grep dl_dst=$i | grep output:$p | grep 0x0 -c)
 		if  [[ $x -lt 1 ]]; then
 			echo "falta RSU1 " $i
 			echo "Configurando..."
@@ -24,7 +24,7 @@ do
 	p=3
 	for i in $(hostapd_cli -i rsu2-wlan1 all_sta | grep :);
 	do
-		x=$(ovs-ofctl dump-flows sw1 -O Openflow13 | grep dl_dst=$i | grep output:$p -c)
+		x=$(ovs-ofctl dump-flows sw1 -O Openflow13 | grep dl_dst=$i | grep output:$p | grep 0x0 -c)
 		if  [[ $x -lt 1 ]]; then
 			echo "falta na RSU2 " $i
 			echo "Configurando..."
@@ -40,7 +40,7 @@ do
 	p=4
 	for i in $(hostapd_cli -i rsu3-wlan1 all_sta | grep :);
 	do
-		x=$(ovs-ofctl dump-flows sw1 -O Openflow13 | grep dl_dst=$i | grep output:$p -c)
+		x=$(ovs-ofctl dump-flows sw1 -O Openflow13 | grep dl_dst=$i | grep output:$p | grep 0x0 -c)
 		if  [[ $x -lt 1 ]]; then
 			echo "falta na RSU3 " $i
 			echo "Configurando..."
