@@ -9,10 +9,14 @@ import time
 from mininet.node import OVSKernelSwitch, RemoteController
 # from mininet.wifi.node import OVSKernelAP
 from mininet.log import setLogLevel, info
-from mininet.wifi.cli import CLI_wifi
-from mininet.wifi.net import Mininet_wifi
-from mininet.wifi.link import wmediumd
-from mininet.wifi.wmediumdConnector import interference
+# from mininet.wifi.cli import CLI_wifi
+from mn_wifi.cli import CLI_wifi
+# from mininet.wifi.net import Mininet_wifi
+from mn_wifi.wifi.net import Mininet_wifi
+# from mininet.wifi.link import wmediumd
+from mn_wifi.link import wmediumd
+# from mininet.wifi.wmediumdConnector import interference
+from mn_wifi.wmediumdConnector import interference
 from mininet.link import TCLink
 
 
