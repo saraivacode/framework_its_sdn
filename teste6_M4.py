@@ -26,7 +26,7 @@ def topology():
 
     info("*** Creating nodes\n")
     cars = []
-    for x in range(0, 10):
+    for x in range(0, 40):
         cars.append(x)
 
     cars[0] = net.addCar('car0', wlans=1, range='50', ip='200.0.10.110/8', mac='00:00:00:00:00:01', position='1105,975,0')
@@ -39,6 +39,39 @@ def topology():
     cars[7] = net.addCar('car7', wlans=1, range='50', ip='200.0.10.117/8', mac='00:00:00:00:00:08', position='1560,975,0')
     cars[8] = net.addCar('car8', wlans=1, range='50', ip='200.0.10.118/8', mac='00:00:00:00:00:09', position='1570,975,0')
     cars[9] = net.addCar('car9', wlans=1, range='50', ip='200.0.10.119/8', mac='00:00:00:00:00:10', position='1580,975,0')
+
+    cars[10] = net.addCar('car10', wlans=1, range='50', ip='200.0.10.120/8', mac='00:00:00:00:00:11', mode='g', position='1590,975,0')
+    cars[11] = net.addCar('car11', wlans=1, range='50', ip='200.0.10.121/8', mac='00:00:00:00:00:12', mode='g', position='1600,975,0')
+    cars[12] = net.addCar('car12', wlans=1, range='50', ip='200.0.10.122/8', mac='00:00:00:00:00:13', mode='g', position='1585,975,0')
+
+    cars[13] = net.addCar('car13', wlans=1, range='50', ip='200.0.10.123/8', mac='00:00:00:00:00:14', mode='g', position='1060,975,0')
+    cars[14] = net.addCar('car14', wlans=1, range='50', ip='200.0.10.124/8', mac='00:00:00:00:00:15', mode='g', position='1070,975,0')
+    cars[15] = net.addCar('car15', wlans=1, range='50', ip='200.0.10.125/8', mac='00:00:00:00:00:16', mode='g', position='1080,975,0')
+    cars[16] = net.addCar('car16', wlans=1, range='50', ip='200.0.10.126/8', mac='00:00:00:00:00:17', mode='g', position='1090,975,0')
+    cars[17] = net.addCar('car17', wlans=1, range='50', ip='200.0.10.127/8', mac='00:00:00:00:00:18', mode='g', position='1100,975,0')
+    cars[18] = net.addCar('car18', wlans=1, range='50', ip='200.0.10.128/8', mac='00:00:00:00:00:19', mode='g', position='1110,975,0')
+    cars[19] = net.addCar('car19', wlans=1, range='50', ip='200.0.10.129/8', mac='00:00:00:00:00:20', mode='g', position='1120,975,0')
+
+    cars[20] = net.addCar('car20', wlans=1, range='50', ip='200.0.10.130/8', mac='00:00:00:00:00:21', mode='g', position='20,1025,0')
+    cars[21] = net.addCar('car21', wlans=1, range='50', ip='200.0.10.131/8', mac='00:00:00:00:00:22', mode='g', position='40,1025,0')
+    cars[22] = net.addCar('car22', wlans=1, range='50', ip='200.0.10.132/8', mac='00:00:00:00:00:23', mode='g', position='60,1025,0')
+    cars[23] = net.addCar('car23', wlans=1, range='50', ip='200.0.10.133/8', mac='00:00:00:00:00:24', mode='g', position='80,1025,0')
+    cars[24] = net.addCar('car24', wlans=1, range='50', ip='200.0.10.134/8', mac='00:00:00:00:00:25', mode='g', position='100,1025,0')
+    cars[25] = net.addCar('car25', wlans=1, range='50', ip='200.0.10.135/8', mac='00:00:00:00:00:26', mode='g', position='120,1025,0')
+    cars[26] = net.addCar('car26', wlans=1, range='50', ip='200.0.10.136/8', mac='00:00:00:00:00:27', mode='g', position='140,1025,0')
+    cars[27] = net.addCar('car27', wlans=1, range='50', ip='200.0.10.137/8', mac='00:00:00:00:00:28', mode='g', position='160,1025,0')
+    cars[28] = net.addCar('car28', wlans=1, range='50', ip='200.0.10.138/8', mac='00:00:00:00:00:29', mode='g', position='180,1025,0')
+    cars[29] = net.addCar('car29', wlans=1, range='50', ip='200.0.10.139/8', mac='00:00:00:00:00:30', mode='g', position='200,1025,0')
+    cars[30] = net.addCar('car30', wlans=1, range='50', ip='200.0.10.140/8', mac='00:00:00:00:00:31', mode='g', position='210,1025,0')
+    cars[31] = net.addCar('car31', wlans=1, range='50', ip='200.0.10.141/8', mac='00:00:00:00:00:32', mode='g', position='220,1025,0')
+    cars[32] = net.addCar('car32', wlans=1, range='50', ip='200.0.10.142/8', mac='00:00:00:00:00:33', mode='g', position='240,1025,0')
+    cars[33] = net.addCar('car33', wlans=1, range='50', ip='200.0.10.143/8', mac='00:00:00:00:00:34', mode='g', position='260,1025,0')
+    cars[34] = net.addCar('car34', wlans=1, range='50', ip='200.0.10.144/8', mac='00:00:00:00:00:35', mode='g', position='280,1025,0')
+    cars[35] = net.addCar('car35', wlans=1, range='50', ip='200.0.10.145/8', mac='00:00:00:00:00:36', mode='g', position='300,1025,0')
+    cars[36] = net.addCar('car36', wlans=1, range='50', ip='200.0.10.146/8', mac='00:00:00:00:00:37', mode='g', position='320,1025,0')
+    cars[37] = net.addCar('car37', wlans=1, range='50', ip='200.0.10.147/8', mac='00:00:00:00:00:38', mode='g', position='340,1025,0')
+    cars[38] = net.addCar('car38', wlans=1, range='50', ip='200.0.10.148/8', mac='00:00:00:00:00:39', mode='g', position='360,1025,0')
+    cars[39] = net.addCar('car39', wlans=1, range='50', ip='200.0.10.149/8', mac='00:00:00:00:00:40', mode='g', position='380,1025,0')
 
     # rsu1 = net.addAccessPoint('rsu1', ssid='rsu1', dpid='6', mode='g', channel='11',range=250, position='1100,1000,0', protocols='OpenFlow13')
     # rsu2 = net.addAccessPoint('rsu2', ssid='rsu2', dpid='7', mode='g', channel='11', range=250, position='1600,1000,0', protocols='OpenFlow13')
@@ -84,8 +117,8 @@ def topology():
     link3.intf1.config( bw=6 )
     link4.intf1.config( bw=6 )
 
-    # print( "*** Ploting Graph" )
-    # net.plotGraph(max_x=2500, max_y=2500)
+    print( "*** Ploting Graph" )
+    net.plotGraph(max_x=2500, max_y=2500)
 
     print("*** Starting network")
     net.build()
@@ -157,7 +190,7 @@ def topology():
 
     time.sleep(2)
 
-    for x in xrange(0,10):
+    for x in xrange(0,40):
 
         cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
