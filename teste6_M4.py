@@ -84,8 +84,8 @@ def topology():
     link3.intf1.config( bw=6 )
     link4.intf1.config( bw=6 )
 
-    print( "*** Ploting Graph" )
-    net.plotGraph(max_x=2500, max_y=2500)
+    # print( "*** Ploting Graph" )
+    # net.plotGraph(max_x=2500, max_y=2500)
 
     print("*** Starting network")
     net.build()
