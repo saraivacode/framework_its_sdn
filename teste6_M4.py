@@ -138,7 +138,7 @@ def topology():
     time.sleep(2)
 
     os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -fv &')
-    os.system('./mininet-wifi/scripts/lc_mob.sh > j2.txt &')
+    os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
     time.sleep(1)
     os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
     os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
