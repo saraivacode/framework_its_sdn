@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #define capacidade dos links de upload em mbps
-up=30000000
+up=5000000
 
 #Define a periodicidade em segundos, na qual os controladores verificam o status da rede local
 t=5
@@ -70,10 +70,10 @@ function limpeza {
 	for m in $mac_rec;
 	do
 		if [[ $(hostapd_cli -i $j all_sta | grep $m -c) -eq 0 ]]; then
-			echo -e "\n Apagando MAC indevido " $m" em " $rsu
-			mysql -u root -pwifi -e "delete from redirect where mac  = \"$m\" and rsu_o = \"$rsu\"" framework 2> /dev/null
 			#verifica rsu de destino dos redirecionamentos
 			dst=$(mysql -u root -pwifi -e "select rsu_dest from redirect where mac  = \"$m\" and rsu_o = \"$rsu\"" framework 2> /dev/null | tail -1)
+			echo -e "\n Apagando MAC indevido " $m" em " $rsu
+			mysql -u root -pwifi -e "delete from redirect where mac  = \"$m\" and rsu_o = \"$rsu\"" framework 2> /dev/null
 			#Apaga os flows na rsu de origem
 			ovs-ofctl del-flows $rsu cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$m -O Openflow13
 			ovs-ofctl del-flows $rsu cookie=0x$(echo $rsu | cut -d'u' -f2)5/-1,dl_src=$m -O Openflow13
@@ -214,15 +214,15 @@ do
 							#ovs-ofctl add-flow rsu1 "table=1, priority=2, cookie=0x10, dl_dst=$i actions=1" -O Openflow13
 							#Insere flows na RSU de redirecionamento (ajustar, a depender da origem)
 							if [[ $rsu = "rsu1" ]]; then
-								ovs-ofctl add-flow rsu2 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2) ,in_port=2,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=4" -O Openflow13
-								ovs-ofctl add-flow rsu2 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=4,dl_dst=$i, udp,tp_src=5003 actions=2" -O Openflow13
+								ovs-ofctl add-flow rsu2 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=2, dl_src=$i, nw_dst=200.0.10.3, udp, tp_dst=5003 actions=4" -O Openflow13
+								ovs-ofctl add-flow rsu2 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=4, dl_dst=$i, udp,tp_src=5003 actions=2" -O Openflow13
 							else
-								ovs-ofctl add-flow rsu2 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2) ,in_port=3,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=4" -O Openflow13
-								ovs-ofctl add-flow rsu2 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=4,dl_dst=$i, udp,tp_src=5003 actions=3" -O Openflow13
+								ovs-ofctl add-flow rsu2 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=3, dl_src=$i, nw_dst=200.0.10.3, udp, tp_dst=5003 actions=4" -O Openflow13
+								ovs-ofctl add-flow rsu2 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=4, dl_dst=$i, udp, tp_src=5003 actions=3" -O Openflow13
 							fi
 							#Insere flows de maior prioridade no backbone
-							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=3,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=1" -O Openflow13
-							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1,dl_dst=$i, udp,tp_src=5003 actions=3" -O Openflow13
+							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=3, dl_src=$i, nw_dst=200.0.10.3, udp, tp_dst=5003 actions=1" -O Openflow13
+							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1, dl_dst=$i, udp, tp_src=5003 actions=3" -O Openflow13
 							#Deleta flows no backbone para evitar confusao
 							ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=$i -O Openflow13
 							ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=$i -O Openflow13
@@ -409,14 +409,14 @@ do
 							echo "redireciona " $i " de $rsu para rsu2"
 							#Redireciona tráfego de aplicação B, da RSU2 para RSU1
 							#insere flows na rsu origem de maior prioridade
-							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1, dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=2" -O Openflow13
+							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1, dl_src=$i, nw_dst=200.0.10.3, udp, tp_dst=5003 actions=2" -O Openflow13
 							#ovs-ofctl add-flow rsu1 "table=1, priority=2, cookie=0x10, dl_dst=$i actions=1" -O Openflow13
 							#Insere flows na RSU de redirecionamento
-							ovs-ofctl add-flow rsu1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2) ,in_port=2,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=3" -O Openflow13
-							ovs-ofctl add-flow rsu1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=3,dl_dst=$i, udp,tp_src=5003 actions=2" -O Openflow13
+							ovs-ofctl add-flow rsu1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2) ,in_port=2, dl_src=$i, nw_dst=200.0.10.3, udp, tp_dst=5003 actions=3" -O Openflow13
+							ovs-ofctl add-flow rsu1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=3, dl_dst=$i, udp, tp_src=5003 actions=2" -O Openflow13
 							#Insere flows de maior prioridade no backbone
-							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=2,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=1" -O Openflow13
-							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1,dl_dst=$i, udp,tp_src=5003 actions=2" -O Openflow13
+							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=2, dl_src=$i, nw_dst=200.0.10.3, udp, tp_dst=5003 actions=1" -O Openflow13
+							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1, dl_dst=$i, udp, tp_src=5003 actions=2" -O Openflow13
 							#Deleta flows no backbone para evitar confusao
 							ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=$i -O Openflow13
 							ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=$i -O Openflow13
@@ -446,11 +446,11 @@ do
 							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1, dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=3" -O Openflow13
 							#ovs-ofctl add-flow rsu1 "table=1, priority=2, cookie=0x10, dl_dst=$i actions=1" -O Openflow13
 							#Insere flows na RSU de redirecionamento
-							ovs-ofctl add-flow rsu3 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2) ,in_port=2,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=3" -O Openflow13
-							ovs-ofctl add-flow rsu3 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=3,dl_dst=$i, udp,tp_src=5003 actions=2" -O Openflow13
+							ovs-ofctl add-flow rsu3 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2) ,in_port=2, dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=3" -O Openflow13
+							ovs-ofctl add-flow rsu3 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=3, dl_dst=$i, udp,tp_src=5003 actions=2" -O Openflow13
 							#Insere flows de maior prioridade no backbone
-							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=4,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=1" -O Openflow13
-							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1,dl_dst=$i, udp,tp_src=5003 actions=4" -O Openflow13
+							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=4, dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=1" -O Openflow13
+							ovs-ofctl add-flow sw1 "table=1, priority=2, cookie=0x1$(echo $rsu | cut -d'u' -f2), in_port=1, dl_dst=$i, udp,tp_src=5003 actions=4" -O Openflow13
 							#Deleta flows no backbone para evitar confusao
 							ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=$i -O Openflow13
 							ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=$i -O Openflow13
@@ -474,7 +474,7 @@ do
 							echo $i " esta associado a aplicacao C e será bloqueada"
 							echo "bloqueando " $i " em $rsu..."
 							#bloqueia trafego
-							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
+							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=drop" -O Openflow13
 							#cadastra na banco
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appc_bw)" framework 2> /dev/null
 							#recalcula saldo
@@ -493,7 +493,7 @@ do
 
 					echo "Aplicacao C em $i estava redirecionada para $rsudst e sera bloqueada."
 					#Bloqueia aplicacao C na fonte
-					ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
+					ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=drop" -O Openflow13
 					#Apaga redirecionamentos da aplicacao C
 					ovs-ofctl del-flows $rsu cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
 					ovs-ofctl del-flows $rsudst cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$i,udp,tp_src=5004 -O Openflow13
