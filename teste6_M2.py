@@ -134,7 +134,7 @@ def topology():
     link3.intf1.config( bw=31 )
     link4.intf1.config( bw=31 )
 
-    net.associationControl('ssf')
+    # net.associationControl('ssf')
 
     # print( "*** Ploting Graph" )
     # net.plotGraph(max_x=2500, max_y=2500)
