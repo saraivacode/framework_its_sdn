@@ -137,77 +137,77 @@ def topology():
 
     time.sleep(2)
 
-    # os.system('mysql -u root -pwifi < ./mininet-wifi/scripts/initialdb.sql -fv &')
-    # os.system('./mininet-wifi/scripts/lc_mob.sh > j2.txt &')
-    # time.sleep(1)
-    # os.system('./mininet-wifi/scripts/central_controller2.sh > j1.txt &')
-    # os.system('./mininet-wifi/scripts/local_controllers.sh > j3.txt &')
+    os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -fv &')
+    os.system('./mininet-wifi/scripts/lc_mob.sh > j2.txt &')
+    time.sleep(1)
+    os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
+    os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
     # time.sleep(1)
 
-    # server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
-    # server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
-    # server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
-    # server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
-    # server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
-    # server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
+    server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
+    server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
+    server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
+    server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
+    server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
+    server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
 
 
-    # print( "*** Iniciando geracao de trafego" )
+    print( "*** Iniciando geracao de trafego" )
 
-    # time.sleep(2)
+    time.sleep(2)
 
-    # for x in xrange(0,4):
+    for x in xrange(0,10):
 
-    #     cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
+        cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
-    #     print("*** Car[%d] connect to server_s at 1Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
+        print("*** Car[%d] connect to server_s at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 205 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
         
-    #     print("*** Car[%d] connect to server_e at 1Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
+        print("*** Car[%d] connect to server_e at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 205 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
 
-    #     print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
+        print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
+        cars[x].cmdPrint("timeout 205 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
 
-    #     print("*** Car[%d] connect to server_g at 1Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)   
+        print("*** Car[%d] connect to server_g at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 205 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)   
 
 
-    # time.sleep(33)
+    time.sleep(33)
 
-    # print("Moving Car0 to RSU2")
-    # cars[0].setPosition('1605,975,0')
+    print("Moving Car0 to RSU2")
+    cars[0].setPosition('1605,975,0')
 
-    # time.sleep(33)
+    time.sleep(33)
 
-    # print("Moving Car0 to RSU3")
-    # cars[0].setPosition('2105,975,0')
+    print("Moving Car0 to RSU3")
+    cars[0].setPosition('2105,975,0')
 
-    # time.sleep(33)
+    time.sleep(33)
 
-    # print("Moving Car1 to RSU2")
-    # cars[1].setPosition('1605,975,0')
+    print("Moving Car1 to RSU2")
+    cars[1].setPosition('1605,975,0')
 
-    # time.sleep(33)
+    time.sleep(33)
 
-    # print("Moving Car2 to RSU3")
-    # cars[2].setPosition('2105,975,0')
+    print("Moving Car2 to RSU3")
+    cars[2].setPosition('2105,975,0')
 
-    # time.sleep(33)
+    time.sleep(33)
 
-    # print("Moving Car1 to RSU3")
-    # cars[1].setPosition('2105,975,0')
+    print("Moving Car1 to RSU3")
+    cars[1].setPosition('2105,975,0')
 
-    # time.sleep(33)
+    time.sleep(33)
 
-    # os.system('fuser -k ./mininet-wifi/scripts/central_controller2.sh')
-    # os.system('fuser -k ./mininet-wifi/scripts/lc_mob.sh')  
-    # os.system('fuser -k ./mininet-wifi/scripts/local_controllers.sh')
+    os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
+    os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
+    os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
 
 
     os.system('pkill tcpdump')
