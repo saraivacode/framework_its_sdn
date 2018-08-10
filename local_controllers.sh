@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #define capacidade dos links de upload em mbps
-up=5000000
+up=30000000
 
 #Define a periodicidade em segundos, na qual os controladores verificam o status da rede local
 t=5
