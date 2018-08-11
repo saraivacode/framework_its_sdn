@@ -26,7 +26,7 @@ def topology():
 
     info("*** Creating nodes\n")
     cars = []
-    for x in range(0, 40):
+    for x in range(0, 30):
         cars.append(x)
 
     cars[0] = net.addCar('car0', wlans=1, range='50', ip='200.0.10.110/8', mac='00:00:00:00:00:01', position='1105,975,0')
@@ -62,16 +62,16 @@ def topology():
     cars[27] = net.addCar('car27', wlans=1, range='50', ip='200.0.10.137/8', mac='00:00:00:00:00:28', position='160,1025,0')
     cars[28] = net.addCar('car28', wlans=1, range='50', ip='200.0.10.138/8', mac='00:00:00:00:00:29', position='180,1025,0')
     cars[29] = net.addCar('car29', wlans=1, range='50', ip='200.0.10.139/8', mac='00:00:00:00:00:30', position='200,1025,0')
-    cars[30] = net.addCar('car30', wlans=1, range='50', ip='200.0.10.140/8', mac='00:00:00:00:00:31', position='210,1025,0')
-    cars[31] = net.addCar('car31', wlans=1, range='50', ip='200.0.10.141/8', mac='00:00:00:00:00:32', position='220,1025,0')
-    cars[32] = net.addCar('car32', wlans=1, range='50', ip='200.0.10.142/8', mac='00:00:00:00:00:33', position='240,1025,0')
-    cars[33] = net.addCar('car33', wlans=1, range='50', ip='200.0.10.143/8', mac='00:00:00:00:00:34', position='260,1025,0')
-    cars[34] = net.addCar('car34', wlans=1, range='50', ip='200.0.10.144/8', mac='00:00:00:00:00:35', position='280,1025,0')
-    cars[35] = net.addCar('car35', wlans=1, range='50', ip='200.0.10.145/8', mac='00:00:00:00:00:36', position='300,1025,0')
-    cars[36] = net.addCar('car36', wlans=1, range='50', ip='200.0.10.146/8', mac='00:00:00:00:00:37', position='320,1025,0')
-    cars[37] = net.addCar('car37', wlans=1, range='50', ip='200.0.10.147/8', mac='00:00:00:00:00:38', position='340,1025,0')
-    cars[38] = net.addCar('car38', wlans=1, range='50', ip='200.0.10.148/8', mac='00:00:00:00:00:39', position='360,1025,0')
-    cars[39] = net.addCar('car39', wlans=1, range='50', ip='200.0.10.149/8', mac='00:00:00:00:00:40', position='380,1025,0')
+    # cars[30] = net.addCar('car30', wlans=1, range='50', ip='200.0.10.140/8', mac='00:00:00:00:00:31', position='210,1025,0')
+    # cars[31] = net.addCar('car31', wlans=1, range='50', ip='200.0.10.141/8', mac='00:00:00:00:00:32', position='220,1025,0')
+    # cars[32] = net.addCar('car32', wlans=1, range='50', ip='200.0.10.142/8', mac='00:00:00:00:00:33', position='240,1025,0')
+    # cars[33] = net.addCar('car33', wlans=1, range='50', ip='200.0.10.143/8', mac='00:00:00:00:00:34', position='260,1025,0')
+    # cars[34] = net.addCar('car34', wlans=1, range='50', ip='200.0.10.144/8', mac='00:00:00:00:00:35', position='280,1025,0')
+    # cars[35] = net.addCar('car35', wlans=1, range='50', ip='200.0.10.145/8', mac='00:00:00:00:00:36', position='300,1025,0')
+    # cars[36] = net.addCar('car36', wlans=1, range='50', ip='200.0.10.146/8', mac='00:00:00:00:00:37', position='320,1025,0')
+    # cars[37] = net.addCar('car37', wlans=1, range='50', ip='200.0.10.147/8', mac='00:00:00:00:00:38', position='340,1025,0')
+    # cars[38] = net.addCar('car38', wlans=1, range='50', ip='200.0.10.148/8', mac='00:00:00:00:00:39', position='360,1025,0')
+    # cars[39] = net.addCar('car39', wlans=1, range='50', ip='200.0.10.149/8', mac='00:00:00:00:00:40', position='380,1025,0')
 
     # rsu1 = net.addAccessPoint('rsu1', ssid='rsu1', dpid='6', channel='11',range=250, position='1100,1000,0', protocols='OpenFlow13')
     # rsu2 = net.addAccessPoint('rsu2', ssid='rsu2', dpid='7', channel='11', range=250, position='1600,1000,0', protocols='OpenFlow13')
@@ -141,7 +141,8 @@ def topology():
     os.system('ovs-vsctl set bridge rsu2 other-config:datapath-id=0000000000000007')
     os.system('ovs-vsctl set bridge rsu3 other-config:datapath-id=0000000000000008')
 
-    
+    time.sleep(1)
+
     os.system('ovs-vsctl --all destroy QoS; ovs-vsctl --all destroy Queue')
 
     os.system('ovs-vsctl set-manager ptcp:6632')
@@ -168,13 +169,13 @@ def topology():
 
     os.system('ovs-ofctl del-flows sw1 -O Openflow13; ovs-ofctl add-flow sw1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl del-flows sw2 -O Openflow13; ovs-ofctl add-flow sw2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, actions=CONTROLLER:65535" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=1 actions=4" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=2 actions=4" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=3 actions=4" -O Openflow13; ovs-ofctl del-flows rsu1 -O Openflow13; ovs-ofctl del-flows rsu2 -O Openflow13; ovs-ofctl del-flows rsu3 -O Openflow13; ovs-ofctl add-flow rsu1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=1, actions=4" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=4, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=3,5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=4,5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=3,5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; mysql -u root -pwifi -e "delete from redirect;" framework 2> /dev/null')
 
-    # time.sleep(2)
+    time.sleep(2)
 
     os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -fv &')
-    # os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
-    # time.sleep(1)
-    # os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
-    # os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+    os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
+    time.sleep(1)
+    os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
+    os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
     # # time.sleep(1)
 
@@ -238,9 +239,9 @@ def topology():
 
     # time.sleep(33)
 
-    # os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
-    # os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
-    # os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
+    os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
+    os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
+    os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
 
 
     # os.system('pkill tcpdump')
