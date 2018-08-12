@@ -4,7 +4,7 @@
 
 import os
 import time
-import random
+# import random
 
 from mininet.node import Controller, OVSKernelSwitch, RemoteController
 from mininet.log import setLogLevel, info
@@ -27,11 +27,10 @@ def topology():
     for x in range(0, 10):
         cars.append(x)
     for x in range(0, 10):
-        min_ = random.randint(1, 4)
-        max_ = random.randint(11, 30)
+        # min_ = random.randint(1, 4)
+        # max_ = random.randint(11, 30)
         cars[x] = net.addCar('car%s' % (x + 1), wlans=1,
-                             ip='10.0.0.%s/8'% (x + 1), min_speed=min_,
-                             max_speed=max_)
+                             ip='10.0.0.%s/8'% (x + 1))
 
     rsu1 = net.addAccessPoint('rsu1', ssid='rsu1', mode='g',
                                channel='1', range='250', position='1100,1000,0', protocols='OpenFlow13')
@@ -85,21 +84,21 @@ def topology():
     net.startMobility( time=0 )
     net.mobility( cars[0], 'start', time=1, position='120,1000,0' )
     net.mobility( cars[0], 'stop', time=179, position='2101,1000,0' )
-    net.mobility( cars[1], 'start', time=1, position='130,1000,0' )
+    net.mobility( cars[1], 'start', time=1, position='130,999,0' )
     net.mobility( cars[1], 'stop', time=179, position='2095,999,0' )
-    net.mobility( cars[2], 'start', time=1, position='135,1000,0' )
+    net.mobility( cars[2], 'start', time=1, position='135,997,0' )
     net.mobility( cars[2], 'stop', time=59, position='2097,997,0' )
     net.mobility( cars[3], 'start', time=1, position='140,1000,0' )
-    net.mobility( cars[3], 'stop', time=59, position='1601,998,0' )
-    net.mobility( cars[4], 'start', time=1, position='145,1000,0' )
+    net.mobility( cars[3], 'stop', time=59, position='1601,1000,0' )
+    net.mobility( cars[4], 'start', time=1, position='145,999,0' )
     net.mobility( cars[4], 'stop', time=59, position='1599,999,0' )
-    net.mobility( cars[5], 'start', time=1, position='150,1000,0' )
+    net.mobility( cars[5], 'start', time=1, position='150,997,0' )
     net.mobility( cars[5], 'stop', time=179, position='1595,997,0' )
     net.mobility( cars[6], 'start', time=1, position='155,1000,0' )
-    net.mobility( cars[6], 'stop', time=179, position='1101,997,0' )
+    net.mobility( cars[6], 'stop', time=179, position='1101,1000,0' )
     net.mobility( cars[7], 'start', time=1, position='160,1000,0' )
-    net.mobility( cars[7], 'stop', time=179, position='1098,998,0' )
-    net.mobility( cars[8], 'start', time=1, position='165,1000,0' )
+    net.mobility( cars[7], 'stop', time=179, position='1098,1000,0' )
+    net.mobility( cars[8], 'start', time=1, position='165,999,0' )
     net.mobility( cars[8], 'stop', time=179, position='1095,999,0' )
     net.stopMobility( time=180 )
 
