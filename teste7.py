@@ -28,7 +28,7 @@ def topology():
 
     for x in range(0, 10):
         cars[x] = net.addCar('car%s' % (x + 1), wlans=1,
-                             ip='10.0.0.%s/8'% (x + 1), range='50')
+                             ip='10.0.0.%s/8'% (x + 1), range='50', min_v=0.1)
 
     rsu1 = net.addAccessPoint('rsu1', ssid='rsu1', mode='g',
                                channel='1', range='250', position='1100,1000,0', protocols='OpenFlow13')
@@ -79,7 +79,7 @@ def topology():
 
     # net.roads(10)
 
-    net.startMobility( time=0, min_v=0.1 )
+    net.startMobility( time=0 )
     net.mobility( cars[0], 'start', time=1, position='120,1000,0' )
     net.mobility( cars[0], 'stop', time=179, position='2101,1000,0' )
     net.mobility( cars[1], 'start', time=1, position='130,1000,0' )
