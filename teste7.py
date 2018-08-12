@@ -4,6 +4,7 @@
 
 import os
 import time
+import random
 
 from mininet.node import Controller, OVSKernelSwitch, RemoteController
 from mininet.log import setLogLevel, info
@@ -25,10 +26,12 @@ def topology():
     cars = []
     for x in range(0, 10):
         cars.append(x)
-
     for x in range(0, 10):
+        min_ = random.randint(1, 4)
+        max_ = random.randint(11, 30)
         cars[x] = net.addCar('car%s' % (x + 1), wlans=1,
-                             ip='10.0.0.%s/8'% (x + 1), range='50', min_v=0.1)
+                             ip='10.0.0.%s/8'% (x + 1), min_speed=min_,
+                             max_speed=max_)
 
     rsu1 = net.addAccessPoint('rsu1', ssid='rsu1', mode='g',
                                channel='1', range='250', position='1100,1000,0', protocols='OpenFlow13')
