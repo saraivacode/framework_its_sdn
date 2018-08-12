@@ -79,7 +79,7 @@ def topology():
 
     # net.roads(10)
 
-    net.startMobility( time=0 )
+    net.startMobility( time=0, min_v=0.1 )
     net.mobility( cars[0], 'start', time=1, position='120,1000,0' )
     net.mobility( cars[0], 'stop', time=179, position='2101,1000,0' )
     net.mobility( cars[1], 'start', time=1, position='130,1000,0' )
