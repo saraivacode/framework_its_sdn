@@ -30,11 +30,11 @@ def topology():
         cars[x] = net.addCar('car%s' % (x + 1), wlans=1,
                              ip='10.0.0.%s/8'% (x + 1), range='50')
 
-    rsu1 = net.addAccessPoint('RSU11', ssid='RSU11', mode='g',
+    rsu1 = net.addAccessPoint('rsu1', ssid='rsu1', mode='g',
                                channel='1', range='250', position='1100,1000,0', protocols='OpenFlow13')
-    rsu2 = net.addAccessPoint('RSU12', ssid='RSU12', mode='g',
+    rsu2 = net.addAccessPoint('rsu2', ssid='rsu2', mode='g',
                                channel='6', range='250', position='1600,1000,0', protocols='OpenFlow13')
-    rsu3 = net.addAccessPoint('RSU13', ssid='RSU13', mode='g',
+    rsu3 = net.addAccessPoint('rsu3', ssid='rsu3', mode='g',
                                channel='11', range='250', position='2100,1000,0', protocols='OpenFlow13')
 
     #c1 = net.addController('c1', controller=Controller)
