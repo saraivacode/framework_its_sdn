@@ -6,14 +6,12 @@ import os
 import time
 
 from mininet.node import Controller, OVSKernelSwitch, RemoteController
-#from mininet.node import Controller, OVSKernelSwitch
 from mininet.log import setLogLevel, info
-from mininet.wifi.cli import CLI_wifi
-from mininet.wifi.net import Mininet_wifi
-from mininet.wifi.link import wmediumd
-from mininet.wifi.wmediumdConnector import interference
-#from mininet.link import TCLink
-
+from mn_wifi.cli import CLI_wifi
+from mn_wifi.net import Mininet_wifi
+from mn_wifi.link import wmediumd
+from mn_wifi.wmediumdConnector import interference
+from mininet.link import TCLink
 
 def topology():
 
@@ -21,7 +19,7 @@ def topology():
     net = Mininet_wifi(controller=None, switch=OVSKernelSwitch,
                        link=wmediumd, wmediumd_mode=interference)
 
-    # c1 = net.addController( 'c1', controller=RemoteController, ip='127.0.0.1', port=6633 )
+    c1 = net.addController( 'c1', controller=RemoteController, ip='127.0.0.1', port=6633 )
 
     info("*** Creating nodes\n")
     cars = []
@@ -39,7 +37,7 @@ def topology():
     rsu3 = net.addAccessPoint('RSU13', ssid='RSU13', mode='g',
                                channel='11', range='250', position='2100,1000,0', protocols='OpenFlow13')
 
-    c1 = net.addController('c1', controller=Controller)
+    #c1 = net.addController('c1', controller=Controller)
 
     sw1 = net.addSwitch ('sw1', dpid='9', protocols='OpenFlow13')
     sw2 = net.addSwitch ('sw2', dpid='10', protocols='OpenFlow13')
@@ -66,20 +64,16 @@ def topology():
     net.addLink(server_e, sw2, 0, 1)
     net.addLink(server_e2, sw2, 0, 2)
     net.addLink(server_g, sw2, 0, 3)
-    net.addLink(sw1, sw2, 1, 4)
-    net.addLink(rsu1, sw1, 3, 2)
-    net.addLink(rsu2, sw1, 4, 3)
-    net.addLink(rsu3, sw1, 3, 4)
-    # link1 = net.addLink(sw1, sw2, 1, 4, cls=TCLink )
-    # link2 = net.addLink(rsu1, sw1, 3, 2, cls=TCLink)
-    # link3 = net.addLink(rsu2, sw1, 4, 3, cls=TCLink)
-    # link4 = net.addLink(rsu3, sw1, 3, 4, cls=TCLink)
+    link1 = net.addLink(sw1, sw2, 1, 4, cls=TCLink )
+    link2 = net.addLink(rsu1, sw1, 3, 2, cls=TCLink)
+    link3 = net.addLink(rsu2, sw1, 4, 3, cls=TCLink)
+    link4 = net.addLink(rsu3, sw1, 3, 4, cls=TCLink)
 
-    # print( "*** Configuring links bandwidth" )
-    # link1.intf1.config( bw=93 )
-    # link2.intf1.config( bw=31 )
-    # link3.intf1.config( bw=31 )
-    # link4.intf1.config( bw=31 )
+    print( "*** Configuring links bandwidth" )
+    link1.intf1.config( bw=93 )
+    link2.intf1.config( bw=31 )
+    link3.intf1.config( bw=31 )
+    link4.intf1.config( bw=31 )
 
     net.plotGraph(max_x=2000, max_y=2000)
 
