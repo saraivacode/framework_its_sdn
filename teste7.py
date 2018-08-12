@@ -5,7 +5,8 @@
 import os
 import time
 
-from mininet.node import Controller, OVSKernelSwitch, RemoteController
+# from mininet.node import Controller, OVSKernelSwitch, RemoteController
+from mininet.node import Controller, OVSKernelSwitch
 from mininet.log import setLogLevel, info
 from mininet.wifi.cli import CLI_wifi
 from mininet.wifi.net import Mininet_wifi
@@ -17,10 +18,10 @@ from mininet.link import TCLink
 def topology():
 
     "Create a network."
-    net = Mininet_wifi(controller=None, switch=OVSKernelSwitch,
+    net = Mininet_wifi(controller=Controller, switch=OVSKernelSwitch,
                        link=wmediumd, wmediumd_mode=interference)
 
-    c1 = net.addController( 'c1', controller=RemoteController, ip='127.0.0.1', port=6633 )
+    # c1 = net.addController( 'c1', controller=RemoteController, ip='127.0.0.1', port=6633 )
 
     info("*** Creating nodes\n")
     cars = []
