@@ -172,11 +172,11 @@ def topology():
 
     time.sleep(2)
 
-    os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -fv &')
-    os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
-    time.sleep(1)
-    os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
-    os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+    # os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -fv &')
+    # os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
+    # time.sleep(1)
+    # os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
+    # os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
     # # time.sleep(1)
 
@@ -240,9 +240,9 @@ def topology():
 
     # time.sleep(33)
 
-    os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
-    os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
-    os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
+    # os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
+    # os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
+    # os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
 
 
     # os.system('pkill tcpdump')
