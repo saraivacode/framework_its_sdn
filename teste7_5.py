@@ -77,7 +77,7 @@ def topology():
     link3.intf1.config( bw=31 )
     link4.intf1.config( bw=31 )
 
-    # net.plotGraph(max_x=2000, max_y=2000)
+    net.plotGraph(max_x=2000, max_y=2000)
 
     # net.roads(10)
 
@@ -103,16 +103,16 @@ def topology():
     # net.stopMobility( time=180 )
 
     cars[0].setPosition('1103,1000,0')
-    cars[1].setPosition('1101,1000,0')
+    cars[1].setPosition('1105,1000,0')
     cars[2].setPosition('1095,1000,0')
-    cars[3].setPosition('1600,1000,0')
-    cars[4].setPosition('1603,1000,0')
-    cars[1].setPosition('1606,1000,0')
-    cars[5].setPosition('2100,1000,0')
-    cars[6].setPosition('2102,1000,0')
-    cars[7].setPosition('2103,1000,0')
+    cars[3].setPosition('1603,1000,0')
+    cars[4].setPosition('1605,1000,0')
+    cars[1].setPosition('1595,1000,0')
+    cars[5].setPosition('2103,1000,0')
+    cars[6].setPosition('2105,1000,0')
+    cars[7].setPosition('2095,1000,0')
     cars[8].setPosition('2110,1000,0')
-    cars[9].setPosition('2105,1000,0')
+    cars[9].setPosition('2090,1000,0')
 
     print("*** Starting network")
     net.build()
