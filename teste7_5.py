@@ -77,7 +77,7 @@ def topology():
     link3.intf1.config( bw=31 )
     link4.intf1.config( bw=31 )
 
-    net.plotGraph(max_x=2000, max_y=2000)
+    # net.plotGraph(max_x=2000, max_y=2000)
 
     # net.roads(10)
 
