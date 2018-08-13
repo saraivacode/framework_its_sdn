@@ -1,0 +1,2327 @@
+root@wifi:/home/wifi# ./framework_its_sdn/teste7_6.py 
+*** Setting resource limits
+*** errRun: ['which', 'mnexec'] 
+/usr/bin/mnexec
+  0*** errRun: ['which', 'ifconfig'] 
+/sbin/ifconfig
+  0_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:c1'] 18318*** c1 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** c1 : ('echo A | telnet -e A 127.0.0.1 6633',)
+Telnet escape character is 'A'.
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is 'A'.
+
+telnet> Connection closed.
+*** Creating nodes
+*** errRun: ['which', 'mnexec'] 
+/usr/bin/mnexec
+  0*** errRun: ['which', 'ip', 'addr'] 
+/sbin/ip
+  1*** car0 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** errRun: ['which', 'mnexec'] 
+/usr/bin/mnexec
+  0*** errRun: ['which', 'ip', 'addr'] 
+/sbin/ip
+  1*** car0STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** errRun: ['which', 'ovs-vsctl'] 
+/usr/bin/ovs-vsctl
+  0*** errRun: ['ovs-vsctl', '-t', '1', 'show'] 
+48df7745-3ab4-4d54-8755-aa228467c4f2
+    Manager "ptcp:6632"
+    ovs_version: "2.5.4"
+  0*** errRun: ['ovs-vsctl', '--version'] 
+ovs-vsctl (Open vSwitch) 2.5.4
+Compiled Oct 30 2017 10:38:01
+DB Schema 7.12.1
+  0_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car0SW'] 18340*** car0SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car0SW
+*** car0SW : ('ifconfig', 'lo', 'up')
+*** car1 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car1STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car1SW'] 18354*** car1SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car1SW
+*** car1SW : ('ifconfig', 'lo', 'up')
+*** car2 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car2STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car2SW'] 18368*** car2SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car2SW
+*** car2SW : ('ifconfig', 'lo', 'up')
+*** car3 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car3STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car3SW'] 18382*** car3SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car3SW
+*** car3SW : ('ifconfig', 'lo', 'up')
+*** car4 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car4STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car4SW'] 18396*** car4SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car4SW
+*** car4SW : ('ifconfig', 'lo', 'up')
+*** car5 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car5STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car5SW'] 18410*** car5SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car5SW
+*** car5SW : ('ifconfig', 'lo', 'up')
+*** car6 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car6STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car6SW'] 18424*** car6SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car6SW
+*** car6SW : ('ifconfig', 'lo', 'up')
+*** car7 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car7STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car7SW'] 18438*** car7SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car7SW
+*** car7SW : ('ifconfig', 'lo', 'up')
+*** car8 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car8STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car8SW'] 18452*** car8SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car8SW
+*** car8SW : ('ifconfig', 'lo', 'up')
+*** car9 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car9STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car9SW'] 18466*** car9SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car9SW
+*** car9SW : ('ifconfig', 'lo', 'up')
+*** car10 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car10STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car10SW'] 18480*** car10SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car10SW
+*** car10SW : ('ifconfig', 'lo', 'up')
+*** car11 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car11STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car11SW'] 18494*** car11SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car11SW
+*** car11SW : ('ifconfig', 'lo', 'up')
+*** car12 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car12STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car12SW'] 18508*** car12SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car12SW
+*** car12SW : ('ifconfig', 'lo', 'up')
+*** car13 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car13STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car13SW'] 18522*** car13SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car13SW
+*** car13SW : ('ifconfig', 'lo', 'up')
+*** car14 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car14STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car14SW'] 18536*** car14SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car14SW
+*** car14SW : ('ifconfig', 'lo', 'up')
+*** car15 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car15STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car15SW'] 18550*** car15SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car15SW
+*** car15SW : ('ifconfig', 'lo', 'up')
+*** car16 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car16STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car16SW'] 18564*** car16SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car16SW
+*** car16SW : ('ifconfig', 'lo', 'up')
+*** car17 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car17STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car17SW'] 18579*** car17SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car17SW
+*** car17SW : ('ifconfig', 'lo', 'up')
+*** car18 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car18STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car18SW'] 18597*** car18SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car18SW
+*** car18SW : ('ifconfig', 'lo', 'up')
+*** car19 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car19STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car19SW'] 18611*** car19SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car19SW
+*** car19SW : ('ifconfig', 'lo', 'up')
+*** car20 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car20STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car20SW'] 18626*** car20SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car20SW
+*** car20SW : ('ifconfig', 'lo', 'up')
+*** car21 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car21STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car21SW'] 18643*** car21SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car21SW
+*** car21SW : ('ifconfig', 'lo', 'up')
+*** car22 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car22STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car22SW'] 18657*** car22SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car22SW
+*** car22SW : ('ifconfig', 'lo', 'up')
+*** car23 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car23STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car23SW'] 18672*** car23SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car23SW
+*** car23SW : ('ifconfig', 'lo', 'up')
+*** car24 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car24STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car24SW'] 18687*** car24SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car24SW
+*** car24SW : ('ifconfig', 'lo', 'up')
+*** car25 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car25STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car25SW'] 18701*** car25SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car25SW
+*** car25SW : ('ifconfig', 'lo', 'up')
+*** car26 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car26STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car26SW'] 18715*** car26SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car26SW
+*** car26SW : ('ifconfig', 'lo', 'up')
+*** car27 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car27STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car27SW'] 18729*** car27SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car27SW
+*** car27SW : ('ifconfig', 'lo', 'up')
+*** car28 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car28STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car28SW'] 18743*** car28SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car28SW
+*** car28SW : ('ifconfig', 'lo', 'up')
+*** car29 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** car29STA : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:car29SW'] 18757*** car29SW : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node car29SW
+*** car29SW : ('ifconfig', 'lo', 'up')
+*** errRun: ['which', 'ovs-vsctl'] 
+/usr/bin/ovs-vsctl
+  0*** errRun: ['ovs-vsctl', '-t', '1', 'show'] 
+48df7745-3ab4-4d54-8755-aa228467c4f2
+    Manager "ptcp:6632"
+    ovs_version: "2.5.4"
+  0*** errRun: ['ovs-vsctl', '--version'] 
+ovs-vsctl (Open vSwitch) 2.5.4
+Compiled Oct 30 2017 10:38:01
+DB Schema 7.12.1
+  0*** rsu1 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node rsu1
+*** rsu1 : ('ifconfig', 'lo', 'up')
+*** rsu2 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node rsu2
+*** rsu2 : ('ifconfig', 'lo', 'up')
+*** rsu3 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node rsu3
+*** rsu3 : ('ifconfig', 'lo', 'up')
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:sw1'] 18781*** sw1 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node sw1
+*** sw1 : ('ifconfig', 'lo', 'up')
+_popen ['mnexec', '-cd', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:sw2'] 18784*** sw2 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+
+added intf lo (0) to node sw2
+*** sw2 : ('ifconfig', 'lo', 'up')
+*** errRun: ['which', 'mnexec'] 
+/usr/bin/mnexec
+  0*** errRun: ['which', 'ifconfig'] 
+/sbin/ifconfig
+  0_popen ['mnexec', '-cdn', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:server_s1'] 18789*** server_s1 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cdn', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:server_s2'] 18791*** server_s2 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cdn', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:server_s3'] 18793*** server_s3 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cdn', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:server_e'] 18795*** server_e : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cdn', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:server_e2'] 18797*** server_e2 : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+_popen ['mnexec', '-cdn', 'env', 'PS1=\x7f', 'bash', '--norc', '--noediting', '-is', 'mininet:server_g'] 18799*** server_g : ('unset HISTFILE; stty -echo; set +m',)
+unset HISTFILE; stty -echo; set +m
+*** Configuring Propagation Model
+*** Configuring wifi nodes
+Loading 63 virtual wifi interfaces
+Created mac80211_hwsim device with ID 0
+Created mac80211_hwsim device with ID 1
+Created mac80211_hwsim device with ID 2
+Created mac80211_hwsim device with ID 3
+Created mac80211_hwsim device with ID 4
+Created mac80211_hwsim device with ID 5
+Created mac80211_hwsim device with ID 6
+Created mac80211_hwsim device with ID 7
+Created mac80211_hwsim device with ID 8
+Created mac80211_hwsim device with ID 9
+Created mac80211_hwsim device with ID 10
+Created mac80211_hwsim device with ID 11
+Created mac80211_hwsim device with ID 12
+Created mac80211_hwsim device with ID 13
+Created mac80211_hwsim device with ID 14
+Created mac80211_hwsim device with ID 15
+Created mac80211_hwsim device with ID 16
+Created mac80211_hwsim device with ID 17
+Created mac80211_hwsim device with ID 18
+Created mac80211_hwsim device with ID 19
+Created mac80211_hwsim device with ID 20
+Created mac80211_hwsim device with ID 21
+Created mac80211_hwsim device with ID 22
+Created mac80211_hwsim device with ID 23
+Created mac80211_hwsim device with ID 24
+Created mac80211_hwsim device with ID 25
+Created mac80211_hwsim device with ID 26
+Created mac80211_hwsim device with ID 27
+Created mac80211_hwsim device with ID 28
+Created mac80211_hwsim device with ID 29
+Created mac80211_hwsim device with ID 30
+Created mac80211_hwsim device with ID 31
+Created mac80211_hwsim device with ID 32
+Created mac80211_hwsim device with ID 33
+Created mac80211_hwsim device with ID 34
+Created mac80211_hwsim device with ID 35
+Created mac80211_hwsim device with ID 36
+Created mac80211_hwsim device with ID 37
+Created mac80211_hwsim device with ID 38
+Created mac80211_hwsim device with ID 39
+Created mac80211_hwsim device with ID 40
+Created mac80211_hwsim device with ID 41
+Created mac80211_hwsim device with ID 42
+Created mac80211_hwsim device with ID 43
+Created mac80211_hwsim device with ID 44
+Created mac80211_hwsim device with ID 45
+Created mac80211_hwsim device with ID 46
+Created mac80211_hwsim device with ID 47
+Created mac80211_hwsim device with ID 48
+Created mac80211_hwsim device with ID 49
+Created mac80211_hwsim device with ID 50
+Created mac80211_hwsim device with ID 51
+Created mac80211_hwsim device with ID 52
+Created mac80211_hwsim device with ID 53
+Created mac80211_hwsim device with ID 54
+Created mac80211_hwsim device with ID 55
+Created mac80211_hwsim device with ID 56
+Created mac80211_hwsim device with ID 57
+Created mac80211_hwsim device with ID 58
+Created mac80211_hwsim device with ID 59
+Created mac80211_hwsim device with ID 60
+Created mac80211_hwsim device with ID 61
+Created mac80211_hwsim device with ID 62
+
+*** Configuring interfaces with appropriated network-namespaces...
+rfkill unblock 258
+*** car0STA : ('ip link set wlan0 down',)
+*** car0STA : ('ip link set wlan0 name car0STA-wlan0',)
+rfkill unblock 259
+*** car1STA : ('ip link set wlan1 down',)
+*** car1STA : ('ip link set wlan1 name car1STA-wlan0',)
+rfkill unblock 260
+*** car2STA : ('ip link set wlan2 down',)
+*** car2STA : ('ip link set wlan2 name car2STA-wlan0',)
+rfkill unblock 261
+*** car3STA : ('ip link set wlan3 down',)
+*** car3STA : ('ip link set wlan3 name car3STA-wlan0',)
+rfkill unblock 262
+*** car4STA : ('ip link set wlan4 down',)
+*** car4STA : ('ip link set wlan4 name car4STA-wlan0',)
+rfkill unblock 263
+*** car5STA : ('ip link set wlan5 down',)
+*** car5STA : ('ip link set wlan5 name car5STA-wlan0',)
+rfkill unblock 264
+*** car6STA : ('ip link set wlan6 down',)
+*** car6STA : ('ip link set wlan6 name car6STA-wlan0',)
+rfkill unblock 265
+*** car7STA : ('ip link set wlan7 down',)
+*** car7STA : ('ip link set wlan7 name car7STA-wlan0',)
+rfkill unblock 266
+*** car8STA : ('ip link set wlan8 down',)
+*** car8STA : ('ip link set wlan8 name car8STA-wlan0',)
+rfkill unblock 267
+*** car9STA : ('ip link set wlan9 down',)
+*** car9STA : ('ip link set wlan9 name car9STA-wlan0',)
+rfkill unblock 268
+*** car10STA : ('ip link set wlan10 down',)
+*** car10STA : ('ip link set wlan10 name car10STA-wlan0',)
+rfkill unblock 269
+*** car11STA : ('ip link set wlan11 down',)
+*** car11STA : ('ip link set wlan11 name car11STA-wlan0',)
+rfkill unblock 270
+*** car12STA : ('ip link set wlan12 down',)
+*** car12STA : ('ip link set wlan12 name car12STA-wlan0',)
+rfkill unblock 271
+*** car13STA : ('ip link set wlan13 down',)
+*** car13STA : ('ip link set wlan13 name car13STA-wlan0',)
+rfkill unblock 272
+*** car14STA : ('ip link set wlan14 down',)
+*** car14STA : ('ip link set wlan14 name car14STA-wlan0',)
+rfkill unblock 273
+*** car15STA : ('ip link set wlan15 down',)
+*** car15STA : ('ip link set wlan15 name car15STA-wlan0',)
+rfkill unblock 274
+*** car16STA : ('ip link set wlan16 down',)
+*** car16STA : ('ip link set wlan16 name car16STA-wlan0',)
+rfkill unblock 275
+*** car17STA : ('ip link set wlan17 down',)
+*** car17STA : ('ip link set wlan17 name car17STA-wlan0',)
+rfkill unblock 276
+*** car18STA : ('ip link set wlan18 down',)
+*** car18STA : ('ip link set wlan18 name car18STA-wlan0',)
+rfkill unblock 277
+*** car19STA : ('ip link set wlan19 down',)
+*** car19STA : ('ip link set wlan19 name car19STA-wlan0',)
+rfkill unblock 278
+*** car20STA : ('ip link set wlan20 down',)
+*** car20STA : ('ip link set wlan20 name car20STA-wlan0',)
+rfkill unblock 279
+*** car21STA : ('ip link set wlan21 down',)
+*** car21STA : ('ip link set wlan21 name car21STA-wlan0',)
+rfkill unblock 280
+*** car22STA : ('ip link set wlan22 down',)
+*** car22STA : ('ip link set wlan22 name car22STA-wlan0',)
+rfkill unblock 281
+*** car23STA : ('ip link set wlan23 down',)
+*** car23STA : ('ip link set wlan23 name car23STA-wlan0',)
+rfkill unblock 282
+*** car24STA : ('ip link set wlan24 down',)
+*** car24STA : ('ip link set wlan24 name car24STA-wlan0',)
+rfkill unblock 283
+*** car25STA : ('ip link set wlan25 down',)
+*** car25STA : ('ip link set wlan25 name car25STA-wlan0',)
+rfkill unblock 284
+*** car26STA : ('ip link set wlan26 down',)
+*** car26STA : ('ip link set wlan26 name car26STA-wlan0',)
+rfkill unblock 285
+*** car27STA : ('ip link set wlan27 down',)
+*** car27STA : ('ip link set wlan27 name car27STA-wlan0',)
+rfkill unblock 286
+*** car28STA : ('ip link set wlan28 down',)
+*** car28STA : ('ip link set wlan28 name car28STA-wlan0',)
+rfkill unblock 287
+*** car29STA : ('ip link set wlan29 down',)
+*** car29STA : ('ip link set wlan29 name car29STA-wlan0',)
+rfkill unblock 288
+*** car0 : ('ip link set wlan30 down',)
+*** car0 : ('ip link set wlan30 name car0-wlan0',)
+rfkill unblock 289
+*** car1 : ('ip link set wlan31 down',)
+*** car1 : ('ip link set wlan31 name car1-wlan0',)
+rfkill unblock 290
+*** car2 : ('ip link set wlan32 down',)
+*** car2 : ('ip link set wlan32 name car2-wlan0',)
+rfkill unblock 291
+*** car3 : ('ip link set wlan33 down',)
+*** car3 : ('ip link set wlan33 name car3-wlan0',)
+rfkill unblock 292
+*** car4 : ('ip link set wlan34 down',)
+*** car4 : ('ip link set wlan34 name car4-wlan0',)
+rfkill unblock 293
+*** car5 : ('ip link set wlan35 down',)
+*** car5 : ('ip link set wlan35 name car5-wlan0',)
+rfkill unblock 294
+*** car6 : ('ip link set wlan36 down',)
+*** car6 : ('ip link set wlan36 name car6-wlan0',)
+rfkill unblock 295
+*** car7 : ('ip link set wlan37 down',)
+*** car7 : ('ip link set wlan37 name car7-wlan0',)
+rfkill unblock 296
+*** car8 : ('ip link set wlan38 down',)
+*** car8 : ('ip link set wlan38 name car8-wlan0',)
+rfkill unblock 297
+*** car9 : ('ip link set wlan39 down',)
+*** car9 : ('ip link set wlan39 name car9-wlan0',)
+rfkill unblock 298
+*** car10 : ('ip link set wlan40 down',)
+*** car10 : ('ip link set wlan40 name car10-wlan0',)
+rfkill unblock 299
+*** car11 : ('ip link set wlan41 down',)
+*** car11 : ('ip link set wlan41 name car11-wlan0',)
+rfkill unblock 300
+*** car12 : ('ip link set wlan42 down',)
+*** car12 : ('ip link set wlan42 name car12-wlan0',)
+rfkill unblock 301
+*** car13 : ('ip link set wlan43 down',)
+*** car13 : ('ip link set wlan43 name car13-wlan0',)
+rfkill unblock 302
+*** car14 : ('ip link set wlan44 down',)
+*** car14 : ('ip link set wlan44 name car14-wlan0',)
+rfkill unblock 303
+*** car15 : ('ip link set wlan45 down',)
+*** car15 : ('ip link set wlan45 name car15-wlan0',)
+rfkill unblock 304
+*** car16 : ('ip link set wlan46 down',)
+*** car16 : ('ip link set wlan46 name car16-wlan0',)
+rfkill unblock 305
+*** car17 : ('ip link set wlan47 down',)
+*** car17 : ('ip link set wlan47 name car17-wlan0',)
+rfkill unblock 306
+*** car18 : ('ip link set wlan48 down',)
+*** car18 : ('ip link set wlan48 name car18-wlan0',)
+rfkill unblock 307
+*** car19 : ('ip link set wlan49 down',)
+*** car19 : ('ip link set wlan49 name car19-wlan0',)
+rfkill unblock 308
+*** car20 : ('ip link set wlan50 down',)
+*** car20 : ('ip link set wlan50 name car20-wlan0',)
+rfkill unblock 309
+*** car21 : ('ip link set wlan51 down',)
+*** car21 : ('ip link set wlan51 name car21-wlan0',)
+rfkill unblock 310
+*** car22 : ('ip link set wlan52 down',)
+*** car22 : ('ip link set wlan52 name car22-wlan0',)
+rfkill unblock 311
+*** car23 : ('ip link set wlan53 down',)
+*** car23 : ('ip link set wlan53 name car23-wlan0',)
+rfkill unblock 312
+*** car24 : ('ip link set wlan54 down',)
+*** car24 : ('ip link set wlan54 name car24-wlan0',)
+rfkill unblock 313
+*** car25 : ('ip link set wlan55 down',)
+*** car25 : ('ip link set wlan55 name car25-wlan0',)
+rfkill unblock 314
+*** car26 : ('ip link set wlan56 down',)
+*** car26 : ('ip link set wlan56 name car26-wlan0',)
+rfkill unblock 315
+*** car27 : ('ip link set wlan57 down',)
+*** car27 : ('ip link set wlan57 name car27-wlan0',)
+rfkill unblock 316
+*** car28 : ('ip link set wlan58 down',)
+*** car28 : ('ip link set wlan58 name car28-wlan0',)
+rfkill unblock 317
+*** car29 : ('ip link set wlan59 down',)
+*** car29 : ('ip link set wlan59 name car29-wlan0',)
+
+added intf car0STA-wlan0 (0) to node car0STA
+*** car0STA : ('ip link set', 'car0STA-wlan0', 'up')
+*** car0STA : ('ethtool -K', <TCWirelessLink car0STA-wlan0>, 'gro', 'off')
+*** car0STA : ('ip link set', 'car0STA-wlan0', 'down')
+*** car0STA : ('ip link set', 'car0STA-wlan0', 'address', '00:00:00:00:00:01')
+*** car0STA : ('ip link set', 'car0STA-wlan0', 'up')
+
+added intf car1STA-wlan0 (0) to node car1STA
+*** car1STA : ('ip link set', 'car1STA-wlan0', 'up')
+*** car1STA : ('ethtool -K', <TCWirelessLink car1STA-wlan0>, 'gro', 'off')
+*** car1STA : ('ip link set', 'car1STA-wlan0', 'down')
+*** car1STA : ('ip link set', 'car1STA-wlan0', 'address', '00:00:00:00:00:02')
+*** car1STA : ('ip link set', 'car1STA-wlan0', 'up')
+
+added intf car2STA-wlan0 (0) to node car2STA
+*** car2STA : ('ip link set', 'car2STA-wlan0', 'up')
+*** car2STA : ('ethtool -K', <TCWirelessLink car2STA-wlan0>, 'gro', 'off')
+*** car2STA : ('ip link set', 'car2STA-wlan0', 'down')
+*** car2STA : ('ip link set', 'car2STA-wlan0', 'address', '00:00:00:00:00:03')
+*** car2STA : ('ip link set', 'car2STA-wlan0', 'up')
+
+added intf car3STA-wlan0 (0) to node car3STA
+*** car3STA : ('ip link set', 'car3STA-wlan0', 'up')
+*** car3STA : ('ethtool -K', <TCWirelessLink car3STA-wlan0>, 'gro', 'off')
+*** car3STA : ('ip link set', 'car3STA-wlan0', 'down')
+*** car3STA : ('ip link set', 'car3STA-wlan0', 'address', '00:00:00:00:00:04')
+*** car3STA : ('ip link set', 'car3STA-wlan0', 'up')
+
+added intf car4STA-wlan0 (0) to node car4STA
+*** car4STA : ('ip link set', 'car4STA-wlan0', 'up')
+*** car4STA : ('ethtool -K', <TCWirelessLink car4STA-wlan0>, 'gro', 'off')
+*** car4STA : ('ip link set', 'car4STA-wlan0', 'down')
+*** car4STA : ('ip link set', 'car4STA-wlan0', 'address', '00:00:00:00:00:05')
+*** car4STA : ('ip link set', 'car4STA-wlan0', 'up')
+
+added intf car5STA-wlan0 (0) to node car5STA
+*** car5STA : ('ip link set', 'car5STA-wlan0', 'up')
+*** car5STA : ('ethtool -K', <TCWirelessLink car5STA-wlan0>, 'gro', 'off')
+*** car5STA : ('ip link set', 'car5STA-wlan0', 'down')
+*** car5STA : ('ip link set', 'car5STA-wlan0', 'address', '00:00:00:00:00:06')
+*** car5STA : ('ip link set', 'car5STA-wlan0', 'up')
+
+added intf car6STA-wlan0 (0) to node car6STA
+*** car6STA : ('ip link set', 'car6STA-wlan0', 'up')
+*** car6STA : ('ethtool -K', <TCWirelessLink car6STA-wlan0>, 'gro', 'off')
+*** car6STA : ('ip link set', 'car6STA-wlan0', 'down')
+*** car6STA : ('ip link set', 'car6STA-wlan0', 'address', '00:00:00:00:00:07')
+*** car6STA : ('ip link set', 'car6STA-wlan0', 'up')
+
+added intf car7STA-wlan0 (0) to node car7STA
+*** car7STA : ('ip link set', 'car7STA-wlan0', 'up')
+*** car7STA : ('ethtool -K', <TCWirelessLink car7STA-wlan0>, 'gro', 'off')
+*** car7STA : ('ip link set', 'car7STA-wlan0', 'down')
+*** car7STA : ('ip link set', 'car7STA-wlan0', 'address', '00:00:00:00:00:08')
+*** car7STA : ('ip link set', 'car7STA-wlan0', 'up')
+
+added intf car8STA-wlan0 (0) to node car8STA
+*** car8STA : ('ip link set', 'car8STA-wlan0', 'up')
+*** car8STA : ('ethtool -K', <TCWirelessLink car8STA-wlan0>, 'gro', 'off')
+*** car8STA : ('ip link set', 'car8STA-wlan0', 'down')
+*** car8STA : ('ip link set', 'car8STA-wlan0', 'address', '00:00:00:00:00:09')
+*** car8STA : ('ip link set', 'car8STA-wlan0', 'up')
+
+added intf car9STA-wlan0 (0) to node car9STA
+*** car9STA : ('ip link set', 'car9STA-wlan0', 'up')
+*** car9STA : ('ethtool -K', <TCWirelessLink car9STA-wlan0>, 'gro', 'off')
+*** car9STA : ('ip link set', 'car9STA-wlan0', 'down')
+*** car9STA : ('ip link set', 'car9STA-wlan0', 'address', '00:00:00:00:00:10')
+*** car9STA : ('ip link set', 'car9STA-wlan0', 'up')
+
+added intf car10STA-wlan0 (0) to node car10STA
+*** car10STA : ('ip link set', 'car10STA-wlan0', 'up')
+*** car10STA : ('ethtool -K', <TCWirelessLink car10STA-wlan0>, 'gro', 'off')
+*** car10STA : ('ip link set', 'car10STA-wlan0', 'down')
+*** car10STA : ('ip link set', 'car10STA-wlan0', 'address', '00:00:00:00:00:11')
+*** car10STA : ('ip link set', 'car10STA-wlan0', 'up')
+
+added intf car11STA-wlan0 (0) to node car11STA
+*** car11STA : ('ip link set', 'car11STA-wlan0', 'up')
+*** car11STA : ('ethtool -K', <TCWirelessLink car11STA-wlan0>, 'gro', 'off')
+*** car11STA : ('ip link set', 'car11STA-wlan0', 'down')
+*** car11STA : ('ip link set', 'car11STA-wlan0', 'address', '00:00:00:00:00:12')
+*** car11STA : ('ip link set', 'car11STA-wlan0', 'up')
+
+added intf car12STA-wlan0 (0) to node car12STA
+*** car12STA : ('ip link set', 'car12STA-wlan0', 'up')
+*** car12STA : ('ethtool -K', <TCWirelessLink car12STA-wlan0>, 'gro', 'off')
+*** car12STA : ('ip link set', 'car12STA-wlan0', 'down')
+*** car12STA : ('ip link set', 'car12STA-wlan0', 'address', '00:00:00:00:00:13')
+*** car12STA : ('ip link set', 'car12STA-wlan0', 'up')
+
+added intf car13STA-wlan0 (0) to node car13STA
+*** car13STA : ('ip link set', 'car13STA-wlan0', 'up')
+*** car13STA : ('ethtool -K', <TCWirelessLink car13STA-wlan0>, 'gro', 'off')
+*** car13STA : ('ip link set', 'car13STA-wlan0', 'down')
+*** car13STA : ('ip link set', 'car13STA-wlan0', 'address', '00:00:00:00:00:14')
+*** car13STA : ('ip link set', 'car13STA-wlan0', 'up')
+
+added intf car14STA-wlan0 (0) to node car14STA
+*** car14STA : ('ip link set', 'car14STA-wlan0', 'up')
+*** car14STA : ('ethtool -K', <TCWirelessLink car14STA-wlan0>, 'gro', 'off')
+*** car14STA : ('ip link set', 'car14STA-wlan0', 'down')
+*** car14STA : ('ip link set', 'car14STA-wlan0', 'address', '00:00:00:00:00:15')
+*** car14STA : ('ip link set', 'car14STA-wlan0', 'up')
+
+added intf car15STA-wlan0 (0) to node car15STA
+*** car15STA : ('ip link set', 'car15STA-wlan0', 'up')
+*** car15STA : ('ethtool -K', <TCWirelessLink car15STA-wlan0>, 'gro', 'off')
+*** car15STA : ('ip link set', 'car15STA-wlan0', 'down')
+*** car15STA : ('ip link set', 'car15STA-wlan0', 'address', '00:00:00:00:00:16')
+*** car15STA : ('ip link set', 'car15STA-wlan0', 'up')
+
+added intf car16STA-wlan0 (0) to node car16STA
+*** car16STA : ('ip link set', 'car16STA-wlan0', 'up')
+*** car16STA : ('ethtool -K', <TCWirelessLink car16STA-wlan0>, 'gro', 'off')
+*** car16STA : ('ip link set', 'car16STA-wlan0', 'down')
+*** car16STA : ('ip link set', 'car16STA-wlan0', 'address', '00:00:00:00:00:17')
+*** car16STA : ('ip link set', 'car16STA-wlan0', 'up')
+
+added intf car17STA-wlan0 (0) to node car17STA
+*** car17STA : ('ip link set', 'car17STA-wlan0', 'up')
+*** car17STA : ('ethtool -K', <TCWirelessLink car17STA-wlan0>, 'gro', 'off')
+*** car17STA : ('ip link set', 'car17STA-wlan0', 'down')
+*** car17STA : ('ip link set', 'car17STA-wlan0', 'address', '00:00:00:00:00:18')
+*** car17STA : ('ip link set', 'car17STA-wlan0', 'up')
+
+added intf car18STA-wlan0 (0) to node car18STA
+*** car18STA : ('ip link set', 'car18STA-wlan0', 'up')
+*** car18STA : ('ethtool -K', <TCWirelessLink car18STA-wlan0>, 'gro', 'off')
+*** car18STA : ('ip link set', 'car18STA-wlan0', 'down')
+*** car18STA : ('ip link set', 'car18STA-wlan0', 'address', '00:00:00:00:00:19')
+*** car18STA : ('ip link set', 'car18STA-wlan0', 'up')
+
+added intf car19STA-wlan0 (0) to node car19STA
+*** car19STA : ('ip link set', 'car19STA-wlan0', 'up')
+*** car19STA : ('ethtool -K', <TCWirelessLink car19STA-wlan0>, 'gro', 'off')
+*** car19STA : ('ip link set', 'car19STA-wlan0', 'down')
+*** car19STA : ('ip link set', 'car19STA-wlan0', 'address', '00:00:00:00:00:20')
+*** car19STA : ('ip link set', 'car19STA-wlan0', 'up')
+
+added intf car20STA-wlan0 (0) to node car20STA
+*** car20STA : ('ip link set', 'car20STA-wlan0', 'up')
+*** car20STA : ('ethtool -K', <TCWirelessLink car20STA-wlan0>, 'gro', 'off')
+*** car20STA : ('ip link set', 'car20STA-wlan0', 'down')
+*** car20STA : ('ip link set', 'car20STA-wlan0', 'address', '00:00:00:00:00:21')
+*** car20STA : ('ip link set', 'car20STA-wlan0', 'up')
+
+added intf car21STA-wlan0 (0) to node car21STA
+*** car21STA : ('ip link set', 'car21STA-wlan0', 'up')
+*** car21STA : ('ethtool -K', <TCWirelessLink car21STA-wlan0>, 'gro', 'off')
+*** car21STA : ('ip link set', 'car21STA-wlan0', 'down')
+*** car21STA : ('ip link set', 'car21STA-wlan0', 'address', '00:00:00:00:00:22')
+*** car21STA : ('ip link set', 'car21STA-wlan0', 'up')
+
+added intf car22STA-wlan0 (0) to node car22STA
+*** car22STA : ('ip link set', 'car22STA-wlan0', 'up')
+*** car22STA : ('ethtool -K', <TCWirelessLink car22STA-wlan0>, 'gro', 'off')
+*** car22STA : ('ip link set', 'car22STA-wlan0', 'down')
+*** car22STA : ('ip link set', 'car22STA-wlan0', 'address', '00:00:00:00:00:23')
+*** car22STA : ('ip link set', 'car22STA-wlan0', 'up')
+
+added intf car23STA-wlan0 (0) to node car23STA
+*** car23STA : ('ip link set', 'car23STA-wlan0', 'up')
+*** car23STA : ('ethtool -K', <TCWirelessLink car23STA-wlan0>, 'gro', 'off')
+*** car23STA : ('ip link set', 'car23STA-wlan0', 'down')
+*** car23STA : ('ip link set', 'car23STA-wlan0', 'address', '00:00:00:00:00:24')
+*** car23STA : ('ip link set', 'car23STA-wlan0', 'up')
+
+added intf car24STA-wlan0 (0) to node car24STA
+*** car24STA : ('ip link set', 'car24STA-wlan0', 'up')
+*** car24STA : ('ethtool -K', <TCWirelessLink car24STA-wlan0>, 'gro', 'off')
+*** car24STA : ('ip link set', 'car24STA-wlan0', 'down')
+*** car24STA : ('ip link set', 'car24STA-wlan0', 'address', '00:00:00:00:00:25')
+*** car24STA : ('ip link set', 'car24STA-wlan0', 'up')
+
+added intf car25STA-wlan0 (0) to node car25STA
+*** car25STA : ('ip link set', 'car25STA-wlan0', 'up')
+*** car25STA : ('ethtool -K', <TCWirelessLink car25STA-wlan0>, 'gro', 'off')
+*** car25STA : ('ip link set', 'car25STA-wlan0', 'down')
+*** car25STA : ('ip link set', 'car25STA-wlan0', 'address', '00:00:00:00:00:26')
+*** car25STA : ('ip link set', 'car25STA-wlan0', 'up')
+
+added intf car26STA-wlan0 (0) to node car26STA
+*** car26STA : ('ip link set', 'car26STA-wlan0', 'up')
+*** car26STA : ('ethtool -K', <TCWirelessLink car26STA-wlan0>, 'gro', 'off')
+*** car26STA : ('ip link set', 'car26STA-wlan0', 'down')
+*** car26STA : ('ip link set', 'car26STA-wlan0', 'address', '00:00:00:00:00:27')
+*** car26STA : ('ip link set', 'car26STA-wlan0', 'up')
+
+added intf car27STA-wlan0 (0) to node car27STA
+*** car27STA : ('ip link set', 'car27STA-wlan0', 'up')
+*** car27STA : ('ethtool -K', <TCWirelessLink car27STA-wlan0>, 'gro', 'off')
+*** car27STA : ('ip link set', 'car27STA-wlan0', 'down')
+*** car27STA : ('ip link set', 'car27STA-wlan0', 'address', '00:00:00:00:00:28')
+*** car27STA : ('ip link set', 'car27STA-wlan0', 'up')
+
+added intf car28STA-wlan0 (0) to node car28STA
+*** car28STA : ('ip link set', 'car28STA-wlan0', 'up')
+*** car28STA : ('ethtool -K', <TCWirelessLink car28STA-wlan0>, 'gro', 'off')
+*** car28STA : ('ip link set', 'car28STA-wlan0', 'down')
+*** car28STA : ('ip link set', 'car28STA-wlan0', 'address', '00:00:00:00:00:29')
+*** car28STA : ('ip link set', 'car28STA-wlan0', 'up')
+
+added intf car29STA-wlan0 (0) to node car29STA
+*** car29STA : ('ip link set', 'car29STA-wlan0', 'up')
+*** car29STA : ('ethtool -K', <TCWirelessLink car29STA-wlan0>, 'gro', 'off')
+*** car29STA : ('ip link set', 'car29STA-wlan0', 'down')
+*** car29STA : ('ip link set', 'car29STA-wlan0', 'address', '00:00:00:00:00:30')
+*** car29STA : ('ip link set', 'car29STA-wlan0', 'up')
+
+added intf car0-wlan0 (0) to node car0
+*** car0 : ('ip link set', 'car0-wlan0', 'up')
+*** car0 : ('ethtool -K', <TCWirelessLink car0-wlan0>, 'gro', 'off')
+*** car0 : ('ip link set', 'car0-wlan0', 'down')
+*** car0 : ('ip link set', 'car0-wlan0', 'address', '00:00:00:00:00:01')
+*** car0 : ('ip link set', 'car0-wlan0', 'up')
+
+added intf car1-wlan0 (0) to node car1
+*** car1 : ('ip link set', 'car1-wlan0', 'up')
+*** car1 : ('ethtool -K', <TCWirelessLink car1-wlan0>, 'gro', 'off')
+*** car1 : ('ip link set', 'car1-wlan0', 'down')
+*** car1 : ('ip link set', 'car1-wlan0', 'address', '00:00:00:00:00:02')
+*** car1 : ('ip link set', 'car1-wlan0', 'up')
+
+added intf car2-wlan0 (0) to node car2
+*** car2 : ('ip link set', 'car2-wlan0', 'up')
+*** car2 : ('ethtool -K', <TCWirelessLink car2-wlan0>, 'gro', 'off')
+*** car2 : ('ip link set', 'car2-wlan0', 'down')
+*** car2 : ('ip link set', 'car2-wlan0', 'address', '00:00:00:00:00:03')
+*** car2 : ('ip link set', 'car2-wlan0', 'up')
+
+added intf car3-wlan0 (0) to node car3
+*** car3 : ('ip link set', 'car3-wlan0', 'up')
+*** car3 : ('ethtool -K', <TCWirelessLink car3-wlan0>, 'gro', 'off')
+*** car3 : ('ip link set', 'car3-wlan0', 'down')
+*** car3 : ('ip link set', 'car3-wlan0', 'address', '00:00:00:00:00:04')
+*** car3 : ('ip link set', 'car3-wlan0', 'up')
+
+added intf car4-wlan0 (0) to node car4
+*** car4 : ('ip link set', 'car4-wlan0', 'up')
+*** car4 : ('ethtool -K', <TCWirelessLink car4-wlan0>, 'gro', 'off')
+*** car4 : ('ip link set', 'car4-wlan0', 'down')
+*** car4 : ('ip link set', 'car4-wlan0', 'address', '00:00:00:00:00:05')
+*** car4 : ('ip link set', 'car4-wlan0', 'up')
+
+added intf car5-wlan0 (0) to node car5
+*** car5 : ('ip link set', 'car5-wlan0', 'up')
+*** car5 : ('ethtool -K', <TCWirelessLink car5-wlan0>, 'gro', 'off')
+*** car5 : ('ip link set', 'car5-wlan0', 'down')
+*** car5 : ('ip link set', 'car5-wlan0', 'address', '00:00:00:00:00:06')
+*** car5 : ('ip link set', 'car5-wlan0', 'up')
+
+added intf car6-wlan0 (0) to node car6
+*** car6 : ('ip link set', 'car6-wlan0', 'up')
+*** car6 : ('ethtool -K', <TCWirelessLink car6-wlan0>, 'gro', 'off')
+*** car6 : ('ip link set', 'car6-wlan0', 'down')
+*** car6 : ('ip link set', 'car6-wlan0', 'address', '00:00:00:00:00:07')
+*** car6 : ('ip link set', 'car6-wlan0', 'up')
+
+added intf car7-wlan0 (0) to node car7
+*** car7 : ('ip link set', 'car7-wlan0', 'up')
+*** car7 : ('ethtool -K', <TCWirelessLink car7-wlan0>, 'gro', 'off')
+*** car7 : ('ip link set', 'car7-wlan0', 'down')
+*** car7 : ('ip link set', 'car7-wlan0', 'address', '00:00:00:00:00:08')
+*** car7 : ('ip link set', 'car7-wlan0', 'up')
+
+added intf car8-wlan0 (0) to node car8
+*** car8 : ('ip link set', 'car8-wlan0', 'up')
+*** car8 : ('ethtool -K', <TCWirelessLink car8-wlan0>, 'gro', 'off')
+*** car8 : ('ip link set', 'car8-wlan0', 'down')
+*** car8 : ('ip link set', 'car8-wlan0', 'address', '00:00:00:00:00:09')
+*** car8 : ('ip link set', 'car8-wlan0', 'up')
+
+added intf car9-wlan0 (0) to node car9
+*** car9 : ('ip link set', 'car9-wlan0', 'up')
+*** car9 : ('ethtool -K', <TCWirelessLink car9-wlan0>, 'gro', 'off')
+*** car9 : ('ip link set', 'car9-wlan0', 'down')
+*** car9 : ('ip link set', 'car9-wlan0', 'address', '00:00:00:00:00:10')
+*** car9 : ('ip link set', 'car9-wlan0', 'up')
+
+added intf car10-wlan0 (0) to node car10
+*** car10 : ('ip link set', 'car10-wlan0', 'up')
+*** car10 : ('ethtool -K', <TCWirelessLink car10-wlan0>, 'gro', 'off')
+*** car10 : ('ip link set', 'car10-wlan0', 'down')
+*** car10 : ('ip link set', 'car10-wlan0', 'address', '00:00:00:00:00:11')
+*** car10 : ('ip link set', 'car10-wlan0', 'up')
+
+added intf car11-wlan0 (0) to node car11
+*** car11 : ('ip link set', 'car11-wlan0', 'up')
+*** car11 : ('ethtool -K', <TCWirelessLink car11-wlan0>, 'gro', 'off')
+*** car11 : ('ip link set', 'car11-wlan0', 'down')
+*** car11 : ('ip link set', 'car11-wlan0', 'address', '00:00:00:00:00:12')
+*** car11 : ('ip link set', 'car11-wlan0', 'up')
+
+added intf car12-wlan0 (0) to node car12
+*** car12 : ('ip link set', 'car12-wlan0', 'up')
+*** car12 : ('ethtool -K', <TCWirelessLink car12-wlan0>, 'gro', 'off')
+*** car12 : ('ip link set', 'car12-wlan0', 'down')
+*** car12 : ('ip link set', 'car12-wlan0', 'address', '00:00:00:00:00:13')
+*** car12 : ('ip link set', 'car12-wlan0', 'up')
+
+added intf car13-wlan0 (0) to node car13
+*** car13 : ('ip link set', 'car13-wlan0', 'up')
+*** car13 : ('ethtool -K', <TCWirelessLink car13-wlan0>, 'gro', 'off')
+*** car13 : ('ip link set', 'car13-wlan0', 'down')
+*** car13 : ('ip link set', 'car13-wlan0', 'address', '00:00:00:00:00:14')
+*** car13 : ('ip link set', 'car13-wlan0', 'up')
+
+added intf car14-wlan0 (0) to node car14
+*** car14 : ('ip link set', 'car14-wlan0', 'up')
+*** car14 : ('ethtool -K', <TCWirelessLink car14-wlan0>, 'gro', 'off')
+*** car14 : ('ip link set', 'car14-wlan0', 'down')
+*** car14 : ('ip link set', 'car14-wlan0', 'address', '00:00:00:00:00:15')
+*** car14 : ('ip link set', 'car14-wlan0', 'up')
+
+added intf car15-wlan0 (0) to node car15
+*** car15 : ('ip link set', 'car15-wlan0', 'up')
+*** car15 : ('ethtool -K', <TCWirelessLink car15-wlan0>, 'gro', 'off')
+*** car15 : ('ip link set', 'car15-wlan0', 'down')
+*** car15 : ('ip link set', 'car15-wlan0', 'address', '00:00:00:00:00:16')
+*** car15 : ('ip link set', 'car15-wlan0', 'up')
+
+added intf car16-wlan0 (0) to node car16
+*** car16 : ('ip link set', 'car16-wlan0', 'up')
+*** car16 : ('ethtool -K', <TCWirelessLink car16-wlan0>, 'gro', 'off')
+*** car16 : ('ip link set', 'car16-wlan0', 'down')
+*** car16 : ('ip link set', 'car16-wlan0', 'address', '00:00:00:00:00:17')
+*** car16 : ('ip link set', 'car16-wlan0', 'up')
+
+added intf car17-wlan0 (0) to node car17
+*** car17 : ('ip link set', 'car17-wlan0', 'up')
+*** car17 : ('ethtool -K', <TCWirelessLink car17-wlan0>, 'gro', 'off')
+*** car17 : ('ip link set', 'car17-wlan0', 'down')
+*** car17 : ('ip link set', 'car17-wlan0', 'address', '00:00:00:00:00:18')
+*** car17 : ('ip link set', 'car17-wlan0', 'up')
+
+added intf car18-wlan0 (0) to node car18
+*** car18 : ('ip link set', 'car18-wlan0', 'up')
+*** car18 : ('ethtool -K', <TCWirelessLink car18-wlan0>, 'gro', 'off')
+*** car18 : ('ip link set', 'car18-wlan0', 'down')
+*** car18 : ('ip link set', 'car18-wlan0', 'address', '00:00:00:00:00:19')
+*** car18 : ('ip link set', 'car18-wlan0', 'up')
+
+added intf car19-wlan0 (0) to node car19
+*** car19 : ('ip link set', 'car19-wlan0', 'up')
+*** car19 : ('ethtool -K', <TCWirelessLink car19-wlan0>, 'gro', 'off')
+*** car19 : ('ip link set', 'car19-wlan0', 'down')
+*** car19 : ('ip link set', 'car19-wlan0', 'address', '00:00:00:00:00:20')
+*** car19 : ('ip link set', 'car19-wlan0', 'up')
+
+added intf car20-wlan0 (0) to node car20
+*** car20 : ('ip link set', 'car20-wlan0', 'up')
+*** car20 : ('ethtool -K', <TCWirelessLink car20-wlan0>, 'gro', 'off')
+*** car20 : ('ip link set', 'car20-wlan0', 'down')
+*** car20 : ('ip link set', 'car20-wlan0', 'address', '00:00:00:00:00:21')
+*** car20 : ('ip link set', 'car20-wlan0', 'up')
+
+added intf car21-wlan0 (0) to node car21
+*** car21 : ('ip link set', 'car21-wlan0', 'up')
+*** car21 : ('ethtool -K', <TCWirelessLink car21-wlan0>, 'gro', 'off')
+*** car21 : ('ip link set', 'car21-wlan0', 'down')
+*** car21 : ('ip link set', 'car21-wlan0', 'address', '00:00:00:00:00:22')
+*** car21 : ('ip link set', 'car21-wlan0', 'up')
+
+added intf car22-wlan0 (0) to node car22
+*** car22 : ('ip link set', 'car22-wlan0', 'up')
+*** car22 : ('ethtool -K', <TCWirelessLink car22-wlan0>, 'gro', 'off')
+*** car22 : ('ip link set', 'car22-wlan0', 'down')
+*** car22 : ('ip link set', 'car22-wlan0', 'address', '00:00:00:00:00:23')
+*** car22 : ('ip link set', 'car22-wlan0', 'up')
+
+added intf car23-wlan0 (0) to node car23
+*** car23 : ('ip link set', 'car23-wlan0', 'up')
+*** car23 : ('ethtool -K', <TCWirelessLink car23-wlan0>, 'gro', 'off')
+*** car23 : ('ip link set', 'car23-wlan0', 'down')
+*** car23 : ('ip link set', 'car23-wlan0', 'address', '00:00:00:00:00:24')
+*** car23 : ('ip link set', 'car23-wlan0', 'up')
+
+added intf car24-wlan0 (0) to node car24
+*** car24 : ('ip link set', 'car24-wlan0', 'up')
+*** car24 : ('ethtool -K', <TCWirelessLink car24-wlan0>, 'gro', 'off')
+*** car24 : ('ip link set', 'car24-wlan0', 'down')
+*** car24 : ('ip link set', 'car24-wlan0', 'address', '00:00:00:00:00:25')
+*** car24 : ('ip link set', 'car24-wlan0', 'up')
+
+added intf car25-wlan0 (0) to node car25
+*** car25 : ('ip link set', 'car25-wlan0', 'up')
+*** car25 : ('ethtool -K', <TCWirelessLink car25-wlan0>, 'gro', 'off')
+*** car25 : ('ip link set', 'car25-wlan0', 'down')
+*** car25 : ('ip link set', 'car25-wlan0', 'address', '00:00:00:00:00:26')
+*** car25 : ('ip link set', 'car25-wlan0', 'up')
+
+added intf car26-wlan0 (0) to node car26
+*** car26 : ('ip link set', 'car26-wlan0', 'up')
+*** car26 : ('ethtool -K', <TCWirelessLink car26-wlan0>, 'gro', 'off')
+*** car26 : ('ip link set', 'car26-wlan0', 'down')
+*** car26 : ('ip link set', 'car26-wlan0', 'address', '00:00:00:00:00:27')
+*** car26 : ('ip link set', 'car26-wlan0', 'up')
+
+added intf car27-wlan0 (0) to node car27
+*** car27 : ('ip link set', 'car27-wlan0', 'up')
+*** car27 : ('ethtool -K', <TCWirelessLink car27-wlan0>, 'gro', 'off')
+*** car27 : ('ip link set', 'car27-wlan0', 'down')
+*** car27 : ('ip link set', 'car27-wlan0', 'address', '00:00:00:00:00:28')
+*** car27 : ('ip link set', 'car27-wlan0', 'up')
+
+added intf car28-wlan0 (0) to node car28
+*** car28 : ('ip link set', 'car28-wlan0', 'up')
+*** car28 : ('ethtool -K', <TCWirelessLink car28-wlan0>, 'gro', 'off')
+*** car28 : ('ip link set', 'car28-wlan0', 'down')
+*** car28 : ('ip link set', 'car28-wlan0', 'address', '00:00:00:00:00:29')
+*** car28 : ('ip link set', 'car28-wlan0', 'up')
+
+added intf car29-wlan0 (0) to node car29
+*** car29 : ('ip link set', 'car29-wlan0', 'up')
+*** car29 : ('ethtool -K', <TCWirelessLink car29-wlan0>, 'gro', 'off')
+*** car29 : ('ip link set', 'car29-wlan0', 'down')
+*** car29 : ('ip link set', 'car29-wlan0', 'address', '00:00:00:00:00:30')
+*** car29 : ('ip link set', 'car29-wlan0', 'up')
+
+added intf rsu1-wlan1 (1) to node rsu1
+*** rsu1 : ('ip link set', 'rsu1-wlan1', 'up')
+*** rsu1 : ('ethtool -K', <TCWirelessLink rsu1-wlan1>, 'gro', 'off')
+getting mac address from rsu1-wlan1
+02:00:00:00:3c:00
+
+added intf rsu2-wlan1 (1) to node rsu2
+*** rsu2 : ('ip link set', 'rsu2-wlan1', 'up')
+*** rsu2 : ('ethtool -K', <TCWirelessLink rsu2-wlan1>, 'gro', 'off')
+getting mac address from rsu2-wlan1
+02:00:00:00:3d:00
+
+added intf rsu3-wlan1 (1) to node rsu3
+*** rsu3 : ('ip link set', 'rsu3-wlan1', 'up')
+*** rsu3 : ('ethtool -K', <TCWirelessLink rsu3-wlan1>, 'gro', 'off')
+getting mac address from rsu3-wlan1
+02:00:00:00:3e:00
+*** rsu1 : ("echo 'interface=rsu1-wlan1\ndriver=nl80211\nssid=rsu1\nwds_sta=1\nhw_mode=g\nchannel=1\nctrl_interface=/var/run/hostapd\nctrl_interface_group=0' > mn18314_rsu1-wlan1.apconf",)
+> > > > > > > *** rsu1 : ('hostapd -B mn18314_rsu1-wlan1.apconf',)
+Configuration file: mn18314_rsu1-wlan1.apconf
+Using interface rsu1-wlan1 with hwaddr 02:00:00:00:3c:00 and ssid "rsu1"
+rsu1-wlan1: interface state UNINITIALIZED->ENABLED
+rsu1-wlan1: AP-ENABLED 
+*** rsu2 : ("echo 'interface=rsu2-wlan1\ndriver=nl80211\nssid=rsu2\nwds_sta=1\nhw_mode=g\nchannel=6\nctrl_interface=/var/run/hostapd\nctrl_interface_group=0' > mn18314_rsu2-wlan1.apconf",)
+> > > > > > > *** rsu2 : ('hostapd -B mn18314_rsu2-wlan1.apconf',)
+Configuration file: mn18314_rsu2-wlan1.apconf
+Using interface rsu2-wlan1 with hwaddr 02:00:00:00:3d:00 and ssid "rsu2"
+rsu2-wlan1: interface state UNINITIALIZED->ENABLED
+rsu2-wlan1: AP-ENABLED 
+*** rsu3 : ("echo 'interface=rsu3-wlan1\ndriver=nl80211\nssid=rsu3\nwds_sta=1\nhw_mode=g\nchannel=11\nctrl_interface=/var/run/hostapd\nctrl_interface_group=0' > mn18314_rsu3-wlan1.apconf",)
+> > > > > > > *** rsu3 : ('hostapd -B mn18314_rsu3-wlan1.apconf',)
+Configuration file: mn18314_rsu3-wlan1.apconf
+Using interface rsu3-wlan1 with hwaddr 02:00:00:00:3e:00 and ssid "rsu3"
+rsu3-wlan1: interface state UNINITIALIZED->ENABLED
+rsu3-wlan1: AP-ENABLED 
+*** car0STA : ('iw dev car0STA-wlan0 interface add car0STA-mp0 type mp',)
+*** car0STA : ('ip link set car0STA-mp0 down',)
+*** car0STA : ('ip link set car0STA-mp0 address 00:00:00:00:00:01',)
+*** car0STA : ('ip link set car0STA-wlan0 down',)
+*** car0STA : ('ip addr add 200.0.10.110/8 dev car0STA-mp0',)
+*** car0STA : ('ip link set car0STA-mp0 up',)
+associating car0STA-mp0 to mesh-ssid...
+
+added intf car0STA-mp0 (1) to node car0STA
+*** car0STA : ('ip link set', 'car0STA-mp0', 'up')
+*** car0STA : ('ethtool -K', <TCWirelessLink car0STA-mp0>, 'gro', 'off')
+*** car1STA : ('iw dev car1STA-wlan0 interface add car1STA-mp0 type mp',)
+*** car1STA : ('ip link set car1STA-mp0 down',)
+*** car1STA : ('ip link set car1STA-mp0 address 00:00:00:00:00:02',)
+*** car1STA : ('ip link set car1STA-wlan0 down',)
+*** car1STA : ('ip addr add 200.0.10.111/8 dev car1STA-mp0',)
+*** car1STA : ('ip link set car1STA-mp0 up',)
+associating car1STA-mp0 to mesh-ssid...
+
+added intf car1STA-mp0 (1) to node car1STA
+*** car1STA : ('ip link set', 'car1STA-mp0', 'up')
+*** car1STA : ('ethtool -K', <TCWirelessLink car1STA-mp0>, 'gro', 'off')
+*** car2STA : ('iw dev car2STA-wlan0 interface add car2STA-mp0 type mp',)
+*** car2STA : ('ip link set car2STA-mp0 down',)
+*** car2STA : ('ip link set car2STA-mp0 address 00:00:00:00:00:03',)
+*** car2STA : ('ip link set car2STA-wlan0 down',)
+*** car2STA : ('ip addr add 200.0.10.112/8 dev car2STA-mp0',)
+*** car2STA : ('ip link set car2STA-mp0 up',)
+associating car2STA-mp0 to mesh-ssid...
+
+added intf car2STA-mp0 (1) to node car2STA
+*** car2STA : ('ip link set', 'car2STA-mp0', 'up')
+*** car2STA : ('ethtool -K', <TCWirelessLink car2STA-mp0>, 'gro', 'off')
+*** car3STA : ('iw dev car3STA-wlan0 interface add car3STA-mp0 type mp',)
+*** car3STA : ('ip link set car3STA-mp0 down',)
+*** car3STA : ('ip link set car3STA-mp0 address 00:00:00:00:00:04',)
+*** car3STA : ('ip link set car3STA-wlan0 down',)
+*** car3STA : ('ip addr add 200.0.10.113/8 dev car3STA-mp0',)
+*** car3STA : ('ip link set car3STA-mp0 up',)
+associating car3STA-mp0 to mesh-ssid...
+
+added intf car3STA-mp0 (1) to node car3STA
+*** car3STA : ('ip link set', 'car3STA-mp0', 'up')
+*** car3STA : ('ethtool -K', <TCWirelessLink car3STA-mp0>, 'gro', 'off')
+*** car4STA : ('iw dev car4STA-wlan0 interface add car4STA-mp0 type mp',)
+*** car4STA : ('ip link set car4STA-mp0 down',)
+*** car4STA : ('ip link set car4STA-mp0 address 00:00:00:00:00:05',)
+*** car4STA : ('ip link set car4STA-wlan0 down',)
+*** car4STA : ('ip addr add 200.0.10.114/8 dev car4STA-mp0',)
+*** car4STA : ('ip link set car4STA-mp0 up',)
+associating car4STA-mp0 to mesh-ssid...
+
+added intf car4STA-mp0 (1) to node car4STA
+*** car4STA : ('ip link set', 'car4STA-mp0', 'up')
+*** car4STA : ('ethtool -K', <TCWirelessLink car4STA-mp0>, 'gro', 'off')
+*** car5STA : ('iw dev car5STA-wlan0 interface add car5STA-mp0 type mp',)
+*** car5STA : ('ip link set car5STA-mp0 down',)
+*** car5STA : ('ip link set car5STA-mp0 address 00:00:00:00:00:06',)
+*** car5STA : ('ip link set car5STA-wlan0 down',)
+*** car5STA : ('ip addr add 200.0.10.115/8 dev car5STA-mp0',)
+*** car5STA : ('ip link set car5STA-mp0 up',)
+associating car5STA-mp0 to mesh-ssid...
+
+added intf car5STA-mp0 (1) to node car5STA
+*** car5STA : ('ip link set', 'car5STA-mp0', 'up')
+*** car5STA : ('ethtool -K', <TCWirelessLink car5STA-mp0>, 'gro', 'off')
+*** car6STA : ('iw dev car6STA-wlan0 interface add car6STA-mp0 type mp',)
+*** car6STA : ('ip link set car6STA-mp0 down',)
+*** car6STA : ('ip link set car6STA-mp0 address 00:00:00:00:00:07',)
+*** car6STA : ('ip link set car6STA-wlan0 down',)
+*** car6STA : ('ip addr add 200.0.10.116/8 dev car6STA-mp0',)
+*** car6STA : ('ip link set car6STA-mp0 up',)
+associating car6STA-mp0 to mesh-ssid...
+
+added intf car6STA-mp0 (1) to node car6STA
+*** car6STA : ('ip link set', 'car6STA-mp0', 'up')
+*** car6STA : ('ethtool -K', <TCWirelessLink car6STA-mp0>, 'gro', 'off')
+*** car7STA : ('iw dev car7STA-wlan0 interface add car7STA-mp0 type mp',)
+*** car7STA : ('ip link set car7STA-mp0 down',)
+*** car7STA : ('ip link set car7STA-mp0 address 00:00:00:00:00:08',)
+*** car7STA : ('ip link set car7STA-wlan0 down',)
+*** car7STA : ('ip addr add 200.0.10.117/8 dev car7STA-mp0',)
+*** car7STA : ('ip link set car7STA-mp0 up',)
+associating car7STA-mp0 to mesh-ssid...
+
+added intf car7STA-mp0 (1) to node car7STA
+*** car7STA : ('ip link set', 'car7STA-mp0', 'up')
+*** car7STA : ('ethtool -K', <TCWirelessLink car7STA-mp0>, 'gro', 'off')
+*** car8STA : ('iw dev car8STA-wlan0 interface add car8STA-mp0 type mp',)
+*** car8STA : ('ip link set car8STA-mp0 down',)
+*** car8STA : ('ip link set car8STA-mp0 address 00:00:00:00:00:09',)
+*** car8STA : ('ip link set car8STA-wlan0 down',)
+*** car8STA : ('ip addr add 200.0.10.118/8 dev car8STA-mp0',)
+*** car8STA : ('ip link set car8STA-mp0 up',)
+associating car8STA-mp0 to mesh-ssid...
+
+added intf car8STA-mp0 (1) to node car8STA
+*** car8STA : ('ip link set', 'car8STA-mp0', 'up')
+*** car8STA : ('ethtool -K', <TCWirelessLink car8STA-mp0>, 'gro', 'off')
+*** car9STA : ('iw dev car9STA-wlan0 interface add car9STA-mp0 type mp',)
+*** car9STA : ('ip link set car9STA-mp0 down',)
+*** car9STA : ('ip link set car9STA-mp0 address 00:00:00:00:00:10',)
+*** car9STA : ('ip link set car9STA-wlan0 down',)
+*** car9STA : ('ip addr add 200.0.10.119/8 dev car9STA-mp0',)
+*** car9STA : ('ip link set car9STA-mp0 up',)
+associating car9STA-mp0 to mesh-ssid...
+
+added intf car9STA-mp0 (1) to node car9STA
+*** car9STA : ('ip link set', 'car9STA-mp0', 'up')
+*** car9STA : ('ethtool -K', <TCWirelessLink car9STA-mp0>, 'gro', 'off')
+*** car10STA : ('iw dev car10STA-wlan0 interface add car10STA-mp0 type mp',)
+*** car10STA : ('ip link set car10STA-mp0 down',)
+*** car10STA : ('ip link set car10STA-mp0 address 00:00:00:00:00:11',)
+*** car10STA : ('ip link set car10STA-wlan0 down',)
+*** car10STA : ('ip addr add 200.0.10.120/8 dev car10STA-mp0',)
+*** car10STA : ('ip link set car10STA-mp0 up',)
+associating car10STA-mp0 to mesh-ssid...
+
+added intf car10STA-mp0 (1) to node car10STA
+*** car10STA : ('ip link set', 'car10STA-mp0', 'up')
+*** car10STA : ('ethtool -K', <TCWirelessLink car10STA-mp0>, 'gro', 'off')
+*** car11STA : ('iw dev car11STA-wlan0 interface add car11STA-mp0 type mp',)
+*** car11STA : ('ip link set car11STA-mp0 down',)
+*** car11STA : ('ip link set car11STA-mp0 address 00:00:00:00:00:12',)
+*** car11STA : ('ip link set car11STA-wlan0 down',)
+*** car11STA : ('ip addr add 200.0.10.121/8 dev car11STA-mp0',)
+*** car11STA : ('ip link set car11STA-mp0 up',)
+associating car11STA-mp0 to mesh-ssid...
+
+added intf car11STA-mp0 (1) to node car11STA
+*** car11STA : ('ip link set', 'car11STA-mp0', 'up')
+*** car11STA : ('ethtool -K', <TCWirelessLink car11STA-mp0>, 'gro', 'off')
+*** car12STA : ('iw dev car12STA-wlan0 interface add car12STA-mp0 type mp',)
+*** car12STA : ('ip link set car12STA-mp0 down',)
+*** car12STA : ('ip link set car12STA-mp0 address 00:00:00:00:00:13',)
+*** car12STA : ('ip link set car12STA-wlan0 down',)
+*** car12STA : ('ip addr add 200.0.10.122/8 dev car12STA-mp0',)
+*** car12STA : ('ip link set car12STA-mp0 up',)
+associating car12STA-mp0 to mesh-ssid...
+
+added intf car12STA-mp0 (1) to node car12STA
+*** car12STA : ('ip link set', 'car12STA-mp0', 'up')
+*** car12STA : ('ethtool -K', <TCWirelessLink car12STA-mp0>, 'gro', 'off')
+*** car13STA : ('iw dev car13STA-wlan0 interface add car13STA-mp0 type mp',)
+*** car13STA : ('ip link set car13STA-mp0 down',)
+*** car13STA : ('ip link set car13STA-mp0 address 00:00:00:00:00:14',)
+*** car13STA : ('ip link set car13STA-wlan0 down',)
+*** car13STA : ('ip addr add 200.0.10.123/8 dev car13STA-mp0',)
+*** car13STA : ('ip link set car13STA-mp0 up',)
+associating car13STA-mp0 to mesh-ssid...
+
+added intf car13STA-mp0 (1) to node car13STA
+*** car13STA : ('ip link set', 'car13STA-mp0', 'up')
+*** car13STA : ('ethtool -K', <TCWirelessLink car13STA-mp0>, 'gro', 'off')
+*** car14STA : ('iw dev car14STA-wlan0 interface add car14STA-mp0 type mp',)
+*** car14STA : ('ip link set car14STA-mp0 down',)
+*** car14STA : ('ip link set car14STA-mp0 address 00:00:00:00:00:15',)
+*** car14STA : ('ip link set car14STA-wlan0 down',)
+*** car14STA : ('ip addr add 200.0.10.124/8 dev car14STA-mp0',)
+*** car14STA : ('ip link set car14STA-mp0 up',)
+associating car14STA-mp0 to mesh-ssid...
+
+added intf car14STA-mp0 (1) to node car14STA
+*** car14STA : ('ip link set', 'car14STA-mp0', 'up')
+*** car14STA : ('ethtool -K', <TCWirelessLink car14STA-mp0>, 'gro', 'off')
+*** car15STA : ('iw dev car15STA-wlan0 interface add car15STA-mp0 type mp',)
+*** car15STA : ('ip link set car15STA-mp0 down',)
+*** car15STA : ('ip link set car15STA-mp0 address 00:00:00:00:00:16',)
+*** car15STA : ('ip link set car15STA-wlan0 down',)
+*** car15STA : ('ip addr add 200.0.10.125/8 dev car15STA-mp0',)
+*** car15STA : ('ip link set car15STA-mp0 up',)
+associating car15STA-mp0 to mesh-ssid...
+
+added intf car15STA-mp0 (1) to node car15STA
+*** car15STA : ('ip link set', 'car15STA-mp0', 'up')
+*** car15STA : ('ethtool -K', <TCWirelessLink car15STA-mp0>, 'gro', 'off')
+*** car16STA : ('iw dev car16STA-wlan0 interface add car16STA-mp0 type mp',)
+*** car16STA : ('ip link set car16STA-mp0 down',)
+*** car16STA : ('ip link set car16STA-mp0 address 00:00:00:00:00:17',)
+*** car16STA : ('ip link set car16STA-wlan0 down',)
+*** car16STA : ('ip addr add 200.0.10.126/8 dev car16STA-mp0',)
+*** car16STA : ('ip link set car16STA-mp0 up',)
+associating car16STA-mp0 to mesh-ssid...
+
+added intf car16STA-mp0 (1) to node car16STA
+*** car16STA : ('ip link set', 'car16STA-mp0', 'up')
+*** car16STA : ('ethtool -K', <TCWirelessLink car16STA-mp0>, 'gro', 'off')
+*** car17STA : ('iw dev car17STA-wlan0 interface add car17STA-mp0 type mp',)
+*** car17STA : ('ip link set car17STA-mp0 down',)
+*** car17STA : ('ip link set car17STA-mp0 address 00:00:00:00:00:18',)
+*** car17STA : ('ip link set car17STA-wlan0 down',)
+*** car17STA : ('ip addr add 200.0.10.127/8 dev car17STA-mp0',)
+*** car17STA : ('ip link set car17STA-mp0 up',)
+associating car17STA-mp0 to mesh-ssid...
+
+added intf car17STA-mp0 (1) to node car17STA
+*** car17STA : ('ip link set', 'car17STA-mp0', 'up')
+*** car17STA : ('ethtool -K', <TCWirelessLink car17STA-mp0>, 'gro', 'off')
+*** car18STA : ('iw dev car18STA-wlan0 interface add car18STA-mp0 type mp',)
+*** car18STA : ('ip link set car18STA-mp0 down',)
+*** car18STA : ('ip link set car18STA-mp0 address 00:00:00:00:00:19',)
+*** car18STA : ('ip link set car18STA-wlan0 down',)
+*** car18STA : ('ip addr add 200.0.10.128/8 dev car18STA-mp0',)
+*** car18STA : ('ip link set car18STA-mp0 up',)
+associating car18STA-mp0 to mesh-ssid...
+
+added intf car18STA-mp0 (1) to node car18STA
+*** car18STA : ('ip link set', 'car18STA-mp0', 'up')
+*** car18STA : ('ethtool -K', <TCWirelessLink car18STA-mp0>, 'gro', 'off')
+*** car19STA : ('iw dev car19STA-wlan0 interface add car19STA-mp0 type mp',)
+*** car19STA : ('ip link set car19STA-mp0 down',)
+*** car19STA : ('ip link set car19STA-mp0 address 00:00:00:00:00:20',)
+*** car19STA : ('ip link set car19STA-wlan0 down',)
+*** car19STA : ('ip addr add 200.0.10.129/8 dev car19STA-mp0',)
+*** car19STA : ('ip link set car19STA-mp0 up',)
+associating car19STA-mp0 to mesh-ssid...
+
+added intf car19STA-mp0 (1) to node car19STA
+*** car19STA : ('ip link set', 'car19STA-mp0', 'up')
+*** car19STA : ('ethtool -K', <TCWirelessLink car19STA-mp0>, 'gro', 'off')
+*** car20STA : ('iw dev car20STA-wlan0 interface add car20STA-mp0 type mp',)
+*** car20STA : ('ip link set car20STA-mp0 down',)
+*** car20STA : ('ip link set car20STA-mp0 address 00:00:00:00:00:21',)
+*** car20STA : ('ip link set car20STA-wlan0 down',)
+*** car20STA : ('ip addr add 200.0.10.130/8 dev car20STA-mp0',)
+*** car20STA : ('ip link set car20STA-mp0 up',)
+associating car20STA-mp0 to mesh-ssid...
+
+added intf car20STA-mp0 (1) to node car20STA
+*** car20STA : ('ip link set', 'car20STA-mp0', 'up')
+*** car20STA : ('ethtool -K', <TCWirelessLink car20STA-mp0>, 'gro', 'off')
+*** car21STA : ('iw dev car21STA-wlan0 interface add car21STA-mp0 type mp',)
+*** car21STA : ('ip link set car21STA-mp0 down',)
+*** car21STA : ('ip link set car21STA-mp0 address 00:00:00:00:00:22',)
+*** car21STA : ('ip link set car21STA-wlan0 down',)
+*** car21STA : ('ip addr add 200.0.10.131/8 dev car21STA-mp0',)
+*** car21STA : ('ip link set car21STA-mp0 up',)
+associating car21STA-mp0 to mesh-ssid...
+
+added intf car21STA-mp0 (1) to node car21STA
+*** car21STA : ('ip link set', 'car21STA-mp0', 'up')
+*** car21STA : ('ethtool -K', <TCWirelessLink car21STA-mp0>, 'gro', 'off')
+*** car22STA : ('iw dev car22STA-wlan0 interface add car22STA-mp0 type mp',)
+*** car22STA : ('ip link set car22STA-mp0 down',)
+*** car22STA : ('ip link set car22STA-mp0 address 00:00:00:00:00:23',)
+*** car22STA : ('ip link set car22STA-wlan0 down',)
+*** car22STA : ('ip addr add 200.0.10.132/8 dev car22STA-mp0',)
+*** car22STA : ('ip link set car22STA-mp0 up',)
+associating car22STA-mp0 to mesh-ssid...
+
+added intf car22STA-mp0 (1) to node car22STA
+*** car22STA : ('ip link set', 'car22STA-mp0', 'up')
+*** car22STA : ('ethtool -K', <TCWirelessLink car22STA-mp0>, 'gro', 'off')
+*** car23STA : ('iw dev car23STA-wlan0 interface add car23STA-mp0 type mp',)
+*** car23STA : ('ip link set car23STA-mp0 down',)
+*** car23STA : ('ip link set car23STA-mp0 address 00:00:00:00:00:24',)
+*** car23STA : ('ip link set car23STA-wlan0 down',)
+*** car23STA : ('ip addr add 200.0.10.133/8 dev car23STA-mp0',)
+*** car23STA : ('ip link set car23STA-mp0 up',)
+associating car23STA-mp0 to mesh-ssid...
+
+added intf car23STA-mp0 (1) to node car23STA
+*** car23STA : ('ip link set', 'car23STA-mp0', 'up')
+*** car23STA : ('ethtool -K', <TCWirelessLink car23STA-mp0>, 'gro', 'off')
+*** car24STA : ('iw dev car24STA-wlan0 interface add car24STA-mp0 type mp',)
+*** car24STA : ('ip link set car24STA-mp0 down',)
+*** car24STA : ('ip link set car24STA-mp0 address 00:00:00:00:00:25',)
+*** car24STA : ('ip link set car24STA-wlan0 down',)
+*** car24STA : ('ip addr add 200.0.10.134/8 dev car24STA-mp0',)
+*** car24STA : ('ip link set car24STA-mp0 up',)
+associating car24STA-mp0 to mesh-ssid...
+
+added intf car24STA-mp0 (1) to node car24STA
+*** car24STA : ('ip link set', 'car24STA-mp0', 'up')
+*** car24STA : ('ethtool -K', <TCWirelessLink car24STA-mp0>, 'gro', 'off')
+*** car25STA : ('iw dev car25STA-wlan0 interface add car25STA-mp0 type mp',)
+*** car25STA : ('ip link set car25STA-mp0 down',)
+*** car25STA : ('ip link set car25STA-mp0 address 00:00:00:00:00:26',)
+*** car25STA : ('ip link set car25STA-wlan0 down',)
+*** car25STA : ('ip addr add 200.0.10.135/8 dev car25STA-mp0',)
+*** car25STA : ('ip link set car25STA-mp0 up',)
+associating car25STA-mp0 to mesh-ssid...
+
+added intf car25STA-mp0 (1) to node car25STA
+*** car25STA : ('ip link set', 'car25STA-mp0', 'up')
+*** car25STA : ('ethtool -K', <TCWirelessLink car25STA-mp0>, 'gro', 'off')
+*** car26STA : ('iw dev car26STA-wlan0 interface add car26STA-mp0 type mp',)
+*** car26STA : ('ip link set car26STA-mp0 down',)
+*** car26STA : ('ip link set car26STA-mp0 address 00:00:00:00:00:27',)
+*** car26STA : ('ip link set car26STA-wlan0 down',)
+*** car26STA : ('ip addr add 200.0.10.136/8 dev car26STA-mp0',)
+*** car26STA : ('ip link set car26STA-mp0 up',)
+associating car26STA-mp0 to mesh-ssid...
+
+added intf car26STA-mp0 (1) to node car26STA
+*** car26STA : ('ip link set', 'car26STA-mp0', 'up')
+*** car26STA : ('ethtool -K', <TCWirelessLink car26STA-mp0>, 'gro', 'off')
+*** car27STA : ('iw dev car27STA-wlan0 interface add car27STA-mp0 type mp',)
+*** car27STA : ('ip link set car27STA-mp0 down',)
+*** car27STA : ('ip link set car27STA-mp0 address 00:00:00:00:00:28',)
+*** car27STA : ('ip link set car27STA-wlan0 down',)
+*** car27STA : ('ip addr add 200.0.10.137/8 dev car27STA-mp0',)
+*** car27STA : ('ip link set car27STA-mp0 up',)
+associating car27STA-mp0 to mesh-ssid...
+
+added intf car27STA-mp0 (1) to node car27STA
+*** car27STA : ('ip link set', 'car27STA-mp0', 'up')
+*** car27STA : ('ethtool -K', <TCWirelessLink car27STA-mp0>, 'gro', 'off')
+*** car28STA : ('iw dev car28STA-wlan0 interface add car28STA-mp0 type mp',)
+*** car28STA : ('ip link set car28STA-mp0 down',)
+*** car28STA : ('ip link set car28STA-mp0 address 00:00:00:00:00:29',)
+*** car28STA : ('ip link set car28STA-wlan0 down',)
+*** car28STA : ('ip addr add 200.0.10.138/8 dev car28STA-mp0',)
+*** car28STA : ('ip link set car28STA-mp0 up',)
+associating car28STA-mp0 to mesh-ssid...
+
+added intf car28STA-mp0 (1) to node car28STA
+*** car28STA : ('ip link set', 'car28STA-mp0', 'up')
+*** car28STA : ('ethtool -K', <TCWirelessLink car28STA-mp0>, 'gro', 'off')
+*** car29STA : ('iw dev car29STA-wlan0 interface add car29STA-mp0 type mp',)
+*** car29STA : ('ip link set car29STA-mp0 down',)
+*** car29STA : ('ip link set car29STA-mp0 address 00:00:00:00:00:30',)
+*** car29STA : ('ip link set car29STA-wlan0 down',)
+*** car29STA : ('ip addr add 200.0.10.139/8 dev car29STA-mp0',)
+*** car29STA : ('ip link set car29STA-mp0 up',)
+associating car29STA-mp0 to mesh-ssid...
+
+added intf car29STA-mp0 (1) to node car29STA
+*** car29STA : ('ip link set', 'car29STA-mp0', 'up')
+*** car29STA : ('ethtool -K', <TCWirelessLink car29STA-mp0>, 'gro', 'off')
+Name of wmediumd config: /tmp/mn_wmd_config_rbhZyY.cfg
+Name of wmediumd log: /tmp/mn_wmd_log_SgoUry.log
+*** Connecting to wmediumd server /var/run/wmediumd.sock
+*** Creating links
+*** rsu1 : ('ip link add name rsu1-eth2 address 86:a8:c4:53:34:f7 type veth peer name rsu2-eth2 address 36:f7:36:fd:90:0c netns 18769',)
+
+added intf rsu1-eth2 (2) to node rsu1
+*** rsu1 : ('ifconfig', 'rsu1-eth2', 'up')
+*** rsu1 : ('ethtool -K', <TCIntf rsu1-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf rsu2-eth2 (2) to node rsu2
+*** rsu2 : ('ifconfig', 'rsu2-eth2', 'up')
+*** rsu2 : ('ethtool -K', <TCIntf rsu2-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** rsu2 : ('ip link add name rsu2-eth3 address 36:4d:4b:58:47:30 type veth peer name rsu3-eth2 address ce:d7:0a:0b:67:ae netns 18775',)
+
+added intf rsu2-eth3 (3) to node rsu2
+*** rsu2 : ('ifconfig', 'rsu2-eth3', 'up')
+*** rsu2 : ('ethtool -K', <TCIntf rsu2-eth3>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf rsu3-eth2 (2) to node rsu3
+*** rsu3 : ('ifconfig', 'rsu3-eth2', 'up')
+*** rsu3 : ('ethtool -K', <TCIntf rsu3-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** server_s1 : ('ip link add name server_s1-eth0 address 8a:45:27:59:14:c4 type veth peer name rsu1-eth5 address 36:e3:9b:41:36:c3 netns 18763',)
+
+added intf server_s1-eth0 (0) to node server_s1
+moving server_s1-eth0 into namespace for server_s1 
+*** server_s1 : ('ifconfig', 'server_s1-eth0', 'up')
+*** server_s1 : ('ethtool -K', <TCIntf server_s1-eth0>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf rsu1-eth5 (5) to node rsu1
+*** rsu1 : ('ifconfig', 'rsu1-eth5', 'up')
+*** rsu1 : ('ethtool -K', <TCIntf rsu1-eth5>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** server_s2 : ('ip link add name server_s2-eth0 address d6:ef:a2:50:54:10 type veth peer name rsu2-eth5 address d6:e0:62:7a:0a:0c netns 18769',)
+
+added intf server_s2-eth0 (0) to node server_s2
+moving server_s2-eth0 into namespace for server_s2 
+*** server_s2 : ('ifconfig', 'server_s2-eth0', 'up')
+*** server_s2 : ('ethtool -K', <TCIntf server_s2-eth0>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf rsu2-eth5 (5) to node rsu2
+*** rsu2 : ('ifconfig', 'rsu2-eth5', 'up')
+*** rsu2 : ('ethtool -K', <TCIntf rsu2-eth5>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** server_s3 : ('ip link add name server_s3-eth0 address 9a:d6:f0:97:47:e8 type veth peer name rsu3-eth5 address 6e:9c:5a:97:43:d5 netns 18775',)
+
+added intf server_s3-eth0 (0) to node server_s3
+moving server_s3-eth0 into namespace for server_s3 
+*** server_s3 : ('ifconfig', 'server_s3-eth0', 'up')
+*** server_s3 : ('ethtool -K', <TCIntf server_s3-eth0>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf rsu3-eth5 (5) to node rsu3
+*** rsu3 : ('ifconfig', 'rsu3-eth5', 'up')
+*** rsu3 : ('ethtool -K', <TCIntf rsu3-eth5>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** server_e : ('ip link add name server_e-eth0 address 0e:27:c2:b7:94:b9 type veth peer name sw2-eth1 address 4e:2a:84:70:ae:75 netns 18784',)
+
+added intf server_e-eth0 (0) to node server_e
+moving server_e-eth0 into namespace for server_e 
+*** server_e : ('ifconfig', 'server_e-eth0', 'up')
+*** server_e : ('ethtool -K', <TCIntf server_e-eth0>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf sw2-eth1 (1) to node sw2
+*** sw2 : ('ifconfig', 'sw2-eth1', 'up')
+*** sw2 : ('ethtool -K', <TCIntf sw2-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** server_e2 : ('ip link add name server_e2-eth0 address 7a:cd:50:43:a0:9a type veth peer name sw2-eth2 address 3a:75:67:6d:b7:76 netns 18784',)
+
+added intf server_e2-eth0 (0) to node server_e2
+moving server_e2-eth0 into namespace for server_e2 
+*** server_e2 : ('ifconfig', 'server_e2-eth0', 'up')
+*** server_e2 : ('ethtool -K', <TCIntf server_e2-eth0>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf sw2-eth2 (2) to node sw2
+*** sw2 : ('ifconfig', 'sw2-eth2', 'up')
+*** sw2 : ('ethtool -K', <TCIntf sw2-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** server_g : ('ip link add name server_g-eth0 address 62:c5:84:0a:42:1b type veth peer name sw2-eth3 address 56:69:ab:ec:12:27 netns 18784',)
+
+added intf server_g-eth0 (0) to node server_g
+moving server_g-eth0 into namespace for server_g 
+*** server_g : ('ifconfig', 'server_g-eth0', 'up')
+*** server_g : ('ethtool -K', <TCIntf server_g-eth0>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf sw2-eth3 (3) to node sw2
+*** sw2 : ('ifconfig', 'sw2-eth3', 'up')
+*** sw2 : ('ethtool -K', <TCIntf sw2-eth3>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** sw1 : ('ip link add name sw1-eth1 address 46:36:7e:46:2f:c3 type veth peer name sw2-eth4 address 4a:ee:b1:c5:fa:1f netns 18784',)
+
+added intf sw1-eth1 (1) to node sw1
+*** sw1 : ('ifconfig', 'sw1-eth1', 'up')
+*** sw1 : ('ethtool -K', <TCIntf sw1-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf sw2-eth4 (4) to node sw2
+*** sw2 : ('ifconfig', 'sw2-eth4', 'up')
+*** sw2 : ('ethtool -K', <TCIntf sw2-eth4>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** rsu1 : ('ip link add name rsu1-eth3 address 02:af:3b:c6:2e:de type veth peer name sw1-eth2 address ee:e8:b3:19:61:cc netns 18781',)
+
+added intf rsu1-eth3 (3) to node rsu1
+*** rsu1 : ('ifconfig', 'rsu1-eth3', 'up')
+*** rsu1 : ('ethtool -K', <TCIntf rsu1-eth3>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf sw1-eth2 (2) to node sw1
+*** sw1 : ('ifconfig', 'sw1-eth2', 'up')
+*** sw1 : ('ethtool -K', <TCIntf sw1-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** rsu2 : ('ip link add name rsu2-eth4 address 8a:81:8d:1f:f7:d8 type veth peer name sw1-eth3 address 02:c0:ff:43:e9:1f netns 18781',)
+
+added intf rsu2-eth4 (4) to node rsu2
+*** rsu2 : ('ifconfig', 'rsu2-eth4', 'up')
+*** rsu2 : ('ethtool -K', <TCIntf rsu2-eth4>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf sw1-eth3 (3) to node sw1
+*** sw1 : ('ifconfig', 'sw1-eth3', 'up')
+*** sw1 : ('ethtool -K', <TCIntf sw1-eth3>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** rsu3 : ('ip link add name rsu3-eth3 address 52:99:89:30:77:96 type veth peer name sw1-eth4 address a6:03:ae:ca:3b:3d netns 18781',)
+
+added intf rsu3-eth3 (3) to node rsu3
+*** rsu3 : ('ifconfig', 'rsu3-eth3', 'up')
+*** rsu3 : ('ethtool -K', <TCIntf rsu3-eth3>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf sw1-eth4 (4) to node sw1
+*** sw1 : ('ifconfig', 'sw1-eth4', 'up')
+*** sw1 : ('ethtool -K', <TCIntf sw1-eth4>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** Configuring links bandwidth
+*** sw1 : ('ifconfig', 'sw1-eth1', 'up')
+*** sw1 : ('ethtool -K', <TCIntf sw1-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+ *** executing command: tc qdisc show dev sw1-eth1
+*** sw1 : ('tc qdisc show dev sw1-eth1',)
+qdisc noqueue 0: root refcnt 2 
+(93.00Mbit) at map stage w/cmds: ['%s qdisc add dev %s root handle 5:0 htb default 1', '%s class add dev %s parent 5:0 classid 5:1 htb rate 93.000000Mbit burst 15k']
+ *** executing command: tc qdisc add dev sw1-eth1 root handle 5:0 htb default 1
+*** sw1 : ('tc qdisc add dev sw1-eth1 root handle 5:0 htb default 1',)
+ *** executing command: tc class add dev sw1-eth1 parent 5:0 classid 5:1 htb rate 93.000000Mbit burst 15k
+*** sw1 : ('tc class add dev sw1-eth1 parent 5:0 classid 5:1 htb rate 93.000000Mbit burst 15k',)
+cmds: ['%s qdisc add dev %s root handle 5:0 htb default 1', '%s class add dev %s parent 5:0 classid 5:1 htb rate 93.000000Mbit burst 15k'] 
+outputs: ['', ''] 
+*** rsu1 : ('ifconfig', 'rsu1-eth3', 'up')
+*** rsu1 : ('ethtool -K', <TCIntf rsu1-eth3>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+ *** executing command: tc qdisc show dev rsu1-eth3
+*** rsu1 : ('tc qdisc show dev rsu1-eth3',)
+qdisc noqueue 0: root refcnt 2 
+(31.00Mbit) at map stage w/cmds: ['%s qdisc add dev %s root handle 5:0 htb default 1', '%s class add dev %s parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k']
+ *** executing command: tc qdisc add dev rsu1-eth3 root handle 5:0 htb default 1
+*** rsu1 : ('tc qdisc add dev rsu1-eth3 root handle 5:0 htb default 1',)
+ *** executing command: tc class add dev rsu1-eth3 parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k
+*** rsu1 : ('tc class add dev rsu1-eth3 parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k',)
+cmds: ['%s qdisc add dev %s root handle 5:0 htb default 1', '%s class add dev %s parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k'] 
+outputs: ['', ''] 
+*** rsu2 : ('ifconfig', 'rsu2-eth4', 'up')
+*** rsu2 : ('ethtool -K', <TCIntf rsu2-eth4>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+ *** executing command: tc qdisc show dev rsu2-eth4
+*** rsu2 : ('tc qdisc show dev rsu2-eth4',)
+qdisc noqueue 0: root refcnt 2 
+(31.00Mbit) at map stage w/cmds: ['%s qdisc add dev %s root handle 5:0 htb default 1', '%s class add dev %s parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k']
+ *** executing command: tc qdisc add dev rsu2-eth4 root handle 5:0 htb default 1
+*** rsu2 : ('tc qdisc add dev rsu2-eth4 root handle 5:0 htb default 1',)
+ *** executing command: tc class add dev rsu2-eth4 parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k
+*** rsu2 : ('tc class add dev rsu2-eth4 parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k',)
+cmds: ['%s qdisc add dev %s root handle 5:0 htb default 1', '%s class add dev %s parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k'] 
+outputs: ['', ''] 
+*** rsu3 : ('ifconfig', 'rsu3-eth3', 'up')
+*** rsu3 : ('ethtool -K', <TCIntf rsu3-eth3>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+ *** executing command: tc qdisc show dev rsu3-eth3
+*** rsu3 : ('tc qdisc show dev rsu3-eth3',)
+qdisc noqueue 0: root refcnt 2 
+(31.00Mbit) at map stage w/cmds: ['%s qdisc add dev %s root handle 5:0 htb default 1', '%s class add dev %s parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k']
+ *** executing command: tc qdisc add dev rsu3-eth3 root handle 5:0 htb default 1
+*** rsu3 : ('tc qdisc add dev rsu3-eth3 root handle 5:0 htb default 1',)
+ *** executing command: tc class add dev rsu3-eth3 parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k
+*** rsu3 : ('tc class add dev rsu3-eth3 parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k',)
+cmds: ['%s qdisc add dev %s root handle 5:0 htb default 1', '%s class add dev %s parent 5:0 classid 5:1 htb rate 31.000000Mbit burst 15k'] 
+outputs: ['', ''] 
+wmediumd: Updating Pos of 00:00:00:00:00:01 to x=120.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:02 to x=130.0, y=999.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:03 to x=135.0, y=997.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:04 to x=140.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:05 to x=145.0, y=999.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:06 to x=150.0, y=997.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:07 to x=155.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:08 to x=160.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:09 to x=165.0, y=999.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:10 to x=2090.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:10 to x=2090.1, y=1000.0, z=0.0
+iwconfig car9-wlan0 essid rsu3 ap 02:00:00:00:3e:00
+wmediumd: Updating Pos of 00:00:00:00:00:11 to x=1093.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:11 to x=1093.1, y=1000.0, z=0.0
+iwconfig car10-wlan0 essid rsu1 ap 02:00:00:00:3c:00
+wmediumd: Updating Pos of 00:00:00:00:00:12 to x=1090.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:12 to x=1090.1, y=1000.0, z=0.0
+iwconfig car11-wlan0 essid rsu1 ap 02:00:00:00:3c:00
+wmediumd: Updating Pos of 00:00:00:00:00:13 to x=1085.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:13 to x=1085.1, y=1000.0, z=0.0
+iwconfig car12-wlan0 essid rsu1 ap 02:00:00:00:3c:00
+wmediumd: Updating Pos of 00:00:00:00:00:14 to x=1593.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:14 to x=1593.1, y=1000.0, z=0.0
+iwconfig car13-wlan0 essid rsu2 ap 02:00:00:00:3d:00
+wmediumd: Updating Pos of 00:00:00:00:00:15 to x=1590.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:15 to x=1590.1, y=1000.0, z=0.0
+iwconfig car14-wlan0 essid rsu2 ap 02:00:00:00:3d:00
+wmediumd: Updating Pos of 00:00:00:00:00:16 to x=1585.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:16 to x=1585.1, y=1000.0, z=0.0
+iwconfig car15-wlan0 essid rsu2 ap 02:00:00:00:3d:00
+wmediumd: Updating Pos of 00:00:00:00:00:17 to x=2093.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:17 to x=2093.1, y=1000.0, z=0.0
+iwconfig car16-wlan0 essid rsu3 ap 02:00:00:00:3e:00
+wmediumd: Updating Pos of 00:00:00:00:00:18 to x=2090.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:18 to x=2090.1, y=1000.0, z=0.0
+iwconfig car17-wlan0 essid rsu3 ap 02:00:00:00:3e:00
+wmediumd: Updating Pos of 00:00:00:00:00:19 to x=2085.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:19 to x=2085.1, y=1000.0, z=0.0
+iwconfig car18-wlan0 essid rsu3 ap 02:00:00:00:3e:00
+wmediumd: Updating Pos of 00:00:00:00:00:20 to x=2101.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:20 to x=2101.1, y=1000.0, z=0.0
+iwconfig car19-wlan0 essid rsu3 ap 02:00:00:00:3e:00
+wmediumd: Updating Pos of 00:00:00:00:00:21 to x=1113.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:21 to x=1113.1, y=1000.0, z=0.0
+iwconfig car20-wlan0 essid rsu1 ap 02:00:00:00:3c:00
+wmediumd: Updating Pos of 00:00:00:00:00:22 to x=1115.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:22 to x=1115.1, y=1000.0, z=0.0
+iwconfig car21-wlan0 essid rsu1 ap 02:00:00:00:3c:00
+wmediumd: Updating Pos of 00:00:00:00:00:23 to x=1107.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:23 to x=1107.1, y=1000.0, z=0.0
+iwconfig car22-wlan0 essid rsu1 ap 02:00:00:00:3c:00
+wmediumd: Updating Pos of 00:00:00:00:00:24 to x=1613.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:24 to x=1613.1, y=1000.0, z=0.0
+iwconfig car23-wlan0 essid rsu2 ap 02:00:00:00:3d:00
+wmediumd: Updating Pos of 00:00:00:00:00:25 to x=1615.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:25 to x=1615.1, y=1000.0, z=0.0
+iwconfig car24-wlan0 essid rsu2 ap 02:00:00:00:3d:00
+wmediumd: Updating Pos of 00:00:00:00:00:26 to x=1620.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:26 to x=1620.1, y=1000.0, z=0.0
+iwconfig car25-wlan0 essid rsu2 ap 02:00:00:00:3d:00
+wmediumd: Updating Pos of 00:00:00:00:00:27 to x=2113.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:27 to x=2113.1, y=1000.0, z=0.0
+iwconfig car26-wlan0 essid rsu3 ap 02:00:00:00:3e:00
+wmediumd: Updating Pos of 00:00:00:00:00:28 to x=2115.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:28 to x=2115.1, y=1000.0, z=0.0
+iwconfig car27-wlan0 essid rsu3 ap 02:00:00:00:3e:00
+wmediumd: Updating Pos of 00:00:00:00:00:29 to x=2120.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:29 to x=2120.1, y=1000.0, z=0.0
+iwconfig car28-wlan0 essid rsu3 ap 02:00:00:00:3e:00
+wmediumd: Updating Pos of 00:00:00:00:00:30 to x=2125.0, y=1000.0, z=0.0
+wmediumd: Updating Pos of 00:00:00:00:00:30 to x=2125.1, y=1000.0, z=0.0
+iwconfig car29-wlan0 essid rsu3 ap 02:00:00:00:3e:00
+*** Starting network
+*** car0STA : ('ip link add name car0STA-eth2 address fa:71:97:42:32:79 type veth peer name car0SW-eth1 address 02:12:17:d7:de:41 netns 18340',)
+
+added intf car0STA-eth2 (2) to node car0STA
+*** car0STA : ('ifconfig', 'car0STA-eth2', 'up')
+*** car0STA : ('ethtool -K', <TCIntf car0STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car0SW-eth1 (1) to node car0SW
+*** car0SW : ('ifconfig', 'car0SW-eth1', 'up')
+*** car0SW : ('ethtool -K', <TCIntf car0SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car0 : ('ip link add name car0-eth1 address a6:88:c3:23:bf:60 type veth peer name car0SW-eth2 address 2a:8c:0d:f7:c2:92 netns 18340',)
+
+added intf car0-eth1 (1) to node car0
+*** car0 : ('ifconfig', 'car0-eth1', 'up')
+*** car0 : ('ethtool -K', <TCIntf car0-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car0SW-eth2 (2) to node car0SW
+*** car0SW : ('ifconfig', 'car0SW-eth2', 'up')
+*** car0SW : ('ethtool -K', <TCIntf car0SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car1STA : ('ip link add name car1STA-eth2 address 4a:16:5c:6b:fb:83 type veth peer name car1SW-eth1 address d2:9a:89:2b:86:c2 netns 18354',)
+
+added intf car1STA-eth2 (2) to node car1STA
+*** car1STA : ('ifconfig', 'car1STA-eth2', 'up')
+*** car1STA : ('ethtool -K', <TCIntf car1STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car1SW-eth1 (1) to node car1SW
+*** car1SW : ('ifconfig', 'car1SW-eth1', 'up')
+*** car1SW : ('ethtool -K', <TCIntf car1SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car1 : ('ip link add name car1-eth1 address ee:15:92:b7:65:07 type veth peer name car1SW-eth2 address a2:1e:5c:fe:4c:c7 netns 18354',)
+
+added intf car1-eth1 (1) to node car1
+*** car1 : ('ifconfig', 'car1-eth1', 'up')
+*** car1 : ('ethtool -K', <TCIntf car1-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car1SW-eth2 (2) to node car1SW
+*** car1SW : ('ifconfig', 'car1SW-eth2', 'up')
+*** car1SW : ('ethtool -K', <TCIntf car1SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car2STA : ('ip link add name car2STA-eth2 address 92:c4:a5:40:d5:e8 type veth peer name car2SW-eth1 address ce:1d:42:6e:18:26 netns 18368',)
+
+added intf car2STA-eth2 (2) to node car2STA
+*** car2STA : ('ifconfig', 'car2STA-eth2', 'up')
+*** car2STA : ('ethtool -K', <TCIntf car2STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car2SW-eth1 (1) to node car2SW
+*** car2SW : ('ifconfig', 'car2SW-eth1', 'up')
+*** car2SW : ('ethtool -K', <TCIntf car2SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car2 : ('ip link add name car2-eth1 address 9e:cc:41:53:5e:27 type veth peer name car2SW-eth2 address 06:97:9a:41:21:99 netns 18368',)
+
+added intf car2-eth1 (1) to node car2
+*** car2 : ('ifconfig', 'car2-eth1', 'up')
+*** car2 : ('ethtool -K', <TCIntf car2-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car2SW-eth2 (2) to node car2SW
+*** car2SW : ('ifconfig', 'car2SW-eth2', 'up')
+*** car2SW : ('ethtool -K', <TCIntf car2SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car3STA : ('ip link add name car3STA-eth2 address f2:ad:0d:47:d8:72 type veth peer name car3SW-eth1 address 5a:76:0e:e2:32:3c netns 18382',)
+
+added intf car3STA-eth2 (2) to node car3STA
+*** car3STA : ('ifconfig', 'car3STA-eth2', 'up')
+*** car3STA : ('ethtool -K', <TCIntf car3STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car3SW-eth1 (1) to node car3SW
+*** car3SW : ('ifconfig', 'car3SW-eth1', 'up')
+*** car3SW : ('ethtool -K', <TCIntf car3SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car3 : ('ip link add name car3-eth1 address 7a:a2:bc:ad:02:d3 type veth peer name car3SW-eth2 address ba:5c:8c:bb:78:d3 netns 18382',)
+
+added intf car3-eth1 (1) to node car3
+*** car3 : ('ifconfig', 'car3-eth1', 'up')
+*** car3 : ('ethtool -K', <TCIntf car3-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car3SW-eth2 (2) to node car3SW
+*** car3SW : ('ifconfig', 'car3SW-eth2', 'up')
+*** car3SW : ('ethtool -K', <TCIntf car3SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car4STA : ('ip link add name car4STA-eth2 address 3a:dd:71:f6:42:3f type veth peer name car4SW-eth1 address 66:19:ed:5e:43:4d netns 18396',)
+
+added intf car4STA-eth2 (2) to node car4STA
+*** car4STA : ('ifconfig', 'car4STA-eth2', 'up')
+*** car4STA : ('ethtool -K', <TCIntf car4STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car4SW-eth1 (1) to node car4SW
+*** car4SW : ('ifconfig', 'car4SW-eth1', 'up')
+*** car4SW : ('ethtool -K', <TCIntf car4SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car4 : ('ip link add name car4-eth1 address f6:c4:b8:fb:bb:ca type veth peer name car4SW-eth2 address 52:8c:62:f7:27:ab netns 18396',)
+
+added intf car4-eth1 (1) to node car4
+*** car4 : ('ifconfig', 'car4-eth1', 'up')
+*** car4 : ('ethtool -K', <TCIntf car4-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car4SW-eth2 (2) to node car4SW
+*** car4SW : ('ifconfig', 'car4SW-eth2', 'up')
+*** car4SW : ('ethtool -K', <TCIntf car4SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car5STA : ('ip link add name car5STA-eth2 address 36:bd:66:a2:c3:e5 type veth peer name car5SW-eth1 address c2:83:d6:25:ce:58 netns 18410',)
+
+added intf car5STA-eth2 (2) to node car5STA
+*** car5STA : ('ifconfig', 'car5STA-eth2', 'up')
+*** car5STA : ('ethtool -K', <TCIntf car5STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car5SW-eth1 (1) to node car5SW
+*** car5SW : ('ifconfig', 'car5SW-eth1', 'up')
+*** car5SW : ('ethtool -K', <TCIntf car5SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car5 : ('ip link add name car5-eth1 address a6:d3:24:6d:51:12 type veth peer name car5SW-eth2 address f6:b3:0e:5a:c1:94 netns 18410',)
+
+added intf car5-eth1 (1) to node car5
+*** car5 : ('ifconfig', 'car5-eth1', 'up')
+*** car5 : ('ethtool -K', <TCIntf car5-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car5SW-eth2 (2) to node car5SW
+*** car5SW : ('ifconfig', 'car5SW-eth2', 'up')
+*** car5SW : ('ethtool -K', <TCIntf car5SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car6STA : ('ip link add name car6STA-eth2 address a6:43:b3:14:79:c1 type veth peer name car6SW-eth1 address 32:74:f7:9a:9e:27 netns 18424',)
+
+added intf car6STA-eth2 (2) to node car6STA
+*** car6STA : ('ifconfig', 'car6STA-eth2', 'up')
+*** car6STA : ('ethtool -K', <TCIntf car6STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car6SW-eth1 (1) to node car6SW
+*** car6SW : ('ifconfig', 'car6SW-eth1', 'up')
+*** car6SW : ('ethtool -K', <TCIntf car6SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car6 : ('ip link add name car6-eth1 address de:87:b7:ac:9c:47 type veth peer name car6SW-eth2 address 02:1b:63:3a:a5:e5 netns 18424',)
+
+added intf car6-eth1 (1) to node car6
+*** car6 : ('ifconfig', 'car6-eth1', 'up')
+*** car6 : ('ethtool -K', <TCIntf car6-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car6SW-eth2 (2) to node car6SW
+*** car6SW : ('ifconfig', 'car6SW-eth2', 'up')
+*** car6SW : ('ethtool -K', <TCIntf car6SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car7STA : ('ip link add name car7STA-eth2 address ce:53:3f:7e:9e:5c type veth peer name car7SW-eth1 address 3e:7d:4f:74:d7:2e netns 18438',)
+
+added intf car7STA-eth2 (2) to node car7STA
+*** car7STA : ('ifconfig', 'car7STA-eth2', 'up')
+*** car7STA : ('ethtool -K', <TCIntf car7STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car7SW-eth1 (1) to node car7SW
+*** car7SW : ('ifconfig', 'car7SW-eth1', 'up')
+*** car7SW : ('ethtool -K', <TCIntf car7SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car7 : ('ip link add name car7-eth1 address 7e:d2:16:94:62:87 type veth peer name car7SW-eth2 address 4e:db:4d:49:81:4e netns 18438',)
+
+added intf car7-eth1 (1) to node car7
+*** car7 : ('ifconfig', 'car7-eth1', 'up')
+*** car7 : ('ethtool -K', <TCIntf car7-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car7SW-eth2 (2) to node car7SW
+*** car7SW : ('ifconfig', 'car7SW-eth2', 'up')
+*** car7SW : ('ethtool -K', <TCIntf car7SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car8STA : ('ip link add name car8STA-eth2 address ee:8f:05:31:58:dc type veth peer name car8SW-eth1 address 6a:ad:2b:66:3d:c1 netns 18452',)
+
+added intf car8STA-eth2 (2) to node car8STA
+*** car8STA : ('ifconfig', 'car8STA-eth2', 'up')
+*** car8STA : ('ethtool -K', <TCIntf car8STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car8SW-eth1 (1) to node car8SW
+*** car8SW : ('ifconfig', 'car8SW-eth1', 'up')
+*** car8SW : ('ethtool -K', <TCIntf car8SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car8 : ('ip link add name car8-eth1 address ca:c1:fa:bb:bd:2b type veth peer name car8SW-eth2 address a2:b5:44:79:b0:1e netns 18452',)
+
+added intf car8-eth1 (1) to node car8
+*** car8 : ('ifconfig', 'car8-eth1', 'up')
+*** car8 : ('ethtool -K', <TCIntf car8-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car8SW-eth2 (2) to node car8SW
+*** car8SW : ('ifconfig', 'car8SW-eth2', 'up')
+*** car8SW : ('ethtool -K', <TCIntf car8SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car9STA : ('ip link add name car9STA-eth2 address 4e:10:c0:35:9f:f9 type veth peer name car9SW-eth1 address f6:bc:da:8e:86:c8 netns 18466',)
+
+added intf car9STA-eth2 (2) to node car9STA
+*** car9STA : ('ifconfig', 'car9STA-eth2', 'up')
+*** car9STA : ('ethtool -K', <TCIntf car9STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car9SW-eth1 (1) to node car9SW
+*** car9SW : ('ifconfig', 'car9SW-eth1', 'up')
+*** car9SW : ('ethtool -K', <TCIntf car9SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car9 : ('ip link add name car9-eth1 address e2:a9:07:7f:25:e3 type veth peer name car9SW-eth2 address be:7b:24:f3:5a:8a netns 18466',)
+
+added intf car9-eth1 (1) to node car9
+*** car9 : ('ifconfig', 'car9-eth1', 'up')
+*** car9 : ('ethtool -K', <TCIntf car9-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car9SW-eth2 (2) to node car9SW
+*** car9SW : ('ifconfig', 'car9SW-eth2', 'up')
+*** car9SW : ('ethtool -K', <TCIntf car9SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car10STA : ('ip link add name car10STA-eth2 address 6a:ec:3a:99:97:fe type veth peer name car10SW-eth1 address aa:c5:49:90:a2:bd netns 18480',)
+
+added intf car10STA-eth2 (2) to node car10STA
+*** car10STA : ('ifconfig', 'car10STA-eth2', 'up')
+*** car10STA : ('ethtool -K', <TCIntf car10STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car10SW-eth1 (1) to node car10SW
+*** car10SW : ('ifconfig', 'car10SW-eth1', 'up')
+*** car10SW : ('ethtool -K', <TCIntf car10SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car10 : ('ip link add name car10-eth1 address f2:5f:d0:ab:a5:c9 type veth peer name car10SW-eth2 address 1e:35:4b:fd:2f:b2 netns 18480',)
+
+added intf car10-eth1 (1) to node car10
+*** car10 : ('ifconfig', 'car10-eth1', 'up')
+*** car10 : ('ethtool -K', <TCIntf car10-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car10SW-eth2 (2) to node car10SW
+*** car10SW : ('ifconfig', 'car10SW-eth2', 'up')
+*** car10SW : ('ethtool -K', <TCIntf car10SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car11STA : ('ip link add name car11STA-eth2 address 42:ee:bf:b5:61:45 type veth peer name car11SW-eth1 address de:65:f0:1e:8e:b2 netns 18494',)
+
+added intf car11STA-eth2 (2) to node car11STA
+*** car11STA : ('ifconfig', 'car11STA-eth2', 'up')
+*** car11STA : ('ethtool -K', <TCIntf car11STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car11SW-eth1 (1) to node car11SW
+*** car11SW : ('ifconfig', 'car11SW-eth1', 'up')
+*** car11SW : ('ethtool -K', <TCIntf car11SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car11 : ('ip link add name car11-eth1 address de:b6:14:fa:ac:97 type veth peer name car11SW-eth2 address aa:dc:d5:19:7e:d9 netns 18494',)
+
+added intf car11-eth1 (1) to node car11
+*** car11 : ('ifconfig', 'car11-eth1', 'up')
+*** car11 : ('ethtool -K', <TCIntf car11-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car11SW-eth2 (2) to node car11SW
+*** car11SW : ('ifconfig', 'car11SW-eth2', 'up')
+*** car11SW : ('ethtool -K', <TCIntf car11SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car12STA : ('ip link add name car12STA-eth2 address de:e7:0c:f1:6f:c2 type veth peer name car12SW-eth1 address 86:03:8f:c2:bc:70 netns 18508',)
+
+added intf car12STA-eth2 (2) to node car12STA
+*** car12STA : ('ifconfig', 'car12STA-eth2', 'up')
+*** car12STA : ('ethtool -K', <TCIntf car12STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car12SW-eth1 (1) to node car12SW
+*** car12SW : ('ifconfig', 'car12SW-eth1', 'up')
+*** car12SW : ('ethtool -K', <TCIntf car12SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car12 : ('ip link add name car12-eth1 address ae:2a:5f:e5:bf:17 type veth peer name car12SW-eth2 address ee:6b:8e:9d:99:59 netns 18508',)
+
+added intf car12-eth1 (1) to node car12
+*** car12 : ('ifconfig', 'car12-eth1', 'up')
+*** car12 : ('ethtool -K', <TCIntf car12-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car12SW-eth2 (2) to node car12SW
+*** car12SW : ('ifconfig', 'car12SW-eth2', 'up')
+*** car12SW : ('ethtool -K', <TCIntf car12SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car13STA : ('ip link add name car13STA-eth2 address ce:2d:3a:49:32:05 type veth peer name car13SW-eth1 address e2:61:d4:1e:1b:ac netns 18522',)
+
+added intf car13STA-eth2 (2) to node car13STA
+*** car13STA : ('ifconfig', 'car13STA-eth2', 'up')
+*** car13STA : ('ethtool -K', <TCIntf car13STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car13SW-eth1 (1) to node car13SW
+*** car13SW : ('ifconfig', 'car13SW-eth1', 'up')
+*** car13SW : ('ethtool -K', <TCIntf car13SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car13 : ('ip link add name car13-eth1 address 32:67:b5:80:9b:d9 type veth peer name car13SW-eth2 address 12:d6:18:22:13:2d netns 18522',)
+
+added intf car13-eth1 (1) to node car13
+*** car13 : ('ifconfig', 'car13-eth1', 'up')
+*** car13 : ('ethtool -K', <TCIntf car13-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car13SW-eth2 (2) to node car13SW
+*** car13SW : ('ifconfig', 'car13SW-eth2', 'up')
+*** car13SW : ('ethtool -K', <TCIntf car13SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car14STA : ('ip link add name car14STA-eth2 address e2:72:69:1a:81:d8 type veth peer name car14SW-eth1 address be:ca:09:41:d0:e2 netns 18536',)
+
+added intf car14STA-eth2 (2) to node car14STA
+*** car14STA : ('ifconfig', 'car14STA-eth2', 'up')
+*** car14STA : ('ethtool -K', <TCIntf car14STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car14SW-eth1 (1) to node car14SW
+*** car14SW : ('ifconfig', 'car14SW-eth1', 'up')
+*** car14SW : ('ethtool -K', <TCIntf car14SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car14 : ('ip link add name car14-eth1 address 76:a8:db:3a:28:c6 type veth peer name car14SW-eth2 address 86:46:55:6d:48:b8 netns 18536',)
+
+added intf car14-eth1 (1) to node car14
+*** car14 : ('ifconfig', 'car14-eth1', 'up')
+*** car14 : ('ethtool -K', <TCIntf car14-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car14SW-eth2 (2) to node car14SW
+*** car14SW : ('ifconfig', 'car14SW-eth2', 'up')
+*** car14SW : ('ethtool -K', <TCIntf car14SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car15STA : ('ip link add name car15STA-eth2 address 12:94:68:bf:df:66 type veth peer name car15SW-eth1 address 52:73:c9:56:4c:db netns 18550',)
+
+added intf car15STA-eth2 (2) to node car15STA
+*** car15STA : ('ifconfig', 'car15STA-eth2', 'up')
+*** car15STA : ('ethtool -K', <TCIntf car15STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car15SW-eth1 (1) to node car15SW
+*** car15SW : ('ifconfig', 'car15SW-eth1', 'up')
+*** car15SW : ('ethtool -K', <TCIntf car15SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car15 : ('ip link add name car15-eth1 address d2:a3:f5:4a:1c:37 type veth peer name car15SW-eth2 address 7e:37:fe:80:36:90 netns 18550',)
+
+added intf car15-eth1 (1) to node car15
+*** car15 : ('ifconfig', 'car15-eth1', 'up')
+*** car15 : ('ethtool -K', <TCIntf car15-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car15SW-eth2 (2) to node car15SW
+*** car15SW : ('ifconfig', 'car15SW-eth2', 'up')
+*** car15SW : ('ethtool -K', <TCIntf car15SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car16STA : ('ip link add name car16STA-eth2 address 82:9e:a1:23:2e:ef type veth peer name car16SW-eth1 address fe:4f:af:77:fa:bc netns 18564',)
+
+added intf car16STA-eth2 (2) to node car16STA
+*** car16STA : ('ifconfig', 'car16STA-eth2', 'up')
+*** car16STA : ('ethtool -K', <TCIntf car16STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car16SW-eth1 (1) to node car16SW
+*** car16SW : ('ifconfig', 'car16SW-eth1', 'up')
+*** car16SW : ('ethtool -K', <TCIntf car16SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car16 : ('ip link add name car16-eth1 address b6:99:7b:f6:98:12 type veth peer name car16SW-eth2 address 2e:9c:a8:52:97:79 netns 18564',)
+
+added intf car16-eth1 (1) to node car16
+*** car16 : ('ifconfig', 'car16-eth1', 'up')
+*** car16 : ('ethtool -K', <TCIntf car16-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car16SW-eth2 (2) to node car16SW
+*** car16SW : ('ifconfig', 'car16SW-eth2', 'up')
+*** car16SW : ('ethtool -K', <TCIntf car16SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car17STA : ('ip link add name car17STA-eth2 address 56:79:71:71:f9:ae type veth peer name car17SW-eth1 address ba:fe:a7:04:69:4f netns 18579',)
+
+added intf car17STA-eth2 (2) to node car17STA
+*** car17STA : ('ifconfig', 'car17STA-eth2', 'up')
+*** car17STA : ('ethtool -K', <TCIntf car17STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car17SW-eth1 (1) to node car17SW
+*** car17SW : ('ifconfig', 'car17SW-eth1', 'up')
+*** car17SW : ('ethtool -K', <TCIntf car17SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car17 : ('ip link add name car17-eth1 address f2:55:13:b1:fd:b8 type veth peer name car17SW-eth2 address fa:43:31:0e:86:14 netns 18579',)
+
+added intf car17-eth1 (1) to node car17
+*** car17 : ('ifconfig', 'car17-eth1', 'up')
+*** car17 : ('ethtool -K', <TCIntf car17-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car17SW-eth2 (2) to node car17SW
+*** car17SW : ('ifconfig', 'car17SW-eth2', 'up')
+*** car17SW : ('ethtool -K', <TCIntf car17SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car18STA : ('ip link add name car18STA-eth2 address 1e:c8:51:2c:af:84 type veth peer name car18SW-eth1 address 06:c6:0a:69:dd:8d netns 18597',)
+
+added intf car18STA-eth2 (2) to node car18STA
+*** car18STA : ('ifconfig', 'car18STA-eth2', 'up')
+*** car18STA : ('ethtool -K', <TCIntf car18STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car18SW-eth1 (1) to node car18SW
+*** car18SW : ('ifconfig', 'car18SW-eth1', 'up')
+*** car18SW : ('ethtool -K', <TCIntf car18SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car18 : ('ip link add name car18-eth1 address 9a:f3:6f:36:22:4a type veth peer name car18SW-eth2 address 52:b0:4a:02:44:01 netns 18597',)
+
+added intf car18-eth1 (1) to node car18
+*** car18 : ('ifconfig', 'car18-eth1', 'up')
+*** car18 : ('ethtool -K', <TCIntf car18-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car18SW-eth2 (2) to node car18SW
+*** car18SW : ('ifconfig', 'car18SW-eth2', 'up')
+*** car18SW : ('ethtool -K', <TCIntf car18SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car19STA : ('ip link add name car19STA-eth2 address b2:22:43:ca:7d:ef type veth peer name car19SW-eth1 address be:ca:14:8b:d2:53 netns 18611',)
+
+added intf car19STA-eth2 (2) to node car19STA
+*** car19STA : ('ifconfig', 'car19STA-eth2', 'up')
+*** car19STA : ('ethtool -K', <TCIntf car19STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car19SW-eth1 (1) to node car19SW
+*** car19SW : ('ifconfig', 'car19SW-eth1', 'up')
+*** car19SW : ('ethtool -K', <TCIntf car19SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car19 : ('ip link add name car19-eth1 address b6:81:90:5a:09:56 type veth peer name car19SW-eth2 address ae:60:1b:c3:27:21 netns 18611',)
+
+added intf car19-eth1 (1) to node car19
+*** car19 : ('ifconfig', 'car19-eth1', 'up')
+*** car19 : ('ethtool -K', <TCIntf car19-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car19SW-eth2 (2) to node car19SW
+*** car19SW : ('ifconfig', 'car19SW-eth2', 'up')
+*** car19SW : ('ethtool -K', <TCIntf car19SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car20STA : ('ip link add name car20STA-eth2 address ba:26:87:c0:d0:70 type veth peer name car20SW-eth1 address b2:ff:b7:43:3c:49 netns 18626',)
+
+added intf car20STA-eth2 (2) to node car20STA
+*** car20STA : ('ifconfig', 'car20STA-eth2', 'up')
+*** car20STA : ('ethtool -K', <TCIntf car20STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car20SW-eth1 (1) to node car20SW
+*** car20SW : ('ifconfig', 'car20SW-eth1', 'up')
+*** car20SW : ('ethtool -K', <TCIntf car20SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car20 : ('ip link add name car20-eth1 address 36:51:62:9e:bc:79 type veth peer name car20SW-eth2 address 8e:3f:6a:51:6b:7a netns 18626',)
+
+added intf car20-eth1 (1) to node car20
+*** car20 : ('ifconfig', 'car20-eth1', 'up')
+*** car20 : ('ethtool -K', <TCIntf car20-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car20SW-eth2 (2) to node car20SW
+*** car20SW : ('ifconfig', 'car20SW-eth2', 'up')
+*** car20SW : ('ethtool -K', <TCIntf car20SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car21STA : ('ip link add name car21STA-eth2 address ea:ca:64:e0:b0:ec type veth peer name car21SW-eth1 address fa:e3:95:7c:f6:bd netns 18643',)
+
+added intf car21STA-eth2 (2) to node car21STA
+*** car21STA : ('ifconfig', 'car21STA-eth2', 'up')
+*** car21STA : ('ethtool -K', <TCIntf car21STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car21SW-eth1 (1) to node car21SW
+*** car21SW : ('ifconfig', 'car21SW-eth1', 'up')
+*** car21SW : ('ethtool -K', <TCIntf car21SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car21 : ('ip link add name car21-eth1 address a2:af:23:ea:d5:4d type veth peer name car21SW-eth2 address be:3e:36:54:61:46 netns 18643',)
+
+added intf car21-eth1 (1) to node car21
+*** car21 : ('ifconfig', 'car21-eth1', 'up')
+*** car21 : ('ethtool -K', <TCIntf car21-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car21SW-eth2 (2) to node car21SW
+*** car21SW : ('ifconfig', 'car21SW-eth2', 'up')
+*** car21SW : ('ethtool -K', <TCIntf car21SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car22STA : ('ip link add name car22STA-eth2 address e6:5f:d2:f7:11:7d type veth peer name car22SW-eth1 address f2:a9:14:d4:6f:e5 netns 18657',)
+
+added intf car22STA-eth2 (2) to node car22STA
+*** car22STA : ('ifconfig', 'car22STA-eth2', 'up')
+*** car22STA : ('ethtool -K', <TCIntf car22STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car22SW-eth1 (1) to node car22SW
+*** car22SW : ('ifconfig', 'car22SW-eth1', 'up')
+*** car22SW : ('ethtool -K', <TCIntf car22SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car22 : ('ip link add name car22-eth1 address 16:51:85:01:97:77 type veth peer name car22SW-eth2 address 02:ac:37:4a:09:16 netns 18657',)
+
+added intf car22-eth1 (1) to node car22
+*** car22 : ('ifconfig', 'car22-eth1', 'up')
+*** car22 : ('ethtool -K', <TCIntf car22-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car22SW-eth2 (2) to node car22SW
+*** car22SW : ('ifconfig', 'car22SW-eth2', 'up')
+*** car22SW : ('ethtool -K', <TCIntf car22SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car23STA : ('ip link add name car23STA-eth2 address f6:73:7e:e6:7f:d7 type veth peer name car23SW-eth1 address a6:a4:c2:e4:bd:5f netns 18672',)
+
+added intf car23STA-eth2 (2) to node car23STA
+*** car23STA : ('ifconfig', 'car23STA-eth2', 'up')
+*** car23STA : ('ethtool -K', <TCIntf car23STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car23SW-eth1 (1) to node car23SW
+*** car23SW : ('ifconfig', 'car23SW-eth1', 'up')
+*** car23SW : ('ethtool -K', <TCIntf car23SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car23 : ('ip link add name car23-eth1 address ce:c8:14:4c:7e:87 type veth peer name car23SW-eth2 address 32:e4:85:18:8c:1e netns 18672',)
+
+added intf car23-eth1 (1) to node car23
+*** car23 : ('ifconfig', 'car23-eth1', 'up')
+*** car23 : ('ethtool -K', <TCIntf car23-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car23SW-eth2 (2) to node car23SW
+*** car23SW : ('ifconfig', 'car23SW-eth2', 'up')
+*** car23SW : ('ethtool -K', <TCIntf car23SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car24STA : ('ip link add name car24STA-eth2 address fa:d8:48:7e:5e:05 type veth peer name car24SW-eth1 address 22:50:29:25:9b:1c netns 18687',)
+
+added intf car24STA-eth2 (2) to node car24STA
+*** car24STA : ('ifconfig', 'car24STA-eth2', 'up')
+*** car24STA : ('ethtool -K', <TCIntf car24STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car24SW-eth1 (1) to node car24SW
+*** car24SW : ('ifconfig', 'car24SW-eth1', 'up')
+*** car24SW : ('ethtool -K', <TCIntf car24SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car24 : ('ip link add name car24-eth1 address 4a:66:39:56:8c:b4 type veth peer name car24SW-eth2 address 66:4f:1f:bd:12:c4 netns 18687',)
+
+added intf car24-eth1 (1) to node car24
+*** car24 : ('ifconfig', 'car24-eth1', 'up')
+*** car24 : ('ethtool -K', <TCIntf car24-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car24SW-eth2 (2) to node car24SW
+*** car24SW : ('ifconfig', 'car24SW-eth2', 'up')
+*** car24SW : ('ethtool -K', <TCIntf car24SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car25STA : ('ip link add name car25STA-eth2 address be:73:5d:c7:78:3e type veth peer name car25SW-eth1 address 06:3c:b7:91:12:d9 netns 18701',)
+
+added intf car25STA-eth2 (2) to node car25STA
+*** car25STA : ('ifconfig', 'car25STA-eth2', 'up')
+*** car25STA : ('ethtool -K', <TCIntf car25STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car25SW-eth1 (1) to node car25SW
+*** car25SW : ('ifconfig', 'car25SW-eth1', 'up')
+*** car25SW : ('ethtool -K', <TCIntf car25SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car25 : ('ip link add name car25-eth1 address 86:3b:7a:3e:e3:ac type veth peer name car25SW-eth2 address 72:06:11:a2:79:59 netns 18701',)
+
+added intf car25-eth1 (1) to node car25
+*** car25 : ('ifconfig', 'car25-eth1', 'up')
+*** car25 : ('ethtool -K', <TCIntf car25-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car25SW-eth2 (2) to node car25SW
+*** car25SW : ('ifconfig', 'car25SW-eth2', 'up')
+*** car25SW : ('ethtool -K', <TCIntf car25SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car26STA : ('ip link add name car26STA-eth2 address 12:c9:47:fd:77:f7 type veth peer name car26SW-eth1 address da:c3:68:1b:8e:da netns 18715',)
+
+added intf car26STA-eth2 (2) to node car26STA
+*** car26STA : ('ifconfig', 'car26STA-eth2', 'up')
+*** car26STA : ('ethtool -K', <TCIntf car26STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car26SW-eth1 (1) to node car26SW
+*** car26SW : ('ifconfig', 'car26SW-eth1', 'up')
+*** car26SW : ('ethtool -K', <TCIntf car26SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car26 : ('ip link add name car26-eth1 address 42:97:d8:f5:1d:33 type veth peer name car26SW-eth2 address da:cd:6b:1a:b6:21 netns 18715',)
+
+added intf car26-eth1 (1) to node car26
+*** car26 : ('ifconfig', 'car26-eth1', 'up')
+*** car26 : ('ethtool -K', <TCIntf car26-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car26SW-eth2 (2) to node car26SW
+*** car26SW : ('ifconfig', 'car26SW-eth2', 'up')
+*** car26SW : ('ethtool -K', <TCIntf car26SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car27STA : ('ip link add name car27STA-eth2 address 1e:a1:0d:91:93:f2 type veth peer name car27SW-eth1 address d2:0d:ed:6d:f8:da netns 18729',)
+
+added intf car27STA-eth2 (2) to node car27STA
+*** car27STA : ('ifconfig', 'car27STA-eth2', 'up')
+*** car27STA : ('ethtool -K', <TCIntf car27STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car27SW-eth1 (1) to node car27SW
+*** car27SW : ('ifconfig', 'car27SW-eth1', 'up')
+*** car27SW : ('ethtool -K', <TCIntf car27SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car27 : ('ip link add name car27-eth1 address 56:71:67:d0:86:d4 type veth peer name car27SW-eth2 address 72:04:12:6d:64:f4 netns 18729',)
+
+added intf car27-eth1 (1) to node car27
+*** car27 : ('ifconfig', 'car27-eth1', 'up')
+*** car27 : ('ethtool -K', <TCIntf car27-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car27SW-eth2 (2) to node car27SW
+*** car27SW : ('ifconfig', 'car27SW-eth2', 'up')
+*** car27SW : ('ethtool -K', <TCIntf car27SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car28STA : ('ip link add name car28STA-eth2 address 9e:31:79:ce:26:e5 type veth peer name car28SW-eth1 address 6e:63:cc:4d:79:24 netns 18743',)
+
+added intf car28STA-eth2 (2) to node car28STA
+*** car28STA : ('ifconfig', 'car28STA-eth2', 'up')
+*** car28STA : ('ethtool -K', <TCIntf car28STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car28SW-eth1 (1) to node car28SW
+*** car28SW : ('ifconfig', 'car28SW-eth1', 'up')
+*** car28SW : ('ethtool -K', <TCIntf car28SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car28 : ('ip link add name car28-eth1 address 1a:3d:41:05:00:7b type veth peer name car28SW-eth2 address 52:50:2f:d2:71:f8 netns 18743',)
+
+added intf car28-eth1 (1) to node car28
+*** car28 : ('ifconfig', 'car28-eth1', 'up')
+*** car28 : ('ethtool -K', <TCIntf car28-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car28SW-eth2 (2) to node car28SW
+*** car28SW : ('ifconfig', 'car28SW-eth2', 'up')
+*** car28SW : ('ethtool -K', <TCIntf car28SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car29STA : ('ip link add name car29STA-eth2 address e2:bf:96:a9:90:7b type veth peer name car29SW-eth1 address 92:a5:48:d7:c5:13 netns 18757',)
+
+added intf car29STA-eth2 (2) to node car29STA
+*** car29STA : ('ifconfig', 'car29STA-eth2', 'up')
+*** car29STA : ('ethtool -K', <TCIntf car29STA-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car29SW-eth1 (1) to node car29SW
+*** car29SW : ('ifconfig', 'car29SW-eth1', 'up')
+*** car29SW : ('ethtool -K', <TCIntf car29SW-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** car29 : ('ip link add name car29-eth1 address 8e:c6:93:ef:e6:c0 type veth peer name car29SW-eth2 address ae:18:8e:e3:00:b3 netns 18757',)
+
+added intf car29-eth1 (1) to node car29
+*** car29 : ('ifconfig', 'car29-eth1', 'up')
+*** car29 : ('ethtool -K', <TCIntf car29-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+
+added intf car29SW-eth2 (2) to node car29SW
+*** car29SW : ('ifconfig', 'car29SW-eth2', 'up')
+*** car29SW : ('ethtool -K', <TCIntf car29SW-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** Configuring nodes
+*** server_s1 : ('ifconfig', 'server_s1-eth0', '200.0.10.2/8', 'up')
+*** server_s1 : ('ifconfig lo up',)
+*** server_s2 : ('ifconfig', 'server_s2-eth0', '200.0.10.2/8', 'up')
+*** server_s2 : ('ifconfig lo up',)
+*** server_s3 : ('ifconfig', 'server_s3-eth0', '200.0.10.2/8', 'up')
+*** server_s3 : ('ifconfig lo up',)
+*** server_e : ('ifconfig', 'server_e-eth0', '200.0.10.3/8', 'up')
+*** server_e : ('ifconfig lo up',)
+*** server_e2 : ('ifconfig', 'server_e2-eth0', '200.0.10.4/8', 'up')
+*** server_e2 : ('ifconfig lo up',)
+*** server_g : ('ifconfig', 'server_g-eth0', '200.0.10.5/8', 'up')
+*** server_g : ('ifconfig lo up',)
+*** car0 : ('ip addr flush ', 'car0-wlan0')
+*** car0 : ('ip addr add', '200.0.10.110/8', 'dev', 'car0-wlan0')
+*** car0 : ('ip link set lo up',)
+*** car1 : ('ip addr flush ', 'car1-wlan0')
+*** car1 : ('ip addr add', '200.0.10.111/8', 'dev', 'car1-wlan0')
+*** car1 : ('ip link set lo up',)
+*** car2 : ('ip addr flush ', 'car2-wlan0')
+*** car2 : ('ip addr add', '200.0.10.112/8', 'dev', 'car2-wlan0')
+*** car2 : ('ip link set lo up',)
+*** car3 : ('ip addr flush ', 'car3-wlan0')
+*** car3 : ('ip addr add', '200.0.10.113/8', 'dev', 'car3-wlan0')
+*** car3 : ('ip link set lo up',)
+*** car4 : ('ip addr flush ', 'car4-wlan0')
+*** car4 : ('ip addr add', '200.0.10.114/8', 'dev', 'car4-wlan0')
+*** car4 : ('ip link set lo up',)
+*** car5 : ('ip addr flush ', 'car5-wlan0')
+*** car5 : ('ip addr add', '200.0.10.115/8', 'dev', 'car5-wlan0')
+*** car5 : ('ip link set lo up',)
+*** car6 : ('ip addr flush ', 'car6-wlan0')
+*** car6 : ('ip addr add', '200.0.10.116/8', 'dev', 'car6-wlan0')
+*** car6 : ('ip link set lo up',)
+*** car7 : ('ip addr flush ', 'car7-wlan0')
+*** car7 : ('ip addr add', '200.0.10.117/8', 'dev', 'car7-wlan0')
+*** car7 : ('ip link set lo up',)
+*** car8 : ('ip addr flush ', 'car8-wlan0')
+*** car8 : ('ip addr add', '200.0.10.118/8', 'dev', 'car8-wlan0')
+*** car8 : ('ip link set lo up',)
+*** car9 : ('ip addr flush ', 'car9-wlan0')
+*** car9 : ('ip addr add', '200.0.10.119/8', 'dev', 'car9-wlan0')
+*** car9 : ('ip link set lo up',)
+*** car10 : ('ip addr flush ', 'car10-wlan0')
+*** car10 : ('ip addr add', '200.0.10.120/8', 'dev', 'car10-wlan0')
+*** car10 : ('ip link set lo up',)
+*** car11 : ('ip addr flush ', 'car11-wlan0')
+*** car11 : ('ip addr add', '200.0.10.121/8', 'dev', 'car11-wlan0')
+*** car11 : ('ip link set lo up',)
+*** car12 : ('ip addr flush ', 'car12-wlan0')
+*** car12 : ('ip addr add', '200.0.10.122/8', 'dev', 'car12-wlan0')
+*** car12 : ('ip link set lo up',)
+*** car13 : ('ip addr flush ', 'car13-wlan0')
+*** car13 : ('ip addr add', '200.0.10.123/8', 'dev', 'car13-wlan0')
+*** car13 : ('ip link set lo up',)
+*** car14 : ('ip addr flush ', 'car14-wlan0')
+*** car14 : ('ip addr add', '200.0.10.124/8', 'dev', 'car14-wlan0')
+*** car14 : ('ip link set lo up',)
+*** car15 : ('ip addr flush ', 'car15-wlan0')
+*** car15 : ('ip addr add', '200.0.10.125/8', 'dev', 'car15-wlan0')
+*** car15 : ('ip link set lo up',)
+*** car16 : ('ip addr flush ', 'car16-wlan0')
+*** car16 : ('ip addr add', '200.0.10.126/8', 'dev', 'car16-wlan0')
+*** car16 : ('ip link set lo up',)
+*** car17 : ('ip addr flush ', 'car17-wlan0')
+*** car17 : ('ip addr add', '200.0.10.127/8', 'dev', 'car17-wlan0')
+*** car17 : ('ip link set lo up',)
+*** car18 : ('ip addr flush ', 'car18-wlan0')
+*** car18 : ('ip addr add', '200.0.10.128/8', 'dev', 'car18-wlan0')
+*** car18 : ('ip link set lo up',)
+*** car19 : ('ip addr flush ', 'car19-wlan0')
+*** car19 : ('ip addr add', '200.0.10.129/8', 'dev', 'car19-wlan0')
+*** car19 : ('ip link set lo up',)
+*** car20 : ('ip addr flush ', 'car20-wlan0')
+*** car20 : ('ip addr add', '200.0.10.130/8', 'dev', 'car20-wlan0')
+*** car20 : ('ip link set lo up',)
+*** car21 : ('ip addr flush ', 'car21-wlan0')
+*** car21 : ('ip addr add', '200.0.10.131/8', 'dev', 'car21-wlan0')
+*** car21 : ('ip link set lo up',)
+*** car22 : ('ip addr flush ', 'car22-wlan0')
+*** car22 : ('ip addr add', '200.0.10.132/8', 'dev', 'car22-wlan0')
+*** car22 : ('ip link set lo up',)
+*** car23 : ('ip addr flush ', 'car23-wlan0')
+*** car23 : ('ip addr add', '200.0.10.133/8', 'dev', 'car23-wlan0')
+*** car23 : ('ip link set lo up',)
+*** car24 : ('ip addr flush ', 'car24-wlan0')
+*** car24 : ('ip addr add', '200.0.10.134/8', 'dev', 'car24-wlan0')
+*** car24 : ('ip link set lo up',)
+*** car25 : ('ip addr flush ', 'car25-wlan0')
+*** car25 : ('ip addr add', '200.0.10.135/8', 'dev', 'car25-wlan0')
+*** car25 : ('ip link set lo up',)
+*** car26 : ('ip addr flush ', 'car26-wlan0')
+*** car26 : ('ip addr add', '200.0.10.136/8', 'dev', 'car26-wlan0')
+*** car26 : ('ip link set lo up',)
+*** car27 : ('ip addr flush ', 'car27-wlan0')
+*** car27 : ('ip addr add', '200.0.10.137/8', 'dev', 'car27-wlan0')
+*** car27 : ('ip link set lo up',)
+*** car28 : ('ip addr flush ', 'car28-wlan0')
+*** car28 : ('ip addr add', '200.0.10.138/8', 'dev', 'car28-wlan0')
+*** car28 : ('ip link set lo up',)
+*** car29 : ('ip addr flush ', 'car29-wlan0')
+*** car29 : ('ip addr add', '200.0.10.139/8', 'dev', 'car29-wlan0')
+*** car29 : ('ip link set lo up',)
+Starting mobility thread...
+Warning: running without GUI.
+Exception in thread mobilityModel:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "/usr/lib/python2.7/threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/mininet_wifi-2.2.1d1-py2.7.egg/mn_wifi/mobility.py", line 422, in models
+    if kwargs['nodes']:
+KeyError: 'nodes'
+
+*** rsu1 : ('ovs-vsctl', '-- --id=@rsu1c1 create Controller target=\\"tcp:127.0.0.1:6633\\" max_backoff=1000 -- --if-exists del-br rsu1 -- add-br rsu1 -- set bridge rsu1 controller=[@rsu1c1] other_config:datapath-id=1000000000000001 fail_mode=secure other-config:disable-in-band=true protocols=OpenFlow13 -- add-port rsu1 rsu1-wlan1 -- set Interface rsu1-wlan1 ofport_request=1 -- add-port rsu1 rsu1-eth2 -- set Interface rsu1-eth2 ofport_request=2 -- add-port rsu1 rsu1-eth3 -- set Interface rsu1-eth3 ofport_request=3 -- add-port rsu1 rsu1-eth5 -- set Interface rsu1-eth5 ofport_request=5')
+b38c9124-f834-430e-a3ab-4d40ba164e65
+*** rsu1 : ('ip link set', 'rsu1-wlan1', 'up')
+*** rsu1 : ('ethtool -K', <TCWirelessLink rsu1-wlan1>, 'gro', 'off')
+*** rsu2 : ('ovs-vsctl', '-- --id=@rsu2c1 create Controller target=\\"tcp:127.0.0.1:6633\\" max_backoff=1000 -- --if-exists del-br rsu2 -- add-br rsu2 -- set bridge rsu2 controller=[@rsu2c1] other_config:datapath-id=1000000000000002 fail_mode=secure other-config:disable-in-band=true protocols=OpenFlow13 -- add-port rsu2 rsu2-wlan1 -- set Interface rsu2-wlan1 ofport_request=1 -- add-port rsu2 rsu2-eth2 -- set Interface rsu2-eth2 ofport_request=2 -- add-port rsu2 rsu2-eth3 -- set Interface rsu2-eth3 ofport_request=3 -- add-port rsu2 rsu2-eth4 -- set Interface rsu2-eth4 ofport_request=4 -- add-port rsu2 rsu2-eth5 -- set Interface rsu2-eth5 ofport_request=5')
+e658dff4-0711-4a91-82fb-a1dc1eef1728
+*** rsu2 : ('ip link set', 'rsu2-wlan1', 'up')
+*** rsu2 : ('ethtool -K', <TCWirelessLink rsu2-wlan1>, 'gro', 'off')
+*** rsu3 : ('ovs-vsctl', '-- --id=@rsu3c1 create Controller target=\\"tcp:127.0.0.1:6633\\" max_backoff=1000 -- --if-exists del-br rsu3 -- add-br rsu3 -- set bridge rsu3 controller=[@rsu3c1] other_config:datapath-id=1000000000000003 fail_mode=secure other-config:disable-in-band=true protocols=OpenFlow13 -- add-port rsu3 rsu3-wlan1 -- set Interface rsu3-wlan1 ofport_request=1 -- add-port rsu3 rsu3-eth2 -- set Interface rsu3-eth2 ofport_request=2 -- add-port rsu3 rsu3-eth3 -- set Interface rsu3-eth3 ofport_request=3 -- add-port rsu3 rsu3-eth5 -- set Interface rsu3-eth5 ofport_request=5')
+57922b1c-799d-466e-820a-8e8358f15b3f
+*** rsu3 : ('ip link set', 'rsu3-wlan1', 'up')
+*** rsu3 : ('ethtool -K', <TCWirelessLink rsu3-wlan1>, 'gro', 'off')
+*** sw1 : ('ovs-vsctl', '-- --id=@sw1c1 create Controller target=\\"tcp:127.0.0.1:6633\\" max_backoff=1000 -- --if-exists del-br sw1 -- add-br sw1 -- set bridge sw1 controller=[@sw1c1] other_config:datapath-id=0000000000000009 fail_mode=secure other-config:disable-in-band=true protocols=OpenFlow13 other-config:dp-desc=sw1 -- add-port sw1 sw1-eth1 -- set Interface sw1-eth1 ofport_request=1 -- add-port sw1 sw1-eth2 -- set Interface sw1-eth2 ofport_request=2 -- add-port sw1 sw1-eth3 -- set Interface sw1-eth3 ofport_request=3 -- add-port sw1 sw1-eth4 -- set Interface sw1-eth4 ofport_request=4')
+3a61be3b-4f98-41a5-afb7-4032c3f004f4
+*** sw1 : ('ifconfig', 'sw1-eth1', 'up')
+*** sw1 : ('ethtool -K', <TCIntf sw1-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** sw1 : ('ifconfig', 'sw1-eth2', 'up')
+*** sw1 : ('ethtool -K', <TCIntf sw1-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** sw1 : ('ifconfig', 'sw1-eth3', 'up')
+*** sw1 : ('ethtool -K', <TCIntf sw1-eth3>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** sw1 : ('ifconfig', 'sw1-eth4', 'up')
+*** sw1 : ('ethtool -K', <TCIntf sw1-eth4>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** sw2 : ('ovs-vsctl', '-- --id=@sw2c1 create Controller target=\\"tcp:127.0.0.1:6633\\" max_backoff=1000 -- --if-exists del-br sw2 -- add-br sw2 -- set bridge sw2 controller=[@sw2c1] other_config:datapath-id=0000000000000010 fail_mode=secure other-config:disable-in-band=true protocols=OpenFlow13 other-config:dp-desc=sw2 -- add-port sw2 sw2-eth1 -- set Interface sw2-eth1 ofport_request=1 -- add-port sw2 sw2-eth2 -- set Interface sw2-eth2 ofport_request=2 -- add-port sw2 sw2-eth3 -- set Interface sw2-eth3 ofport_request=3 -- add-port sw2 sw2-eth4 -- set Interface sw2-eth4 ofport_request=4')
+86862c6b-0afd-49b9-8425-fb7f75b43cce
+*** sw2 : ('ifconfig', 'sw2-eth1', 'up')
+*** sw2 : ('ethtool -K', <TCIntf sw2-eth1>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** sw2 : ('ifconfig', 'sw2-eth2', 'up')
+*** sw2 : ('ethtool -K', <TCIntf sw2-eth2>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** sw2 : ('ifconfig', 'sw2-eth3', 'up')
+*** sw2 : ('ethtool -K', <TCIntf sw2-eth3>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** sw2 : ('ifconfig', 'sw2-eth4', 'up')
+*** sw2 : ('ethtool -K', <TCIntf sw2-eth4>, 'gro', 'off', 'tx', 'on', 'rx', 'on')
+*** server_s1 : ('iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP',)
+*** server_s2 : ('iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP',)
+*** server_s3 : ('iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP',)
+*** server_e : ('iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP',)
+*** server_e2 : ('iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP',)
+*** server_g : ('iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP',)
+*** Shutting ports
+*** Running CLI
+*** Starting CLI:
+*** errRun: ['stty', 'echo', 'sane', 'intr', '^C'] 
+  0mininet-wifi> 
