@@ -223,6 +223,8 @@ def topology():
 #     net.mobility( cars[8], 'stop', time=179, position='1095,999,0' )
 #     net.stopMobility( time=180 )
 
+
+########## T1
     # RSU3
     cars[0].setPosition('2115,993,0')
     cars[1].setPosition('2112,993,0')
@@ -241,14 +243,15 @@ def topology():
     cars[12].setPosition('1606,995,0')
 
     # RSU 1
-    cars[13].setPosition('2115,993,0')
-    cars[14].setPosition('2112,993,0')
-    cars[15].setPosition('2115,995,0')
-    cars[16].setPosition('2112,995,0')
-    cars[17].setPosition('2115,997,0')
-    cars[18].setPosition('2112,997,0')
-    cars[19].setPosition('2109,997,0')
+    cars[13].setPosition('1115,993,0')
+    cars[14].setPosition('1112,993,0')
+    cars[15].setPosition('1115,995,0')
+    cars[16].setPosition('1112,995,0')
+    cars[17].setPosition('1115,997,0')
+    cars[18].setPosition('1112,997,0')
+    cars[19].setPosition('1109,997,0')
 
+    #Out
     cars[20].setPosition('10,993,0')
     cars[21].setPosition('15,993,0')
     cars[22].setPosition('20,993,0')
@@ -260,14 +263,134 @@ def topology():
     cars[28].setPosition('10,997,0')
     cars[29].setPosition('15,997,0')
 
+    ########## T2
+ # time.sleep(2)
+    #############################
+    
+    # RSU3
+    cars[0].setPosition('2115,993,0')
+    cars[1].setPosition('2112,993,0')
+    cars[2].setPosition('2115,995,0')
+    cars[3].setPosition('2112,995,0')
+    cars[4].setPosition('2115,997,0')
+    cars[5].setPosition('2112,997,0')
+    cars[6].setPosition('2109,997,0')
+    cars[7].setPosition('2109,993,0') #chegou
+    cars[9].setPosition('2109,995,0') #chegou
+    cars[11].setPosition('2106,995,0') #chegou
+    
+    
+    # RSU 2
+    cars[8].setPosition('1612,993,0')
+    cars[10].setPosition('1612,995,0')
+    cars[12].setPosition('1606,995,0')
+    cars[13].setPosition('1609,993,0') #chegou
+    cars[15].setPosition('1609,995,0') #chegou
+    cars[17].setPosition('1603,997,0') #chegou
 
+    # RSU 1
+    cars[14].setPosition('1112,993,0')
+    cars[16].setPosition('1112,995,0')
+    cars[18].setPosition('1112,997,0')
+    cars[19].setPosition('1109,997,0')
+    cars[20].setPosition('1109,993,0') #chegou
+    cars[24].setPosition('1109,995,0') #chegou
+    cars[25].setPosition('1106,995,0') #chegou
+    cars[28].setPosition('1106,997,0') #chegou
+        
+    #Out    
+    cars[21].setPosition('315,993,0')
+    cars[22].setPosition('320,993,0')
+    cars[23].setPosition('325,993,0')
+    cars[26].setPosition('320,995,0')
+    cars[27].setPosition('325,995,0')
+    cars[29].setPosition('315,997,0')
+    
+    ########## T3
+ # time.sleep(2)
+    #############################
+    
+    # RSU3
+    cars[0].setPosition('2115,993,0')
+    cars[1].setPosition('2112,993,0')
+    cars[2].setPosition('2115,995,0')
+    cars[3].setPosition('2112,995,0')
+    cars[4].setPosition('2115,997,0')
+    cars[5].setPosition('2112,997,0')
+    cars[6].setPosition('2109,997,0')
+    cars[7].setPosition('2109,993,0')
+    cars[9].setPosition('2109,995,0')
+    cars[11].setPosition('2106,995,0')
     
     
+    # RSU 2
+    cars[8].setPosition('1612,993,0')
+    cars[10].setPosition('1612,995,0')
+    cars[12].setPosition('1606,995,0')
+    cars[13].setPosition('1609,993,0')
+    cars[15].setPosition('1609,995,0')
+    cars[17].setPosition('1603,997,0')
+    cars[14].setPosition('1606,993,0') #chegou
+    cars[16].setPosition('1606,995,0') #chegou
+    cars[18].setPosition('1600,997,0') #chegou
+    cars[19].setPosition('1597,997,0') #chegou
+    
+
+    # RSU 1
+    cars[20].setPosition('1109,993,0')
+    cars[24].setPosition('1109,995,0')
+    cars[25].setPosition('1106,995,0')
+    cars[28].setPosition('1106,997,0')
+    cars[21].setPosition('1106,993,0') #chegou
+    cars[29].setPosition('1103,997,0') #chegou
+       
+    #Out
+    cars[22].setPosition('620,993,0')
+    cars[23].setPosition('625,993,0')
+    cars[26].setPosition('620,995,0')
+    cars[27].setPosition('625,995,0')
+    
+    ########## T4
+ # time.sleep(2)
+    #############################
+    
+    # RSU3
+    cars[0].setPosition('2115,993,0')
+    cars[1].setPosition('2112,993,0')
+    cars[2].setPosition('2115,995,0')
+    cars[3].setPosition('2112,995,0')
+    cars[4].setPosition('2115,997,0')
+    cars[5].setPosition('2112,997,0')
+    cars[6].setPosition('2109,997,0')
+    cars[7].setPosition('2109,993,0')
+    cars[9].setPosition('2109,995,0')
+    cars[11].setPosition('2106,995,0')
     
     
+    # RSU 2
+    cars[8].setPosition('1612,993,0')
+    cars[10].setPosition('1612,995,0')
+    cars[12].setPosition('1606,995,0')
+    cars[13].setPosition('1609,993,0')
+    cars[15].setPosition('1609,995,0')
+    cars[17].setPosition('1603,997,0')
+    cars[14].setPosition('1606,993,0')
+    cars[16].setPosition('1606,995,0')
+    cars[18].setPosition('1600,997,0')
+    cars[19].setPosition('1597,997,0')
     
-    
-    
+
+    # RSU 1
+    cars[20].setPosition('1109,993,0')
+    cars[24].setPosition('1109,995,0')
+    cars[25].setPosition('1106,995,0')
+    cars[28].setPosition('1106,997,0')
+    cars[21].setPosition('1106,993,0')
+    cars[29].setPosition('1103,997,0')
+    cars[22].setPosition('1103,993,0') #chegou
+    cars[23].setPosition('1100,993,0') #chegou
+    cars[26].setPosition('1103,995,0') #chegou
+    cars[27].setPosition('1100,995,0') #chegou
     
     
     
