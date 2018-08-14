@@ -169,39 +169,6 @@ def topology():
 
     # # time.sleep(1)
 
-    server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
-    server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
-    server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
-    server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
-    server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
-    server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
-
-
-    print( "*** Iniciando geracao de trafego" )
-
-    # time.sleep(2)
-
-    # for x in xrange(0,40):
-
-    #     cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
-
-    #     print("*** Car[%d] connect to server_s at 1Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
-        
-    #     print("*** Car[%d] connect to server_e at 1Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
-
-    #     print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
-
-    #     print("*** Car[%d] connect to server_g at 1Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)   
-
-
 #     net.startMobility( time=0 )
 #     net.mobility( cars[0], 'start', time=1, position='120,1000,0' )
 #     net.mobility( cars[0], 'stop', time=179, position='2101,1000,0' )
@@ -262,6 +229,59 @@ def topology():
     cars[27].setPosition('25,995,0')
     cars[28].setPosition('10,997,0')
     cars[29].setPosition('15,997,0')
+    
+    
+    server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
+    server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
+    server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
+    server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
+    server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
+    server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
+
+    print( "*** Iniciando geracao de trafego" )
+
+    # time.sleep(2)
+
+    # for x in xrange(0,30):
+
+    #     cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
+
+    #     print("*** Car[%d] connect to server_s at 1Mbps" %x)
+    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+    #     cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
+        
+    #     print("*** Car[%d] connect to server_e at 1Mbps" %x)
+    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+    #     cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
+
+    #     print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
+    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
+
+    #     print("*** Car[%d] connect to server_g at 1Mbps" %x)
+    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)   
+    
+  for x in xrange(30,40):
+
+    #     cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
+
+    #     print("*** Car[%d] connect to server_s at 1Mbps" %x)
+    #     cars[x].cmdPrint("hping3 --udp -p 5002 -i u10200 -d 1470 -c 1 200.0.10.2 -q &")
+    #     cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
+        
+    #     print("*** Car[%d] connect to server_e at 1Mbps" %x)
+    #     cars[x].cmdPrint("hping3 --udp -p 5003 -i u10200 -d 1470 -c 1 200.0.10.3 -q &")
+    #     cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
+
+    #     print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
+    #     cars[x].cmdPrint("hping3 --udp -p 5004 -i u6800 -d 1470 -c 1 200.0.10.4 -q &")
+    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
+
+    #     print("*** Car[%d] connect to server_g at 1Mbps" %x)
+    #     cars[x].cmdPrint("hping3 --udp -p 5005 -i u10200 -d 1470 -c 1 200.0.10.5 -q &")
+    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x) 
+    
 
     ########## T2
  # time.sleep(2)
