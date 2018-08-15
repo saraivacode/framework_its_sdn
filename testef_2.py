@@ -163,27 +163,6 @@ def topology():
 
     time.sleep(2)
 
-#     net.startMobility( time=0 )
-#     net.mobility( cars[0], 'start', time=1, position='120,1000,0' )
-#     net.mobility( cars[0], 'stop', time=179, position='2101,1000,0' )
-#     net.mobility( cars[1], 'start', time=1, position='130,999,0' )
-#     net.mobility( cars[1], 'stop', time=179, position='2095,999,0' )
-#     net.mobility( cars[2], 'start', time=1, position='135,997,0' )
-#     net.mobility( cars[2], 'stop', time=59, position='2097,997,0' )
-#     net.mobility( cars[3], 'start', time=1, position='140,1000,0' )
-#     net.mobility( cars[3], 'stop', time=59, position='1601,1000,0' )
-#     net.mobility( cars[4], 'start', time=1, position='145,999,0' )
-#     net.mobility( cars[4], 'stop', time=59, position='1599,999,0' )
-#     net.mobility( cars[5], 'start', time=1, position='150,997,0' )
-#     net.mobility( cars[5], 'stop', time=179, position='1595,997,0' )
-#     net.mobility( cars[6], 'start', time=1, position='155,1000,0' )
-#     net.mobility( cars[6], 'stop', time=179, position='1101,1000,0' )
-#     net.mobility( cars[7], 'start', time=1, position='160,1000,0' )
-#     net.mobility( cars[7], 'stop', time=179, position='1098,1000,0' )
-#     net.mobility( cars[8], 'start', time=1, position='165,999,0' )
-#     net.mobility( cars[8], 'stop', time=179, position='1095,999,0' )
-#     net.stopMobility( time=180 )
-
     server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
     server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
     server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
@@ -273,50 +252,32 @@ def topology():
         print("*** Car[%d] connect to server_g at 1Mbps" %x)
         cars[x].cmdPrint("hping3 --udp -p 5005 -i u10200 -d 1470 -c 1 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x) 
-    
-
-    ######### T2
-    time.sleep(75)
-    ############################
-    
-    # RSU3
-#     cars[0].setPosition('2115,993,0')
-#     cars[1].setPosition('2112,993,0')
-#     cars[2].setPosition('2115,995,0')
-#     cars[3].setPosition('2112,995,0')
-#     cars[4].setPosition('2115,997,0')
-#     cars[5].setPosition('2112,997,0')
-#     cars[6].setPosition('2109,997,0')
-    cars[7].setPosition('2109,993,0') #chegou
-    cars[9].setPosition('2109,995,0') #chegou
-    cars[11].setPosition('2106,995,0') #chegou
-    
-    
-    # RSU 2
-#     cars[8].setPosition('1612,993,0')
-#     cars[10].setPosition('1612,995,0')
-#     cars[12].setPosition('1606,995,0')
-    cars[13].setPosition('1609,993,0') #chegou
-    cars[15].setPosition('1609,995,0') #chegou
-    cars[17].setPosition('1603,997,0') #chegou
-
-    # RSU 1
-#     cars[14].setPosition('1112,993,0')
-#     cars[16].setPosition('1112,995,0')
-#     cars[18].setPosition('1112,997,0')
-#     cars[19].setPosition('1109,997,0')
-    cars[20].setPosition('1109,993,0') #chegou
-    cars[24].setPosition('1109,995,0') #chegou
-    cars[25].setPosition('1106,995,0') #chegou
-    cars[28].setPosition('1106,997,0') #chegou
         
-    #Out    
-#     cars[21].setPosition('315,993,0')
-#     cars[22].setPosition('320,993,0')
-#     cars[23].setPosition('325,993,0')
-#     cars[26].setPosition('320,995,0')
-#     cars[27].setPosition('325,995,0')
-#     cars[29].setPosition('315,997,0')
+net.startMobility( time=0 )
+net.mobility( cars[7], 'start', time=1, position='1615,993,0' )
+net.mobility( cars[7], 'stop', time=179, position='2109,993,0' )
+net.mobility( cars[9], 'start', time=1, position='1615,995,0' )
+net.mobility( cars[9], 'stop', time=179, position='2109,995,0' )
+net.mobility( cars[11], 'start', time=1, position='1609,995,0' )
+net.mobility( cars[11], 'stop', time=179, position='2106,995,0' )
+
+net.mobility( cars[13], 'start', time=1, position='1115,993,0' )
+net.mobility( cars[13], 'stop', time=179, position='1609,993,0' )
+net.mobility( cars[15], 'start', time=1, position='1115,995,0' )
+net.mobility( cars[15], 'stop', time=179, position='1609,995,0' )
+net.mobility( cars[17], 'start', time=1, position='1115,997,0' )
+net.mobility( cars[17], 'stop', time=179, position='1603,997,0' )
+
+net.mobility( cars[20], 'start', time=1, position='10,993,0' )
+net.mobility( cars[20], 'stop', time=179, position='1109,993,0' )
+net.mobility( cars[24], 'start', time=1, position='10,995,0' )
+net.mobility( cars[24], 'stop', time=179, position='1109,995,0' )
+net.mobility( cars[25], 'start', time=1, position='15,995,0' )
+net.mobility( cars[25], 'stop', time=179, position='1106,995,0' )
+net.mobility( cars[28], 'start', time=1, position='10,997,0' )
+net.mobility( cars[28], 'stop', time=179, position='1106,997,0' )
+
+net.stopMobility( time=75 )
     
     for x in (20, 24, 25, 28):
 
@@ -338,49 +299,21 @@ def topology():
         cars[x].cmdPrint("timeout 235 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x) 
     
-    ########## T3
-  time.sleep(75)
-    #############################
-    
-    # RSU3
-#     cars[0].setPosition('2115,993,0')
-#     cars[1].setPosition('2112,993,0')
-#     cars[2].setPosition('2115,995,0')
-#     cars[3].setPosition('2112,995,0')
-#     cars[4].setPosition('2115,997,0')
-#     cars[5].setPosition('2112,997,0')
-#     cars[6].setPosition('2109,997,0')
-#     cars[7].setPosition('2109,993,0')
-#     cars[9].setPosition('2109,995,0')
-#     cars[11].setPosition('2106,995,0')
-    
-    
-    # RSU 2
-#     cars[8].setPosition('1612,993,0')
-#     cars[10].setPosition('1612,995,0')
-#     cars[12].setPosition('1606,995,0')
-#     cars[13].setPosition('1609,993,0')
-#     cars[15].setPosition('1609,995,0')
-#     cars[17].setPosition('1603,997,0')
-    cars[14].setPosition('1606,993,0') #chegou
-    cars[16].setPosition('1606,995,0') #chegou
-    cars[18].setPosition('1600,997,0') #chegou
-    cars[19].setPosition('1597,997,0') #chegou
-    
+net.startMobility( time=0 )
+net.mobility( cars[14], 'start', time=1, position='1112,993,0' )
+net.mobility( cars[14], 'stop', time=179, position='1606,993,0' )
+net.mobility( cars[16], 'start', time=1, position='1112,995,0' )
+net.mobility( cars[16], 'stop', time=179, position='1606,995,0' )
+net.mobility( cars[18], 'start', time=1, position='1112,997,0' )
+net.mobility( cars[18], 'stop', time=179, position='1600,997,0' )
+net.mobility( cars[19], 'start', time=1, position='1109,997,0' )
+net.mobility( cars[19], 'stop', time=179, position='1597,997,0' )
 
-    # RSU 1
-#     cars[20].setPosition('1109,993,0')
-#     cars[24].setPosition('1109,995,0')
-#     cars[25].setPosition('1106,995,0')
-#     cars[28].setPosition('1106,997,0')
-    cars[21].setPosition('1106,993,0') #chegou
-    cars[29].setPosition('1103,997,0') #chegou
-       
-    #Out
-#     cars[22].setPosition('620,993,0')
-#     cars[23].setPosition('625,993,0')
-#     cars[26].setPosition('620,995,0')
-#     cars[27].setPosition('625,995,0')
+net.mobility( cars[21], 'start', time=1, position='15,993,0' )
+net.mobility( cars[21], 'stop', time=179, position='1106,993,0' )
+net.mobility( cars[29], 'start', time=1, position='15,997,0' )
+net.mobility( cars[29], 'stop', time=179, position='1103,997,0' )
+net.stopMobility( time=75 )
 
     for x in (21, 29):
 
@@ -402,47 +335,16 @@ def topology():
         cars[x].cmdPrint("timeout 160 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)
     
-    ########## T4
-  time.sleep(75)
-    #############################
-    
-    # RSU3
-#     cars[0].setPosition('2115,993,0')
-#     cars[1].setPosition('2112,993,0')
-#     cars[2].setPosition('2115,995,0')
-#     cars[3].setPosition('2112,995,0')
-#     cars[4].setPosition('2115,997,0')
-#     cars[5].setPosition('2112,997,0')
-#     cars[6].setPosition('2109,997,0')
-#     cars[7].setPosition('2109,993,0')
-#     cars[9].setPosition('2109,995,0')
-#     cars[11].setPosition('2106,995,0')
-    
-    
-    # RSU 2
-#     cars[8].setPosition('1612,993,0')
-#     cars[10].setPosition('1612,995,0')
-#     cars[12].setPosition('1606,995,0')
-#     cars[13].setPosition('1609,993,0')
-#     cars[15].setPosition('1609,995,0')
-#     cars[17].setPosition('1603,997,0')
-#     cars[14].setPosition('1606,993,0')
-#     cars[16].setPosition('1606,995,0')
-#     cars[18].setPosition('1600,997,0')
-#     cars[19].setPosition('1597,997,0')
-    
-
-    # RSU 1
-#     cars[20].setPosition('1109,993,0')
-#     cars[24].setPosition('1109,995,0')
-#     cars[25].setPosition('1106,995,0')
-#     cars[28].setPosition('1106,997,0')
-#     cars[21].setPosition('1106,993,0')
-#     cars[29].setPosition('1103,997,0')
-    cars[22].setPosition('1103,993,0') #chegou
-    cars[23].setPosition('1100,993,0') #chegou
-    cars[26].setPosition('1103,995,0') #chegou
-    cars[27].setPosition('1100,995,0') #chegou
+net.startMobility( time=0 )
+net.mobility( cars[22], 'start', time=1, position='20,993,0' )
+net.mobility( cars[22], 'stop', time=179, position='1103,993,0' )
+net.mobility( cars[23], 'start', time=1, position='25,993,0' )
+net.mobility( cars[23], 'stop', time=179, position='1100,993,0' )
+net.mobility( cars[26], 'start', time=1, position='20,995,0' )
+net.mobility( cars[26], 'stop', time=179, position='1103,995,0' )
+net.mobility( cars[27], 'start', time=1, position='25,995,0' )
+net.mobility( cars[27], 'stop', time=179, position='1100,995,0' )
+net.stopMobility( time=75 )
     
     for x in (22, 23, 26, 27):
 
