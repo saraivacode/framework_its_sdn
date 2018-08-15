@@ -68,8 +68,6 @@ def topology():
     rsu3 = net.addAccessPoint('rsu3', ssid='rsu3', mode='g',
                                channel='11', range='250', position='2100,1000,0', protocols='OpenFlow13')
 
-    #c1 = net.addController('c1', controller=Controller)
-
     sw1 = net.addSwitch ('sw1', dpid='9', protocols='OpenFlow13')
     sw2 = net.addSwitch ('sw2', dpid='10', protocols='OpenFlow13')
 
@@ -101,14 +99,12 @@ def topology():
     link4 = net.addLink(rsu3, sw1, 3, 4, cls=TCLink)
 
     print( "*** Configuring links bandwidth" )
-    link1.intf1.config( bw=93 )
-    link2.intf1.config( bw=31 )
-    link3.intf1.config( bw=31 )
-    link4.intf1.config( bw=31 )
+    link1.intf1.config( bw=80 )
+    link2.intf1.config( bw=26 )
+    link3.intf1.config( bw=26 )
+    link4.intf1.config( bw=26 )
 
     net.plotGraph(max_x=3000, max_y=3000)
-
-    # net.roads(10)
     
     print("*** Starting network")
     net.build()
@@ -131,11 +127,12 @@ def topology():
     os.system('ovs-vsctl set bridge rsu1 other-config:datapath-id=0000000000000006')
     os.system('ovs-vsctl set bridge rsu2 other-config:datapath-id=0000000000000007')
     os.system('ovs-vsctl set bridge rsu3 other-config:datapath-id=0000000000000008')
-
     
     os.system('ovs-vsctl --all destroy QoS; ovs-vsctl --all destroy Queue')
 
     os.system('ovs-vsctl set-manager ptcp:6632')
+    
+    time.sleep(1)
 
     os.system('curl -X PUT -d \'"tcp:127.0.0.1:6632"\' http://localhost:8080/v1.0/conf/switches/0000000000000006/ovsdb_addr')
     os.system('curl -X PUT -d \'"tcp:127.0.0.1:6632"\' http://localhost:8080/v1.0/conf/switches/0000000000000007/ovsdb_addr')
@@ -143,17 +140,14 @@ def topology():
     os.system('curl -X PUT -d \'"tcp:127.0.0.1:6632"\' http://localhost:8080/v1.0/conf/switches/0000000000000009/ovsdb_addr')
     os.system('curl -X PUT -d \'"tcp:127.0.0.1:6632"\' http://localhost:8080/v1.0/conf/switches/0000000000000010/ovsdb_addr')
 
-
     print( "*** Shutting ports" )
-    #time.sleep(3)
-
+    time.sleep(1)
 
     #Filtra trafego nas portas entre switches (evitar L2 loop)
     os.system('curl -X POST -d \'{ "dpid": 6, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":2}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
     os.system('curl -X POST -d \'{ "dpid": 7, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":2}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
     os.system('curl -X POST -d \'{ "dpid": 7, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":3}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
     os.system('curl -X POST -d \'{ "dpid": 8, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":2}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
-
     
     time.sleep(1)
 
@@ -161,13 +155,13 @@ def topology():
 
     time.sleep(2)
 
-#     os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -fv &')
-#     os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
-#     time.sleep(1)
-#     os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
-#     os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+    os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -fv &')
+    os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
+    time.sleep(3)
+    os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
+    os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
-    # # time.sleep(1)
+    time.sleep(2)
 
 #     net.startMobility( time=0 )
 #     net.mobility( cars[0], 'start', time=1, position='120,1000,0' )
@@ -245,19 +239,19 @@ def topology():
         cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
         print("*** Car[%d] connect to server_s at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("timeout 305 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
         cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
         
         print("*** Car[%d] connect to server_e at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("timeout 305 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
         cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
 
         print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("timeout 305 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
 
         print("*** Car[%d] connect to server_g at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("timeout 305 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)   
     
   for x in xrange(20,30):
@@ -282,7 +276,7 @@ def topology():
     
 
     ######### T2
-    time.sleep(180)
+    time.sleep(75)
     ############################
     
     # RSU3
@@ -329,23 +323,23 @@ def topology():
         cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
         print("*** Car[%d] connect to server_s at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("timeout 235 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
         cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
         
         print("*** Car[%d] connect to server_e at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("timeout 235 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
         cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
 
         print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("timeout 235 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
 
         print("*** Car[%d] connect to server_g at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("timeout 235 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x) 
     
     ########## T3
- # time.sleep(180)
+  time.sleep(75)
     #############################
     
     # RSU3
@@ -393,23 +387,23 @@ def topology():
         cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
         print("*** Car[%d] connect to server_s at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("timeout 160 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
         cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
         
         print("*** Car[%d] connect to server_e at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("timeout 160 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
         cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
 
         print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("timeout 160 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
 
         print("*** Car[%d] connect to server_g at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("timeout 160 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)
     
     ########## T4
- # time.sleep(2)
+  time.sleep(75)
     #############################
     
     # RSU3
@@ -455,22 +449,22 @@ def topology():
         cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
         print("*** Car[%d] connect to server_s at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("timeout 80 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
         cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
 
         print("*** Car[%d] connect to server_e at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("timeout 80 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
         cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
 
         print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("timeout 80 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
 
         print("*** Car[%d] connect to server_g at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("timeout 80 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)  
     
-    time.sleep(180)
+    time.sleep(76)
 
     os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
     os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
