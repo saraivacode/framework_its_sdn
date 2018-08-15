@@ -190,6 +190,12 @@ def topology():
 #     net.mobility( cars[8], 'stop', time=179, position='1095,999,0' )
 #     net.stopMobility( time=180 )
 
+    server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
+    server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
+    server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
+    server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
+    server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
+    server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
 
 ########## T1
     # RSU3
@@ -230,126 +236,138 @@ def topology():
     cars[28].setPosition('10,997,0')
     cars[29].setPosition('15,997,0')
     
-    
-    server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
-    server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
-    server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
-    server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
-    server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
-    server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
-
     print( "*** Iniciando geracao de trafego" )
 
-    # time.sleep(2)
+    time.sleep(2)
 
-    # for x in xrange(0,30):
+    for x in xrange(0,20):
 
-    #     cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
+        cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
-    #     print("*** Car[%d] connect to server_s at 1Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
+        print("*** Car[%d] connect to server_s at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
         
-    #     print("*** Car[%d] connect to server_e at 1Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
+        print("*** Car[%d] connect to server_e at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
 
-    #     print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
+        print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
 
-    #     print("*** Car[%d] connect to server_g at 1Mbps" %x)
-    #     cars[x].cmdPrint("timeout 205 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)   
+        print("*** Car[%d] connect to server_g at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)   
     
-  for x in xrange(30,40):
+  for x in xrange(20,30):
 
-    #     cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
+        cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
-    #     print("*** Car[%d] connect to server_s at 1Mbps" %x)
-    #     cars[x].cmdPrint("hping3 --udp -p 5002 -i u10200 -d 1470 -c 1 200.0.10.2 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
+        print("*** Car[%d] connect to server_s at 1Mbps" %x)
+        cars[x].cmdPrint("hping3 --udp -p 5002 -i u10200 -d 1470 -c 1 200.0.10.2 -q &")
+        cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
         
-    #     print("*** Car[%d] connect to server_e at 1Mbps" %x)
-    #     cars[x].cmdPrint("hping3 --udp -p 5003 -i u10200 -d 1470 -c 1 200.0.10.3 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
+        print("*** Car[%d] connect to server_e at 1Mbps" %x)
+        cars[x].cmdPrint("hping3 --udp -p 5003 -i u10200 -d 1470 -c 1 200.0.10.3 -q &")
+        cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
 
-    #     print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
-    #     cars[x].cmdPrint("hping3 --udp -p 5004 -i u6800 -d 1470 -c 1 200.0.10.4 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
+        print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
+        cars[x].cmdPrint("hping3 --udp -p 5004 -i u6800 -d 1470 -c 1 200.0.10.4 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
 
-    #     print("*** Car[%d] connect to server_g at 1Mbps" %x)
-    #     cars[x].cmdPrint("hping3 --udp -p 5005 -i u10200 -d 1470 -c 1 200.0.10.5 -q &")
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x) 
+        print("*** Car[%d] connect to server_g at 1Mbps" %x)
+        cars[x].cmdPrint("hping3 --udp -p 5005 -i u10200 -d 1470 -c 1 200.0.10.5 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x) 
     
 
-    ########## T2
- # time.sleep(2)
-    #############################
+    ######### T2
+    time.sleep(180)
+    ############################
     
     # RSU3
-    cars[0].setPosition('2115,993,0')
-    cars[1].setPosition('2112,993,0')
-    cars[2].setPosition('2115,995,0')
-    cars[3].setPosition('2112,995,0')
-    cars[4].setPosition('2115,997,0')
-    cars[5].setPosition('2112,997,0')
-    cars[6].setPosition('2109,997,0')
+#     cars[0].setPosition('2115,993,0')
+#     cars[1].setPosition('2112,993,0')
+#     cars[2].setPosition('2115,995,0')
+#     cars[3].setPosition('2112,995,0')
+#     cars[4].setPosition('2115,997,0')
+#     cars[5].setPosition('2112,997,0')
+#     cars[6].setPosition('2109,997,0')
     cars[7].setPosition('2109,993,0') #chegou
     cars[9].setPosition('2109,995,0') #chegou
     cars[11].setPosition('2106,995,0') #chegou
     
     
     # RSU 2
-    cars[8].setPosition('1612,993,0')
-    cars[10].setPosition('1612,995,0')
-    cars[12].setPosition('1606,995,0')
+#     cars[8].setPosition('1612,993,0')
+#     cars[10].setPosition('1612,995,0')
+#     cars[12].setPosition('1606,995,0')
     cars[13].setPosition('1609,993,0') #chegou
     cars[15].setPosition('1609,995,0') #chegou
     cars[17].setPosition('1603,997,0') #chegou
 
     # RSU 1
-    cars[14].setPosition('1112,993,0')
-    cars[16].setPosition('1112,995,0')
-    cars[18].setPosition('1112,997,0')
-    cars[19].setPosition('1109,997,0')
+#     cars[14].setPosition('1112,993,0')
+#     cars[16].setPosition('1112,995,0')
+#     cars[18].setPosition('1112,997,0')
+#     cars[19].setPosition('1109,997,0')
     cars[20].setPosition('1109,993,0') #chegou
     cars[24].setPosition('1109,995,0') #chegou
     cars[25].setPosition('1106,995,0') #chegou
     cars[28].setPosition('1106,997,0') #chegou
         
     #Out    
-    cars[21].setPosition('315,993,0')
-    cars[22].setPosition('320,993,0')
-    cars[23].setPosition('325,993,0')
-    cars[26].setPosition('320,995,0')
-    cars[27].setPosition('325,995,0')
-    cars[29].setPosition('315,997,0')
+#     cars[21].setPosition('315,993,0')
+#     cars[22].setPosition('320,993,0')
+#     cars[23].setPosition('325,993,0')
+#     cars[26].setPosition('320,995,0')
+#     cars[27].setPosition('325,995,0')
+#     cars[29].setPosition('315,997,0')
+    
+    for x in (20, 24, 25, 28):
+
+        cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
+
+        print("*** Car[%d] connect to server_s at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
+        
+        print("*** Car[%d] connect to server_e at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
+
+        print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
+
+        print("*** Car[%d] connect to server_g at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x) 
     
     ########## T3
- # time.sleep(2)
+ # time.sleep(180)
     #############################
     
     # RSU3
-    cars[0].setPosition('2115,993,0')
-    cars[1].setPosition('2112,993,0')
-    cars[2].setPosition('2115,995,0')
-    cars[3].setPosition('2112,995,0')
-    cars[4].setPosition('2115,997,0')
-    cars[5].setPosition('2112,997,0')
-    cars[6].setPosition('2109,997,0')
-    cars[7].setPosition('2109,993,0')
-    cars[9].setPosition('2109,995,0')
-    cars[11].setPosition('2106,995,0')
+#     cars[0].setPosition('2115,993,0')
+#     cars[1].setPosition('2112,993,0')
+#     cars[2].setPosition('2115,995,0')
+#     cars[3].setPosition('2112,995,0')
+#     cars[4].setPosition('2115,997,0')
+#     cars[5].setPosition('2112,997,0')
+#     cars[6].setPosition('2109,997,0')
+#     cars[7].setPosition('2109,993,0')
+#     cars[9].setPosition('2109,995,0')
+#     cars[11].setPosition('2106,995,0')
     
     
     # RSU 2
-    cars[8].setPosition('1612,993,0')
-    cars[10].setPosition('1612,995,0')
-    cars[12].setPosition('1606,995,0')
-    cars[13].setPosition('1609,993,0')
-    cars[15].setPosition('1609,995,0')
-    cars[17].setPosition('1603,997,0')
+#     cars[8].setPosition('1612,993,0')
+#     cars[10].setPosition('1612,995,0')
+#     cars[12].setPosition('1606,995,0')
+#     cars[13].setPosition('1609,993,0')
+#     cars[15].setPosition('1609,995,0')
+#     cars[17].setPosition('1603,997,0')
     cars[14].setPosition('1606,993,0') #chegou
     cars[16].setPosition('1606,995,0') #chegou
     cars[18].setPosition('1600,997,0') #chegou
@@ -357,98 +375,110 @@ def topology():
     
 
     # RSU 1
-    cars[20].setPosition('1109,993,0')
-    cars[24].setPosition('1109,995,0')
-    cars[25].setPosition('1106,995,0')
-    cars[28].setPosition('1106,997,0')
+#     cars[20].setPosition('1109,993,0')
+#     cars[24].setPosition('1109,995,0')
+#     cars[25].setPosition('1106,995,0')
+#     cars[28].setPosition('1106,997,0')
     cars[21].setPosition('1106,993,0') #chegou
     cars[29].setPosition('1103,997,0') #chegou
        
     #Out
-    cars[22].setPosition('620,993,0')
-    cars[23].setPosition('625,993,0')
-    cars[26].setPosition('620,995,0')
-    cars[27].setPosition('625,995,0')
+#     cars[22].setPosition('620,993,0')
+#     cars[23].setPosition('625,993,0')
+#     cars[26].setPosition('620,995,0')
+#     cars[27].setPosition('625,995,0')
+
+    for x in (21, 29):
+
+        cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
+
+        print("*** Car[%d] connect to server_s at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
+        
+        print("*** Car[%d] connect to server_e at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
+
+        print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
+
+        print("*** Car[%d] connect to server_g at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)
     
     ########## T4
  # time.sleep(2)
     #############################
     
     # RSU3
-    cars[0].setPosition('2115,993,0')
-    cars[1].setPosition('2112,993,0')
-    cars[2].setPosition('2115,995,0')
-    cars[3].setPosition('2112,995,0')
-    cars[4].setPosition('2115,997,0')
-    cars[5].setPosition('2112,997,0')
-    cars[6].setPosition('2109,997,0')
-    cars[7].setPosition('2109,993,0')
-    cars[9].setPosition('2109,995,0')
-    cars[11].setPosition('2106,995,0')
+#     cars[0].setPosition('2115,993,0')
+#     cars[1].setPosition('2112,993,0')
+#     cars[2].setPosition('2115,995,0')
+#     cars[3].setPosition('2112,995,0')
+#     cars[4].setPosition('2115,997,0')
+#     cars[5].setPosition('2112,997,0')
+#     cars[6].setPosition('2109,997,0')
+#     cars[7].setPosition('2109,993,0')
+#     cars[9].setPosition('2109,995,0')
+#     cars[11].setPosition('2106,995,0')
     
     
     # RSU 2
-    cars[8].setPosition('1612,993,0')
-    cars[10].setPosition('1612,995,0')
-    cars[12].setPosition('1606,995,0')
-    cars[13].setPosition('1609,993,0')
-    cars[15].setPosition('1609,995,0')
-    cars[17].setPosition('1603,997,0')
-    cars[14].setPosition('1606,993,0')
-    cars[16].setPosition('1606,995,0')
-    cars[18].setPosition('1600,997,0')
-    cars[19].setPosition('1597,997,0')
+#     cars[8].setPosition('1612,993,0')
+#     cars[10].setPosition('1612,995,0')
+#     cars[12].setPosition('1606,995,0')
+#     cars[13].setPosition('1609,993,0')
+#     cars[15].setPosition('1609,995,0')
+#     cars[17].setPosition('1603,997,0')
+#     cars[14].setPosition('1606,993,0')
+#     cars[16].setPosition('1606,995,0')
+#     cars[18].setPosition('1600,997,0')
+#     cars[19].setPosition('1597,997,0')
     
 
     # RSU 1
-    cars[20].setPosition('1109,993,0')
-    cars[24].setPosition('1109,995,0')
-    cars[25].setPosition('1106,995,0')
-    cars[28].setPosition('1106,997,0')
-    cars[21].setPosition('1106,993,0')
-    cars[29].setPosition('1103,997,0')
+#     cars[20].setPosition('1109,993,0')
+#     cars[24].setPosition('1109,995,0')
+#     cars[25].setPosition('1106,995,0')
+#     cars[28].setPosition('1106,997,0')
+#     cars[21].setPosition('1106,993,0')
+#     cars[29].setPosition('1103,997,0')
     cars[22].setPosition('1103,993,0') #chegou
     cars[23].setPosition('1100,993,0') #chegou
     cars[26].setPosition('1103,995,0') #chegou
     cars[27].setPosition('1100,995,0') #chegou
     
+    for x in (22, 23, 26, 27):
+
+        cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
+
+        print("*** Car[%d] connect to server_s at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
+
+        print("*** Car[%d] connect to server_e at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
+
+        print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
+
+        print("*** Car[%d] connect to server_g at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 180 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)  
     
-    
-    # time.sleep(33)
+    time.sleep(180)
 
-    # print("Moving Car0 to RSU2")
-    # cars[0].setPosition('1605,975,0')
+    os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
+    os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
+    os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
 
-    # time.sleep(33)
-
-    # print("Moving Car0 to RSU3")
-    # cars[0].setPosition('2105,975,0')
-
-    # time.sleep(33)
-
-    # print("Moving Car1 to RSU2")
-    # cars[1].setPosition('1605,975,0')
-
-    # time.sleep(33)
-
-    # print("Moving Car2 to RSU3")
-    # cars[2].setPosition('2105,975,0')
-
-    # time.sleep(33)
-
-    # print("Moving Car1 to RSU3")
-    # cars[1].setPosition('2105,975,0')
-
-    # time.sleep(33)
-
-    # os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
-    # os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
-    # os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
-
-
-    # os.system('pkill tcpdump')
-    # os.system('pkill hping3')
-    # os.system('pkill ping')
+    os.system('pkill tcpdump')
+    os.system('pkill hping3')
+    os.system('pkill ping')
 
     info("*** Running CLI\n")
     CLI_wifi(net)
