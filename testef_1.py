@@ -27,46 +27,46 @@ def topology():
     for x in range(0, 30):
         cars.append(x)
 
-    cars[0] = net.addCar('car0',  wlans=1, range='50', ip='200.0.10.110/8', mac='00:00:00:00:00:01', position='2115,993,0')
-    cars[1] = net.addCar('car1',  wlans=1, range='50', ip='200.0.10.111/8', mac='00:00:00:00:00:02', position='2112,993,0')
-    cars[2] = net.addCar('car2',  wlans=1, range='50', ip='200.0.10.112/8', mac='00:00:00:00:00:03', position='2115,995,0')
-    cars[3] = net.addCar('car3',  wlans=1, range='50', ip='200.0.10.113/8', mac='00:00:00:00:00:04', position='2112,995,0')
-    cars[4] = net.addCar('car4',  wlans=1, range='50', ip='200.0.10.114/8', mac='00:00:00:00:00:05', position='2115,997,0')
-    cars[5] = net.addCar('car5',  wlans=1, range='50', ip='200.0.10.115/8', mac='00:00:00:00:00:06', position='2112,997,0')
-    cars[6] = net.addCar('car6',  wlans=1, range='50', ip='200.0.10.116/8', mac='00:00:00:00:00:07', position='2109,997,0')
+    cars[0] = net.addCar('car0',  wlans=1, range='50', ip='200.0.10.110/8', mac='00:00:00:00:00:01', position='2115,243,0')
+    cars[1] = net.addCar('car1',  wlans=1, range='50', ip='200.0.10.111/8', mac='00:00:00:00:00:02', position='2112,243,0')
+    cars[2] = net.addCar('car2',  wlans=1, range='50', ip='200.0.10.112/8', mac='00:00:00:00:00:03', position='2115,245,0')
+    cars[3] = net.addCar('car3',  wlans=1, range='50', ip='200.0.10.113/8', mac='00:00:00:00:00:04', position='2112,245,0')
+    cars[4] = net.addCar('car4',  wlans=1, range='50', ip='200.0.10.114/8', mac='00:00:00:00:00:05', position='2115,247,0')
+    cars[5] = net.addCar('car5',  wlans=1, range='50', ip='200.0.10.115/8', mac='00:00:00:00:00:06', position='2112,247,0')
+    cars[6] = net.addCar('car6',  wlans=1, range='50', ip='200.0.10.116/8', mac='00:00:00:00:00:07', position='2109,247,0')
 
-    cars[7] = net.addCar('car7',  wlans=1, range='50', ip='200.0.10.117/8', mac='00:00:00:00:00:08', position='1615,993,0')
-    cars[8] = net.addCar('car8',  wlans=1, range='50', ip='200.0.10.118/8', mac='00:00:00:00:00:09', position='1612,993,0')
-    cars[9] = net.addCar('car9',  wlans=1, range='50', ip='200.0.10.119/8', mac='00:00:00:00:00:10', position='1615,995,0')
-    cars[10] = net.addCar('car10',  wlans=1, range='50', ip='200.0.10.120/8', mac='00:00:00:00:00:11', position='1612,995,0')
-    cars[11] = net.addCar('car11',  wlans=1, range='50', ip='200.0.10.121/8', mac='00:00:00:00:00:12', position='1609,995,0')
-    cars[12] = net.addCar('car12',  wlans=1, range='50', ip='200.0.10.122/8', mac='00:00:00:00:00:13', position='1606,995,0')
+    cars[7] = net.addCar('car7',  wlans=1, range='50', ip='200.0.10.117/8', mac='00:00:00:00:00:08', position='1615,243,0')
+    cars[8] = net.addCar('car8',  wlans=1, range='50', ip='200.0.10.118/8', mac='00:00:00:00:00:09', position='1612,243,0')
+    cars[9] = net.addCar('car9',  wlans=1, range='50', ip='200.0.10.119/8', mac='00:00:00:00:00:10', position='1615,245,0')
+    cars[10] = net.addCar('car10',  wlans=1, range='50', ip='200.0.10.120/8', mac='00:00:00:00:00:11', position='1612,245,0')
+    cars[11] = net.addCar('car11',  wlans=1, range='50', ip='200.0.10.121/8', mac='00:00:00:00:00:12', position='1609,245,0')
+    cars[12] = net.addCar('car12',  wlans=1, range='50', ip='200.0.10.122/8', mac='00:00:00:00:00:13', position='1606,245,0')
 
-    cars[13] = net.addCar('car13',  wlans=1, range='50', ip='200.0.10.123/8', mac='00:00:00:00:00:14', position='1115,993,0')
-    cars[14] = net.addCar('car14',  wlans=1, range='50', ip='200.0.10.124/8', mac='00:00:00:00:00:15', position='1112,993,0')
-    cars[15] = net.addCar('car15',  wlans=1, range='50', ip='200.0.10.125/8', mac='00:00:00:00:00:16', position='1115,995,0')
-    cars[16] = net.addCar('car16',  wlans=1, range='50', ip='200.0.10.126/8', mac='00:00:00:00:00:17', position='1112,995,0')
-    cars[17] = net.addCar('car17',  wlans=1, range='50', ip='200.0.10.127/8', mac='00:00:00:00:00:18', position='1115,997,0')
-    cars[18] = net.addCar('car18',  wlans=1, range='50', ip='200.0.10.128/8', mac='00:00:00:00:00:19', position='1112,997,0')
-    cars[19] = net.addCar('car19',  wlans=1, range='50', ip='200.0.10.129/8', mac='00:00:00:00:00:20', position='1109,997,0')
+    cars[13] = net.addCar('car13',  wlans=1, range='50', ip='200.0.10.123/8', mac='00:00:00:00:00:14', position='1115,243,0')
+    cars[14] = net.addCar('car14',  wlans=1, range='50', ip='200.0.10.124/8', mac='00:00:00:00:00:15', position='1112,243,0')
+    cars[15] = net.addCar('car15',  wlans=1, range='50', ip='200.0.10.125/8', mac='00:00:00:00:00:16', position='1115,245,0')
+    cars[16] = net.addCar('car16',  wlans=1, range='50', ip='200.0.10.126/8', mac='00:00:00:00:00:17', position='1112,245,0')
+    cars[17] = net.addCar('car17',  wlans=1, range='50', ip='200.0.10.127/8', mac='00:00:00:00:00:18', position='1115,247,0')
+    cars[18] = net.addCar('car18',  wlans=1, range='50', ip='200.0.10.128/8', mac='00:00:00:00:00:19', position='1112,247,0')
+    cars[19] = net.addCar('car19',  wlans=1, range='50', ip='200.0.10.129/8', mac='00:00:00:00:00:20', position='1109,247,0')
 
-    cars[20] = net.addCar('car20',  wlans=1, range='50', ip='200.0.10.130/8', mac='00:00:00:00:00:21', position='10,993,0')
-    cars[21] = net.addCar('car21',  wlans=1, range='50', ip='200.0.10.131/8', mac='00:00:00:00:00:22', position='15,993,0')
-    cars[22] = net.addCar('car22',  wlans=1, range='50', ip='200.0.10.132/8', mac='00:00:00:00:00:23', position='20,993,0')
-    cars[23] = net.addCar('car23',  wlans=1, range='50', ip='200.0.10.133/8', mac='00:00:00:00:00:24', position='25,993,0')
-    cars[24] = net.addCar('car24',  wlans=1, range='50', ip='200.0.10.134/8', mac='00:00:00:00:00:25', position='10,995,0')
-    cars[25] = net.addCar('car25',  wlans=1, range='50', ip='200.0.10.135/8', mac='00:00:00:00:00:26', position='15,995,0')
-    cars[26] = net.addCar('car26',  wlans=1, range='50', ip='200.0.10.136/8', mac='00:00:00:00:00:27', position='20,995,0')
-    cars[27] = net.addCar('car27',  wlans=1, range='50', ip='200.0.10.137/8', mac='00:00:00:00:00:28', position='25,995,0')
-    cars[28] = net.addCar('car28',  wlans=1, range='50', ip='200.0.10.138/8', mac='00:00:00:00:00:29', position='10,997,0')
-    cars[29] = net.addCar('car29',  wlans=1, range='50', ip='200.0.10.139/8', mac='00:00:00:00:00:30', position='15,997,0')
+    cars[20] = net.addCar('car20',  wlans=1, range='50', ip='200.0.10.130/8', mac='00:00:00:00:00:21', position='10,243,0')
+    cars[21] = net.addCar('car21',  wlans=1, range='50', ip='200.0.10.131/8', mac='00:00:00:00:00:22', position='15,243,0')
+    cars[22] = net.addCar('car22',  wlans=1, range='50', ip='200.0.10.132/8', mac='00:00:00:00:00:23', position='20,243,0')
+    cars[23] = net.addCar('car23',  wlans=1, range='50', ip='200.0.10.133/8', mac='00:00:00:00:00:24', position='25,243,0')
+    cars[24] = net.addCar('car24',  wlans=1, range='50', ip='200.0.10.134/8', mac='00:00:00:00:00:25', position='10,245,0')
+    cars[25] = net.addCar('car25',  wlans=1, range='50', ip='200.0.10.135/8', mac='00:00:00:00:00:26', position='15,245,0')
+    cars[26] = net.addCar('car26',  wlans=1, range='50', ip='200.0.10.136/8', mac='00:00:00:00:00:27', position='20,245,0')
+    cars[27] = net.addCar('car27',  wlans=1, range='50', ip='200.0.10.137/8', mac='00:00:00:00:00:28', position='25,245,0')
+    cars[28] = net.addCar('car28',  wlans=1, range='50', ip='200.0.10.138/8', mac='00:00:00:00:00:29', position='10,247,0')
+    cars[29] = net.addCar('car29',  wlans=1, range='50', ip='200.0.10.139/8', mac='00:00:00:00:00:30', position='15,247,0')
 
     rsu1 = net.addAccessPoint('rsu1', ssid='rsu1', mode='g',
-                               channel='1', range='250', position='1100,1000,0', protocols='OpenFlow13')
+                               channel='1', range='250', position='1100,250,0', protocols='OpenFlow13')
     rsu2 = net.addAccessPoint('rsu2', ssid='rsu2', mode='g',
-                               channel='6', range='250', position='1600,1000,0', protocols='OpenFlow13')
+                               channel='6', range='250', position='1600,250,0', protocols='OpenFlow13')
     rsu3 = net.addAccessPoint('rsu3', ssid='rsu3', mode='g',
-                               channel='11', range='250', position='2100,1000,0', protocols='OpenFlow13')
+                               channel='11', range='250', position='2100,250,0', protocols='OpenFlow13')
 
     sw1 = net.addSwitch ('sw1', dpid='9', protocols='OpenFlow13')
     sw2 = net.addSwitch ('sw2', dpid='10', protocols='OpenFlow13')
@@ -104,7 +104,7 @@ def topology():
     link3.intf1.config( bw=26 )
     link4.intf1.config( bw=26 )
 
-    net.plotGraph(max_x=2400, max_y=2400)
+    net.plotGraph(max_x=2400, max_y=500)
     
     print("*** Starting network")
     net.build()
@@ -168,14 +168,14 @@ def topology():
 #     net.mobility( cars[0], 'stop', time=179, position='2101,1000,0' )
 #     net.mobility( cars[1], 'start', time=1, position='130,999,0' )
 #     net.mobility( cars[1], 'stop', time=179, position='2095,999,0' )
-#     net.mobility( cars[2], 'start', time=1, position='135,997,0' )
-#     net.mobility( cars[2], 'stop', time=59, position='2097,997,0' )
+#     net.mobility( cars[2], 'start', time=1, position='135,247,0' )
+#     net.mobility( cars[2], 'stop', time=59, position='2097,247,0' )
 #     net.mobility( cars[3], 'start', time=1, position='140,1000,0' )
 #     net.mobility( cars[3], 'stop', time=59, position='1601,1000,0' )
 #     net.mobility( cars[4], 'start', time=1, position='145,999,0' )
 #     net.mobility( cars[4], 'stop', time=59, position='1599,999,0' )
-#     net.mobility( cars[5], 'start', time=1, position='150,997,0' )
-#     net.mobility( cars[5], 'stop', time=179, position='1595,997,0' )
+#     net.mobility( cars[5], 'start', time=1, position='150,247,0' )
+#     net.mobility( cars[5], 'stop', time=179, position='1595,247,0' )
 #     net.mobility( cars[6], 'start', time=1, position='155,1000,0' )
 #     net.mobility( cars[6], 'stop', time=179, position='1101,1000,0' )
 #     net.mobility( cars[7], 'start', time=1, position='160,1000,0' )
@@ -193,42 +193,42 @@ def topology():
 
 ########## T1
     # # RSU3
-    # cars[0].setPosition('2115,993,0')
-    # cars[1].setPosition('2112,993,0')
-    # cars[2].setPosition('2115,995,0')
-    # cars[3].setPosition('2112,995,0')
-    # cars[4].setPosition('2115,997,0')
-    # cars[5].setPosition('2112,997,0')
-    # cars[6].setPosition('2109,997,0')
+    # cars[0].setPosition('2115,243,0')
+    # cars[1].setPosition('2112,243,0')
+    # cars[2].setPosition('2115,245,0')
+    # cars[3].setPosition('2112,245,0')
+    # cars[4].setPosition('2115,247,0')
+    # cars[5].setPosition('2112,247,0')
+    # cars[6].setPosition('2109,247,0')
     
     # # RSU 2
-    # cars[7].setPosition('1615,993,0')
-    # cars[8].setPosition('1612,993,0')
-    # cars[9].setPosition('1615,995,0')
-    # cars[10].setPosition('1612,995,0')
-    # cars[11].setPosition('1609,995,0')
-    # cars[12].setPosition('1606,995,0')
+    # cars[7].setPosition('1615,243,0')
+    # cars[8].setPosition('1612,243,0')
+    # cars[9].setPosition('1615,245,0')
+    # cars[10].setPosition('1612,245,0')
+    # cars[11].setPosition('1609,245,0')
+    # cars[12].setPosition('1606,245,0')
 
     # # RSU 1
-    # cars[13].setPosition('1115,993,0')
-    # cars[14].setPosition('1112,993,0')
-    # cars[15].setPosition('1115,995,0')
-    # cars[16].setPosition('1112,995,0')
-    # cars[17].setPosition('1115,997,0')
-    # cars[18].setPosition('1112,997,0')
-    # cars[19].setPosition('1109,997,0')
+    # cars[13].setPosition('1115,243,0')
+    # cars[14].setPosition('1112,243,0')
+    # cars[15].setPosition('1115,245,0')
+    # cars[16].setPosition('1112,245,0')
+    # cars[17].setPosition('1115,247,0')
+    # cars[18].setPosition('1112,247,0')
+    # cars[19].setPosition('1109,247,0')
 
     # #Out
-    # cars[20].setPosition('10,993,0')
-    # cars[21].setPosition('15,993,0')
-    # cars[22].setPosition('20,993,0')
-    # cars[23].setPosition('25,993,0')
-    # cars[24].setPosition('10,995,0')
-    # cars[25].setPosition('15,995,0')
-    # cars[26].setPosition('20,995,0')
-    # cars[27].setPosition('25,995,0')
-    # cars[28].setPosition('10,997,0')
-    # cars[29].setPosition('15,997,0')
+    # cars[20].setPosition('10,243,0')
+    # cars[21].setPosition('15,243,0')
+    # cars[22].setPosition('20,243,0')
+    # cars[23].setPosition('25,243,0')
+    # cars[24].setPosition('10,245,0')
+    # cars[25].setPosition('15,245,0')
+    # cars[26].setPosition('20,245,0')
+    # cars[27].setPosition('25,245,0')
+    # cars[28].setPosition('10,247,0')
+    # cars[29].setPosition('15,247,0')
     
     print( "*** Iniciando geracao de trafego" )
 
@@ -254,7 +254,7 @@ def topology():
         cars[x].cmdPrint("timeout 305 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)   
     
-  for x in xrange(20,30):
+  	for x in xrange(20,30):
 
         cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
@@ -274,49 +274,50 @@ def topology():
         cars[x].cmdPrint("hping3 --udp -p 5005 -i u10200 -d 1470 -c 1 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x) 
     
+    os.system('echo T1 > rsuocp.txt; echo RSU3 >> rsuocp; hotapd_cli -i rsu3-wlan1 all_sta | grep : >> rsuocp.txt; echo RSU2 >> rsuocp; hotapd_cli -i rsu2-wlan1 all_sta | grep : >> rsuocp.txt;  echo RSU1 >> rsuocp; hotapd_cli -i rsu1-wlan1 all_sta | grep : >> rsuocp.txt; ')
 
     ######### T2
     time.sleep(75)
     ############################
     
     # RSU3
-#     cars[0].setPosition('2115,993,0')
-#     cars[1].setPosition('2112,993,0')
-#     cars[2].setPosition('2115,995,0')
-#     cars[3].setPosition('2112,995,0')
-#     cars[4].setPosition('2115,997,0')
-#     cars[5].setPosition('2112,997,0')
-#     cars[6].setPosition('2109,997,0')
-    cars[7].setPosition('2109,993,0') #chegou
-    cars[9].setPosition('2109,995,0') #chegou
-    cars[11].setPosition('2106,995,0') #chegou
+#     cars[0].setPosition('2115,243,0')
+#     cars[1].setPosition('2112,243,0')
+#     cars[2].setPosition('2115,245,0')
+#     cars[3].setPosition('2112,245,0')
+#     cars[4].setPosition('2115,247,0')
+#     cars[5].setPosition('2112,247,0')
+#     cars[6].setPosition('2109,247,0')
+    cars[7].setPosition('2109,243,0') #chegou
+    cars[9].setPosition('2109,245,0') #chegou
+    cars[11].setPosition('2106,245,0') #chegou
     
     
     # RSU 2
-#     cars[8].setPosition('1612,993,0')
-#     cars[10].setPosition('1612,995,0')
-#     cars[12].setPosition('1606,995,0')
-    cars[13].setPosition('1609,993,0') #chegou
-    cars[15].setPosition('1609,995,0') #chegou
-    cars[17].setPosition('1603,997,0') #chegou
+#     cars[8].setPosition('1612,243,0')
+#     cars[10].setPosition('1612,245,0')
+#     cars[12].setPosition('1606,245,0')
+    cars[13].setPosition('1609,243,0') #chegou
+    cars[15].setPosition('1609,245,0') #chegou
+    cars[17].setPosition('1603,247,0') #chegou
 
     # RSU 1
-#     cars[14].setPosition('1112,993,0')
-#     cars[16].setPosition('1112,995,0')
-#     cars[18].setPosition('1112,997,0')
-#     cars[19].setPosition('1109,997,0')
-    cars[20].setPosition('1109,993,0') #chegou
-    cars[24].setPosition('1109,995,0') #chegou
-    cars[25].setPosition('1106,995,0') #chegou
-    cars[28].setPosition('1106,997,0') #chegou
+#     cars[14].setPosition('1112,243,0')
+#     cars[16].setPosition('1112,245,0')
+#     cars[18].setPosition('1112,247,0')
+#     cars[19].setPosition('1109,247,0')
+    cars[20].setPosition('1109,243,0') #chegou
+    cars[24].setPosition('1109,245,0') #chegou
+    cars[25].setPosition('1106,245,0') #chegou
+    cars[28].setPosition('1106,247,0') #chegou
         
     #Out    
-#     cars[21].setPosition('315,993,0')
-#     cars[22].setPosition('320,993,0')
-#     cars[23].setPosition('325,993,0')
-#     cars[26].setPosition('320,995,0')
-#     cars[27].setPosition('325,995,0')
-#     cars[29].setPosition('315,997,0')
+#     cars[21].setPosition('315,243,0')
+#     cars[22].setPosition('320,243,0')
+#     cars[23].setPosition('325,243,0')
+#     cars[26].setPosition('320,245,0')
+#     cars[27].setPosition('325,245,0')
+#     cars[29].setPosition('315,247,0')
     
     for x in (20, 24, 25, 28):
 
@@ -338,49 +339,52 @@ def topology():
         cars[x].cmdPrint("timeout 235 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x) 
     
+	os.system('echo T2 >> rsuocp.txt; echo RSU3 >> rsuocp; hotapd_cli -i rsu3-wlan1 all_sta | grep : >> rsuocp.txt; echo RSU2 >> rsuocp; hotapd_cli -i rsu2-wlan1 all_sta | grep : >> rsuocp.txt;  echo RSU1 >> rsuocp; hotapd_cli -i rsu1-wlan1 all_sta | grep : >> rsuocp.txt; ')
+
+
     ########## T3
   time.sleep(75)
     #############################
     
     # RSU3
-#     cars[0].setPosition('2115,993,0')
-#     cars[1].setPosition('2112,993,0')
-#     cars[2].setPosition('2115,995,0')
-#     cars[3].setPosition('2112,995,0')
-#     cars[4].setPosition('2115,997,0')
-#     cars[5].setPosition('2112,997,0')
-#     cars[6].setPosition('2109,997,0')
-#     cars[7].setPosition('2109,993,0')
-#     cars[9].setPosition('2109,995,0')
-#     cars[11].setPosition('2106,995,0')
+#     cars[0].setPosition('2115,243,0')
+#     cars[1].setPosition('2112,243,0')
+#     cars[2].setPosition('2115,245,0')
+#     cars[3].setPosition('2112,245,0')
+#     cars[4].setPosition('2115,247,0')
+#     cars[5].setPosition('2112,247,0')
+#     cars[6].setPosition('2109,247,0')
+#     cars[7].setPosition('2109,243,0')
+#     cars[9].setPosition('2109,245,0')
+#     cars[11].setPosition('2106,245,0')
     
     
     # RSU 2
-#     cars[8].setPosition('1612,993,0')
-#     cars[10].setPosition('1612,995,0')
-#     cars[12].setPosition('1606,995,0')
-#     cars[13].setPosition('1609,993,0')
-#     cars[15].setPosition('1609,995,0')
-#     cars[17].setPosition('1603,997,0')
-    cars[14].setPosition('1606,993,0') #chegou
-    cars[16].setPosition('1606,995,0') #chegou
-    cars[18].setPosition('1600,997,0') #chegou
-    cars[19].setPosition('1597,997,0') #chegou
+#     cars[8].setPosition('1612,243,0')
+#     cars[10].setPosition('1612,245,0')
+#     cars[12].setPosition('1606,245,0')
+#     cars[13].setPosition('1609,243,0')
+#     cars[15].setPosition('1609,245,0')
+#     cars[17].setPosition('1603,247,0')
+    cars[14].setPosition('1606,243,0') #chegou
+    cars[16].setPosition('1606,245,0') #chegou
+    cars[18].setPosition('1600,247,0') #chegou
+    cars[19].setPosition('1597,247,0') #chegou
     
 
     # RSU 1
-#     cars[20].setPosition('1109,993,0')
-#     cars[24].setPosition('1109,995,0')
-#     cars[25].setPosition('1106,995,0')
-#     cars[28].setPosition('1106,997,0')
-    cars[21].setPosition('1106,993,0') #chegou
-    cars[29].setPosition('1103,997,0') #chegou
+#     cars[20].setPosition('1109,243,0')
+#     cars[24].setPosition('1109,245,0')
+#     cars[25].setPosition('1106,245,0')
+#     cars[28].setPosition('1106,247,0')
+    cars[21].setPosition('1106,243,0') #chegou
+    cars[29].setPosition('1103,247,0') #chegou
        
     #Out
-#     cars[22].setPosition('620,993,0')
-#     cars[23].setPosition('625,993,0')
-#     cars[26].setPosition('620,995,0')
-#     cars[27].setPosition('625,995,0')
+#     cars[22].setPosition('620,243,0')
+#     cars[23].setPosition('625,243,0')
+#     cars[26].setPosition('620,245,0')
+#     cars[27].setPosition('625,245,0')
 
     for x in (21, 29):
 
@@ -402,47 +406,49 @@ def topology():
         cars[x].cmdPrint("timeout 160 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)
     
+    os.system('echo T3 >> rsuocp.txt; echo RSU3 >> rsuocp; hotapd_cli -i rsu3-wlan1 all_sta | grep : >> rsuocp.txt; echo RSU2 >> rsuocp; hotapd_cli -i rsu2-wlan1 all_sta | grep : >> rsuocp.txt;  echo RSU1 >> rsuocp; hotapd_cli -i rsu1-wlan1 all_sta | grep : >> rsuocp.txt; ')
+
     ########## T4
   time.sleep(75)
     #############################
     
     # RSU3
-#     cars[0].setPosition('2115,993,0')
-#     cars[1].setPosition('2112,993,0')
-#     cars[2].setPosition('2115,995,0')
-#     cars[3].setPosition('2112,995,0')
-#     cars[4].setPosition('2115,997,0')
-#     cars[5].setPosition('2112,997,0')
-#     cars[6].setPosition('2109,997,0')
-#     cars[7].setPosition('2109,993,0')
-#     cars[9].setPosition('2109,995,0')
-#     cars[11].setPosition('2106,995,0')
+#     cars[0].setPosition('2115,243,0')
+#     cars[1].setPosition('2112,243,0')
+#     cars[2].setPosition('2115,245,0')
+#     cars[3].setPosition('2112,245,0')
+#     cars[4].setPosition('2115,247,0')
+#     cars[5].setPosition('2112,247,0')
+#     cars[6].setPosition('2109,247,0')
+#     cars[7].setPosition('2109,243,0')
+#     cars[9].setPosition('2109,245,0')
+#     cars[11].setPosition('2106,245,0')
     
     
     # RSU 2
-#     cars[8].setPosition('1612,993,0')
-#     cars[10].setPosition('1612,995,0')
-#     cars[12].setPosition('1606,995,0')
-#     cars[13].setPosition('1609,993,0')
-#     cars[15].setPosition('1609,995,0')
-#     cars[17].setPosition('1603,997,0')
-#     cars[14].setPosition('1606,993,0')
-#     cars[16].setPosition('1606,995,0')
-#     cars[18].setPosition('1600,997,0')
-#     cars[19].setPosition('1597,997,0')
+#     cars[8].setPosition('1612,243,0')
+#     cars[10].setPosition('1612,245,0')
+#     cars[12].setPosition('1606,245,0')
+#     cars[13].setPosition('1609,243,0')
+#     cars[15].setPosition('1609,245,0')
+#     cars[17].setPosition('1603,247,0')
+#     cars[14].setPosition('1606,243,0')
+#     cars[16].setPosition('1606,245,0')
+#     cars[18].setPosition('1600,247,0')
+#     cars[19].setPosition('1597,247,0')
     
 
     # RSU 1
-#     cars[20].setPosition('1109,993,0')
-#     cars[24].setPosition('1109,995,0')
-#     cars[25].setPosition('1106,995,0')
-#     cars[28].setPosition('1106,997,0')
-#     cars[21].setPosition('1106,993,0')
-#     cars[29].setPosition('1103,997,0')
-    cars[22].setPosition('1103,993,0') #chegou
-    cars[23].setPosition('1100,993,0') #chegou
-    cars[26].setPosition('1103,995,0') #chegou
-    cars[27].setPosition('1100,995,0') #chegou
+#     cars[20].setPosition('1109,243,0')
+#     cars[24].setPosition('1109,245,0')
+#     cars[25].setPosition('1106,245,0')
+#     cars[28].setPosition('1106,247,0')
+#     cars[21].setPosition('1106,243,0')
+#     cars[29].setPosition('1103,247,0')
+    cars[22].setPosition('1103,243,0') #chegou
+    cars[23].setPosition('1100,243,0') #chegou
+    cars[26].setPosition('1103,245,0') #chegou
+    cars[27].setPosition('1100,245,0') #chegou
     
     for x in (22, 23, 26, 27):
 
@@ -464,6 +470,8 @@ def topology():
         cars[x].cmdPrint("timeout 80 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
         cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)  
     
+    os.system('echo T4  >> rsuocp.txt; echo RSU3 >> rsuocp; hotapd_cli -i rsu3-wlan1 all_sta | grep : >> rsuocp.txt; echo RSU2 >> rsuocp; hotapd_cli -i rsu2-wlan1 all_sta | grep : >> rsuocp.txt;  echo RSU1 >> rsuocp; hotapd_cli -i rsu1-wlan1 all_sta | grep : >> rsuocp.txt; ')
+
     time.sleep(76)
 
     os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
