@@ -24,32 +24,33 @@ def topology():
 
     info("*** Creating nodes\n")
     cars = []
-    for x in range(0, 20):
+    for x in range(0, 16):
         cars.append(x)
 
-    cars[0] = net.addCar('car0',  wlans=1, range='50', ip='200.0.10.110/8', mac='00:00:00:00:00:01', position='2117,243,0')
-    cars[1] = net.addCar('car1',  wlans=1, range='50', ip='200.0.10.111/8', mac='00:00:00:00:00:02', position='2117,245,0')
-    cars[2] = net.addCar('car2',  wlans=1, range='50', ip='200.0.10.112/8', mac='00:00:00:00:00:03', position='2114,243,0')
-    cars[3] = net.addCar('car3',  wlans=1, range='50', ip='200.0.10.113/8', mac='00:00:00:00:00:04', position='2114,245,0')
-    cars[4] = net.addCar('car4',  wlans=1, range='50', ip='200.0.10.114/8', mac='00:00:00:00:00:05', position='2111,243,0')
+    cars[0] = net.addCar('car0',  wlans=1, range='50', ip='200.0.10.110/8', mac='00:00:00:00:00:01', position='2107,250,0')
+    cars[1] = net.addCar('car1',  wlans=1, range='50', ip='200.0.10.111/8', mac='00:00:00:00:00:02', position='2107,247,0')
+    cars[2] = net.addCar('car2',  wlans=1, range='50', ip='200.0.10.112/8', mac='00:00:00:00:00:03', position='2104,250,0')
 
-    cars[5] = net.addCar('car5',  wlans=1, range='50', ip='200.0.10.115/8', mac='00:00:00:00:00:06', position='1617,243,0')
-    cars[6] = net.addCar('car6',  wlans=1, range='50', ip='200.0.10.116/8', mac='00:00:00:00:00:07', position='1617,245,0')
-    cars[7] = net.addCar('car7',  wlans=1, range='50', ip='200.0.10.117/8', mac='00:00:00:00:00:08', position='1614,243,0')
-    cars[8] = net.addCar('car8',  wlans=1, range='50', ip='200.0.10.118/8', mac='00:00:00:00:00:09', position='1611,243,0')
+    cars[3] = net.addCar('car3',  wlans=1, range='50', ip='200.0.10.113/8', mac='00:00:00:00:00:04', position='1607,247,0')
+    cars[4] = net.addCar('car4',  wlans=1, range='50', ip='200.0.10.114/8', mac='00:00:00:00:00:05', position='1604,250,0')
 
-    cars[9] = net.addCar('car9',  wlans=1, range='50', ip='200.0.10.119/8', mac='00:00:00:00:00:10', position='1117,243,0')
-    cars[10] = net.addCar('car10',  wlans=1, range='50', ip='200.0.10.120/8', mac='00:00:00:00:00:11', position='1114,243,0')
-    cars[11] = net.addCar('car11',  wlans=1, range='50', ip='200.0.10.121/8', mac='00:00:00:00:00:12', position='1111,243,0')
+    cars[5] = net.addCar('car5',  wlans=1, range='50', ip='200.0.10.115/8', mac='00:00:00:00:00:06', position='1107,250,0')
+    cars[6] = net.addCar('car6',  wlans=1, range='50', ip='200.0.10.116/8', mac='00:00:00:00:00:07', position='1104,247,0')
 
+
+    cars[7] = net.addCar('car7',  wlans=1, range='50', ip='200.0.10.117/8', mac='00:00:00:00:00:08', position='150,250,0')
+    cars[8] = net.addCar('car8',  wlans=1, range='50', ip='200.0.10.118/8', mac='00:00:00:00:00:09', position='200,250,0')
+    cars[9] = net.addCar('car9',  wlans=1, range='50', ip='200.0.10.119/8', mac='00:00:00:00:00:10', position='250,250,0')
+    cars[10] = net.addCar('car10',  wlans=1, range='50', ip='200.0.10.120/8', mac='00:00:00:00:00:11', position='300,250,0')
+    cars[11] = net.addCar('car11',  wlans=1, range='50', ip='200.0.10.121/8', mac='00:00:00:00:00:12', position='350,250,0')
     cars[12] = net.addCar('car12',  wlans=1, range='50', ip='200.0.10.122/8', mac='00:00:00:00:00:13', position='400,243,0')
     cars[13] = net.addCar('car13',  wlans=1, range='50', ip='200.0.10.123/8', mac='00:00:00:00:00:14', position='450,243,0')
     cars[14] = net.addCar('car14',  wlans=1, range='50', ip='200.0.10.124/8', mac='00:00:00:00:00:15', position='500,243,0')
     cars[15] = net.addCar('car15',  wlans=1, range='50', ip='200.0.10.125/8', mac='00:00:00:00:00:16', position='550,245,0')
-    cars[16] = net.addCar('car16',  wlans=1, range='50', ip='200.0.10.126/8', mac='00:00:00:00:00:17', position='600,245,0')
-    cars[17] = net.addCar('car17',  wlans=1, range='50', ip='200.0.10.127/8', mac='00:00:00:00:00:18', position='650,245,0')
-    cars[18] = net.addCar('car18',  wlans=1, range='50', ip='200.0.10.128/8', mac='00:00:00:00:00:19', position='700,247,0')
-    cars[19] = net.addCar('car19',  wlans=1, range='50', ip='200.0.10.129/8', mac='00:00:00:00:00:20', position='750,247,0')
+    # cars[16] = net.addCar('car16',  wlans=1, range='50', ip='200.0.10.126/8', mac='00:00:00:00:00:17', position='600,245,0')
+    # cars[17] = net.addCar('car17',  wlans=1, range='50', ip='200.0.10.127/8', mac='00:00:00:00:00:18', position='650,245,0')
+    # cars[18] = net.addCar('car18',  wlans=1, range='50', ip='200.0.10.128/8', mac='00:00:00:00:00:19', position='700,247,0')
+    # cars[19] = net.addCar('car19',  wlans=1, range='50', ip='200.0.10.129/8', mac='00:00:00:00:00:20', position='750,247,0')
 
     # cars[20] = net.addCar('car20',  wlans=1, range='50', ip='200.0.10.130/8', mac='00:00:00:00:00:21', position='10,243,0')
     # cars[21] = net.addCar('car21',  wlans=1, range='50', ip='200.0.10.131/8', mac='00:00:00:00:00:22', position='15,243,0')
@@ -100,10 +101,10 @@ def topology():
     link4 = net.addLink(rsu3, sw1, 3, 4, cls=TCLink)
 
     print( "*** Configuring links bandwidth" )
-    link1.intf1.config( bw=80 )
-    link2.intf1.config( bw=26 )
-    link3.intf1.config( bw=26 )
-    link4.intf1.config( bw=26 )
+    link1.intf1.config( bw=20 )
+    link2.intf1.config( bw=6 )
+    link3.intf1.config( bw=6 )
+    link4.intf1.config( bw=6 )
 
     net.plotGraph(max_x=2400, max_y=500)
     
@@ -142,15 +143,15 @@ def topology():
     os.system('curl -X PUT -d \'"tcp:127.0.0.1:6632"\' http://localhost:8080/v1.0/conf/switches/0000000000000010/ovsdb_addr')
 
     print( "*** Shutting ports" )
-    time.sleep(1)
+    # time.sleep(1)
 
-    #Filtra trafego nas portas entre switches (evitar L2 loop)
-    os.system('curl -X POST -d \'{ "dpid": 6, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":2}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
-    os.system('curl -X POST -d \'{ "dpid": 7, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":2}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
-    os.system('curl -X POST -d \'{ "dpid": 7, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":3}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
-    os.system('curl -X POST -d \'{ "dpid": 8, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":2}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
+    # #Filtra trafego nas portas entre switches (evitar L2 loop)
+    # os.system('curl -X POST -d \'{ "dpid": 6, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":2}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
+    # os.system('curl -X POST -d \'{ "dpid": 7, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":2}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
+    # os.system('curl -X POST -d \'{ "dpid": 7, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":3}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
+    # os.system('curl -X POST -d \'{ "dpid": 8, "cookie": 0, "cookie_mask": 1, "table_id": 1, "priority": 1, "flags": 2, "match":{ "in_port":2}, "actions":[{ "type":"CLEAR_ACTIONS"}]}\' http://localhost:8080/stats/flowentry/add')
     
-    time.sleep(1)
+    # time.sleep(1)
 
     os.system('ovs-ofctl del-flows sw1 -O Openflow13; ovs-ofctl add-flow sw1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl del-flows sw2 -O Openflow13; ovs-ofctl add-flow sw2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, actions=CONTROLLER:65535" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=1 actions=4" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=2 actions=4" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=3 actions=4" -O Openflow13; ovs-ofctl del-flows rsu1 -O Openflow13; ovs-ofctl del-flows rsu2 -O Openflow13; ovs-ofctl del-flows rsu3 -O Openflow13; ovs-ofctl add-flow rsu1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=1, actions=4" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=4, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=3,5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=4,5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=3,5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; mysql -u root -pwifi -e "delete from redirect;" framework 2> /dev/null')
 
@@ -193,31 +194,31 @@ def topology():
     server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
 
 ########## T1
-
+    os.system('fuser -k ./framework_its_sdn/lc_mob.sh') 
     
     print( "*** Iniciando geracao de trafego" )
 
     time.sleep(2)
 
-    for x in xrange(0,12):
+    for x in xrange(0,7):
 
         cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
 
-        print("*** Car[%d] connect to server_s at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 305 hping3 --udp -p 5002 -i u10200 -d 1470 200.0.10.2 -q &")
-        cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 205  > ping%d_ss.txt &" %x)
+        print("*** Car[%d] connect to server_s at 500kbps" %x)
+        cars[x].cmdPrint("timeout 330 hping3 --udp -p 5002 -i u24000 -d 1470 200.0.10.2 -q &")
+        cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 330  > ping%d_s.txt &" %x)
         
-        print("*** Car[%d] connect to server_e at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 305 hping3 --udp -p 5003 -i u10200 -d 1470 200.0.10.3 -q &")
-        cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 205  > ping%d_se.txt &" %x)
+        print("*** Car[%d] connect to server_e at 500kbps" %x)
+        cars[x].cmdPrint("timeout 330 hping3 --udp -p 5003 -i u24000 -d 1470 200.0.10.3 -q &")
+        cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 330  > ping%d_e.txt &" %x)
 
-        print("*** Car[%d] connect to server_e2 at 2Mbps" %x)
-        cars[x].cmdPrint("timeout 305 hping3 --udp -p 5004 -i u6800 -d 1470 200.0.10.4 -q &")
-        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_se2.txt &" %x)
+        print("*** Car[%d] connect to server_e2 at 1Mbps" %x)
+        cars[x].cmdPrint("timeout 330 hping3 --udp -p 5004 -i u12000 -d 1470 200.0.10.4 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 330  > ping%d_e2.txt &" %x)
 
-        print("*** Car[%d] connect to server_g at 1Mbps" %x)
-        cars[x].cmdPrint("timeout 305 hping3 --udp -p 5005 -i u10200 -d 1470 200.0.10.5 -q &")
-        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 205  > ping%d_sg.txt &" %x)   
+        print("*** Car[%d] connect to server_g at 500kbps" %x)
+        cars[x].cmdPrint("timeout 330 hping3 --udp -p 5005 -i u24000 -d 1470 200.0.10.5 -q &")
+        cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 330  > ping%d_g.txt &" %x)   
     
 #     for x in xrange(12,19):
 
@@ -243,7 +244,7 @@ def topology():
 #     os.system('echo T1 > rsuocp.txt; echo RSU3 >> rsuocp.txt; hostapd_cli -i rsu3-wlan1 all_sta | grep : >> rsuocp.txt; echo RSU2 >> rsuocp.txt; hostapd_cli -i rsu2-wlan1 all_sta | grep : >> rsuocp.txt;  echo RSU1 >> rsuocp.txt; hostapd_cli -i rsu1-wlan1 all_sta | grep : >> rsuocp.txt; ')
 
 #     ######### T2
-    time.sleep(305)
+    time.sleep(330)
 #     ############################
     
 #     # RSU3
@@ -362,13 +363,16 @@ def topology():
 
 #     time.sleep(76)
 
-#     os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
-#     os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
-#     os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
+    # os.system('fuser -k ./framework_its_sdn/central_controller2.sh')
+    # os.system('fuser -k ./framework_its_sdn/lc_mob.sh')  
+    # os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
 
     os.system('pkill tcpdump')
     os.system('pkill hping3')
     os.system('pkill ping')
+    time.sleep(2)
+
+    # os.system('./framework_its_sdn/tratamento.sh &')
 
     info("*** Running CLI\n")
     CLI_wifi(net)
