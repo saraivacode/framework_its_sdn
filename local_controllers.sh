@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #define capacidade dos links de upload em mbps
-up=15000000
+up=5000000
 
 #Define a periodicidade em segundos, na qual os controladores verificam o status da rede local
 t=5
 
-appb_bw=1000000
-appc_bw=2000000
+appb_bw=500000
+appc_bw=1000000
 
 #Funcao que calcula saldo
 function calc {
