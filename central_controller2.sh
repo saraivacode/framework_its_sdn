@@ -41,6 +41,7 @@ do
 	while read i;
 	do
 		echo $i
+		# echo $i*1.1 | bc
 	done)
 
 	#x=$(mysql -u root -pwifi -e "select data_rate from appkpi;" framework 2> /dev/null | grep 0 | while read i;	do echo $i;	done)
@@ -52,13 +53,12 @@ do
 	h=$(for i in $x; do echo {\"min_rate\": "\"$(echo $i)\""},; done | paste -s | cut -d',' -f1-$c)
 
 	#define comando final com max_rate fixos (melhorar/ajustar)
-	j=$(echo curl -X POST -d "'{\"port_name\": \"$y2\", \"type\": \"linux-htb\", \"max_rate\": \"8300000\", \"queues\": [{\"max_rate\": \"1000000\"}, $(echo $h)]}'" http://localhost:8080/qos/queue/000000000000000$x2)
+	j=$(echo curl -X POST -d "'{\"port_name\": \"$y2\", \"type\": \"linux-htb\", \"max_rate\": \"6000000\", \"queues\": [{\"max_rate\": \"500000\"}, $(echo $h)]}'" http://localhost:8080/qos/queue/000000000000000$x2)
 	
 	#Envia comando para o controlador, contendo as filas e as referencias de DPID (switch) e porta
 	# echo $j
 	/bin/sh -c "$j"
 
-	
 done
 
 echo -e "\n Configurando Qos"
@@ -105,7 +105,7 @@ do
 		#Monta e envia o comando associando o tráfego referente ao IP do servidor e a porta, à respectiva fila e em todos os DPIDs
 		#echo curl -X POST -d '{"match": {"nw_dst": "'$x'", "nw_proto": "UDP", "tp_dst": "'$y'"}, "actions":{"queue": "'$t'"}}' http://localhost:8080/qos/rules/000000000000000$x2
 		curl -X POST -d '{"match": {"nw_dst": "'$x'", "nw_proto": "UDP", "tp_dst": "'$y'"}, "actions":{"queue": "'$t'"}}' http://localhost:8080/qos/rules/000000000000000$x2
-
+		curl -X POST -d '{"match": {"nw_dst": "'$x'", "nw_proto": "ICMP"}, "actions":{"queue": "'$t'"}}' http://localhost:8080/qos/rules/000000000000000$x2
 	done
 done
 

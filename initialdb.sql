@@ -18,8 +18,9 @@ INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.2", 1);
 INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.3", 2);
 INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.4", 3);
 
-INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (6, 1, 6, "rsu1-eth2");
-INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (7, 1, 6, "rsu2-eth2");
+INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (6, 1, 6, "rsu1-eth3");
+INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (7, 1, 6, "rsu2-eth4");
+INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (8, 1, 6, "rsu3-eth3");
 
 INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:01", 1, 1);
 INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:02", 1, 1);
