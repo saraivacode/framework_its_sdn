@@ -51,7 +51,7 @@ do
 			echo "Concluído!"
 		fi
 	done
-	sleep 1;
+	sleep 3;
 done
 
 

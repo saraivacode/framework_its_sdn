@@ -142,14 +142,15 @@ def topology():
 
     os.system('ovs-ofctl del-flows sw3 -O Openflow13; ovs-ofctl add-flow sw3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw3 "table=1, priority=0, in_port=3 actions=1" -O Openflow13; ovs-ofctl add-flow sw3 "table=1, priority=0, in_port=1 actions=3" -O Openflow13; ovs-ofctl del-flows sw4 -O Openflow13; ovs-ofctl add-flow sw4 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw4 "table=1, priority=0, in_port=2 actions=4" -O Openflow13; ovs-ofctl add-flow sw4 "table=1, priority=0, in_port=4 actions=2" -O Openflow13; ovs-ofctl del-flows sw5 -O Openflow13; ovs-ofctl add-flow sw5 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw5 "table=1, priority=0, in_port=3 actions=5" -O Openflow13; ovs-ofctl add-flow sw5 "table=1, priority=0, in_port=5 actions=3" -O Openflow13;')
 
+    os.system('rm -f car*; rm -f server*; rm -f ping*; rm -f delay*')
 
     time.sleep(2)
 
-    os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -f &')
-    os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
-    time.sleep(3)
-    os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
-    os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+    #os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -f &')
+    #os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
+    time.sleep(4)
+    #os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
+    # os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
     server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
     server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
@@ -172,6 +173,26 @@ def topology():
 
         #cars[x].cmdPrint("hping3 --udp -p 5005 -c 1 -d 1470 200.0.10.5 -q &")
 
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:01 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:01 actions=4" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:02 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:02 actions=4" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:03 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:03 actions=4" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:04 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:04 actions=3" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:05 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:05 actions=3" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:06 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:06 actions=2" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:07 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:07 actions=2" -O Openflow13')
 
 
     ####################################################Scenario F
@@ -221,9 +242,13 @@ def topology():
         cars[x].cmdPrint("rm -f ping%d_g.txt" %x)
         cars[x].cmdPrint("ping 200.0.10.5 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_g.txt; done &" %x)  
 
-    time.sleep(75)
+    time.sleep(65)
 
     #########################################################################Scenario C1 (t2)
+
+   # os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
+
+    time.sleep(5)
 
     print( "*** Starting C1 - T2")
     # cars[0].setPosition('2107,250,0')
@@ -245,12 +270,38 @@ def topology():
     # cars[13].setPosition('450,243,0')
     # cars[14].setPosition('500,243,0')
 
+    # time.sleep(1)
+    # os.system('./framework_its_sdn/lc_mob_2.sh > j7.txt &')
+
+    time.sleep(5)
+
+   # os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:04 -O Openflow13')
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:04 -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:04 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:04 actions=4" -O Openflow13')
+
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:05 -O Openflow13')
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:05 -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:05 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:05 actions=4" -O Openflow13')
+
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:06 -O Openflow13')
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:06 -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:06 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:06 actions=3" -O Openflow13')
+
     
-    time.sleep(75)
+    time.sleep(65)
 
 
     #########################################################################Scenario C2 (t3)
     print( "*** Starting C2 - T3")
+
+    #os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
+
+    time.sleep(5)
 
     # cars[0].setPosition('2107,250,0')
     # cars[1].setPosition('2107,247,0')
@@ -270,6 +321,30 @@ def topology():
     # cars[12].setPosition('400,243,0')
     # cars[13].setPosition('450,243,0')
     # cars[14].setPosition('500,243,0')
+
+    # time.sleep(1)
+    # os.system('./framework_its_sdn/lc_mob_2.sh > j7.txt &')
+
+    time.sleep(5)
+
+    #os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:07 -O Openflow13')
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:07 -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:07 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:07 actions=3" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:08 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:08 actions=3" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:09 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:09 actions=3" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:10 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:10 actions=2" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:11 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:11 actions=2" -O Openflow13')
 
     for x in xrange(7,11):
 
@@ -295,10 +370,14 @@ def topology():
         cars[x].cmdPrint("rm -f ping%d_g.txt" %x)
         cars[x].cmdPrint("ping 200.0.10.5 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_g.txt; done &" %x)  
 
-    time.sleep(75)
+    time.sleep(65)
 
     #########################################################################Scenario C3 (t4)
     print( "*** Starting C3 - T4")
+
+    #os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
+
+    time.sleep(5)
 
     # cars[0].setPosition('2107,250,0')
     # cars[1].setPosition('2107,247,0')
@@ -317,6 +396,36 @@ def topology():
     cars[12].setPosition('1107,247,0')
     cars[13].setPosition('1104,250,0')
     cars[14].setPosition('1104,247,0')
+
+    time.sleep(5)
+
+    #os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+
+    # time.sleep(1)
+    # os.system('./framework_its_sdn/lc_mob_2.sh > j7.txt &')
+
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:10 -O Openflow13')
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:10 -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:10 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:10 actions=3" -O Openflow13')
+
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:11 -O Openflow13')
+    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:11 -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:11 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:11 actions=3" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:12 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:12 actions=2" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:13 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:13 actions=2" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:14 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:14 actions=2" -O Openflow13')
+
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:15 actions=1" -O Openflow13')
+    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:15 actions=2" -O Openflow13')
+
 
     for x in xrange(11,15):
 

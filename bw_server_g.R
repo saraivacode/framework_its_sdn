@@ -476,51 +476,47 @@ cartotal_g<-c(taxabps1segcar0_g$size[1:300], taxabps1segcar1_g$size[1:300], taxa
 carmean_g<-c(taxabps1segcar0_g$size[1:300] + taxabps1segcar1_g$size[1:300] + taxabps1segcar2_g$size[1:300] + taxabps1segcar3_g$size[1:300] + taxabps1segcar4_g$size[1:300] + taxabps1segcar5_g$size[1:300] + taxabps1segcar6_g$size[1:300])/7
 fctime_g<-c(ctime, ctime, ctime, ctime, ctime, ctime, ctime)
 
-require(Rmisc)
-x<- cbind(fctime_g,cartotal_g)
-x<-data.frame(x)
-y<-group.CI(cartotal_g~fctime_g,x,ci = 0.95)
-require(plotrix)
-plotCI(ctime_g, carmean_g, ui=y$cartotal_g.upper, li=y$cartotal_g.lower, col="red", main="Server E", ylab = "Taxa de entrega de pacotes - PDR", xlab = "tempo (s)", ylim = range(0:1e+06) )
-lines(ctime_g,carmean_g, type = "l", col="black", lwd="2")
-
-par(new=T)
-
 stime_g<-c(0:299)
 #tt<-c(taxabps1segserver_g_car0$size[1:195], taxabps1segserver_g_car1$size[1:195], taxabps1segserver_g_car2$size[1:195], taxabps1segserver_g_car3$size[1:195], taxabps1segserver_g_car4$size[1:195], taxabps1segserver_g_car5$size[1:195], taxabps1segserver_g_car6$size[1:195], taxabps1segserver_g_car7$size[1:195], taxabps1segserver_g_car8$size[1:195], taxabps1segserver_g_car9$size[1:195], taxabps1segserver_g_car10$size[1:195], taxabps1segserver_g_car11$size[1:195], taxabps1segserver_g_car12$size[1:195], taxabps1segserver_g_car13$size[1:195], taxabps1segserver_g_car14$size[1:195], taxabps1segserver_g_car15$size[1:195], taxabps1segserver_g_car16$size[1:195], taxabps1segserver_g_car17$size[1:195], taxabps1segserver_g_car18$size[1:195], taxabps1segserver_g_car19$size[1:195])
 servertotal_g<-c(taxabps1segserver_g_car0$size[1:300], taxabps1segserver_g_car1$size[1:300], taxabps1segserver_g_car2$size[1:300], taxabps1segserver_g_car3$size[1:300], taxabps1segserver_g_car4$size[1:300], taxabps1segserver_g_car5$size[1:300], taxabps1segserver_g_car6$size[1:300])
 servermean_g<-c(taxabps1segserver_g_car0$size[1:300] + taxabps1segserver_g_car1$size[1:300] + taxabps1segserver_g_car2$size[1:300] + taxabps1segserver_g_car3$size[1:300] + taxabps1segserver_g_car4$size[1:300] + taxabps1segserver_g_car5$size[1:300] + taxabps1segserver_g_car6$size[1:300])/7
 fstime_g<-c(stime_g, stime_g, stime_g, stime_g, stime_g, stime_g, stime_g)
 
-require(Rmisc)
-x<- cbind(fstime_g,servertotal_g)
-x<-data.frame(x)
-y<-group.CI(servertotal_g~fstime_g,x,ci = 0.95)
-require(plotrix)
-plotCI(stime_g, servermean_g, ui=y$servertotal_g.upper, li=y$servertotal_g.lower, col="blue", main="Server E", ylab = "Taxa de entrega de pacotes - PDR", xlab = "tempo (s)", ylim = range(0:1e+06) )
-lines(stime_g,servermean_g, type = "l", col="black", lwd="2")
-
-
-par(new=T)
-
-
-dtime_g<-c(0:300)
+dtime_g<-c(0:299)
 delaytotal_g<-c(delay_g0$delay[1:300], delay_g1$delay[1:300], delay_g2$delay[1:300], delay_g3$delay[1:300], delay_g4$delay[1:300], delay_g5$delay[1:300], delay_g6$delay[1:300])
 delaymean_g<-c(delay_g0$delay[1:300] + delay_g1$delay[1:300] + delay_g2$delay[1:300] + delay_g3$delay[1:300] + delay_g4$delay[1:300] + delay_g5$delay[1:300] + delay_g6$delay[1:300])/7
 fdtime_g<-c(dtime_g, dtime_g, dtime_g, dtime_g, dtime_g, dtime_g, dtime_g)
 
 require(Rmisc)
-x<- cbind(fdtime_g,delaytotal_g)
-x<-data.frame(x)
-y<-group.CI(delaytotal_g~fdtime_g,x,ci = 0.95)
+x1<- cbind(fctime_g,cartotal_g)
+x1<-data.frame(x1)
+y1<-group.CI(cartotal_g~fctime_g,x1,ci = 0.95)
+
+x2<- cbind(fstime_g,servertotal_g)
+x2<-data.frame(x2)
+y2<-group.CI(servertotal_g~fstime_g,x2,ci = 0.95)
+
+x3<- cbind(fdtime_g,delaytotal_g)
+x3<-data.frame(x3)
+y3<-group.CI(delaytotal_g~fdtime_g,x3,ci = 0.95)
+
+
 require(plotrix)
 
+par(mar = c(5,5,2,5))
+
+plotCI(ctime_g, carmean_g, ui=y1$cartotal_g.upper, li=y1$cartotal_g.lower, col="red", main="Server G", ylab = "Throughput (bps)", xlab = "time(s)", ylim = range(0:1e+06) )
+lines(ctime_g,carmean_g, type = "l", col="black", lwd="2")
+
+par(new=T)
+plotCI(stime_g, servermean_g, ui=y2$servertotal_g.upper, li=y2$servertotal_g.lower, col="blue", axes=F, xlab=NA, ylab=NA, ylim = range(0:1e+06) )
+lines(stime_g,servermean_g, type = "l", col="black", lwd="2")
+
 par(new = T)
-# with(d, plot(ttime, ttm, pch=16, axes=F, xlab=NA, ylab=NA, cex=1.2))
-plotCI(ttime, delaymean_g, ui=y$delaytotal_g.upper, li=y$delaytotal_g.lower, col="orange", axes=F, xlab=NA, ylab=NA, cex=1.2)
+plotCI(dtime_g[2:300], delaymean_g[2:300], ui=y3$delaytotal_g.upper[2:300], li=y3$delaytotal_g.lower[2:300], col="orange", axes=F, xlab=NA, ylab=NA, ylim = range(0:50))
 lines(dtime_g[2:300],delaymean_g[2:300], type = "l", col="black", lwd="2")
 axis(side = 4)
-mtext(side = 4, line = 3, 'Number genes selected')
+mtext(side = 4, line = 3, 'Delay (ms)')
 legend("topleft",
-       legend=c(expression(-log[10](italic(p))), "N genes"),
-       lty=c(1,0), pch=c(NA, 16), col=c("red3", "black"))
+       legend=c("Server received", "Car Sent", "Delay"),
+       lty=c(1,1,1), col=c("blue", "red", "orange"))

@@ -113,6 +113,10 @@ sta3
     ovs-ofctl del-flows ap1; ovs-ofctl add-flow ap1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow ap1 "table=1, priority=0, actions=CONTROLLER:65535" -O Openflow13
 
 
+    curl -X POST -d '{"port_name": "rsu3-eth2", "type": "linux-htb", "max_rate": "6000000", "queues": [{"max_rate": "500000"}, {"min_rate": "500000"}, {"min_rate": "1000000"}]}' http://localhost:8080/qos/queue/0000000000000007
+
+
+
     =======================///////////////////////////////====================================
 
     QoS sem diffserv
@@ -136,6 +140,20 @@ c0
     curl -X POST -d '{"match": {"nw_dst": "10.0.0.1", "nw_proto": "UDP", "tp_dst": "5002"}, "actions":{"queue": "1"}}' http://localhost:8080/qos/rules/0000000000000001
 
     curl -X POST -d '{"match": {"nw_dst": "10.0.0.13", "nw_proto": "UDP", "tp_dst": "5003"}, "actions":{"queue": "1"}}' http://localhost:8080/qos/rules/0000000000000010
+
+curl -X POST -d '{"match": {"nw_dst": "200.0.10.3", "nw_proto": "ICMP"}, "actions":{"queue": "2"}}' http://localhost:8080/qos/rules/0000000000000006
+
+
+
+
+curl -X POST -d '{"port_name": "rsu3-eth3", "type": "linux-htb", "max_rate": "6000000", "queues": [{"max_rate": "500000"}, {"min_rate": "0"}, {"min_rate": "500000"}, {"min_rate": "1000000"}]}' http://localhost:8080/qos/queue/0000000000000006
+
+
+curl -X POST -d '{"port_name": "rsu3-eth3", "type": "linux-htb", "max_rate": "6000000", "queues": [{"max_rate": "500000"}, {"min_rate": "500000"}, {"min_rate": "1000000"}]}' http://localhost:8080/qos/queue/0000000000000006
+
+
+
+curl -X POST -d '{"match": {"nw_dst": "200.0.10.2", "nw_proto": "UDP", "tp_dst": "5002"}, "actions":{"queue": "1"}}' http://localhost:8080/qos/rules/0000000000000006; curl -X POST -d '{"match": {"nw_dst": "200.0.10.3", "nw_proto": "UDP", "tp_dst": "5003"}, "actions":{"queue": "2"}}' http://localhost:8080/qos/rules/0000000000000006; curl -X POST -d '{"match": {"nw_dst": "200.0.10.4", "nw_proto": "UDP", "tp_dst": "5004"}, "actions":{"queue": "3"}}' http://localhost:8080/qos/rules/0000000000000006
 
 
 curl -X GET http://localhost:8080/stats/switches
@@ -413,6 +431,9 @@ ovs-ofctl add-flow rsu2 "table=1, priority=2, cookie=0x15, in_port=1,dl_src=00:0
 ovs-ofctl del-flows sw1 -O Openflow13; ovs-ofctl add-flow sw1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl del-flows sw2 -O Openflow13; ovs-ofctl add-flow sw2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, actions=CONTROLLER:65535" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=1 actions=4" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=2 actions=4" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=3 actions=4" -O Openflow13; ovs-ofctl del-flows rsu1 -O Openflow13; ovs-ofctl del-flows rsu2 -O Openflow13; ovs-ofctl del-flows rsu3 -O Openflow13; ovs-ofctl add-flow rsu1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=1, actions=4" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=4, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=3,5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=4,5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=3,5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; mysql -u root -pwifi -e "delete from redirect;" framework 2> /dev/null
 
 
+ovs-ofctl del-flows sw3 -O Openflow13; ovs-ofctl add-flow sw3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw3 "table=1, priority=0, in_port=3 actions=1" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=1 actions=3" -O Openflow13; ovs-ofctl del-flows sw4 -O Openflow13; ovs-ofctl add-flow sw4 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw4 "table=1, priority=0, in_port=2 actions=4" -O Openflow13; ovs-ofctl add-flow sw4 "table=1, priority=0, in_port=4 actions=2" -O Openflow13; ovs-ofctl del-flows sw5 -O Openflow13; ovs-ofctl add-flow sw5 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw5 "table=1, priority=0, in_port=3 actions=5" -O Openflow13; ovs-ofctl add-flow sw5 "table=1, priority=0, in_port=5 actions=3" -O Openflow13; 
+
+
 Redirecionando.
 
 1 - insere flows na rsu origem de maior prioridade. ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x10, in_port=1,dl_src=00:00:00:00:00:01 actions=2" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x10 ,dl_dst=00:00:00:00:00:01 actions=1" -O Openflow13
@@ -455,22 +476,62 @@ cat car2tf_5003.txt | cut -d' ' -f3 | grep -v 1498
 
 
 =====================================================================//==================================================//==================================================================//=======================//=========
-cat server_e.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_e.txt | grep 5003 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_e.txt | grep 5003 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_etf.txt;  for i in {10..21}; do cat server_etf.txt | grep 200.0.10.1$i > server_etf_car$(echo $i-10|bc).txt; done
+cat server_e.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_e.txt | grep 5003 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_e.txt | grep 5003 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_etf.txt;  for i in {10..24}; do cat server_etf.txt | grep 200.0.10.1$i > server_etf_car$(echo $i-10|bc)_$1.txt; done; cat server_etf_car?_$1.txt | sort -n > result/server_etf_car_$1\_tt.txt
+
+cat server_e2.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_e2.txt | grep 5004 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_e2.txt | grep 5004 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_e2tf.txt;  for i in {10..24}; do cat server_e2tf.txt | grep 200.0.10.1$i > server_e2tf_car$(echo $i-10|bc)_$1.txt; done; cat server_e2tf_car?_$1.txt | sort -n > result/server_e2tf_car_$1\_tt.txt
+
+cat server_g.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'|  bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_g.txt | grep 5005 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_g.txt | grep 5005 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_gtf.txt;  for i in {10..24}; do cat server_gtf.txt | grep 200.0.10.1$i > server_gtf_car$(echo $i-10|bc)_$1.txt; done; cat server_gtf_car?_$1.txt | sort -n > result/server_gtf_car_$1\_tt.txt
+
+cat server_s1.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_s1.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_s1.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_s1tf.txt;  for i in {10..24}; do cat server_s1tf.txt | grep 200.0.10.1$i > server_s1tf_car$(echo $i-10|bc)_$1.txt; done
+
+cat server_s2.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_s2.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_s2.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_s2tf.txt;  for i in {10..24}; do cat server_s2tf.txt | grep 200.0.10.1$i > server_s2tf_car$(echo $i-10|bc)_$1.txt; done
+
+cat server_s3.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/'| sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_s3.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_s3.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_s3tf.txt;  for i in {10..24}; do cat server_s3tf.txt | grep 200.0.10.1$i > server_s3tf_car$(echo $i-10|bc)_$1.txt; done
+
+cat server_s?tf_car?_$1.txt | sort -n > result/server_stf_car_$1\_tt.txt
+
+for i in {0..14}; do cat car$i.txt | grep IP | grep -v ARP | grep -v ICMP| sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > cart.txt; cat cart.txt | cut -d'.' -f2 > z.txt; cat cart.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/'| sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat cart.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > cartf.txt; echo $i; cat car$i.txt | grep '>' | grep -v ICMP | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat car$i.txt | grep '>' | grep -v ICMP | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste cartf.txt ipo.txt ipd.txt| expand | tr -s ' ' > car$(echo $i)tf_$1.txt; done 
+
+for i in $(ls car{7..10}\tf_$1.txt); do  rm -f temp1.txt; rm -f temp2.txt; cp $i $i\.old; for j in $(cat $i | cut -d'.' -f1); do echo $j+150|bc >> temp1.txt; done; cat $i | cut -d'.' -f2-10 > temp2.txt; paste temp1.txt temp2.txt | expand | tr -s ' ' | sed 's/ /./' > $i; echo $i; done
+
+for i in $(ls car{11..14}\tf_$1.txt); do  rm -f temp1.txt; rm -f temp2.txt; cp $i $i\.old; for j in $(cat $i | cut -d'.' -f1); do echo $j+225|bc >> temp1.txt; done; cat $i | cut -d'.' -f2-10 > temp2.txt; paste temp1.txt temp2.txt | expand | tr -s ' ' | sed 's/ /./' > $i; echo $i; done
+
+for i in $(ls car*tf_$1.txt); do for j in {5002..5005}; do cat $i | grep "\.$j" | grep 1498 > $(echo $i | cut -d'.' -f1)_$j.txt; done; done
+
+cat car?tf_$1\_5002.txt | sort -n > result/cartf_$1\_5002_tt.txt; cat car?tf_$1\_5003.txt | sort -n > result/cartf_$1\_5003_tt.txt; cat car?tf_$1\_5004.txt | sort -n > result/cartf_$1\_5004_tt.txt; cat car?tf_$1\_5005.txt | sort -n > result/cartf_$1\_5005_tt.txt
+
+for i in $(ls ping*); do rm -f s.txt; x=$(cat ping0_s.txt | grep 'from' |cut -d' ' -f1 | head -1); for j in $(cat $i | grep 'from' |cut -d' ' -f1); do echo $x-$j | bc | sed 's/-//' >> s.txt; done; cat $i | grep 'from' | cut -d'=' -f4 | cut -d' ' -f1 > d.txt; paste s.txt d.txt | expand | tr -s ' ' > delay$(echo $i | cut -d'.' -f1 | sed 's/ping//')_$1.txt; done
+
+cat delay?_g_$1.txt |sort -n > result/delay_g_$1\_tt.txt; cat delay?_e_$1.txt |sort -n > result/delay_e_$1\_tt.txt; cat delay?_e2_$1.txt |sort -n > result/delay_e2_$1\_tt.txt; cat delay?_s_$1.txt |sort -n > result/delay_s_$1\_tt.txt
 
 
-cat server_e2.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_e2.txt | grep 5004 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_e2.txt | grep 5004 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_e2tf.txt;  for i in {10..21}; do cat server_e2tf.txt | grep 200.0.10.1$i > server_e2tf_car$(echo $i-10|bc).txt; done
-
-cat server_g.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'|  bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_g.txt | grep 5005 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_g.txt | grep 5005 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_gtf.txt;  for i in {10..21}; do cat server_gtf.txt | grep 200.0.10.1$i > server_gtf_car$(echo $i-10|bc).txt; done
-
-cat server_s1.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_s1.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_s1.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_s1tf.txt;  for i in {10..21}; do cat server_s1tf.txt | grep 200.0.10.1$i > server_s1tf_car$(echo $i-10|bc).txt; done
-
-cat server_s2.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/' | sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_s2.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_s2.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_s2tf.txt;  for i in {10..21}; do cat server_s2tf.txt | grep 200.0.10.1$i > server_s2tf_car$(echo $i-10|bc).txt; done
-
-cat server_s3.txt | grep IP | sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > servert.txt; cat servert.txt | cut -d'.' -f2 > z.txt; cat servert.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/'| sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat servert.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > servertf.txt; cat server_s3.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat server_s3.txt | grep 5002 | grep -v ttl | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste servertf.txt ipo.txt ipd.txt| expand | tr -s ' ' > server_s3tf.txt;  for i in {10..21}; do cat server_s3tf.txt | grep 200.0.10.1$i > server_s3tf_car$(echo $i-10|bc).txt; done
-
-for i in {0..11}; do cat car$i.txt | grep IP | grep -v ARP | grep -v ICMP| sed 's/00:0/ 00:0/' | tr -s ' ' | cut -d' ' -f2,9,18 | cut -d')' -f1 | sed 's/,//'|cut -d':' -f2,3 | grep : > cart.txt; cat cart.txt | cut -d'.' -f2 > z.txt; cat cart.txt | cut -d':' -f1 | sed 's/00/0*60/' | sed 's/01/1*60/' | sed 's/02/2*60/' | sed 's/03/3*60/'| sed 's/04/4*60/' | sed 's/05/5*60/'| bc > x.txt; cat cart.txt | cut -d':' -f2 | cut -d'.' -f1 > y.txt; paste x.txt y.txt | expand | tr -s ' ' | tr ' ' '+' | bc > w.txt;  cat z.txt | tr ' ' 'x' >j.txt; paste w.txt j.txt | expand | tr -s ' ' | tr ' ' '.' | tr 'x' ' ' > cartf.txt; echo $i; cat car$i.txt | grep '>' | grep -v ICMP | tr -s ' ' | cut -d':' -f1 | cut -d'.' -f1-4 > ipo.txt; cat car$i.txt | grep '>' | grep -v ICMP | tr -s ' ' | cut -d':' -f1 | cut -d' ' -f4 > ipd.txt; paste cartf.txt ipo.txt ipd.txt| expand | tr -s ' ' > car$(echo $i)tf.txt; done 
 
 
-for i in $(ls car*tf.txt); do for j in {5002..5005}; do cat $i | grep "\.$j" | grep 1498 > $(echo $i | cut -d'.' -f1)_$j.txt; done; done
 
-for i in $(ls ping*); do cat $i |grep ms | cut -d'=' -f4 | grep -v % | cut -d' ' -f1 > delay$(echo $i | sed 's/ping//'); done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

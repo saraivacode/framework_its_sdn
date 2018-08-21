@@ -1,19 +1,3 @@
-# traceserver_s1_car0<-read.table(file = 'server_s1tf_car0.txt', sep=' ')
-# names(traceserver_s1_car0)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s1_car0$time <- as.POSIXlt(traceserver_s1_car0$time, origin = "1987-10-05 11:00:00")
-# traceserver_s1_car0$size<- traceserver_s1_car0$size*8
-# taxabps1segserver_s1_car0<-aggregate(list(size = traceserver_s1_car0$size), list(segundos = cut(traceserver_s1_car0$time, "1 sec")), sum)
-# taxabps1segserverts_s1_car0<-ts(traceserver_s1_car0$size, frequency = 1)
-# 
-# traceserver_s2_car0<-read.table(file = 'server_s2tf_car0.txt', sep=' ')
-# names(traceserver_s2_car0)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s2_car0$time <- as.POSIXlt(traceserver_s2_car0$time, origin = "1987-10-05 11:00:00")
-# traceserver_s2_car0$size<- traceserver_s2_car0$size*8
-# taxabps1segserver_s2_car0<-aggregate(list(size = traceserver_s2_car0$size), list(segundos = cut(traceserver_s2_car0$time, "1 sec")), sum)
-# taxabps1segserverts_s2_car0<-ts(traceserver_s2_car0$size, frequency = 1)
-
 traceserver_s3_car0<-read.table(file = 'server_s3tf_car0.txt', sep=' ')
 names(traceserver_s3_car0)<-c("time", "id", "size", "ori", "dest" )
 options(digits.secs = 6)
@@ -23,22 +7,6 @@ taxabps1segserver_s3_car0<-aggregate(list(size = traceserver_s3_car0$size), list
 taxabps1segserverts_s3_car0<-ts(traceserver_s3_car0$size, frequency = 1)
 
 taxabps1segserver_s_car0 <-taxabps1segserver_s3_car0
-
-# traceserver_s1_car1<-read.table(file = 'server_s1tf_car1.txt', sep=' ')
-# names(traceserver_s1_car1)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s1_car1$time <- as.POSIXlt(traceserver_s1_car1$time, origin = "1987-10-05 11:00:00")
-# traceserver_s1_car1$size<- traceserver_s1_car1$size*8
-# taxabps1segserver_s1_car1<-aggregate(list(size = traceserver_s1_car1$size), list(segundos = cut(traceserver_s1_car1$time, "1 sec")), sum)
-# taxabps1segserverts_s1_car1<-ts(traceserver_s1_car1$size, frequency = 1)
-# 
-# traceserver_s2_car1<-read.table(file = 'server_s2tf_car1.txt', sep=' ')
-# names(traceserver_s2_car1)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s2_car1$time <- as.POSIXlt(traceserver_s2_car1$time, origin = "1987-10-05 11:00:00")
-# traceserver_s2_car1$size<- traceserver_s2_car1$size*8
-# taxabps1segserver_s2_car1<-aggregate(list(size = traceserver_s2_car1$size), list(segundos = cut(traceserver_s2_car1$time, "1 sec")), sum)
-# taxabps1segserverts_s2_car1<-ts(traceserver_s2_car1$size, frequency = 1)
 
 traceserver_s3_car1<-read.table(file = 'server_s3tf_car1.txt', sep=' ')
 names(traceserver_s3_car1)<-c("time", "id", "size", "ori", "dest" )
@@ -50,22 +18,6 @@ taxabps1segserverts_s3_car1<-ts(traceserver_s3_car1$size, frequency = 1)
 
 taxabps1segserver_s_car1 <-taxabps1segserver_s3_car1
 
-# traceserver_s1_car2<-read.table(file = 'server_s1tf_car2.txt', sep=' ')
-# names(traceserver_s1_car2)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s1_car2$time <- as.POSIXlt(traceserver_s1_car2$time, origin = "1987-10-05 11:00:00")
-# traceserver_s1_car2$size<- traceserver_s1_car2$size*8
-# taxabps1segserver_s1_car2<-aggregate(list(size = traceserver_s1_car2$size), list(segundos = cut(traceserver_s1_car2$time, "1 sec")), sum)
-# taxabps1segserverts_s1_car2<-ts(traceserver_s1_car2$size, frequency = 1)
-# 
-# traceserver_s2_car2<-read.table(file = 'server_s2tf_car2.txt', sep=' ')
-# names(traceserver_s2_car2)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s2_car2$time <- as.POSIXlt(traceserver_s2_car2$time, origin = "1987-10-05 11:00:00")
-# traceserver_s2_car2$size<- traceserver_s2_car2$size*8
-# taxabps1segserver_s2_car2<-aggregate(list(size = traceserver_s2_car2$size), list(segundos = cut(traceserver_s2_car2$time, "1 sec")), sum)
-# taxabps1segserverts_s2_car2<-ts(traceserver_s2_car2$size, frequency = 1)
-
 traceserver_s3_car2<-read.table(file = 'server_s3tf_car2.txt', sep=' ')
 names(traceserver_s3_car2)<-c("time", "id", "size", "ori", "dest" )
 options(digits.secs = 6)
@@ -76,14 +28,6 @@ taxabps1segserverts_s3_car2<-ts(traceserver_s3_car2$size, frequency = 1)
 
 taxabps1segserver_s_car2 <-taxabps1segserver_s3_car2
 
-# traceserver_s1_car3<-read.table(file = 'server_s1tf_car3.txt', sep=' ')
-# names(traceserver_s1_car3)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s1_car3$time <- as.POSIXlt(traceserver_s1_car3$time, origin = "1987-10-05 11:00:00")
-# traceserver_s1_car3$size<- traceserver_s1_car3$size*8
-# taxabps1segserver_s1_car3<-aggregate(list(size = traceserver_s1_car3$size), list(segundos = cut(traceserver_s1_car3$time, "1 sec")), sum)
-# taxabps1segserverts_s1_car3<-ts(traceserver_s1_car3$size, frequency = 1)
-
 traceserver_s2_car3<-read.table(file = 'server_s2tf_car3.txt', sep=' ')
 names(traceserver_s2_car3)<-c("time", "id", "size", "ori", "dest" )
 options(digits.secs = 6)
@@ -92,24 +36,7 @@ traceserver_s2_car3$size<- traceserver_s2_car3$size*8
 taxabps1segserver_s2_car3<-aggregate(list(size = traceserver_s2_car3$size), list(segundos = cut(traceserver_s2_car3$time, "1 sec")), sum)
 taxabps1segserverts_s2_car3<-ts(traceserver_s2_car3$size, frequency = 1)
 
-# traceserver_s3_car3<-read.table(file = 'server_s3tf_car3.txt', sep=' ')
-# names(traceserver_s3_car3)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s3_car3$time <- as.POSIXlt(traceserver_s3_car3$time, origin = "1987-10-05 11:00:00")
-# traceserver_s3_car3$size<- traceserver_s3_car3$size*8
-# taxabps1segserver_s3_car3<-aggregate(list(size = traceserver_s3_car3$size), list(segundos = cut(traceserver_s3_car3$time, "1 sec")), sum)
-# taxabps1segserverts_s3_car3<-ts(traceserver_s3_car3$size, frequency = 1)
-
 taxabps1segserver_s_car3 <-taxabps1segserver_s2_car3
-
-
-# traceserver_s1_car4<-read.table(file = 'server_s1tf_car4.txt', sep=' ')
-# names(traceserver_s1_car4)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s1_car4$time <- as.POSIXlt(traceserver_s1_car4$time, origin = "1987-10-05 11:00:00")
-# traceserver_s1_car4$size<- traceserver_s1_car4$size*8
-# taxabps1segserver_s1_car4<-aggregate(list(size = traceserver_s1_car4$size), list(segundos = cut(traceserver_s1_car4$time, "1 sec")), sum)
-# taxabps1segserverts_s1_car4<-ts(traceserver_s1_car4$size, frequency = 1)
 
 traceserver_s2_car4<-read.table(file = 'server_s2tf_car4.txt', sep=' ')
 names(traceserver_s2_car4)<-c("time", "id", "size", "ori", "dest" )
@@ -118,14 +45,6 @@ traceserver_s2_car4$time <- as.POSIXlt(traceserver_s2_car4$time, origin = "1987-
 traceserver_s2_car4$size<- traceserver_s2_car4$size*8
 taxabps1segserver_s2_car4<-aggregate(list(size = traceserver_s2_car4$size), list(segundos = cut(traceserver_s2_car4$time, "1 sec")), sum)
 taxabps1segserverts_s2_car4<-ts(traceserver_s2_car4$size, frequency = 1)
-
-# traceserver_s3_car4<-read.table(file = 'server_s3tf_car4.txt', sep=' ')
-# names(traceserver_s3_car4)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s3_car4$time <- as.POSIXlt(traceserver_s3_car4$time, origin = "1987-10-05 11:00:00")
-# traceserver_s3_car4$size<- traceserver_s3_car4$size*8
-# taxabps1segserver_s3_car4<-aggregate(list(size = traceserver_s3_car4$size), list(segundos = cut(traceserver_s3_car4$time, "1 sec")), sum)
-# taxabps1segserverts_s3_car4<-ts(traceserver_s3_car4$size, frequency = 1)
 
 taxabps1segserver_s_car4 <-taxabps1segserver_s2_car4
 
@@ -137,22 +56,6 @@ traceserver_s1_car5$size<- traceserver_s1_car5$size*8
 taxabps1segserver_s1_car5<-aggregate(list(size = traceserver_s1_car5$size), list(segundos = cut(traceserver_s1_car5$time, "1 sec")), sum)
 taxabps1segserverts_s1_car5<-ts(traceserver_s1_car5$size, frequency = 1)
 
-# traceserver_s2_car5<-read.table(file = 'server_s2tf_car5.txt', sep=' ')
-# names(traceserver_s2_car5)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s2_car5$time <- as.POSIXlt(traceserver_s2_car5$time, origin = "1987-10-05 11:00:00")
-# traceserver_s2_car5$size<- traceserver_s2_car5$size*8
-# taxabps1segserver_s2_car5<-aggregate(list(size = traceserver_s2_car5$size), list(segundos = cut(traceserver_s2_car5$time, "1 sec")), sum)
-# taxabps1segserverts_s2_car5<-ts(traceserver_s2_car5$size, frequency = 1)
-# 
-# traceserver_s3_car5<-read.table(file = 'server_s3tf_car5.txt', sep=' ')
-# names(traceserver_s3_car5)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s3_car5$time <- as.POSIXlt(traceserver_s3_car5$time, origin = "1987-10-05 11:00:00")
-# traceserver_s3_car5$size<- traceserver_s3_car5$size*8
-# taxabps1segserver_s3_car5<-aggregate(list(size = traceserver_s3_car5$size), list(segundos = cut(traceserver_s3_car5$time, "1 sec")), sum)
-# taxabps1segserverts_s3_car5<-ts(traceserver_s3_car5$size, frequency = 1)
-
 taxabps1segserver_s_car5 <-taxabps1segserver_s1_car5
 
 traceserver_s1_car6<-read.table(file = 'server_s1tf_car6.txt', sep=' ')
@@ -162,22 +65,6 @@ traceserver_s1_car6$time <- as.POSIXlt(traceserver_s1_car6$time, origin = "1987-
 traceserver_s1_car6$size<- traceserver_s1_car6$size*8
 taxabps1segserver_s1_car6<-aggregate(list(size = traceserver_s1_car6$size), list(segundos = cut(traceserver_s1_car6$time, "1 sec")), sum)
 taxabps1segserverts_s1_car6<-ts(traceserver_s1_car6$size, frequency = 1)
-
-# traceserver_s2_car6<-read.table(file = 'server_s2tf_car6.txt', sep=' ')
-# names(traceserver_s2_car6)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s2_car6$time <- as.POSIXlt(traceserver_s2_car6$time, origin = "1987-10-05 11:00:00")
-# traceserver_s2_car6$size<- traceserver_s2_car6$size*8
-# taxabps1segserver_s2_car6<-aggregate(list(size = traceserver_s2_car6$size), list(segundos = cut(traceserver_s2_car6$time, "1 sec")), sum)
-# taxabps1segserverts_s2_car6<-ts(traceserver_s2_car6$size, frequency = 1)
- 
-# traceserver_s3_car6<-read.table(file = 'server_s3tf_car6.txt', sep=' ')
-# names(traceserver_s3_car6)<-c("time", "id", "size", "ori", "dest" )
-# options(digits.secs = 6)
-# traceserver_s3_car6$time <- as.POSIXlt(traceserver_s3_car6$time, origin = "1987-10-05 11:00:00")
-# traceserver_s3_car6$size<- traceserver_s3_car6$size*8
-# taxabps1segserver_s3_car6<-aggregate(list(size = traceserver_s3_car6$size), list(segundos = cut(traceserver_s3_car6$time, "1 sec")), sum)
-# taxabps1segserverts_s3_car6<-ts(traceserver_s3_car6$size, frequency = 1)
 
 taxabps1segserver_s_car6 <-taxabps1segserver_s1_car6
 
@@ -261,51 +148,47 @@ cartotal_s<-c(taxabps1segcar0_s$size[1:300], taxabps1segcar1_s$size[1:300], taxa
 carmean_s<-c(taxabps1segcar0_s$size[1:300] + taxabps1segcar1_s$size[1:300] + taxabps1segcar2_s$size[1:300] + taxabps1segcar3_s$size[1:300] + taxabps1segcar4_s$size[1:300] + taxabps1segcar5_s$size[1:300] + taxabps1segcar6_s$size[1:300])/7
 fctime_s<-c(ctime, ctime, ctime, ctime, ctime, ctime, ctime)
 
-require(Rmisc)
-x<- cbind(fctime_s,cartotal_s)
-x<-data.frame(x)
-y<-group.CI(cartotal_s~fctime_s,x,ci = 0.95)
-require(plotrix)
-plotCI(ctime_s, carmean_s, ui=y$cartotal_s.upper, li=y$cartotal_s.lower, col="red", main="Server E", ylab = "Taxa de entrega de pacotes - PDR", xlab = "tempo (s)", ylim = range(0:1e+06) )
-lines(ctime_s,carmean_s, type = "l", col="black", lwd="2")
-
-par(new=T)
-
 stime_s<-c(0:299)
 #tt<-c(taxabps1segserver_s_car0$size[1:195], taxabps1segserver_s_car1$size[1:195], taxabps1segserver_s_car2$size[1:195], taxabps1segserver_s_car3$size[1:195], taxabps1segserver_s_car4$size[1:195], taxabps1segserver_s_car5$size[1:195], taxabps1segserver_s_car6$size[1:195], taxabps1segserver_s_car7$size[1:195], taxabps1segserver_s_car8$size[1:195], taxabps1segserver_s_car9$size[1:195], taxabps1segserver_s_car10$size[1:195], taxabps1segserver_s_car11$size[1:195], taxabps1segserver_s_car12$size[1:195], taxabps1segserver_s_car13$size[1:195], taxabps1segserver_s_car14$size[1:195], taxabps1segserver_s_car15$size[1:195], taxabps1segserver_s_car16$size[1:195], taxabps1segserver_s_car17$size[1:195], taxabps1segserver_s_car18$size[1:195], taxabps1segserver_s_car19$size[1:195])
 servertotal_s<-c(taxabps1segserver_s_car0$size[1:300], taxabps1segserver_s_car1$size[1:300], taxabps1segserver_s_car2$size[1:300], taxabps1segserver_s_car3$size[1:300], taxabps1segserver_s_car4$size[1:300], taxabps1segserver_s_car5$size[1:300], taxabps1segserver_s_car6$size[1:300])
 servermean_s<-c(taxabps1segserver_s_car0$size[1:300] + taxabps1segserver_s_car1$size[1:300] + taxabps1segserver_s_car2$size[1:300] + taxabps1segserver_s_car3$size[1:300] + taxabps1segserver_s_car4$size[1:300] + taxabps1segserver_s_car5$size[1:300] + taxabps1segserver_s_car6$size[1:300])/7
 fstime_s<-c(stime_s, stime_s, stime_s, stime_s, stime_s, stime_s, stime_s)
 
-require(Rmisc)
-x<- cbind(fstime_s,servertotal_s)
-x<-data.frame(x)
-y<-group.CI(servertotal_s~fstime_s,x,ci = 0.95)
-require(plotrix)
-plotCI(stime_s, servermean_s, ui=y$servertotal_s.upper, li=y$servertotal_s.lower, col="blue", main="Server E", ylab = "Taxa de entrega de pacotes - PDR", xlab = "tempo (s)", ylim = range(0:1e+06) )
-lines(stime_s,servermean_s, type = "l", col="black", lwd="2")
-
-
-par(new=T)
-
-
-dtime_s<-c(0:300)
+dtime_s<-c(0:299)
 delaytotal_s<-c(delay_s0$delay[1:300], delay_s1$delay[1:300], delay_s2$delay[1:300], delay_s3$delay[1:300], delay_s4$delay[1:300], delay_s5$delay[1:300], delay_s6$delay[1:300])
 delaymean_s<-c(delay_s0$delay[1:300] + delay_s1$delay[1:300] + delay_s2$delay[1:300] + delay_s3$delay[1:300] + delay_s4$delay[1:300] + delay_s5$delay[1:300] + delay_s6$delay[1:300])/7
 fdtime_s<-c(dtime_s, dtime_s, dtime_s, dtime_s, dtime_s, dtime_s, dtime_s)
 
 require(Rmisc)
-x<- cbind(fdtime_s,delaytotal_s)
-x<-data.frame(x)
-y<-group.CI(delaytotal_s~fdtime_s,x,ci = 0.95)
+x1<- cbind(fctime_s,cartotal_s)
+x1<-data.frame(x1)
+y1<-group.CI(cartotal_s~fctime_s,x1,ci = 0.95)
+
+x2<- cbind(fstime_s,servertotal_s)
+x2<-data.frame(x2)
+y2<-group.CI(servertotal_s~fstime_s,x2,ci = 0.95)
+
+x3<- cbind(fdtime_s,delaytotal_s)
+x3<-data.frame(x3)
+y3<-group.CI(delaytotal_s~fdtime_s,x3,ci = 0.95)
+
+
 require(plotrix)
 
+par(mar = c(5,5,2,5))
+
+plotCI(ctime_s, carmean_s, ui=y1$cartotal_s.upper, li=y1$cartotal_s.lower, col="red", main="Server S", ylab = "Throughput (bps)", xlab = "time(s)", ylim = range(0:1e+06) )
+lines(ctime_s,carmean_s, type = "l", col="black", lwd="2")
+
+par(new=T)
+plotCI(stime_s, servermean_s, ui=y2$servertotal_s.upper, li=y2$servertotal_s.lower, col="blue", axes=F, xlab=NA, ylab=NA, ylim = range(0:1e+06) )
+lines(stime_s,servermean_s, type = "l", col="black", lwd="2")
+
 par(new = T)
-# with(d, plot(ttime, ttm, pch=16, axes=F, xlab=NA, ylab=NA, cex=1.2))
-plotCI(ttime, delaymean_s, ui=y$delaytotal_s.upper, li=y$delaytotal_s.lower, col="orange", axes=F, xlab=NA, ylab=NA, cex=1.2)
+plotCI(dtime_s[2:300], delaymean_s[2:300], ui=y3$delaytotal_s.upper[2:300], li=y3$delaytotal_s.lower[2:300], col="orange", axes=F, xlab=NA, ylab=NA, ylim = range(0:50))
 lines(dtime_s[2:300],delaymean_s[2:300], type = "l", col="black", lwd="2")
 axis(side = 4)
-mtext(side = 4, line = 3, 'Number genes selected')
+mtext(side = 4, line = 3, 'Delay (ms)')
 legend("topleft",
-       legend=c(expression(-log[10](italic(p))), "N genes"),
-       lty=c(1,0), pch=c(NA, 16), col=c("red3", "black"))
+       legend=c("Server received", "Car Sent", "Delay"),
+       lty=c(1,1,1), col=c("blue", "red", "orange"))
