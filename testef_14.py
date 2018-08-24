@@ -135,9 +135,21 @@ def topology():
     # print( "*** Shutting ports" )
     time.sleep(1)
 
-    os.system('ovs-ofctl del-flows sw1 -O Openflow13; ovs-ofctl add-flow sw1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl del-flows sw2 -O Openflow13; ovs-ofctl add-flow sw2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, actions=CONTROLLER:65535" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=1 actions=4" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=2 actions=4" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, in_port=3 actions=4" -O Openflow13; ovs-ofctl del-flows rsu1 -O Openflow13; ovs-ofctl del-flows rsu2 -O Openflow13; ovs-ofctl del-flows rsu3 -O Openflow13; ovs-ofctl add-flow rsu1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=1, actions=4" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=4, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=3,5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=4,5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, arp actions=3,5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13; mysql -u root -pwifi -e "delete from redirect;" framework 2> /dev/null')
+    os.system('ovs-ofctl del-flows sw1 -O Openflow13; ovs-ofctl add-flow sw1 "table=0, priority=0, actions=goto_table:1" -O Openflow13;')
 
-    os.system('ovs-ofctl del-flows sw3 -O Openflow13; ovs-ofctl add-flow sw3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw3 "table=1, priority=0, in_port=3 actions=1" -O Openflow13; ovs-ofctl add-flow sw3 "table=1, priority=0, in_port=1 actions=3" -O Openflow13; ovs-ofctl del-flows sw4 -O Openflow13; ovs-ofctl add-flow sw4 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw4 "table=1, priority=0, in_port=2 actions=4" -O Openflow13; ovs-ofctl add-flow sw4 "table=1, priority=0, in_port=4 actions=2" -O Openflow13; ovs-ofctl del-flows sw5 -O Openflow13; ovs-ofctl add-flow sw5 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw5 "table=1, priority=0, in_port=3 actions=5" -O Openflow13; ovs-ofctl add-flow sw5 "table=1, priority=0, in_port=5 actions=3" -O Openflow13;')
+    os.system('ovs-ofctl del-flows sw2 -O Openflow13; ovs-ofctl add-flow sw2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw2 "table=1, priority=0, actions=CONTROLLER:65535" -O Openflow13;')
+
+    os.system('ovs-ofctl del-flows sw3 -O Openflow13; ovs-ofctl add-flow sw3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw3 "table=1, priority=0, in_port=3 actions=1" -O Openflow13; ovs-ofctl add-flow sw3 "table=1, priority=0, in_port=1 actions=3" -O Openflow13;')
+
+    os.system('ovs-ofctl del-flows sw4 -O Openflow13; ovs-ofctl add-flow sw4 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw4 "table=1, priority=0, in_port=2 actions=4" -O Openflow13; ovs-ofctl add-flow sw4 "table=1, priority=0, in_port=4 actions=2" -O Openflow13;')
+
+    os.system('ovs-ofctl del-flows sw5 -O Openflow13; ovs-ofctl add-flow sw5 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow sw5 "table=1, priority=0, in_port=3 actions=5" -O Openflow13; ovs-ofctl add-flow sw5 "table=1, priority=0, in_port=5 actions=3" -O Openflow13;')
+
+    os.system('ovs-ofctl del-flows rsu1 -O Openflow13; ovs-ofctl add-flow rsu1 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu1 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13;')
+
+    os.system('ovs-ofctl del-flows rsu2 -O Openflow13; ovs-ofctl add-flow rsu2 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=1, actions=4" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=0, in_port=4, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu2 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13;')
+
+    os.system('ovs-ofctl del-flows rsu3 -O Openflow13; ovs-ofctl add-flow rsu3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13;')
 
     os.system('rm -f car*; rm -f server*; rm -f ping*; rm -f delay*; /etc/init.d/network-manager stop')
 
@@ -147,14 +159,7 @@ def topology():
     #os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
     time.sleep(4)
     os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
-    #os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
-
-    server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
-    server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
-    server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
-    server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
-    server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
-    server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
+    # os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
     server_s1.cmd('arp -f ./mac2.txt &')
     server_s2.cmd('arp -f ./mac2.txt &')
@@ -167,8 +172,38 @@ def topology():
 
     for x in xrange(0,15):
         cars[x].cmd('arp -f ./mac.txt &')
-        time.sleep(1)
+        time.sleep(0.5)
 
+    server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
+    server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
+    server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
+    server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
+    server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
+    server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
+
+
+    ####################################################Scenario F
+    print( "*** Starting F - T1")
+
+    # cars[0].setPosition('2107,250,0')
+    # cars[1].setPosition('2107,247,0')
+    # cars[2].setPosition('2104,250,0')
+
+    # cars[3].setPosition('1607,247,0')
+    # cars[4].setPosition('1604,250,0')
+
+    # cars[5].setPosition('1107,250,0')
+    # cars[6].setPosition('1104,247,0')
+
+
+    # cars[7].setPosition('150,250,0')
+    # cars[8].setPosition('200,250,0')
+    # cars[9].setPosition('250,250,0')
+    # cars[10].setPosition('300,250,0')
+    # cars[11].setPosition('350,250,0')
+    # cars[12].setPosition('400,243,0')
+    # cars[13].setPosition('450,243,0')
+    # cars[14].setPosition('500,243,0')
 
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:01 actions=1" -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:01 actions=4" -O Openflow13')
@@ -199,68 +234,13 @@ def topology():
     os.system('ovs-ofctl add-flow sw2 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:a5 actions=4" -O Openflow13')
 
 
-    ####################################################Scenario F
-    print( "*** Starting F - T1")
-
-    # cars[0].setPosition('2107,250,0')
-    # cars[1].setPosition('2107,247,0')
-    # cars[2].setPosition('2104,250,0')
-
-    # cars[3].setPosition('1607,247,0')
-    # cars[4].setPosition('1604,250,0')
-
-    # cars[5].setPosition('1107,250,0')
-    # cars[6].setPosition('1104,247,0')
-
-
-    # cars[7].setPosition('150,250,0')
-    # cars[8].setPosition('200,250,0')
-    # cars[9].setPosition('250,250,0')
-    # cars[10].setPosition('300,250,0')
-    # cars[11].setPosition('350,250,0')
-    # cars[12].setPosition('400,243,0')
-    # cars[13].setPosition('450,243,0')
-    # cars[14].setPosition('500,243,0')
-
     time.sleep(5)
-
-
-    # for x in xrange(0,7):
-    # # for x in xrange(0,1,2):
-    #     cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
-
-    #     print("*** Car[%d] connect to server_s at 500kbps" %x)
-    #     # cars[x].cmd('arp -s 200.0.10.2 00:00:00:00:00:a2 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5002 -i u24000 -d 1470 200.0.10.2 -q &")
-    #     # cars[x].cmdPrint("rm -f ping%d_s.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_s.txt; done &" %x)
-        
-    #     print("*** Car[%d] connect to server_e at 500kbps" %x)
-    #     # cars[x].cmd('arp -s 200.0.10.3 00:00:00:00:00:a3 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5003 -i u24000 -d 1470 200.0.10.3 -q &")
-    #     # cars[x].cmdPrint("rm -f ping%d_e.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_e.txt; done &" %x)
-
-    #     print("*** Car[%d] connect to server_e2 at 1Mbps" %x)
-    #     # cars[x].cmd('arp -s 200.0.10.4 00:00:00:00:00:a4 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5004 -i u12000 -d 1470 200.0.10.4 -q &")
-    #     # cars[x].cmdPrint("rm -f ping%d_e2.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_e2.txt; done &" %x)
-
-    #     print("*** Car[%d] connect to server_g at 500kbps" %x)
-    #     # cars[x].cmd('arp -s 200.0.10.5 00:00:00:00:00:a5 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5005 -i u24000 -d 1470 200.0.10.5 -q &")
-    #     # cars[x].cmdPrint("rm -f ping%d_g.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.5 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_g.txt; done &" %x)  
 
     for x in xrange(0,15):
         cars[x].cmd('./framework_its_sdn/carcon.sh &')
         # time.sleep(1)
 
-
-
-
-    time.sleep(65)
+    time.sleep(70)
 
     #########################################################################Scenario C1 (t2)
 
@@ -303,19 +283,13 @@ def topology():
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:06 actions=1" -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:06 actions=3" -O Openflow13')
 
-
     # time.sleep(1)
-    # os.system('./framework_its_sdn/lc_mob_2.sh > j7.txt &')
-
-    
+    # os.system('./framework_its_sdn/lc_mob_2.sh > j7.txt &')    
 
     time.sleep(5)
 
     #os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
-    
-
-    
     time.sleep(65)
 
 
@@ -345,8 +319,8 @@ def topology():
     # cars[13].setPosition('450,243,0')
     # cars[14].setPosition('500,243,0')
 
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:07 -O Openflow13')
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:07 -O Openflow13')
+    # os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:07 -O Openflow13')
+    # os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:07 -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:07 actions=1" -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:07 actions=3" -O Openflow13')
 
@@ -368,36 +342,6 @@ def topology():
     time.sleep(5)
 
     #os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
-
-    
-
-    # for x in xrange(7,11):
-
-    #     cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
-
-    #     print("*** Car[%d] connect to server_s at 500kbps" %x)
-    #     cars[x].cmd('arp -s 200.0.10.2 00:00:00:00:00:a2 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5002 -i u24000 -d 1470 200.0.10.2 -q &")
-    #     cars[x].cmdPrint("rm -f ping%d_s.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_s.txt; done &" %x)
-        
-    #     print("*** Car[%d] connect to server_e at 500kbps" %x)
-    #     cars[x].cmd('arp -s 200.0.10.3 00:00:00:00:00:a3 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5003 -i u24000 -d 1470 200.0.10.3 -q &")
-    #     cars[x].cmdPrint("rm -f ping%d_e.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_e.txt; done &" %x)
-
-    #     print("*** Car[%d] connect to server_e2 at 1Mbps" %x)
-    #     cars[x].cmd('arp -s 200.0.10.4 00:00:00:00:00:a4 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5004 -i u12000 -d 1470 200.0.10.4 -q &")
-    #     cars[x].cmdPrint("rm -f ping%d_e2.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_e2.txt; done &" %x)
-
-    #     print("*** Car[%d] connect to server_g at 500kbps" %x)
-    #     cars[x].cmd('arp -s 200.0.10.5 00:00:00:00:00:a5 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5005 -i u24000 -d 1470 200.0.10.5 -q &")
-    #     cars[x].cmdPrint("rm -f ping%d_g.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.5 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_g.txt; done &" %x)
 
     time.sleep(65)
 
@@ -454,37 +398,6 @@ def topology():
 
     # time.sleep(1)
     # os.system('./framework_its_sdn/lc_mob_2.sh > j7.txt &')
-
-    
-
-
-    # for x in xrange(11,15):
-
-    #     cars[x].cmd('tcpdump -i car%d-wlan0 --direction=out -tttttnnvS --immediate-mode -l > car%d.txt &' % (x, x))
-
-    #     print("*** Car[%d] connect to server_s at 500kbps" %x)
-    #     cars[x].cmd('arp -s 200.0.10.2 00:00:00:00:00:a2 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5002 -i u24000 -d 1470 200.0.10.2 -q &")
-    #     cars[x].cmdPrint("rm -f ping%d_s.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.2 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_s.txt; done &" %x)
-        
-    #     print("*** Car[%d] connect to server_e at 500kbps" %x)
-    #     cars[x].cmd('arp -s 200.0.10.3 00:00:00:00:00:a3 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5003 -i u24000 -d 1470 200.0.10.3 -q &")
-    #     cars[x].cmdPrint("rm -f ping%d_e.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.3 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_e.txt; done &" %x)
-
-    #     print("*** Car[%d] connect to server_e2 at 1Mbps" %x)
-    #     cars[x].cmd('arp -s 200.0.10.4 00:00:00:00:00:a4 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5004 -i u12000 -d 1470 200.0.10.4 -q &")
-    #     cars[x].cmdPrint("rm -f ping%d_e2.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.4 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_e2.txt; done &" %x)
-
-    #     print("*** Car[%d] connect to server_g at 500kbps" %x)
-    #     cars[x].cmd('arp -s 200.0.10.5 00:00:00:00:00:a5 &')
-    #     cars[x].cmdPrint("timeout 330 hping3 --udp -p 5005 -i u24000 -d 1470 200.0.10.5 -q &")
-    #     cars[x].cmdPrint("rm -f ping%d_g.txt" %x)
-    #     cars[x].cmdPrint("ping 200.0.10.5 -i 1 -c 330 | while read line; do echo $(date +%%s) - $line >> ping%d_g.txt; done &" %x) 
 
     time.sleep(75)
 
