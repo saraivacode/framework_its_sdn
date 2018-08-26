@@ -261,7 +261,8 @@ do
 							echo $i " esta associado a aplicacao C e será bloqueada"
 							echo "bloqueando " $i " em $rsu..."
 							#bloqueia trafego
-							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
+							#ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
+							ovs-ofctl add-flow $rsu "table=0, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=set_queue:0,goto_table:1" -O Openflow13
 							#cadastra na banco
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appc_bw)" framework 2> /dev/null
 							#envia flows
@@ -277,7 +278,8 @@ do
 					i=$(mysql -u root -pwifi -e "select mac from redirect where rsu_o='"$rsu"' and bw_value=$appc_bw" framework 2> /dev/null | grep -v mac | tail -1)
 					echo "Aplicacao C em $i estava redirecionada e sera bloqueada."
 					#Bloqueia aplicacao C na fonte
-					ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
+					#ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
+					ovs-ofctl add-flow $rsu "table=0, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=set_queue:0,goto_table:1" -O Openflow13
 					#Apaga redirecionamentos da aplicacao C
 					ovs-ofctl del-flows $rsu cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
 					ovs-ofctl del-flows rsu2 cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$i,udp,tp_src=5004 -O Openflow13
@@ -299,7 +301,8 @@ do
 							echo $i " esta associado a aplicacao B e será bloqueada"
 							echo "bloqueando " $i " em $rsu..."
 							#bloqueia trafego (limitacao desbloquear caso a ran fique livre)
-							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=drop" -O Openflow13
+							#ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=drop" -O Openflow13
+							ovs-ofctl add-flow $rsu "table=0, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.3, udp, tp_dst=5003 actions=set_queue:0,goto_table:1" -O Openflow13
 							#cadastra na banco
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appb_bw)" framework 2> /dev/null
 							#recalcula saldo
@@ -490,7 +493,8 @@ do
 							echo $i " esta associado a aplicacao C e será bloqueada"
 							echo "bloqueando " $i " em $rsu..."
 							#bloqueia trafego
-							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=drop" -O Openflow13
+							#ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=drop" -O Openflow13
+							ovs-ofctl add-flow $rsu "table=0, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=set_queue:0,goto_table:1" -O Openflow13
 							#cadastra na banco
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appc_bw)" framework 2> /dev/null
 							#recalcula saldo
@@ -509,7 +513,8 @@ do
 
 					echo "Aplicacao C em $i estava redirecionada para $rsudst e sera bloqueada."
 					#Bloqueia aplicacao C na fonte
-					ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=drop" -O Openflow13
+					#ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=drop" -O Openflow13
+					ovs-ofctl add-flow $rsu "table=0, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.4, udp, tp_dst=5004 actions=set_queue:0,goto_table:1" -O Openflow13
 					#Apaga redirecionamentos da aplicacao C
 					ovs-ofctl del-flows $rsu cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_src=$i,nw_dst=200.0.10.4,udp,tp_dst=5004 -O Openflow13
 					ovs-ofctl del-flows $rsudst cookie=0x1$(echo $rsu | cut -d'u' -f2)/-1,dl_dst=$i,udp,tp_src=5004 -O Openflow13
@@ -531,7 +536,8 @@ do
 							echo $i " esta associado a aplicacao B e será bloqueada"
 							echo "bloqueando " $i " em $rsu..."
 							#bloqueia trafego (limitacao desbloquear caso a ran fique livre)
-							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=drop" -O Openflow13
+							#ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.3, udp,tp_dst=5003 actions=drop" -O Openflow13
+							ovs-ofctl add-flow $rsu "table=0, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.3, udp, tp_dst=5003 actions=set_queue:0,goto_table:1" -O Openflow13
 							#cadastra na banco
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appb_bw)" framework 2> /dev/null
 							#recalcula saldo
