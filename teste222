@@ -506,8 +506,17 @@ for i in $(ls ping*); do rm -f s.txt; x=$(cat ping0_s.txt | grep 'from' |cut -d'
 
 cat delay*_g_$1.txt |sort -n > result/delay_g_$1\_tt.txt; cat delay*_e_$1.txt |sort -n > result/delay_e_$1\_tt.txt; cat delay*_e2_$1.txt |sort -n > result/delay_e2_$1\_tt.txt; cat delay*_s_$1.txt |sort -n > result/delay_s_$1\_tt.txt
 
+for i in $(ls logcar*.txt); do seg1=$(cat $i | grep ini | cut -d' ' -f2| cut -d'.' -f1); seg2=$(cat $i | grep transm | head -1 | cut -d' ' -f2| cut -d'.' -f1); j=$(($seg2 - $seg1));echo $i $j; done | cut -d' ' -f2 | sort -n > result/temp_$1\_tt.txt
+
 ==================================================================
 for i in $(ls logcar*.txt); do seg1=$(cat $i | grep ini | cut -d' ' -f2| cut -d'.' -f1); seg2=$(cat $i | grep transm | head -1 | cut -d' ' -f2| cut -d'.' -f1); j=$(($seg2 - $seg1));echo $i $j; done | cut -d' ' -f2 | sort -n
+
+while true; do for i in $(ls -ltra logcar*.txt | cut -d' ' -f5 | sort -n); do if [[ $i -gt 31 ]]; then echo $i; fi; done | wc -l; sleep 3; done
+
+
+=========================
+
+echo 'interface=rsu3-wlan1\ndriver=nl80211\nssid=rsu3\nwds_sta=1\nhw_mode=g\nchannel=11\nctrl_interface=/var/run/hostapd\nctrl_interface_group=0'
 
 
 

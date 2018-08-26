@@ -4,6 +4,7 @@
 
 import os
 import time
+import sys
 
 from mininet.node import Controller, OVSKernelSwitch, RemoteController
 from mininet.log import setLogLevel, info
@@ -13,7 +14,7 @@ from mn_wifi.link import wmediumd
 from mn_wifi.wmediumdConnector import interference
 from mininet.link import TCLink
 
-def topology():
+def topology(flag):
 
     "Create a network."
     net = Mininet_wifi(controller=None, switch=OVSKernelSwitch, link=wmediumd, wmediumd_mode=interference)
@@ -89,9 +90,9 @@ def topology():
 
     print( "*** Configuring links bandwidth" )
     link1.intf1.config( bw=17 )
-    link2.intf1.config( bw=5 )
-    link3.intf1.config( bw=5 )
-    link4.intf1.config( bw=5 )
+    link2.intf1.config( bw=5.25 )
+    link3.intf1.config( bw=5.25 )
+    link4.intf1.config( bw=5.25 )
 
     net.plotGraph(max_x=2400, max_y=500)
     
@@ -106,6 +107,12 @@ def topology():
     sw3.start([c1])
     sw4.start([c1])
     sw5.start([c1])
+
+    #os.system('for i in $(ls *.apconf); do echo ap_max_inactivity=10 >> $i; echo skip_inactivity_poll=1 >> $i; echo max_listen_interval=10 >> $i; done')
+
+    # os.system('hostapd_cli -i rsu3-wlan1 reload')
+    # os.system('hostapd_cli -i rsu2-wlan1 reload')
+    # os.system('hostapd_cli -i rsu1-wlan1 reload')
 
     server_s1.cmd('iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP')
     server_s2.cmd('iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP')
@@ -151,7 +158,7 @@ def topology():
 
     os.system('ovs-ofctl del-flows rsu3 -O Openflow13; ovs-ofctl add-flow rsu3 "table=0, priority=0, actions=goto_table:1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=1, actions=3" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=0, in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13;')
 
-    os.system('rm -f car*; rm -f server*; rm -f ping*; rm -f delay*; /etc/init.d/network-manager stop')
+    os.system('rm -f car*; rm -f server*; rm -f ping*; rm -f delay*; rm log*; /etc/init.d/network-manager stop')
 
     time.sleep(2)
 
@@ -159,6 +166,10 @@ def topology():
     #os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
     time.sleep(4)
     os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
+
+    if flag:
+        print( "*** Using local controllers script")
+    
     # os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
     server_s1.cmd('arp -f ./mac2.txt &')
@@ -243,8 +254,8 @@ def topology():
     time.sleep(70)
 
     #########################################################################Scenario C1 (t2)
-
-    #os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
+    # if flag:
+    #     os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
 
     time.sleep(5)
 
@@ -283,20 +294,20 @@ def topology():
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:06 actions=1" -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:06 actions=3" -O Openflow13')
 
-    # time.sleep(1)
-    # os.system('./framework_its_sdn/lc_mob_2.sh > j7.txt &')    
 
-    time.sleep(5)
+    time.sleep(20)
 
-    #os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+    if flag:
+        os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
-    time.sleep(65)
+    time.sleep(50)
 
 
     #########################################################################Scenario C2 (t3)
     print( "*** Starting C2 - T3")
 
-    #os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
+    if flag:
+        os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
 
     time.sleep(5)
 
@@ -336,19 +347,19 @@ def topology():
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:11 actions=1" -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:11 actions=2" -O Openflow13')
 
-    # time.sleep(1)
-    # os.system('./framework_its_sdn/lc_mob_2.sh > j7.txt &')
 
-    time.sleep(5)
+    time.sleep(20)
 
-    #os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+    if flag:
+        os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
-    time.sleep(65)
+    time.sleep(50)
 
     #########################################################################Scenario C3 (t4)
     print( "*** Starting C3 - T4")
 
-    #os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
+    if flag:
+        os.system('fuser -k ./framework_its_sdn/local_controllers.sh')
 
     time.sleep(5)
 
@@ -392,14 +403,12 @@ def topology():
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:15 actions=1" -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:15 actions=2" -O Openflow13')
 
-    time.sleep(5)
+    time.sleep(20)
 
-    #os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
+    if flag:
+        os.system('./framework_its_sdn/local_controllers.sh > j3.txt &')
 
-    # time.sleep(1)
-    # os.system('./framework_its_sdn/lc_mob_2.sh > j7.txt &')
-
-    time.sleep(75)
+    time.sleep(65)
 
     os.system('pkill tcpdump')
     os.system('pkill hping3')
@@ -425,4 +434,5 @@ def topology():
 
 if __name__ == '__main__':
     setLogLevel('debug')
-    topology()
+    flag = True if '-lc' in sys.argv else False
+    topology(flag)

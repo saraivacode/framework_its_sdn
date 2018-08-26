@@ -32,7 +32,7 @@ while [[ true ]]; do
 		ping 200.0.10.3 -i 1 -c 330 | while read line; do echo $(date +%s) - $line >> ping$car\_e.txt; done &
         p2=$!
 
-		hping3 --udp -p 5004 -i u24000 -d 1470 200.0.10.4 -q &
+		hping3 --udp -p 5004 -i u12000 -d 1470 200.0.10.4 -q &
 		h3=$!
 		ping 200.0.10.4 -i 1 -c 330 | while read line; do echo $(date +%s) - $line >> ping$car\_e2.txt; done &
 		p3=$!
