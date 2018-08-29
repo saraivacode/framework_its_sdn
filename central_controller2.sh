@@ -53,7 +53,7 @@ do
 	h=$(for i in $x; do echo {\"min_rate\": "\"$(echo $i)\""},; done | paste -s | cut -d',' -f1-$c)
 
 	#define comando final com max_rate fixos (melhorar/ajustar)
-	j=$(echo curl -X POST -d "'{\"port_name\": \"$y2\", \"type\": \"linux-htb\", \"max_rate\": \"6000000\", \"queues\": [{\"max_rate\": \"1000000\"}, $(echo $h)]}'" http://localhost:8080/qos/queue/000000000000000$x2)
+	j=$(echo curl -X POST -d "'{\"port_name\": \"$y2\", \"type\": \"linux-htb\", \"max_rate\": \"5000000\", \"queues\": [{\"max_rate\": \"5000000\"}, $(echo $h)]}'" http://localhost:8080/qos/queue/000000000000000$x2)
 	
 	#Envia comando para o controlador, contendo as filas e as referencias de DPID (switch) e porta
 	# echo $j
