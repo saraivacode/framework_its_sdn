@@ -285,11 +285,18 @@ def topology(flag):
     #Starting the Congestion Level 4 - moving vehicles 9, 10, 11, 12, 13 and 14
     # Car0-4 in RSU3. Car5-10 in RSU2 and Car11-14 in RSU1. All RSUs in range
     print( "*** Starting C4 - T4")
+
+    time.sleep(0.5)
     cars[9].setPosition('1604,250,0')
+    #time.sleep(0.5)
     cars[10].setPosition('1601,250,0')
+    #time.sleep(0.5)
     cars[11].setPosition('1107,250,0')
+    #time.sleep(0.5)
     cars[12].setPosition('1107,247,0')
+    #time.sleep(0.5)
     cars[13].setPosition('1104,250,0')
+    #time.sleep(0.5)
     cars[14].setPosition('1104,247,0')
     #Configuring flows to vehicles in backbone switch
     os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:10 -O Openflow13')

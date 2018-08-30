@@ -68,7 +68,8 @@ function limpeza {
 	#MAC named internet ias an excption that refers that generic "internet" data was blocked in that RAN
 	for m in $mac_rec;
 	do
-		if [[ $(hostapd_cli -i $j all_sta | grep $m -c) -eq 0 ]] && [[ $m != "internet" ]]; then
+		#if [[ $(hostapd_cli -i $j all_sta | grep $m -c) -eq 0 ]] && [[ $m != "internet" ]]; then
+		if [[ $(echo $x | grep $m -c) -eq 0 ]] && [[ $m != "internet" ]]; then
 			#verify destination RSUs of redirections
 			dst=$(mysql -u root -pwifi -e "select rsu_dest from redirect where mac  = \"$m\" and rsu_o = \"$rsu\"" framework 2> /dev/null | tail -1)
 			echo -e "\n Erasing invalid MAC... " $m" em " $rsu
@@ -100,7 +101,8 @@ do
 		#identify rsu
 		rsu=$(echo $j | cut -d'-' -f1)
 		#Identify MACs of vehicles in rsu
-		x=$(hostapd_cli -i $j all_sta | grep :)
+		#x=$(hostapd_cli -i $j all_sta | grep :)
+		x=$(iw dev $j station dump | grep wlan | cut -d' ' -f2)
 		#Procede with cleaning of old MACs
 		limpeza
 		#initialize values to balance calc
@@ -142,7 +144,8 @@ do
 			for j in $(ifconfig | grep wlan | cut -d' ' -f1);
 			do
 				rsu_calc=$(echo $j | cut -d'-' -f1)
-				x=$(hostapd_cli -i $j all_sta | grep :)
+				#x=$(hostapd_cli -i $j all_sta | grep :)
+				x=$(iw dev $j station dump | grep wlan | cut -d' ' -f2)
 				calc
 				#echo -e $(date) $rsu_calc " has a demand of " $(echo $y|bc)   " ($b B and $c C)." " dec: " $dec " inc: " $inc " bl: " $sd ". " $(echo $x| wc -w) "cars. r " $r
 				echo -e $(echo $SECONDS-15|bc) - $rsu " has a demand of " $(echo $y|bc)   " ($b B and $c C)." " dec: " $dec " inc: " $inc " bl: " $sd ". " $(echo $x| wc -w) "cars. r " $r
@@ -155,7 +158,8 @@ do
 			#While balance in rsu (1 or 3) is negative
 			while [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]]; do
 				#identify MACs in RSU
-				mac_rsu1=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+				#mac_rsu1=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+				mac_rsu1=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 
 				#initialize control files of App B and C applications
 				rm -f appc.txt
@@ -207,10 +211,12 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"rsu2\", $appc_bw)" framework 2> /dev/null
 							#Calc to update balance in source and destination RSUs
 							rsu_calc=rsu2
-							x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
+							#x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
+							x=$(iw dev rsu2-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc 
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							#x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc
 						fi
 					done
@@ -243,10 +249,10 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"rsu2\", $appb_bw)" framework 2> /dev/null
 							#Calc to update balance in source and destination RSUs
 							rsu_calc=rsu2
-							x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
+							x=$(iw dev rsu2-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc 
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc
 						fi
 					done
@@ -265,7 +271,7 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"internet\", \"$rsu\", \"x\", 0)" framework 2> /dev/null
 							#recalc balance
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc 
 						fi
 					done
@@ -287,7 +293,7 @@ do
 					mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"internet\", \"$rsu\", \"x\", 0)" framework 2> /dev/null
 					#recalc balance in neighbor
 					rsu_calc=rsu2
-					x=$(hostapd_cli -i rsu2-wlan1 all_sta | grep :)
+					x=$(iw dev rsu2-wlan1 station dump | grep wlan | cut -d' ' -f2)
 					calc 
 				#last case, limit app B and block app C that was limited
 				elif [[ $(cat appb.txt | wc -l) -gt 0 ]]; then
@@ -304,7 +310,7 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appc_bw)" framework 2> /dev/null
 							#recalc balance
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc
 						fi 
 					done
@@ -312,7 +318,7 @@ do
 					echo "only blocking redirection traffic to this RAN..."
 				fi
 				rsu_calc=$rsu
-				x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+				x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 				calc 
 			done
 		#In case of RSU2 in analisis (script of RSU2)
@@ -320,7 +326,8 @@ do
 			#while the balance is negative in RSU2
 			while [[ $(cat saldo.txt | grep $rsu | cut -d' ' -f2) -lt 0 ]]; do
 				#identify MAC s in RSU2
-				mac_rsu1=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+				#mac_rsu1=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+				mac_rsu1=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2 )
 				#If MACs are associetad to Apps B or C and arent blocked or limited, save information in respective files
 				rm -f appc.txt
 				rm -f appb.txt				
@@ -360,10 +367,10 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"rsu1\", $appc_bw)" framework 2> /dev/null
 							#recalc balance in neighbor (rsu1) an rsu in analisis (rsu2)
 							rsu_calc=rsu1
-							x=$(hostapd_cli -i rsu1-wlan1 all_sta | grep :)
+							x=$(iw dev rsu1-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc 
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc
 						fi
 					done
@@ -390,10 +397,10 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"rsu3\", $appc_bw)" framework 2> /dev/null
 							#recalc balance in local and neighbor rsu
 							rsu_calc=rsu3
-							x=$(hostapd_cli -i rsu3-wlan1 all_sta | grep :)
+							x=$(iw dev rsu3-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc 
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc
 						fi
 					done			
@@ -421,10 +428,10 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"rsu1\", $appb_bw)" framework 2> /dev/null
 							#Recalc balances
 							rsu_calc=rsu1
-							x=$(hostapd_cli -i rsu1-wlan1 all_sta | grep :)
+							x=$(iw dev rsu1-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc 
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc
 						fi
 					done
@@ -451,10 +458,10 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"rsu3\", $appb_bw)" framework 2> /dev/null
 							#Recalc balance of source and destinatio RSUs to update reference files
 							rsu_calc=rsu3
-							x=$(hostapd_cli -i rsu3-wlan1 all_sta | grep :)
+							x=$(iw dev rsu3-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc 
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc
 						fi
 					done
@@ -473,7 +480,7 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"internet\", \"$rsu\", \"x\", 0)" framework 2> /dev/null
 							#recalc balance
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc 
 						fi
 					done
@@ -496,7 +503,7 @@ do
 					mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"internet\", \"$rsu\", \"b\", 0)" framework 2> /dev/null
 					#recalc balance
 					rsu_calc=$rsudst
-					x=$(hostapd_cli -i $rsudst-wlan1 all_sta | grep :)
+					x=$(iw dev $rsudst-wlan1 station dump | grep wlan | cut -d' ' -f2)
 					calc
 				#Last case, limit B applications
 				elif [[ $(cat appb.txt | wc -l) -gt 0 ]]; then
@@ -512,7 +519,7 @@ do
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appb_bw)" framework 2> /dev/null
 							mysql -u root -pwifi -e "insert into redirect (mac, rsu_o, rsu_dest, bw_value) values (\"$i\", \"$rsu\", \"x\", $appc_bw)" framework 2> /dev/null
 							rsu_calc=$rsu
-							x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+							x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 							calc
 						fi 
 					done
@@ -521,7 +528,7 @@ do
 				fi
 				#Recalc balance
 				rsu_calc=$rsu
-				x=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
+				x=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 				calc
 			done		
 		else
@@ -532,7 +539,7 @@ do
 				#identify rsu
 				rsu=$(echo $j | cut -d'-' -f1)
 				#Identify MACs of vehicles in rsu
-				x=$(hostapd_cli -i $j all_sta | grep :)
+				x=$(iw dev $j station dump | grep wlan | cut -d' ' -f2)
 				rsu_calc=$rsu
 				calc
 				internet_test=""
