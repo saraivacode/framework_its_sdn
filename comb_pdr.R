@@ -153,7 +153,8 @@ lo_e_fn<-c(w_e_fn[3], x_e_fn[3], y_e_fn[3], z_e_fn[3])
 
 require(plotrix)
 
-plotCI(c(1:4), pdr75seg_e_fs[1:4], ui=up_e_fs, li=lo_e_fs, col="red", main="PDR Application E", ylab = "PDR", xlab = "time(s)", lwd="2", ylim=c(0.5,1))
+plotCI(c(1:4), pdr75seg_e_fs[1:4], ui=up_e_fs, li=lo_e_fs, col="red", main="PDR Application E", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.5,1), xaxt="n")
+axis(1, at=1:4, labels=c("C1", "C2", "C3", "C4"))
 lines(c(1:4),pdr75seg_e_fs[1:4], type = "l", col="red", lwd="2")
 par(new=T)
 plotCI(c(1:4), pdr75seg_e_fq[1:4], ui=up_e_fq, li=lo_e_fq, col="blue", axes=F, xlab=NA, ylab=NA, lwd="2", ylim=c(0.5,1))
@@ -161,7 +162,7 @@ lines(c(1:4),pdr75seg_e_fq[1:4], type = "l", col="blue", lwd="2")
 par(new=T)
 plotCI(c(1:4), pdr75seg_e_fn[1:4], ui=up_e_fn, li=lo_e_fn, col="orange", axes=F, xlab=NA, ylab=NA, lwd="2", ylim=c(0.5,1))
 lines(c(1:4),pdr75seg_e_fn[1:4], type = "l", col="orange", lwd="2")
-legend("topright", legend=c("FS", "FQ", "FN"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+legend("topright", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), col=c("red", "blue", "orange"))
 
 #################
 ###APP E2
@@ -318,7 +319,8 @@ lo_e2_fn<-c(w_e2_fn[3], x_e2_fn[3], y_e2_fn[3], z_e2_fn[3])
 
 require(plotrix)
 
-plotCI(c(1:4), pdr75seg_e2_fs[1:4], ui=up_e2_fs, li=lo_e2_fs, col="red", main="PDR Application E2", ylab = "PDR", xlab = "time(s)", lwd="2", ylim=c(0.5,1))
+plotCI(c(1:4), pdr75seg_e2_fs[1:4], ui=up_e2_fs, li=lo_e2_fs, col="red", main="PDR Application E2", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.5,1),  xaxt="n")
+axis(1, at=1:4, labels=c("C1", "C2", "C3", "C4"))
 lines(c(1:4),pdr75seg_e2_fs[1:4], type = "l", col="red", lwd="2")
 par(new=T)
 plotCI(c(1:4), pdr75seg_e2_fq[1:4], ui=up_e2_fq, li=lo_e2_fq, col="blue", axes=F, xlab=NA, ylab=NA, lwd="2", ylim=c(0.5,1))
@@ -326,7 +328,7 @@ lines(c(1:4),pdr75seg_e2_fq[1:4], type = "l", col="blue", lwd="2")
 par(new=T)
 plotCI(c(1:4), pdr75seg_e2_fn[1:4], ui=up_e2_fn, li=lo_e2_fn, col="orange", axes=F, xlab=NA, ylab=NA, lwd="2", ylim=c(0.5,1))
 lines(c(1:4),pdr75seg_e2_fn[1:4], type = "l", col="orange", lwd="2")
-legend("topright", legend=c("FS", "FQ", "FN"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+legend("topright", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), col=c("red", "blue", "orange"))
 
 ######################
 #APP G
@@ -482,7 +484,8 @@ lo_g_fn<-c(w_g_fn[3], x_g_fn[3], y_g_fn[3], z_g_fn[3])
 
 require(plotrix)
 
-plotCI(c(1:4), pdr75seg_g_fs[1:4], ui=up_g_fs, li=lo_g_fs, col="red", main="PDR Application G", ylab = "PDR", xlab = "time(s)", lwd="2" , ylim=c(0,1))
+plotCI(c(1:4), pdr75seg_g_fs[1:4], ui=up_g_fs, li=lo_g_fs, col="red", main="PDR Application G", ylab = "PDR", xlab = "Congestion level", lwd="2" , ylim=c(0,1), xaxt="n")
+axis(1, at=1:4, labels=c("C1", "C2", "C3", "C4"))
 lines(c(1:4),pdr75seg_g_fs[1:4], type = "l", col="red", lwd="2")
 par(new=T)
 plotCI(c(1:4), pdr75seg_g_fq[1:4], ui=up_g_fq, li=lo_g_fq, col="blue", axes=F, xlab=NA, ylab=NA, lwd="2", ylim=c(0,1))
@@ -490,7 +493,7 @@ lines(c(1:4),pdr75seg_g_fq[1:4], type = "l", col="blue", lwd="2")
 par(new=T)
 plotCI(c(1:4), pdr75seg_g_fn[1:4], ui=up_g_fn, li=lo_g_fn, col="orange", axes=F, xlab=NA, ylab=NA, lwd="2", ylim=c(0,1) )
 lines(c(1:4),pdr75seg_g_fn[1:4], type = "l", col="orange", lwd="2")
-legend("topright", legend=c("FS", "FQ", "FN"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+legend("topright", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), col=c("red", "blue", "orange"))
 
 ################################################################################
 #APP S
@@ -646,7 +649,8 @@ lo_s_fn<-c(w_s_fn[3], x_s_fn[3], y_s_fn[3], z_s_fn[3])
 
 require(plotrix)
 
-plotCI(c(1:4), pdr75seg_s_fs[1:4], ui=up_s_fs, li=lo_s_fs, col="red", main="PDR Application S", ylab = "PDR", xlab = "time(s)", lwd="2", ylim=c(0.6,1.05))
+plotCI(c(1:4), pdr75seg_s_fs[1:4], ui=up_s_fs, li=lo_s_fs, col="red", main="PDR Application S", ylab = "PDR", xlab = "time(s)", lwd="2", ylim=c(0.6,1.05), xaxt="n")
+axis(1, at=1:4, labels=c("C1", "C2", "C3", "C4"))
 lines(c(1:4),pdr75seg_s_fs[1:4], type = "l", col="red", lwd="2")
 par(new=T)
 plotCI(c(1:4), pdr75seg_s_fq[1:4], ui=up_s_fq, li=lo_s_fq, col="blue", axes=F, xlab=NA, ylab=NA, lwd="2", ylim=c(0.6,1.05))
@@ -654,4 +658,4 @@ lines(c(1:4),pdr75seg_s_fq[1:4], type = "l", col="blue", lwd="2")
 par(new=T)
 plotCI(c(1:4), pdr75seg_s_fn[1:4], ui=up_s_fn, li=lo_s_fn, col="orange", axes=F, xlab=NA, ylab=NA, lwd="2", ylim=c(0.6,1.05))
 lines(c(1:4),pdr75seg_s_fn[1:4], type = "l", col="orange", lwd="2")
-legend("topright", legend=c("FS", "FQ", "FN"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+legend("topright", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), col=c("red", "blue", "orange"))
