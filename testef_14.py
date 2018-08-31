@@ -183,8 +183,10 @@ def topology(flag):
         os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -f &')
         time.sleep(4)
         os.system('./framework_its_sdn/central_controller2.sh > j1.txt &')
-    else:
+    elif flag == '-b':
         print( "*** Using Best effort approach")
+    else:
+        print( "*** Using test version")
 
     #Configuring arp table in servers (to avoid noise and inconsistent data)
     server_s1.cmd('arp -f ./mac2.txt &')
@@ -200,14 +202,6 @@ def topology(flag):
     for x in xrange(0,15):
         cars[x].cmd('arp -f ./mac.txt &')
         time.sleep(0.5)
-
-    #starting tcpdump in servers, to collect packets in order to generate results
-    server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
-    server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
-    server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
-    server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
-    server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
-    server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
 
     print( "*** Starting C1 - T1")
     # Car0, 1 and 2 in RSU3. Car3 and 4 in RSU2 and Car 5 and 6 in RSU1. Cars7-14 out of range
@@ -230,99 +224,112 @@ def topology(flag):
     os.system('ovs-ofctl add-flow sw2 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:a4 actions=4" -O Openflow13')
     os.system('ovs-ofctl add-flow sw2 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:a5 actions=4" -O Openflow13')
 
-    time.sleep(5)
 
-    #Starting applications in vehicles
-    for x in xrange(0,15):
-        cars[x].cmd('./framework_its_sdn/carcon.sh &')
-        # time.sleep(1)
+    if flag == '-f' or flag == '-q' or flag == '-b':
 
-    #Waiting the Congestion Level 1 time
-    time.sleep(75)
+        #starting tcpdump in servers, to collect packets in order to generate results
+        server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
+        server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
+        server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
+        server_e.cmd('tcpdump udp port 5003 -i server_e-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e.txt &')
+        server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
+        server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
 
-    #Starting the Congestion Level 2 - moving vehicles 3, 4 and 5
-    # Car0, 1, 2 3 and 4 in RSU3. Car5 in RSU2 and Car6 in RSU1. Cars7-14 out of range
-    print( "*** Starting C2 - T2")
-    cars[3].setPosition('2104,247,0')
-    cars[4].setPosition('2101,250,0')
-    cars[5].setPosition('1607,247,0')
-    #configuring flows of vehicles 3, 4 and 5 in backbone
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:04 -O Openflow13')
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:04 -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:04 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:04 actions=4" -O Openflow13')
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:05 -O Openflow13')
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:05 -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:05 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:05 actions=4" -O Openflow13')
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:06 -O Openflow13')
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:06 -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:06 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:06 actions=3" -O Openflow13')
-    #Waiting the Congestion Level 2 time
-    time.sleep(75)
-    #Starting the Congestion Level 3 - moving vehicles 6, 7, 8, 9 and 10
-    # Car0-4 in RSU3. Car5-8 in RSU2 and Car9-10 in RSU1. Cars11-14 out of range
-    print( "*** Starting C3 - T3")
-    cars[6].setPosition('1604,247,0')
-    cars[7].setPosition('1607,250,0')
-    cars[8].setPosition('1601,247,0')
-    cars[9].setPosition('1107,250,0')
-    cars[10].setPosition('1104,247,0')
-    #Configuring flows to vehicles in backbone switch
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:07 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:07 actions=3" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:08 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:08 actions=3" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:09 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:09 actions=3" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:10 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:10 actions=2" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:11 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:11 actions=2" -O Openflow13')
-    #Waiting the Congestion Level 3 time
-    time.sleep(75)
-    #Starting the Congestion Level 4 - moving vehicles 9, 10, 11, 12, 13 and 14
-    # Car0-4 in RSU3. Car5-10 in RSU2 and Car11-14 in RSU1. All RSUs in range
-    print( "*** Starting C4 - T4")
+        time.sleep(5)
 
-    time.sleep(0.5)
-    cars[9].setPosition('1604,250,0')
-    #time.sleep(0.5)
-    cars[10].setPosition('1601,250,0')
-    #time.sleep(0.5)
-    cars[11].setPosition('1107,250,0')
-    #time.sleep(0.5)
-    cars[12].setPosition('1107,247,0')
-    #time.sleep(0.5)
-    cars[13].setPosition('1104,250,0')
-    #time.sleep(0.5)
-    cars[14].setPosition('1104,247,0')
-    #Configuring flows to vehicles in backbone switch
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:10 -O Openflow13')
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:10 -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:10 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:10 actions=3" -O Openflow13')
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:11 -O Openflow13')
-    os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:11 -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:11 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:11 actions=3" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:12 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:12 actions=2" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:13 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:13 actions=2" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:14 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:14 actions=2" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:15 actions=1" -O Openflow13')
-    os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:15 actions=2" -O Openflow13')
-    #Waiting the Congestion Level 4 time
-    time.sleep(85)
+        #Starting applications in vehicles
+        for x in xrange(0,15):
+            cars[x].cmd('./framework_its_sdn/carcon.sh &')
+            # time.sleep(1)
 
-    #Finishing process
-    os.system('pkill tcpdump')
-    os.system('pkill hping3')
-    os.system('pkill ping')
-    time.sleep(2)
+        #Waiting the Congestion Level 1 time
+        time.sleep(75)
+
+        #Starting the Congestion Level 2 - moving vehicles 3, 4 and 5
+        # Car0, 1, 2 3 and 4 in RSU3. Car5 in RSU2 and Car6 in RSU1. Cars7-14 out of range
+        print( "*** Starting C2 - T2")
+        cars[3].setPosition('2104,247,0')
+        cars[4].setPosition('2101,250,0')
+        cars[5].setPosition('1607,247,0')
+        #configuring flows of vehicles 3, 4 and 5 in backbone
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:04 -O Openflow13')
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:04 -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:04 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:04 actions=4" -O Openflow13')
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:05 -O Openflow13')
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:05 -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:05 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:05 actions=4" -O Openflow13')
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:06 -O Openflow13')
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:06 -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:06 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:06 actions=3" -O Openflow13')
+        #Waiting the Congestion Level 2 time
+        time.sleep(75)
+        #Starting the Congestion Level 3 - moving vehicles 6, 7, 8, 9 and 10
+        # Car0-4 in RSU3. Car5-8 in RSU2 and Car9-10 in RSU1. Cars11-14 out of range
+        print( "*** Starting C3 - T3")
+        cars[6].setPosition('1604,247,0')
+        cars[7].setPosition('1607,250,0')
+        cars[8].setPosition('1601,247,0')
+        cars[9].setPosition('1107,250,0')
+        cars[10].setPosition('1104,247,0')
+        #Configuring flows to vehicles in backbone switch
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:07 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:07 actions=3" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:08 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:08 actions=3" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:09 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:09 actions=3" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:10 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:10 actions=2" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:11 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:11 actions=2" -O Openflow13')
+        #Waiting the Congestion Level 3 time
+        time.sleep(75)
+        #Starting the Congestion Level 4 - moving vehicles 9, 10, 11, 12, 13 and 14
+        # Car0-4 in RSU3. Car5-10 in RSU2 and Car11-14 in RSU1. All RSUs in range
+        print( "*** Starting C4 - T4")
+
+        time.sleep(0.5)
+        cars[9].setPosition('1604,250,0')
+        #time.sleep(0.5)
+        cars[10].setPosition('1601,250,0')
+        #time.sleep(0.5)
+        cars[11].setPosition('1107,250,0')
+        #time.sleep(0.5)
+        cars[12].setPosition('1107,247,0')
+        #time.sleep(0.5)
+        cars[13].setPosition('1104,250,0')
+        #time.sleep(0.5)
+        cars[14].setPosition('1104,247,0')
+        #Configuring flows to vehicles in backbone switch
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:10 -O Openflow13')
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:10 -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:10 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:10 actions=3" -O Openflow13')
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_src=00:00:00:00:00:11 -O Openflow13')
+        os.system('ovs-ofctl del-flows sw1 cookie=0x0/-1,dl_dst=00:00:00:00:00:11 -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=3,dl_src=00:00:00:00:00:11 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:11 actions=3" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:12 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:12 actions=2" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:13 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:13 actions=2" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:14 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:14 actions=2" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=2,dl_src=00:00:00:00:00:15 actions=1" -O Openflow13')
+        os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:15 actions=2" -O Openflow13')
+        #Waiting the Congestion Level 4 time
+        time.sleep(85)
+
+        #Finishing process
+        os.system('pkill tcpdump')
+        os.system('pkill hping3')
+        os.system('pkill ping')
+        time.sleep(2)
+    else:
+         print( "*** Testing..")
 
     info("*** Running CLI\n")
     CLI_wifi(net)
@@ -343,6 +350,8 @@ if __name__ == '__main__':
         print( "*** Using Framework...")
     elif  flag == '-q':
         print( "*** Using only Qos...")
-    else:
+    elif  flag == '-b':
         print( "*** Using best effort")
+    else:
+        print( "*** Test version")
     topology(flag)
