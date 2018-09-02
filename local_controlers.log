@@ -1,79 +1,31 @@
 root@wifi:/home/wifi# cat j3.txt 
--15 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
--15 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
--15 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
 
  =========================================//===============================================================
--9 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
--9 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
--9 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
+61 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
+62 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
+62 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
 
  =========================================//===============================================================
--3 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
--3 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
--3 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
+69 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
+69 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
+69 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
 
  =========================================//===============================================================
-4 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-4 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-4 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
+76 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
+76 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
+76 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
 
  =========================================//===============================================================
-11 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-11 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-11 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-
- =========================================//===============================================================
-19 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-19 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-19 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-
- =========================================//===============================================================
-26 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-26 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-27 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-
- =========================================//===============================================================
-34 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-34 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-34 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-
- =========================================//===============================================================
-41 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-41 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-42 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-
- =========================================//===============================================================
-49 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-49 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-49 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-
- =========================================//===============================================================
-56 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-56 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-57 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-
- =========================================//===============================================================
-64 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-64 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-64 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-
- =========================================//===============================================================
-71 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-71 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-72 - rsu3  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-
- =========================================//===============================================================
-79 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-79 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
-79 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  0  bl:  -2500000 .  5 cars. r  0
+83 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  0
+83 - rsu2  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
+83 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  0  bl:  -2500000 .  5 cars. r  0
 
  =========================================//===============================================================
 rsu3 congested. Waiting 20 seconds to confirm...
 recalculating balance of RSUs...
-101 - rsu3  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
-101 - rsu3  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
-101 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  0  bl:  -2500000 .  5 cars. r  0
+105 - rsu3  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
+105 - rsu3  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
+105 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  0  bl:  -2500000 .  5 cars. r  0
 
  =========================================//===============================================================
 
@@ -82,52 +34,52 @@ recalculating balance of RSUs...
 redirecting  00:00:00:00:00:01  from rsu3 to rsu2
 
  rsu3 congested. RSU2 suportts at least an C application. C applications will be redirected until balance over app C demand.
-00:00:00:00:00:03  is associated to an C application
-redirecting  00:00:00:00:00:03  from rsu3 to rsu2
-
- rsu3 congested. RSU2 suportts at least an C application. C applications will be redirected until balance over app C demand.
 00:00:00:00:00:02  is associated to an C application
 redirecting  00:00:00:00:00:02  from rsu3 to rsu2
-108 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
-108 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
-109 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
+
+ rsu3 congested. RSU2 suportts at least an C application. C applications will be redirected until balance over app C demand.
+00:00:00:00:00:03  is associated to an C application
+redirecting  00:00:00:00:00:03  from rsu3 to rsu2
+112 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
+112 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
+112 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
 
  =========================================//===============================================================
-116 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
-116 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
-116 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
+119 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
+119 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
+120 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
 
  =========================================//===============================================================
-124 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
-124 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
-125 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
+127 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
+127 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
+127 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
 
  =========================================//===============================================================
-132 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
-132 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
-133 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
+134 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
+134 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
+134 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
 
  =========================================//===============================================================
-140 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
-140 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
+141 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
+141 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
 141 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
 
  =========================================//===============================================================
 148 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
-149 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
+148 - rsu2  has a demand of  1500000  (500000 B and 1000000 C).  dec:  3000000  inc:  0  bl:  500000 .  1 cars. r  3
 149 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
 
  =========================================//===============================================================
-157 - rsu1  has a demand of  4500000  (1500000 B and 3000000 C).  dec:  0  inc:  0  bl:  500000 .  3 cars. r  0
-158 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  0  bl:  -4000000 .  4 cars. r  3
-159 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
+156 - rsu1  has a demand of  1500000  (500000 B and 1000000 C).  dec:  0  inc:  0  bl:  3500000 .  1 cars. r  0
+156 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  0  bl:  -4000000 .  4 cars. r  3
+156 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
 
  =========================================//===============================================================
 rsu2 congested. Waiting 20 seconds to confirm...
 recalculating balance of RSUs...
-182 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  3
-182 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  0  bl:  -4000000 .  4 cars. r  3
-182 - rsu2  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
+178 - rsu2  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  0  inc:  0  bl:  2000000 .  2 cars. r  3
+178 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  0  bl:  -4000000 .  4 cars. r  3
+178 - rsu2  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  0  inc:  3000000  bl:  500000 .  5 cars. r  3
 
  =========================================//===============================================================
 
@@ -150,36 +102,46 @@ limiting  00:00:00:00:00:08  in rsu2...
  rsu2 is still congested. RSU1 does not have avaiable balance. C applications will be limited.
 00:00:00:00:00:09  is associated to an C application and will be limited. Internet also will be blocked
 limiting  00:00:00:00:00:09  in rsu2...
+188 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  2000000  inc:  0  bl:  0 .  2 cars. r  2
+188 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  4500000  bl:  500000 .  4 cars. r  10
+189 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+
+ =========================================//===============================================================
 196 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  2000000  inc:  0  bl:  0 .  2 cars. r  2
 197 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  4500000  bl:  500000 .  4 cars. r  10
-198 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+197 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
-207 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  2000000  inc:  0  bl:  0 .  2 cars. r  2
-207 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  4500000  bl:  500000 .  4 cars. r  10
-208 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+205 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  2000000  inc:  0  bl:  0 .  2 cars. r  2
+205 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  4500000  bl:  500000 .  4 cars. r  10
+206 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
-218 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  2000000  inc:  0  bl:  0 .  2 cars. r  2
-219 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  4500000  bl:  500000 .  4 cars. r  10
-219 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+213 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  2000000  inc:  0  bl:  0 .  2 cars. r  2
+214 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  4500000  bl:  500000 .  4 cars. r  10
+214 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
-229 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  2000000  inc:  0  bl:  0 .  2 cars. r  2
+221 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  2000000  inc:  0  bl:  0 .  2 cars. r  2
+222 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  4500000  bl:  500000 .  4 cars. r  10
+222 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+
+ =========================================//===============================================================
+230 - rsu1  has a demand of  3000000  (1000000 B and 2000000 C).  dec:  2000000  inc:  0  bl:  0 .  2 cars. r  2
 230 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  3000000  inc:  4500000  bl:  500000 .  4 cars. r  10
-231 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+230 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
-242 - rsu1  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  2000000  inc:  0  bl:  -6000000 .  6 cars. r  2
-243 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  4500000  bl:  -2500000 .  6 cars. r  10
-244 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+238 - rsu1  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  2000000  inc:  0  bl:  -6000000 .  6 cars. r  2
+239 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  4500000  bl:  -2500000 .  6 cars. r  10
+240 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
 rsu1 congested. Waiting 20 seconds to confirm...
 recalculating balance of RSUs...
-265 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  2000000  inc:  0  bl:  -3000000 .  4 cars. r  4
-266 - rsu1  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  4500000  bl:  -2500000 .  6 cars. r  4
-266 - rsu1  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+260 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  2000000  inc:  0  bl:  -3000000 .  4 cars. r  4
+261 - rsu1  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  4500000  bl:  -2500000 .  6 cars. r  4
+261 - rsu1  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
 
@@ -196,9 +158,9 @@ limiting  00:00:00:00:00:13  em rsu1...
 limiting  00:00:00:00:00:14  em rsu1...
 rsu2 congested. Waiting 20 seconds to confirm...
 recalculating balance of RSUs...
-291 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  2000000  inc:  3000000  bl:  0 .  4 cars. r  4
-291 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  4500000  bl:  -2500000 .  6 cars. r  4
-292 - rsu2  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+284 - rsu2  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  2000000  inc:  3000000  bl:  0 .  4 cars. r  4
+284 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  4500000  bl:  -2500000 .  6 cars. r  4
+285 - rsu2  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
 
@@ -216,81 +178,33 @@ C application in 00:00:00:00:00:07 was redirected and will be locally limited. I
  rsu2 still congested. RSU1 suports at least one B application. B applications will be redirected until there is balance
 00:00:00:00:00:07  is associated to an B application
 redirect  00:00:00:00:00:07  from rsu2 to rsu2
-306 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-307 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-307 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+297 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
+298 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
+298 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
-317 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
+308 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
+308 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
+309 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+
+ =========================================//===============================================================
+318 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
 318 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
 319 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
-327 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-327 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-327 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+325 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
+326 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
+326 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
-334 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-335 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-335 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+333 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
+333 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
+333 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
-342 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-342 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-343 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
+340 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
+340 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
+341 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
 
  =========================================//===============================================================
-352 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-352 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-353 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-363 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-364 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-365 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-376 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-377 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-378 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-388 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-388 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-389 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-399 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-399 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-400 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-410 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-411 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-412 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-422 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-423 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-424 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-434 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-434 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-435 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-445 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-446 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-446 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-456 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-457 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-458 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4
-
- =========================================//===============================================================
-468 - rsu1  has a demand of  6000000  (2000000 B and 4000000 C).  dec:  1500000  inc:  3000000  bl:  500000 .  4 cars. r  8
-468 - rsu2  has a demand of  9000000  (3000000 B and 6000000 C).  dec:  3000000  inc:  7000000  bl:  0 .  6 cars. r  16
-469 - rsu3  has a demand of  7500000  (2500000 B and 5000000 C).  dec:  500000  inc:  3000000  bl:  0 .  5 cars. r  4

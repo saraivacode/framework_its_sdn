@@ -10,13 +10,13 @@ CREATE TABLE vehicle (mac VARCHAR(20) NOT NULL, app_id INT(11), region INT(11));
 ALTER TABLE vehicle ADD CONSTRAINT fk_app FOREIGN KEY (app_id) REFERENCES appkpi (id);
 CREATE TABLE redirect (mac VARCHAR(20) NOT NULL, rsu_o VARCHAR (10), rsu_dest VARCHAR (10), bw_value INT(11));
 
-INSERT INTO `appkpi` (`id`, `application`, `class`, `e2e_latency`, `reliability`, `data_rate`, `protocol`, `port`) VALUES (NULL, "CCAS", "A", 50, 0.00001, 0, "UDP", 5002);
+-- INSERT INTO `appkpi` (`id`, `application`, `class`, `e2e_latency`, `reliability`, `data_rate`, `protocol`, `port`) VALUES (NULL, "CCAS", "A", 50, 0.00001, 0, "UDP", 5002);
 INSERT INTO `appkpi` (`id`, `application`, `class`, `e2e_latency`, `reliability`, `data_rate`, `protocol`, `port`) VALUES (NULL, "INS", "B", 3000, 0.001, 500000, "UDP", 5003);
 INSERT INTO `appkpi` (`id`, `application`, `class`, `e2e_latency`, `reliability`, `data_rate`, `protocol`, `port`) VALUES (NULL, "4KLV", "C", NULL, NULL, 1000000, "UDP", 5004);
 
-INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.2", 1);
-INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.3", 2);
-INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.4", 3);
+-- INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.2", 1);
+INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.3", 1);
+INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.4", 2);
 
 INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (6, 1, 6, "rsu1-eth3");
 INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (7, 1, 6, "rsu2-eth4");
@@ -99,6 +99,7 @@ INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:13", 2
 INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:14", 2, 1);
 INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:15", 2, 1);
 INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:16", 2, 1);
+
 -- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:17", 2, 1);
 -- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:18", 2, 1);
 -- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:19", 2, 1);
@@ -144,22 +145,23 @@ INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:16", 2
 -- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:59", 2, 1);
 -- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:60", 2, 1);
 
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:01", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:02", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:03", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:04", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:05", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:06", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:07", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:08", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:09", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:10", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:11", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:12", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:13", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:14", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:15", 3, 1);
-INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:16", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:01", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:02", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:03", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:04", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:05", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:06", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:07", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:08", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:09", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:10", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:11", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:12", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:13", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:14", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:15", 3, 1);
+-- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:16", 3, 1);
+
 -- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:17", 3, 1);
 -- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:18", 3, 1);
 -- INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:19", 3, 1);
