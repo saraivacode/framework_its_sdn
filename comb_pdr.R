@@ -153,7 +153,8 @@ lo_e_fn<-c(w_e_fn[3], x_e_fn[3], y_e_fn[3], z_e_fn[3])
 
 require(plotrix)
 
-plotCI(c(1:4), pdr75seg_e_fs[1:4], ui=up_e_fs, li=lo_e_fs, col="red", main="PDR Application E", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.5,1), xaxt="n")
+#plotCI(c(1:4), pdr75seg_e_fs[1:4], ui=up_e_fs, li=lo_e_fs, col="red", main="PDR Application E", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.5,1), xaxt="n")
+plotCI(c(1:4), pdr75seg_e_fs[1:4], ui=up_e_fs, li=lo_e_fs, col="red", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.5,1), xaxt="n")
 axis(1, at=1:4, labels=c("C1", "C2", "C3", "C4"))
 lines(c(1:4),pdr75seg_e_fs[1:4], type = "l", col="red", lwd="2")
 par(new=T)
@@ -319,7 +320,8 @@ lo_e2_fn<-c(w_e2_fn[3], x_e2_fn[3], y_e2_fn[3], z_e2_fn[3])
 
 require(plotrix)
 
-plotCI(c(1:4), pdr75seg_e2_fs[1:4], ui=up_e2_fs, li=lo_e2_fs, col="red", main="PDR Application E2", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.5,1),  xaxt="n")
+#plotCI(c(1:4), pdr75seg_e2_fs[1:4], ui=up_e2_fs, li=lo_e2_fs, col="red", main="PDR Application E2", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.5,1),  xaxt="n")
+plotCI(c(1:4), pdr75seg_e2_fs[1:4], ui=up_e2_fs, li=lo_e2_fs, col="red", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.5,1),  xaxt="n")
 axis(1, at=1:4, labels=c("C1", "C2", "C3", "C4"))
 lines(c(1:4),pdr75seg_e2_fs[1:4], type = "l", col="red", lwd="2")
 par(new=T)
@@ -484,7 +486,8 @@ lo_g_fn<-c(w_g_fn[3], x_g_fn[3], y_g_fn[3], z_g_fn[3])
 
 require(plotrix)
 
-plotCI(c(1:4), pdr75seg_g_fs[1:4], ui=up_g_fs, li=lo_g_fs, col="red", main="PDR Application G", ylab = "PDR", xlab = "Congestion level", lwd="2" , ylim=c(0,1), xaxt="n")
+#plotCI(c(1:4), pdr75seg_g_fs[1:4], ui=up_g_fs, li=lo_g_fs, col="red", main="PDR Application G", ylab = "PDR", xlab = "Congestion level", lwd="2" , ylim=c(0,1), xaxt="n")
+plotCI(c(1:4), pdr75seg_g_fs[1:4], ui=up_g_fs, li=lo_g_fs, col="red", ylab = "PDR", xlab = "Congestion level", lwd="2" , ylim=c(0,1), xaxt="n")
 axis(1, at=1:4, labels=c("C1", "C2", "C3", "C4"))
 lines(c(1:4),pdr75seg_g_fs[1:4], type = "l", col="red", lwd="2")
 par(new=T)
@@ -649,7 +652,8 @@ lo_s_fn<-c(w_s_fn[3], x_s_fn[3], y_s_fn[3], z_s_fn[3])
 
 require(plotrix)
 
-plotCI(c(1:4), pdr75seg_s_fs[1:4], ui=up_s_fs, li=lo_s_fs, col="red", main="PDR Application S", ylab = "PDR", xlab = "time(s)", lwd="2", ylim=c(0.6,1.05), xaxt="n")
+#plotCI(c(1:4), pdr75seg_s_fs[1:4], ui=up_s_fs, li=lo_s_fs, col="red", main="PDR Application S", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.6,1.05), xaxt="n")
+plotCI(c(1:4), pdr75seg_s_fs[1:4], ui=up_s_fs, li=lo_s_fs, col="red", ylab = "PDR", xlab = "Congestion level", lwd="2", ylim=c(0.6,1.05), xaxt="n")
 axis(1, at=1:4, labels=c("C1", "C2", "C3", "C4"))
 lines(c(1:4),pdr75seg_s_fs[1:4], type = "l", col="red", lwd="2")
 par(new=T)

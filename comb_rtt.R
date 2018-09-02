@@ -37,7 +37,8 @@ mean1segdelay_e_fn$size[1:150]<- mean1segdelay_e_fn$size[1:150]/7
 mean1segdelay_e_fn$size[151:225]<- mean1segdelay_e_fn$size[151:225]/11
 mean1segdelay_e_fn$size[226:300]<- mean1segdelay_e_fn$size[226:300]/15
 
-plot(ecdf(mean1segdelay_e_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,6000), ylim = c(0,1), main="RTT Application E", ylab = "CDF", xlab = "RTT (ms)")
+#plot(ecdf(mean1segdelay_e_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,6000), ylim = c(0,1), main="RTT Application E", ylab = "CDF", xlab = "RTT (ms)")
+plot(ecdf(mean1segdelay_e_fs$size), col.01line = "gray70", pch = 19, col="red",  main="", xlim = c(0,6000), ylim = c(0,1), ylab = "CDF", xlab = "RTT (ms)")
 # abline( h= 0.8, lty =3, col = "gray60")
 # abline( v= 650, lty =3, col = "gray60")
 par(new=T)
@@ -85,7 +86,8 @@ mean1segdelay_e2_fn$size[1:150]<- mean1segdelay_e2_fn$size[1:150]/7
 mean1segdelay_e2_fn$size[151:225]<- mean1segdelay_e2_fn$size[151:225]/11
 mean1segdelay_e2_fn$size[226:300]<- mean1segdelay_e2_fn$size[226:300]/15
 
-plot(ecdf(mean1segdelay_e2_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,6000), ylim = c(0,1), main="RTT Application E2", ylab = "CDF", xlab = "RTT (ms)")
+#plot(ecdf(mean1segdelay_e2_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,6000), ylim = c(0,1), main="RTT Application E2", ylab = "CDF", xlab = "RTT (ms)")
+plot(ecdf(mean1segdelay_e2_fs$size), col.01line = "gray70", pch = 19, col="red", main="", xlim = c(0,6000), ylim = c(0,1), ylab = "CDF", xlab = "RTT (ms)")
 # abline( h= 0.8, lty =3, col = "gray60")
 # abline( v= 650, lty =3, col = "gray60")
 par(new=T)
@@ -132,8 +134,9 @@ mean1segdelay_g_fn$size[1:150]<- mean1segdelay_g_fn$size[1:150]/7
 mean1segdelay_g_fn$size[151:225]<- mean1segdelay_g_fn$size[151:225]/11
 mean1segdelay_g_fn$size[226:300]<- mean1segdelay_g_fn$size[226:300]/15
 
-plot(ecdf(mean1segdelay_g_fs$size), col.01line = "gray70", pch = 19, col="red", ylim = c(0,1), xlim = c(0,15000), main="RTT Application G", ylab = "CDF", xlab = "delay")
-abline( h= 0.8, lty =3, col = "gray60")
+#plot(ecdf(mean1segdelay_g_fs$size), col.01line = "gray70", pch = 19, col="red", ylim = c(0,1), xlim = c(0,15000), main="RTT Application G", ylab = "CDF", xlab = "RTT (ms)")
+plot(ecdf(mean1segdelay_g_fs$size), col.01line = "gray70", pch = 19, col="red", ylim = c(0,1), main="", xlim = c(0,15000), ylab = "CDF", xlab = "RTT (ms)")
+#abline( h= 0.8, lty =3, col = "gray60")
 par(new=T)
 plot(ecdf(mean1segdelay_g_fq$size), col.01line = "gray70", pch = 19, col="blue", ylim = c(0,1), xlim = c(0,15000), axes=F, xlab=NA, ylab=NA, main ="")
 par(new=T)
@@ -178,7 +181,8 @@ mean1segdelay_s_fn$size[1:150]<- mean1segdelay_s_fn$size[1:150]/7
 mean1segdelay_s_fn$size[151:225]<- mean1segdelay_s_fn$size[151:225]/11
 mean1segdelay_s_fn$size[226:300]<- mean1segdelay_s_fn$size[226:300]/15
 
-plot(ecdf(mean1segdelay_s_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,300), ylim = c(0,1), main="RTT Application S", ylab = "CDF", xlab = "RTT (ms)")
+#plot(ecdf(mean1segdelay_s_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,300), ylim = c(0,1), main="RTT Application S", ylab = "CDF", xlab = "RTT (ms)")
+plot(ecdf(mean1segdelay_s_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,300), main="", ylim = c(0,1), ylab = "CDF", xlab = "RTT (ms)")
 # abline( h= 0.8, lty =3, col = "gray60")
 # abline( v= 10, lty =3, col = "gray60")
 par(new=T)
