@@ -11,16 +11,16 @@ ALTER TABLE vehicle ADD CONSTRAINT fk_app FOREIGN KEY (app_id) REFERENCES appkpi
 CREATE TABLE redirect (mac VARCHAR(20) NOT NULL, rsu_o VARCHAR (10), rsu_dest VARCHAR (10), bw_value INT(11));
 
 -- INSERT INTO `appkpi` (`id`, `application`, `class`, `e2e_latency`, `reliability`, `data_rate`, `protocol`, `port`) VALUES (NULL, "CCAS", "A", 50, 0.00001, 0, "UDP", 5002);
-INSERT INTO `appkpi` (`id`, `application`, `class`, `e2e_latency`, `reliability`, `data_rate`, `protocol`, `port`) VALUES (NULL, "INS", "B", 3000, 0.001, 500000, "UDP", 5003);
-INSERT INTO `appkpi` (`id`, `application`, `class`, `e2e_latency`, `reliability`, `data_rate`, `protocol`, `port`) VALUES (NULL, "4KLV", "C", NULL, NULL, 1000000, "UDP", 5004);
+INSERT INTO `appkpi` (`id`, `application`, `class`, `e2e_latency`, `reliability`, `data_rate`, `protocol`, `port`) VALUES (NULL, "E", "B", 3000, 0.001, 500000, "UDP", 5003);
+INSERT INTO `appkpi` (`id`, `application`, `class`, `e2e_latency`, `reliability`, `data_rate`, `protocol`, `port`) VALUES (NULL, "E2", "C", NULL, NULL, 1000000, "UDP", 5004);
 
 -- INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.2", 1);
 INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.3", 1);
 INSERT INTO `infrastructure` (`ip`, `app`) VALUES ("200.0.10.4", 2);
 
-INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (6, 1, 6, "rsu1-eth3");
-INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (7, 1, 6, "rsu2-eth4");
-INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (8, 1, 6, "rsu3-eth3");
+INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (6, 1, 5, "rsu1-eth3");
+INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (7, 1, 5, "rsu2-eth4");
+INSERT INTO `rsu` (`dpid`, `region`, `limite`, `iface_updtip`) VALUES (8, 1, 5, "rsu3-eth3");
 
 INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:01", 1, 1);
 INSERT INTO `vehicle` (`mac`, `app_id`, `region`) VALUES ("00:00:00:00:00:02", 1, 1);

@@ -148,7 +148,7 @@ do
 				x=$(iw dev $j station dump | grep wlan | cut -d' ' -f2)
 				calc
 				#echo -e $(date) $rsu_calc " has a demand of " $(echo $y|bc)   " ($b B and $c C)." " dec: " $dec " inc: " $inc " bl: " $sd ". " $(echo $x| wc -w) "cars. r " $r
-				echo -e $(echo $SECONDS-15|bc) - $rsu " has a demand of " $(echo $y|bc)   " ($b B and $c C)." " dec: " $dec " inc: " $inc " bl: " $sd ". " $(echo $x| wc -w) "cars. r " $r
+				echo -e $(echo $SECONDS-15|bc) - $rsu_calc " has a demand of " $(echo $y|bc)   " ($b B and $c C)." " dec: " $dec " inc: " $inc " bl: " $sd ". " $(echo $x| wc -w) "cars. r " $r
 			done
 			echo -e "\n =========================================//==============================================================="
 		fi
