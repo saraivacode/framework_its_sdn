@@ -111,9 +111,3 @@ done
 
 
 echo -e "\n finalizado"
-
-
-# Falta definir como preencher o max_rate (com o limite de upload da RSU?, como é acionado para fazer o recalculo diante de modificações na topologia.
-#fica verificando de tempos em tempos a base de dados ou o script é executado a partir das mudanças? recalcula tudo ou só a diferença?
-#como identificar a diferença??? (com base no id da aplicação passada como parâmetro!)
-#falta definir comoagir em caso de mudanças e para isso é necessário verificar como o controlador permite modificar as filas dinamicamente
