@@ -10,7 +10,8 @@ Before run the experiments, it is necessary configure the Ryu controller to acce
 
 These codes refer to an performance evaluation of the proposed framework in a scenario representing a traffic jam in a 1.5 km via, with 15 vehicles, in a time frame of 300 seconds, with four congestion levels over the time.
 
-![](https://github.com/saraivacode/framework_its_sdn/blob/master/experiment2.png)
+
+<img src="https://github.com/saraivacode/framework_its_sdn/blob/master/experiment2.png" width="48">
 
 This implementation permits to compare the results of the proposed framework with the use of two other approaches named "Qos only", that implements QoS in the network, and a "Best effort" approach.
 
