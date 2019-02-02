@@ -1,4 +1,6 @@
-# About the Application-driven framework for intelligent transportation systems
+# Application-driven framework for intelligent transportation systems
+
+## About this proposed solution 
 
 This framework uses softwar-defined networks to implement a 5G network slicing aproach to deal with the problem of how to provide a mobile infrastructure that can dinnamically meet the communication requirements of different vehicular networks applications.
 
@@ -12,7 +14,7 @@ These codes refer to an performance evaluation of the proposed framework in a sc
 
 This implementation permits to compare the results of the proposed framework with the use of two other approaches named "Qos only", that implements QoS in the network, and a "Best effort" approach.
 
-## Implementation scripts
+### Implementation scripts
 
 #### 1. The main script that builds the topology in Mininet-wifi, with mobility and general emulation parameters:
 https://github.com/saraivacode/framework_its_sdn/blob/master/testef_14.py
