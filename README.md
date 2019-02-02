@@ -63,24 +63,22 @@ https://github.com/saraivacode/framework_its_sdn/blob/master/comb_geral.R
 
 ### Execution example
 
-##### ok:
+##### step 1 (Run ryu): # ryu-manager ryu.app.rest_qos ryu.app.qos_simple_switch_13 ryu.app.rest_conf_switch ryu.app.ofctl_rest
 
-step 1 (Run ryu): # ryu-manager ryu.app.rest_qos ryu.app.qos_simple_switch_13 ryu.app.rest_conf_switch ryu.app.ofctl_rest
+##### step 2 (Run experiment with best effort approach): # testef_14.py -b
 
-step 2 (Run experiment with best effort approach): # testef_14.py -b
+##### step 3 (Run experiment with QoS only approach): # testef_14.py -q
 
-step 3 (Run experiment with QoS only approach): # testef_14.py -q
+##### step 4 (Run experiment with proposed framework approach): # testef_14.py -f
 
-step 4 (Run experiment with proposed framework approach): # testef_14.py -f
+##### step 5 (Adjust best effort results): # tratamento_c3.sh fn
 
-step 5 (Adjust best effort results): # tratamento_c3.sh fn
+##### step 6 (Adjust QoS only results): # tratamento_c3.sh fq
 
-step 6 (Adjust QoS only results): # tratamento_c3.sh fq
+##### step 7 (Adjust proposed framework results): # tratamento_c3.sh fs
 
-step 7 (Adjust proposed framework results): # tratamento_c3.sh fs
+##### step 8 (Generate in R the PDR results graphs): execute in R the comb_pdr.R file
 
-step 8 (Generate in R the PDR results graphs): execute in R the comb_pdr.R file
+##### step 9 (Generate in R the RTT results (ECDFs) graphs): execute in R the comb_delay.R file
 
-step 9 (Generate in R the RTT results (ECDFs) graphs): execute in R the comb_delay.R file
-
-step 10 (Generate in R the Throughput and RTT over time results graphs): execute in R the comb_geral.R file
+##### step 10 (Generate in R the Throughput and RTT over time results graphs): execute in R the comb_geral.R file
