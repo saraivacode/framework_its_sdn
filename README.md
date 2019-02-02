@@ -1,4 +1,4 @@
-# Application-driven framework for intelligent transportation systems
+# Application-driven Framework for Intelligent Transportation Systems
 
 ## About this proposed solution 
 
