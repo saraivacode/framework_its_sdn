@@ -63,6 +63,8 @@ https://github.com/saraivacode/framework_its_sdn/blob/master/comb_geral.R
 
 ### Execution example
 
+##### ok:
+
 step 1 (Run ryu): # ryu-manager ryu.app.rest_qos ryu.app.qos_simple_switch_13 ryu.app.rest_conf_switch ryu.app.ofctl_rest
 step 2 (Run experiment with best effort approach): # testef_14.py -b
 step 3 (Run experiment with QoS only approach): # testef_14.py -q
