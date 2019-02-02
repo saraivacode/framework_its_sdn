@@ -82,3 +82,5 @@ https://github.com/saraivacode/framework_its_sdn/blob/master/comb_geral.R
 ##### step 9 (Generate in R the RTT results (ECDFs) graphs): execute in R the comb_delay.R file
 
 ##### step 10 (Generate in R the Throughput and RTT over time results graphs): execute in R the comb_geral.R file
+
+Note: steps 2 through 7 can not be run simultaneously
