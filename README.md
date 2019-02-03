@@ -8,7 +8,16 @@ This implementation uses the Mininet-wifi emulator (https://github.com/intrig-un
 
 Before run the experiments, it is necessary configure the Ryu controller to accept OF 1.3 REST instructions, as described in https://osrg.github.io/ryu-book/en/html/rest_qos.html. 
 
-The codes here refer to a performance evaluation of the proposed framework in a scenario representing a traffic jam in a 1.5 km via, with 15 vehicles, in a 300 seconds period, with four congestion levels over the time. The vehicles are associated with four applications, each one with different network requirements. 
+It is also necessary to add in the Mininet-wifi source code the parameters to reduce the timeout of hostapd, in order that the disconnections of vehicles outside RSU radio occur more quicly. To do this, add the following in the [setHostapdConfig method]
+(https://github.com/intrig-unicamp/mininet-wifi/blob/6d9d2466e5b345b5d8e5f5bce06637c968573b8a/mn_wifi/node.py#L1451):
+
+##### cmd = cmd + ('\nap_max_inactivity=6')
+##### cmd = cmd + ('\nskip_inactivity_poll=1')
+##### cmd = cmd + ('\nmax_listen_interval=6')
+
+After this change is necessary run $ sudo make install.
+
+The codes here refer to a performance evaluation of the proposed framework in a scenario representing a traffic jam in a via with 15 vehicles, in a 300 seconds period, with four congestion levels over the time. The vehicles are associated with four applications, each one with different network requirements. 
 
 <img src="https://github.com/saraivacode/framework_its_sdn/blob/master/experiment2.png" width="480">
 
