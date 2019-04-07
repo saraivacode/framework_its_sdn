@@ -38,14 +38,14 @@ mean1segdelay_e_fn$size[151:225]<- mean1segdelay_e_fn$size[151:225]/11
 mean1segdelay_e_fn$size[226:300]<- mean1segdelay_e_fn$size[226:300]/15
 
 #plot(ecdf(mean1segdelay_e_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,6000), ylim = c(0,1), main="RTT Application E", ylab = "ECDF", xlab = "RTT (ms)")
-plot(ecdf(mean1segdelay_e_fs$size), col.01line = "gray70", pch = 15, col="red",  main="", xlim = c(0,5000), ylim = c(0,1), ylab = "ECDF", xlab = "RTT (ms)")
+plot(ecdf(mean1segdelay_e_fs$size), col.01line = "gray70", pch = 15, col="red",  main="", xlim = c(0,5000), ylim = c(0,1), ylab = "ECDF", xlab = "RTT (ms)", cex.axis=1.5, cex.lab=1.5)
 # abline( h= 0.8, lty =3, col = "gray60")
 # abline( v= 650, lty =3, col = "gray60")
 par(new=T)
 plot(ecdf(mean1segdelay_e_fq$size), col.01line = "gray70", pch = 17, col="blue",  xlim = c(0,5000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA, main ="")
 par(new=T)
 plot(ecdf(mean1segdelay_e_fn$size), col.01line = "gray70", pch = 19, col="orange", xlim = c(0,5000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA,  main ="")
-legend("right", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), pch=c(15,17,19), col=c("red", "blue", "orange"))
+legend("right", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), pch=c(15,17,19), col=c("red", "blue", "orange"), cex=1.3)
 
 #############################################
 ###################################################################################################AppE2
@@ -87,14 +87,14 @@ mean1segdelay_e2_fn$size[151:225]<- mean1segdelay_e2_fn$size[151:225]/11
 mean1segdelay_e2_fn$size[226:300]<- mean1segdelay_e2_fn$size[226:300]/15
 
 #plot(ecdf(mean1segdelay_e2_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,6000), ylim = c(0,1), main="RTT Application E2", ylab = "ECDF", xlab = "RTT (ms)")
-plot(ecdf(mean1segdelay_e2_fs$size), col.01line = "gray70", pch = 15, col="red", main="",  xlim = c(0,10000), ylim = c(0,1), ylab = "ECDF", xlab = "RTT (ms)")
+plot(ecdf(mean1segdelay_e2_fs$size), col.01line = "gray70", pch = 15, col="red", main="",  xlim = c(0,10000), ylim = c(0,1), ylab = "ECDF", xlab = "RTT (ms)", cex.axis=1.5, cex.lab=1.5)
 # abline( h= 0.8, lty =3, col = "gray60")
 # abline( v= 650, lty =3, col = "gray60")
 par(new=T)
 plot(ecdf(mean1segdelay_e2_fq$size), col.01line = "gray70", pch = 17, col="blue", xlim = c(0,10000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA, main ="")
 par(new=T)
 plot(ecdf(mean1segdelay_e2_fn$size), col.01line = "gray70", pch = 19, col="orange", xlim = c(0,10000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA,  main ="")
-legend("right", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), pch=c(15,17,19), col=c("red", "blue", "orange"))
+legend("right", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), pch=c(15,17,19), col=c("red", "blue", "orange"), cex=1.3)
 
 ##############################################################################3#App G
 
@@ -135,13 +135,13 @@ mean1segdelay_g_fn$size[151:225]<- mean1segdelay_g_fn$size[151:225]/11
 mean1segdelay_g_fn$size[226:300]<- mean1segdelay_g_fn$size[226:300]/15
 
 #plot(ecdf(mean1segdelay_g_fs$size), col.01line = "gray70", pch = 19, col="red", ylim = c(0,1), xlim = c(0,15000), main="RTT Application G", ylab = "ECDF", xlab = "RTT (ms)")
-plot(ecdf(mean1segdelay_g_fs$size), col.01line = "gray70", pch = 15, col="red", xlim = c(0,15000), ylim = c(0,1), main="", ylab = "ECDF", xlab = "RTT (ms)")
+plot(ecdf(mean1segdelay_g_fs$size), col.01line = "gray70", pch = 15, col="red", xlim = c(0,15000), ylim = c(0,1), main="", ylab = "ECDF", xlab = "RTT (ms)", cex.axis=1.5, cex.lab=1.5)
 #abline( h= 0.8, lty =3, col = "gray60")
 par(new=T)
 plot(ecdf(mean1segdelay_g_fq$size), col.01line = "gray70", pch = 17, col="blue", xlim = c(0,15000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA, main ="")
 par(new=T)
 plot(ecdf(mean1segdelay_g_fn$size), col.01line = "gray70", pch = 19, col="orange", xlim = c(0,15000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA,  main ="")
-legend("right", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), pch=c(15,17,19), col=c("red", "blue", "orange"))
+legend("right", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), pch=c(15,17,19), col=c("red", "blue", "orange"), cex=1.3)
 
 ####################################################App S
 
@@ -182,11 +182,11 @@ mean1segdelay_s_fn$size[151:225]<- mean1segdelay_s_fn$size[151:225]/11
 mean1segdelay_s_fn$size[226:300]<- mean1segdelay_s_fn$size[226:300]/15
 
 #plot(ecdf(mean1segdelay_s_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,300), ylim = c(0,1), main="RTT Application S", ylab = "ECDF", xlab = "RTT (ms)")
-plot(ecdf(mean1segdelay_s_fs$size), col.01line = "gray70", pch = 15, col="red", main="", ylim = c(0,1), ylab = "ECDF", xlab = "RTT (ms)")
+plot(ecdf(mean1segdelay_s_fs$size), col.01line = "gray70", pch = 15, col="red", main="", ylim = c(0,1), ylab = "ECDF", xlab = "RTT (ms)", cex.axis=1.5, cex.lab=1.5)
 # abline( h= 0.8, lty =3, col = "gray60")
 # abline( v= 10, lty =3, col = "gray60")
 par(new=T)
 plot(ecdf(mean1segdelay_s_fq$size), pch = 17, col="blue",  ylim = c(0,1), axes=F, xlab=NA, ylab=NA, main ="")
 par(new=T)
 plot(ecdf(mean1segdelay_s_fn$size), pch = 19, col="orange", ylim = c(0,1), axes=F, xlab=NA, ylab=NA,  main ="")
-legend("right", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), pch=c(15,17,19), col=c("red", "blue", "orange"))
+legend("right", legend=c("Framework", "QoS", "Best effort"), lty=c(1,1,1), pch=c(15,17,19), col=c("red", "blue", "orange"), cex=1.3)
