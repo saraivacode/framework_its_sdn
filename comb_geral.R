@@ -40,13 +40,13 @@ mean1segdelay_e_fs$size[226:300]<- mean1segdelay_e_fs$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_e_fs$time[1:300], mean1segserver_e_fs$size[1:300], type="l", col="blue", main = "Application E (Framework)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_e_fs$time[1:300], mean1segserver_e_fs$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2)
+plot(mean1segserver_e_fs$time[1:300], mean1segserver_e_fs$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e_fs$time[1:300], mean1segcar_e_fs$size[1:300], col="red", lwd=2, ylim = c(0,700000), lty=6)
 par(new=T)
 plot(mean1segdelay_e_fs$time[1:300], mean1segdelay_e_fs$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,20000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 #FQ
 #Compute Server E received
@@ -85,13 +85,13 @@ mean1segdelay_e_fq$size[226:300]<- mean1segdelay_e_fq$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_e_fq$time[1:300], mean1segserver_e_fq$size[1:300], type="l", col="blue", main = "Application E (QoS)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_e_fq$time[1:300], mean1segserver_e_fq$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2)
+plot(mean1segserver_e_fq$time[1:300], mean1segserver_e_fq$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e_fq$time[1:300], mean1segcar_e_fq$size[1:300], col="red", lwd=2, ylim = c(0,700000), lty=6)
 par(new=T)
 plot(mean1segdelay_e_fq$time[1:300], mean1segdelay_e_fq$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,20000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 #FN
 
@@ -131,13 +131,13 @@ mean1segdelay_e_fn$size[226:300]<- mean1segdelay_e_fn$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_e_fn$time[1:300], mean1segserver_e_fn$size[1:300], type="l", col="blue", main = "Application E (Best Effort)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_e_fn$time[1:300], mean1segserver_e_fn$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2)
+plot(mean1segserver_e_fn$time[1:300], mean1segserver_e_fn$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e_fn$time[1:300], mean1segcar_e_fn$size[1:300], col="red", lwd=2, ylim = c(0,700000), lty=6)
 par(new=T)
 plot(mean1segdelay_e_fn$time[1:300], mean1segdelay_e_fn$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,20000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 ###########################################################App E2
 
@@ -179,13 +179,13 @@ mean1segdelay_e2_fs$size[226:300]<- mean1segdelay_e2_fs$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_e2_fs$time[1:300], mean1segserver_e2_fs$size[1:300], type="l", col="blue", main = "Application E2 (Framework)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)")
-plot(mean1segserver_e2_fs$time[1:300], mean1segserver_e2_fs$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2)
+plot(mean1segserver_e2_fs$time[1:300], mean1segserver_e2_fs$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e2_fs$time[1:300], mean1segcar_e2_fs$size[1:300], col="red", lwd=2, ylim = c(0,1300000), lty=6)
 par(new=T)
 plot(mean1segdelay_e2_fs$time[1:300], mean1segdelay_e2_fs$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,10000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 #FQ
 #Compute Server E2 received
@@ -224,13 +224,13 @@ mean1segdelay_e2_fq$size[226:300]<- mean1segdelay_e2_fq$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_e2_fq$time[1:300], mean1segserver_e2_fq$size[1:300], type="l", col="blue", main = "Application E2 (QoS)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)")
-plot(mean1segserver_e2_fq$time[1:300], mean1segserver_e2_fq$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2)
+plot(mean1segserver_e2_fq$time[1:300], mean1segserver_e2_fq$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e2_fq$time[1:300], mean1segcar_e2_fq$size[1:300], col="red", lwd=2, ylim = c(0,1300000), lty=6)
 par(new=T)
 plot(mean1segdelay_e2_fq$time[1:300], mean1segdelay_e2_fq$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,10000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 #FN
 
@@ -270,13 +270,13 @@ mean1segdelay_e2_fn$size[226:300]<- mean1segdelay_e2_fn$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_e2_fn$time[1:300], mean1segserver_e2_fn$size[1:300], type="l", col="blue", main = "Application E2 (Best effort)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)")
-plot(mean1segserver_e2_fn$time[1:300], mean1segserver_e2_fn$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2)
+plot(mean1segserver_e2_fn$time[1:300], mean1segserver_e2_fn$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e2_fn$time[1:300], mean1segcar_e2_fn$size[1:300], col="red", lwd=2, ylim = c(0,1300000), lty=6)
 par(new=T)
 plot(mean1segdelay_e2_fn$time[1:300], mean1segdelay_e2_fn$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,10000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 ############################################################App G
 
@@ -316,13 +316,13 @@ mean1segdelay_g_fs$size[226:300]<- mean1segdelay_g_fs$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_g_fs$time[1:300], mean1segserver_g_fs$size[1:300], type="l", col="blue", main = "Application G (Framework)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_g_fs$time[1:300], mean1segserver_g_fs$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2)
+plot(mean1segserver_g_fs$time[1:300], mean1segserver_g_fs$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_g_fs$time[1:300], mean1segcar_g_fs$size[1:300], col="red", lwd=2, ylim = c(0,700000), lty=6)
 par(new=T)
 plot(mean1segdelay_g_fs$time[1:300], mean1segdelay_g_fs$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,80000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 #FQ
 #Compute Server  received
@@ -361,13 +361,13 @@ mean1segdelay_g_fq$size[226:300]<- mean1segdelay_g_fq$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_g_fq$time[1:300], mean1segserver_g_fq$size[1:300], type="l", col="blue", main = "Application G (QoS)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_g_fq$time[1:300], mean1segserver_g_fq$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2)
+plot(mean1segserver_g_fq$time[1:300], mean1segserver_g_fq$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_g_fq$time[1:300], mean1segcar_g_fq$size[1:300], col="red", lwd=2, ylim = c(0,700000), lty=6)
 par(new=T)
 plot(mean1segdelay_g_fq$time[1:300], mean1segdelay_g_fq$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,80000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 #FN
 
@@ -407,13 +407,13 @@ mean1segdelay_g_fn$size[226:300]<- mean1segdelay_g_fn$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_g_fn$time[1:300], mean1segserver_g_fn$size[1:300], type="l", col="blue", main = "Application G (Best effort)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_g_fn$time[1:300], mean1segserver_g_fn$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2)
+plot(mean1segserver_g_fn$time[1:300], mean1segserver_g_fn$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_g_fn$time[1:300], mean1segcar_g_fn$size[1:300], col="red", lwd=2, ylim = c(0,700000), lty=6)
 par(new=T)
 plot(mean1segdelay_g_fn$time[1:300], mean1segdelay_g_fn$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,80000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 ###########################################################################App S
 
@@ -453,13 +453,13 @@ mean1segdelay_s_fs$size[226:300]<- mean1segdelay_s_fs$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_s_fs$time[1:300], mean1segserver_s_fs$size[1:300], type="l", col="blue", main = "Application S (Framework)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)")
-plot(mean1segserver_s_fs$time[1:300], mean1segserver_s_fs$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)", lty=2)
+plot(mean1segserver_s_fs$time[1:300], mean1segserver_s_fs$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_s_fs$time[1:300], mean1segcar_s_fs$size[1:300], col="red", lwd=2, ylim = c(0,900000), lty=6)
 par(new=T)
 plot(mean1segdelay_s_fs$time[1:300], mean1segdelay_s_fs$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,5000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 #FQ
 #Compute Server S received
@@ -498,13 +498,13 @@ mean1segdelay_s_fq$size[226:300]<- mean1segdelay_s_fq$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_s_fq$time[1:300], mean1segserver_s_fq$size[1:300], type="l", col="blue", main = "Application S (QoS)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)")
-plot(mean1segserver_s_fq$time[1:300], mean1segserver_s_fq$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)", lty=2)
+plot(mean1segserver_s_fq$time[1:300], mean1segserver_s_fq$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_s_fq$time[1:300], mean1segcar_s_fq$size[1:300], col="red", lwd=2, ylim = c(0,900000), lty=6)
 par(new=T)
 plot(mean1segdelay_s_fq$time[1:300], mean1segdelay_s_fq$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,5000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
 
 #FN
 
@@ -544,10 +544,10 @@ mean1segdelay_s_fn$size[226:300]<- mean1segdelay_s_fn$size[226:300]/15
 #Plot
 par(mar = c(5,5,2,5))
 #plot(mean1segserver_s_fn$time[1:300], mean1segserver_s_fn$size[1:300], type="l", col="blue", main = "Application S (Best effort)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)")
-plot(mean1segserver_s_fn$time[1:300], mean1segserver_s_fn$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)", lty=2)
+plot(mean1segserver_s_fn$time[1:300], mean1segserver_s_fn$size[1:300], type="l", col="blue", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_s_fn$time[1:300], mean1segcar_s_fn$size[1:300], col="red", lwd=2, ylim = c(0,900000), lty=6)
 par(new=T)
 plot(mean1segdelay_s_fn$time[1:300], mean1segdelay_s_fn$size[1:300], type="l", col="orange", lwd=2, xlim = c(0,300), axes=F, xlab=NA, ylab=NA, ylim = c(0,5000))
-axis(side = 4)
-mtext(side = 4, line = 3, 'RTT (ms)')
-legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"))
+axis(side = 4, cex.axis=1.5)
+mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
+legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
