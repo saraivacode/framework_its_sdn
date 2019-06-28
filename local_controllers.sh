@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#define static link capabilitie
+#set static link capability
 up=5000000
-#Define the periodic time that local controllers check local RAN status
+#set the periodic time that local controllers check local RAN status
 t=5
-#Define the periodic time that local controllers wait to confirm an congestion
+#set the periodic time that local controllers wait to confirm a congestion
 t2=20
-#Get from database the  appb and appc bw requirements
+#Set the  appb and appc bw requirements (Can be found in the database via a query also)
 appb_bw=500000
 appc_bw=1000000
 
@@ -16,7 +16,7 @@ SECONDS=0
 function calc {
 	#If there is somo vehicle in RAN
 	if [[ $(echo $x | wc -w) -gt 0 ]]; then
-		#calc demands based os MACs in each RAN
+		#calc demands based os MACs in each RAN and the information in the shared database
 		y=$(
 		for i in $x;
 		do
@@ -39,9 +39,9 @@ function calc {
 		b=0
 		c=0
 	fi	
-	#Verify if there are flows registered in database that RSU in analisis is the destination (to debit from balance)
+	#Verify if there are flows registered in database that RSU in analysis is the destination (to debit from balance)
 	dec=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where rsu_dest= '"$rsu_calc"' " framework 2> /dev/null | tail -1)
-	##Verify if there are flows registered in database that RSU in analisis is the source (to increment in balance)
+	##Verify if there are flows registered in database that RSU in analysis is the source (to increment in balance)
 	inc=$(mysql -u root -pwifi -e "select sum(bw_value) from redirect where rsu_o= '"$rsu_calc"' " framework 2> /dev/null | tail -1)
 	#When the result of previous functions is NULL, change to 0, proceed with calc
 	if [ $inc = "NULL" ]; then
@@ -50,7 +50,7 @@ function calc {
 	if [ $dec = "NULL" ]; then
 		dec=0
 	fi					
-	#Calc the balance of RSU in analisis
+	#Calc the balance of RSU in analysis
 	sd=$(echo $up-$y-$dec+$inc|bc)
 
 	#Update control files with updated balance information
@@ -132,7 +132,7 @@ do
 		echo -e $(echo $SECONDS-15|bc) - $rsu " has a demand of " $(echo $y|bc)   " ($b B and $c C)." " dec: " $dec " inc: " $inc " bl: " $sd ". " $(echo $x| wc -w) "cars. r " $r
 	done
 	echo -e "\n =========================================//==============================================================="
-	##################################Part 2 of program, that deal with redirections#####################################
+	##################################Part 2, to deal with redirections#####################################
 	#For each rsu in balance file (eg. rsu1, rsu2 and rsu3)
 	for rsu in $(cat saldo.txt | cut -d' ' -f1);
 	do
@@ -161,7 +161,7 @@ do
 				#mac_rsu1=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
 				mac_rsu1=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 
-				#initialize control files of App B and C applications
+				#initialize control files of B and C Apps
 				rm -f appc.txt
 				rm -f appb.txt
 
@@ -603,7 +603,7 @@ do
 							echo -e "\n $rsu still congested. RSUs 1 and 3 are withou available balance. No actions in C applications. B applications will be limited and C blocked until there is balance."
 							echo $i " is associated to an B application and will be limited. C will be blocked"
 							echo "limiting " $i " in $rsu..."					
-							#Install flow to limit application B in RAN and block C Application of vehicle and register in database. Recalc balance
+							#Install flows to limit application B in RAN and block C Application of vehicle and register in database. Recalc balance
 							ovs-ofctl add-flow $rsu "table=0, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1, dl_src=$i, nw_dst=200.0.10.3, udp, tp_dst=5003 actions=set_queue:0,goto_table:1" -O Openflow13
 							ovs-ofctl add-flow $rsu "table=1, priority=2, cookie=0x$(echo $rsu | cut -d'u' -f2)5, in_port=1,dl_src=$i, nw_dst=200.0.10.4, udp,tp_dst=5004 actions=drop" -O Openflow13
 							
@@ -626,7 +626,7 @@ do
 				calc
 			done		
 		else
-			#verify if internet is blocked at RAN and unblock, since the balance is positive
+			#verify if internet (G App) is blocked at RAN and unblock, since the balance is positive
 
 			for j in $(ifconfig | grep wlan | cut -d' ' -f1);
 			do
