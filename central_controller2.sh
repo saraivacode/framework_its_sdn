@@ -3,17 +3,17 @@
 ##Set and apply queues on switches
 echo -e "\n Configuring queues"
 
-#erase the file for local information storage
+#erase the file with local information storage
 rm -f temp2.txt
 
-#collects the DPIDs of the switches in the regions of interest with their interfaces to apply queues and saves in temp2.txt
+#collects the DPIDs of the switches in the regions of interest, including their interfaces to apply the queues, and saves this in temp2.txt
 mysql -u root -pwifi -e "select dpid,iface_updtip from rsu where Region IN (select region from appkpi)" framework 2> /dev/null | grep '-' |
 while read i;
 do
 	echo $i >> temp2.txt
 done
 
-#clear the ontrol variable
+#clear the control variable
 t2=0
 
 #Identify DPIDs
@@ -26,11 +26,11 @@ do
 	#inc control variable
 	t2=$(echo $t2+1 | bc)
 
-	#saves the values of DPID in x2 and in y2 the values of inteferface, to mount the expressions REST
+	#saves the values of DPID in x2 and the values of inteferface in y2, to mount the REST expressions
 	x2=$(cat temp2.txt | awk -F' ' '{print $1}' | cut -d$'\n' -f$t2)
 	y2=$(cat temp2.txt | awk -F' ' '{print $2}' | cut -d$'\n' -f$t2)
 
-	#salva em x os valores de data_rate de cada aplicação para aplicar o QoS
+	#...
 	# x=$(mysql -u root -pwifi -e "select appkpi.data_rate, infrastructure.ip from appkpi inner join infrastructure on appkpi.id = infrastructure.app;" framework 2> /dev/null | grep '\.' |
 	# while read i;
 	# do
