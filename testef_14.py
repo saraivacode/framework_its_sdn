@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
-#Before run emulation with this script, is necessary run Ryu controller:
+#Before run emulation with this script, it is necessary run Ryu controller:
 #ryu-manager ryu.app.rest_qos ryu.app.qos_simple_switch_13 ryu.app.rest_conf_switch ryu.app.ofctl_rest
-#This program permits three use cases: 1 - Using Framework (-f), only QoS (-q) and best effort (-b)
+#This script enbles three use cases: 1 - Using Framework (-f), only QoS (-q) and best effort (-b)
 #All options require the script that will start applications traffic in vehicles (carcon.sh)
-#To use options -q, is necessary the database script (initialdb.sql) and Central Controller script (central_controller2.sh).
-#To use option -f is necessary databse script, Central controller and locar controllers script (local_controllers.sh)
-#To generate results its necessary run (after) tratamento_c3.sh and the R scripts (comb_pdr.R, comb_delay.R and comb_geral.R)
+#To use -q option, it is necessary the database script (initialdb.sql) and Central Controller script (central_controller2.sh).
+#To use -f option it is necessary databse script, Central controller and locar controllers script (local_controllers.sh)
+#To generate the results its necessary to run after all the tratamento_c3.sh and the R scripts (comb_pdr.R, comb_delay.R and comb_geral.R)
 
 'An Application driver Framework for ITS using SDN Vehicular Networks.'
 
@@ -170,7 +170,7 @@ def topology(flag):
     #Automatic mobility (disabled to these experiments)
     #os.system('./framework_its_sdn/lc_mob.sh > j2.txt &')
 
-    #Define the way the approach that will be used (Framework, only QoS or best effort)
+    #Define which approach will be used (Framework, QoS only or best effort)
     if flag == '-f':
         print( "*** Using Framework with controllers database, central controller and local controllers scripts")
         os.system('mysql -u root -pwifi < ./framework_its_sdn/initialdb.sql -f &')
@@ -188,7 +188,7 @@ def topology(flag):
     else:
         print( "*** Using test version")
 
-    #Configuring arp table in servers (to avoid noise and inconsistent data)
+    #Configuring arp tables in servers (to avoid noise and inconsistent data)
     server_s1.cmd('arp -f ./mac2.txt &')
     server_s2.cmd('arp -f ./mac2.txt &')
     server_s3.cmd('arp -f ./mac2.txt &')
@@ -198,14 +198,14 @@ def topology(flag):
 
     time.sleep(2)
 
-    #Configuring arp table in cars (to avoid noise and inconsistent data)
+    #Configuring arp tables in cars (to avoid noise and inconsistent data)
     for x in xrange(0,15):
         cars[x].cmd('arp -f ./mac.txt &')
         time.sleep(0.5)
 
     print( "*** Starting C1 - T1")
     # Car0, 1 and 2 in RSU3. Car3 and 4 in RSU2 and Car 5 and 6 in RSU1. Cars7-14 out of range
-    #Configuring flows to vehicles in backbonne switch
+    #Configuring flows to vehicles in backbonne switches
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:01 actions=1" -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:01 actions=4" -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:02 actions=1" -O Openflow13')
@@ -227,7 +227,7 @@ def topology(flag):
 
     if flag == '-f' or flag == '-q' or flag == '-b':
 
-        #starting tcpdump in servers, to collect packets in order to generate results
+        #starting tcpdump in servers to collect packets in order to generate the results
         server_s1.cmd('tcpdump udp port 5002 -i server_s1-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s1.txt &')
         server_s2.cmd('tcpdump udp port 5002 -i server_s2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s2.txt &')
         server_s3.cmd('tcpdump udp port 5002 -i server_s3-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_s3.txt &')
@@ -288,7 +288,7 @@ def topology(flag):
         #Waiting the Congestion Level 3 time
         time.sleep(75)
         #Starting the Congestion Level 4 - moving vehicles 9, 10, 11, 12, 13 and 14
-        # Car0-4 in RSU3. Car5-10 in RSU2 and Car11-14 in RSU1. All RSUs in range
+        # Car0-4 in RSU3. Car5-10 in RSU2 and Car11-14 in RSU1.
         print( "*** Starting C4 - T4")
 
         time.sleep(0.5)
