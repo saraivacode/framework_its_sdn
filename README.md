@@ -18,7 +18,7 @@ After this change is necessary run $ sudo make install.
 
 The codes here refer to a performance evaluation of the proposed framework in a scenario representing a traffic jam in a via with 15 vehicles, in a 300 seconds period, with four congestion levels over the time. The vehicles are associated with four applications, each one with different network requirements. 
 
-<img src="https://github.com/saraivacode/framework_its_sdn/blob/master/experiment2.png" width="480">
+<img src="https://github.com/saraivacode/framework_its_sdn/blob/master/topology.png" width="480">
 
 This implementation permits to compare the results of PDR, throughput and RTT obtained with the use of the proposed framework and with two other approaches named as "Qos only", that implements just QoS in the network, and a "Best effort" approach, that do not prioritize any traffic.
 
