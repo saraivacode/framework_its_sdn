@@ -1,0 +1,232 @@
+#Descobrir o momento em que os veiculos come'caram a transmitir:
+
+head logcar{0..14}.txt  | grep -v ini | tr '\n' ' ' | sed 's/==>/\n==>/g' | cut -d' ' -f2,5; echo -e '\n'
+
+logcar0.txt 1598167063.485402920
+logcar1.txt 1598167074.378869230
+logcar2.txt 1598167075.622385022
+logcar3.txt 1598167076.095577970
+logcar4.txt 1598167076.956272063
+logcar5.txt 1598167251.017494579
+logcar6.txt 1598167262.436686831
+logcar7.txt 1598167263.586359316
+logcar8.txt 1598167264.265763514
+logcar9.txt 1598167272.644515172
+logcar10.txt 1598167272.512076529
+logcar11.txt 1598167478.393988718
+logcar12.txt 1598167504.951054783
+logcar13.txt 1598167487.585251251
+logcar14.txt 1598167490.192280018
+
+root@wifi-VirtualBox:/home/wifi# times=$(head logcar{0..14}.txt  | grep -v ini | tr '\n' ' ' | sed 's/==>/\n==>/g' | cut -d' ' -f5); t1=$(echo $times | cut -d' ' -f1); for t in $times; do echo $t-$t1 | bc; done
+0
+10.893466310
+12.136982102
+12.610175050
+13.470869143
+187.532091659
+198.951283911
+200.100956396
+200.780360594
+209.159112252
+209.026673609
+414.908585798
+441.465651863
+424.099848331
+426.706877098
+
+
+#Tempo de recepcao dos pacotes
+
+root@wifi-VirtualBox:/home/wifi# for i in {110..124}; do time=$(cat server_e.txt | tr -s ' ' | tr '\n' ' ' | sed 's/1470/1470\n/g' | grep 200.0.10.$i | head -1 | tr -s ' '| cut -d' ' -f2); echo 200.0.10.$i '->' $time; done
+200.0.10.110 -> 00:00:00.000000
+200.0.10.111 -> 00:00:10.863106
+200.0.10.112 -> 00:00:12.625322
+200.0.10.113 -> 00:00:12.671446
+200.0.10.114 -> 00:00:13.771897
+200.0.10.115 -> 00:03:07.535527
+200.0.10.116 -> 00:03:18.963411
+200.0.10.117 -> 00:03:20.123507
+200.0.10.118 -> 00:03:20.825214
+200.0.10.119 -> 00:03:30.558295
+200.0.10.120 -> 00:03:30.336337
+200.0.10.121 -> 00:06:54.961250
+200.0.10.122 -> 00:07:21.561751
+200.0.10.123 ->
+200.0.10.124 -> 00:07:06.738015
+root@wifi-VirtualBox:/home/wifi# for i in {110..124}; do time=$(cat server_e2.txt | tr -s ' ' | tr '\n' ' ' | sed 's/1470/1470\n/g' | grep 200.0.10.$i | head -1 | tr -s ' '| cut -d' ' -f2); echo 200.0.10.$i '->' $time; done
+200.0.10.110 -> 00:00:00.000000
+200.0.10.111 -> 00:00:10.879607
+200.0.10.112 -> 00:00:12.608925
+200.0.10.113 -> 00:00:12.678021
+200.0.10.114 -> 00:00:13.565014
+200.0.10.115 -> 00:03:07.547344
+200.0.10.116 -> 00:03:18.962828
+200.0.10.117 -> 00:03:20.377605
+200.0.10.118 -> 00:03:21.461066
+200.0.10.119 -> 00:03:33.032392
+200.0.10.120 -> 00:03:32.813057
+200.0.10.121 -> 00:06:54.924780
+200.0.10.122 -> 00:07:24.904824
+200.0.10.123 ->
+200.0.10.124 -> 00:07:07.040091
+root@wifi-VirtualBox:/home/wifi# for i in {110..124}; do time=$(cat server_g.txt | tr -s ' ' | tr '\n' ' ' | sed 's/1470/1470\n/g' | grep 200.0.10.$i | head -1 | tr -s ' '| cut -d' ' -f2); echo 200.0.10.$i '->' $time; done
+200.0.10.110 -> 00:00:00.000000
+200.0.10.111 -> 00:00:10.896091
+200.0.10.112 -> 00:00:12.631087
+200.0.10.113 -> 00:00:12.662463
+200.0.10.114 -> 00:00:18.493711
+200.0.10.115 -> 00:03:07.539597
+200.0.10.116 -> 00:03:19.000685
+200.0.10.117 -> 00:03:22.677007
+200.0.10.118 -> 00:03:26.271393
+200.0.10.119 -> 00:04:10.445903
+200.0.10.120 -> 00:04:10.409026
+200.0.10.121 -> 00:06:54.922184
+200.0.10.122 -> 00:07:39.938115
+200.0.10.123 ->
+200.0.10.124 -> 00:07:08.690814
+root@wifi-VirtualBox:/home/wifi# for i in {110..124}; do time=$(cat server_s1.txt | tr -s ' ' | tr '\n' ' ' | sed 's/1470/1470\n/g' | grep 200.0.10.$i | head -1 | tr -s ' '| cut -d' ' -f2); echo 200.0.10.$i '->' $time; done
+200.0.10.110 ->
+200.0.10.111 ->
+200.0.10.112 ->
+200.0.10.113 ->
+200.0.10.114 ->
+200.0.10.115 ->
+200.0.10.116 ->
+200.0.10.117 ->
+200.0.10.118 ->
+200.0.10.119 ->
+200.0.10.120 ->
+200.0.10.121 -> 00:00:00.000000
+200.0.10.122 -> 00:00:26.589302
+200.0.10.123 ->
+200.0.10.124 -> 00:00:11.798152
+root@wifi-VirtualBox:/home/wifi# for i in {110..124}; do time=$(cat server_s2.txt | tr -s ' ' | tr '\n' ' ' | sed 's/1470/1470\n/g' | grep 200.0.10.$i | head -1 | tr -s ' '| cut -d' ' -f2); echo 200.0.10.$i '->' $time; done
+200.0.10.110 ->
+200.0.10.111 ->
+200.0.10.112 ->
+200.0.10.113 ->
+200.0.10.114 ->
+200.0.10.115 -> 00:00:00.000000
+200.0.10.116 -> 00:00:11.421740
+200.0.10.117 -> 00:00:12.573708
+200.0.10.118 -> 00:00:13.287365
+200.0.10.119 -> 00:00:21.607366
+200.0.10.120 -> 00:00:21.523802
+200.0.10.121 ->
+200.0.10.122 ->
+200.0.10.123 ->
+200.0.10.124 ->
+root@wifi-VirtualBox:/home/wifi# for i in {110..124}; do time=$(cat server_s3.txt | tr -s ' ' | tr '\n' ' ' | sed 's/1470/1470\n/g' | grep 200.0.10.$i | head -1 | tr -s ' '| cut -d' ' -f2); echo 200.0.10.$i '->' $time; done
+200.0.10.110 -> 00:00:00.000000
+200.0.10.111 -> 00:00:10.884459
+200.0.10.112 -> 00:00:12.601031
+200.0.10.113 -> 00:00:12.660335
+200.0.10.114 -> 00:00:13.459795
+200.0.10.115 ->
+200.0.10.116 ->
+200.0.10.117 ->
+200.0.10.118 ->
+200.0.10.119 ->
+200.0.10.120 ->
+200.0.10.121 ->
+200.0.10.122 ->
+200.0.10.123 ->
+200.0.10.124 ->
+root@wifi-VirtualBox:/home/wifi# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#para testar o ovsdb
+	-> sudo ovsdb-client list-dbs tcp:127.0.0.1:6640
+	-> sudo ovsdb-client list-tables tcp:127.0.0.1:6640
+	-> sudo ovs-vsctl show
+	-> sudo netstat -putna | grep 6640
+	-> sudo /etc/init.d/openvswitch-switch status
+	-> ps -ef | grep ovsdb
+	-> curl -X PUT -d '"tcp:127.0.0.1:6640"' http://localhost:8080/v1.0/conf/switches/0000000000000001/ovsdb_addr
+
+
+
+ovn-nbctl --db=tcp:192.168.10.10:6641 show
+
+#para reiniciar o ovs
+	-> /etc/init.d/openvswitch-switch restart
+	-> service openvswitch-switch restart
+
+#para configurar o ovsdb corretamente
+	-> ovs-vsctl set Bridge s1 protocols=OpenFlow13
+	-> ovs-vsctl set-manager ptcp:6632
+	-> sudo ovs-appctl -t ovsdb-server ovsdb-server/add-remote ptcp:6640
+
+
+No arquivo xpto alterei a linha 371 para "numerator = math.pow(float(dist) / ref_d, 10 * ppm.exp) * 10 ** pl"
+
+"/usr/local/lib/python2.7/dist-packages/mininet_wifi-2.5-py2.7.egg/mn_wifi/propagationModels.py", line 371, in logDistance
+    numerator = math.pow(dist / ref_d, 10 * ppm.exp) * 10 ** pl
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+
+ajste tclink
+
+
+2591.21,3525.02
+
+  541  head -3 pingrsu3* | grep PING | cut -d'-' -f1 >> times.txt
+  542  head -3 pingrsu2* | grep PING | cut -d'-' -f1 >> times.txt
+  543  head -3 pingrsu1* | grep PING | cut -d'-' -f1 >> times.txt
+  544  cat times.txt
+  546  for i in $(cat times.txt); do echo $i - 1597659935 | bc; done
+  547  head -1 times.txt 
+  548  v0=$(head -1 times.txt); for i in $(cat times.txt); do echo $i - $v0 | bc; done
+  549  v0=$(head -1 times.txt); for i in $(cat times.txt); do echo $i - $v0 | bc; done > imef.txt
+
+Com QoS e 480segundos
+
+root@wifi-VirtualBox:/home/wifi# for i in $(echo s e e2 g); do v=$i; x=$(cat ping*_$v.txt | grep "rtt\|loss" | cut -d',' -f3 | grep % | cut -d'%' -f1 | paste -s); y=$(echo $x | sed 's/ /+/g' | bc); qt=$(cat ping*_s.txt | grep "rtt\|loss" | cut -d',' -f3 | grep % | cut -d'%' -f1 | wc -l); final=$(echo $y / $qt | bc); echo app $v $final % loss; done
+app s 20 % loss
+app e 16 % loss
+app e2 15 % loss
+(standard_in) 1: syntax error
+app g % loss
+
+
+root@wifi-VirtualBox:/home/wifi# for i in $(echo s e e2 g); do v=$i; x=$(cat ping*_$v.txt | grep "rtt\|loss" | grep rtt | cut -d'/' -f5| paste -s); y=$(echo $x | sed 's/ /+/g' | bc); qt=$(cat ping*_s.txt | grep "rtt\|loss" | cut -d',' -f3 | grep % | cut -d'%' -f1 | wc -l); final=$(echo $y / $qt | bc); echo app $v $final ms rtt avg; done
+app s 21 ms rtt avg
+app e 2083 ms rtt avg
+app e2 1090 ms rtt avg
+(standard_in) 1: syntax error
+app g ms rtt avg
+
+
+root@wifi-VirtualBox:/home/wifi# x=$(cat server_e.txt | grep 1470 | wc -l); y=$(cat car*.txt| grep 200.0.10.3 | grep  1470 | wc -l); r=$(echo $x / $y | bc -l); echo "APP E -> " $r
+APP E ->  .60576404667462548619
+
+root@wifi-VirtualBox:/home/wifi# x=$(cat server_e2.txt | grep 1470 | wc -l); y=$(cat car*.txt| grep 200.0.10.4 | grep  1470 | wc -l); r=$(echo $x / $y | bc -l); echo "APP E2 -> " $r
+APP E2 ->  .61411873157241416311
+
+root@wifi-VirtualBox:/home/wifi# x=$(cat server_g.txt | grep 1470 | wc -l); y=$(cat car*.txt| grep 200.0.10.5 | grep  1470 | wc -l); r=$(echo $x / $y | bc -l); echo "APP G -> " $r
+APP G ->  .12169775464154610754
+
+root@wifi-VirtualBox:/home/wifi# x=$(cat server_s?.txt | grep 1470 | wc -l); y=$(cat car*.txt| grep 200.0.10.2 | grep  1470 | wc -l); r=$(echo $x / $y | bc -l); echo "APP S -> " $r
+APP S ->  .87892677419510477026
+
+
+
+
+x=$(cat server_e2.txt | grep 1470 | wc -l); y=$(cat car*.txt| grep 200.0.10.4 | grep  1470 | wc -l); echo $x / $y | bc -l; x=$(cat server_g.txt | grep 1470 | wc -l); y=$(cat car*.txt| grep 200.0.10.5 | grep  1470 | wc -l); echo $x / $y | bc -l; x=$(cat server_e.txt | grep 1470 | wc -l); y=$(cat car*.txt| grep 200.0.10.3 | grep  1470 | wc -l); echo $x / $y | bc -l
+
+
+
+for i in {110..124}; do time=$(cat server_e.txt | tr -s ' ' | tr '\n' ' ' | sed 's/1470/1470\n/g' | grep 200.0.10.$i | head -1 | tr -s ' '| cut -d' ' -f2); echo 200.0.10.$i '->' $time; done
