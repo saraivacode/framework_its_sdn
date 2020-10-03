@@ -370,8 +370,8 @@ do
 				#mac_rsu1=$(hostapd_cli -i $rsu-wlan1 all_sta | grep :)
 				mac_rsu1=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2 )
 				#If MACs are associetad to Apps B or C and arent blocked or limited, save information in respective files
-				rm -f appc.txt
-				rm -f appb.txt				
+				rm -f appc.txt 2> /dev/null
+				rm -f appb.txt 2> /dev/null
 				for i in $mac_rsu1;
 				do
 					res_c=$(mysql -u root -pwifi -e "select sum(data_rate) from appkpi where id IN (select app_id from vehicle where mac = '"$i"') and class='"C"'" framework 2> /dev/null |tail -1)

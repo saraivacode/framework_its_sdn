@@ -6,7 +6,7 @@
 #All options require the script that will start applications traffic in vehicles (carcon.sh)
 #To use -q option, it is necessary the database script (initialdb.sql) and Central Controller script (central_controller2.sh).
 #To use -f option it is necessary databse script, Central controller and locar controllers script (local_controllers.sh)
-#To generate the results its necessary to run after all the tratamento_c3.sh and the R scripts (comb_pdr.R, comb_delay.R and comb_geral.R)
+#To generate the results its necessary to run after all the tratamento_c4.sh and the R scripts (comb_pdr.R, comb_delay.R and comb_geral.R)
 
 'An Application driver Framework for ITS using SDN Vehicular Networks.'
 
