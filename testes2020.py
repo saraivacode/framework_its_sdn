@@ -51,10 +51,25 @@ def topology(flag):
     cars[13] = net.addCar('car13',  wlans=1, ip='200.0.10.123/8', range = 50, mac='00:00:00:00:00:14', encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
     cars[14] = net.addCar('car14',  wlans=1, ip='200.0.10.124/8', range = 50, mac='00:00:00:00:00:15', encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
 
-    #for i in range(15, 105):
-     #   print("mac='00:01:00:00:00:%s'" %((int(i)-114)*-1))
-      #  cars[i] = net.addCar('car%s' %i,  wlans=1, ip='200.0.9.%s/8' %(int(i)+10), range = 50, mac='00:01:00:00:00:%s' %((int(i)-114)*-1), encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
+
+    for x in range(15, 50): #15 vehicles
+        cars.append(x)
+    for i in range(15, 50):
+        print("mac='00:01:00:00:00:%s'" %((int(i)-1)*1)) #84 a 99
+        cars[i] = net.addCar('car%s' %i,  wlans=1, ip='200.0.9.%s/8' %(int(i)+10), range = 50, mac='00:01:00:00:00:%s' %((int(i)-1)*1), encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
     
+    # for x in range(81, 97): #16 vehicles
+    #     cars.append(x)
+    # for i in range(81, 97):
+    #     print("mac='00:01:00:00:00:%s'" %((int(i)-114)*-1)) #  17 a 33
+    #     cars[i] = net.addCar('car%s' %i,  wlans=1, ip='200.0.9.%s/8' %(int(i)+10), range = 50, mac='00:01:00:00:00:%s' %((int(i)-114)*-1), encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
+    
+    # for x in range(147, 151): #4 vehicles
+    #     cars.append(x)
+    # for i in range(147, 151):
+    #     print("mac='00:01:00:00:00:%s'" %((int(i)-113)*1)) # 34 a 38
+    #     cars[i] = net.addCar('car%s' %i,  wlans=1, ip='200.0.9.%s/8' %(int(i)+10), range = 50, mac='00:01:00:00:00:%s' %((int(i)-113)*1), encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
+
     #for i in range(105, 150):
      #   print("mac='00:02:00:00:00:%s'" %((int(i)-204)*-1))
       #  cars[i] = net.addCar('car%s' %i,  wlans=1, ip='200.0.9.%s/8' %(int(i)+10), range = 50, mac='00:02:00:00:00:%s' %((int(i)-204)*-1), encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
@@ -215,9 +230,13 @@ def topology(flag):
     time.sleep(2)
 
     #Configuring arp tables in cars (to avoid noise and inconsistent data)
-    for x in xrange(0,15):
+    for x in range(0,15):
         cars[x].cmd('arp -f ./mac.txt &')
-        time.sleep(0.5)
+        time.sleep(0.2)
+
+    for x in range(15,50):
+        cars[x].cmd('arp -f ./mac.txt &')
+        time.sleep(0.2)
 
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=4,dl_src=00:00:00:00:00:01 actions=1" -O Openflow13')
     os.system('ovs-ofctl add-flow sw1 "table=1, priority=1, cookie=0x0, in_port=1,dl_dst=00:00:00:00:00:01 actions=4" -O Openflow13')
@@ -263,16 +282,17 @@ def topology(flag):
     server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
 
     
-    time.sleep(5)
+    time.sleep(3)
 
-    for x in xrange(0,15):
+    for x in range(0,15):
         cars[x].cmd('./framework_its_sdn/carcont.sh &')
         time.sleep(1)
 
-#    for x in xrange(15,150):
- #       cars[x].cmd('./framework_its_sdn/carcont2.sh &')
-  #      time.sleep(0.5)
-    
+    for x in range(15,50):
+        cars[x].cmd('./framework_its_sdn/carcont2.sh &')
+        time.sleep(0.2)
+
+
     info("*** Running CLI\n")
     CLI(net) #mudou
 
@@ -280,6 +300,7 @@ def topology(flag):
     net.stop()
 
     os.system('fuser -k ./framework_its_sdn/carcont.sh')
+    os.system('fuser -k ./framework_its_sdn/carcont2.sh')
 
     #Kill processe using scripts pobile called
     #os.system('fuser -k ./framework_its_sdn/lc_mob.sh') 
