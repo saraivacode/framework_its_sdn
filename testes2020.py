@@ -32,7 +32,7 @@ def topology(flag):
 
     info("*** Creating nodes\n")
     cars = []
-    for x in range(0, 150):
+    for x in range(0, 15):
         cars.append(x)
 
     cars[0] = net.addCar('car0',  wlans=1, ip='200.0.10.110/8', range = 50, mac='00:00:00:00:00:01', encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
@@ -109,11 +109,6 @@ def topology(flag):
     net.useExternalProgram(program=sumo, port=8813,
                        config_file='map2.sumocfg')
 
-    nodes = net.cars + net.aps
-    net.telemetry(nodes=nodes, data_type='position',
-                 min_x=2150, min_y=3200,
-                 max_x=3250, max_y=3950)
-
     print("*** Starting network")
     net.build()
     c1.start()
@@ -127,6 +122,11 @@ def topology(flag):
     sw5.start([c1])
     #Necessary to avoid icmp noise
     time.sleep(2)
+
+    nodes = net.cars + net.aps
+    net.telemetry(nodes=nodes, data_type='position',
+                 min_x=2150, min_y=3200,
+                 max_x=3250, max_y=3950)
 
     #Necessary to avoid icmp noise
     server_s1.cmd('iptables -I OUTPUT -p icmp --icmp-type destination-unreachable -j DROP')

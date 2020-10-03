@@ -162,8 +162,8 @@ do
 				mac_rsu1=$(iw dev $rsu-wlan1 station dump | grep wlan | cut -d' ' -f2)
 
 				#initialize control files of B and C Apps
-				rm -f appc.txt
-				rm -f appb.txt
+				rm -f appc.txt 2> /dev/null
+				rm -f appb.txt 2> /dev/null
 
 				#For each MAC in rsu, verify if related vehicle are assigned with application B and C and saves these information in file,
 				#if the traffic app was not redirected or blocked/limited yet
