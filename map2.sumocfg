@@ -2,7 +2,7 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumoConfiguration.xsd">
     <input>
         <net-file value="new-york2.net.xml"/>
-        <route-files value="new-york2.rou.xml"/>
+        <route-files value="new-york2.rou.xml.new2"/>
         <additional-files value="new-york2.poly.xml"/>
     </input>
 
