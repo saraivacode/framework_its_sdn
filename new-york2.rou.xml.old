@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Sun May 28 11:35:02 2017 by SUMO duarouter Version 0.28.0
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="new-york.net.xml"/>
+        <trip-files value="trips.trips.xml"/>
+    </input>
+
+    <output>
+        <output-file value="new-york.rou.xml"/>
+    </output>
+
+    <processing>
+        <ignore-errors value="true"/>
+    </processing>
+
+    <time>
+        <begin value="0"/>
+        <end value="100.0"/>
+    </time>
+
+    <report>
+        <no-warnings value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <route edges="116672333#1 116672333#2 384178813#0 384178813#1 156994977#0 156994977#1 156994977#2 194923795#0 194923795#1 194923795#2 194923795#3" color="green" id="route1"/>
+    <route edges="116672333#1 116672333#2 384178813#0 22914179#1 22914179#2 22914179#3 5670836#1 5670836#2 5670836#3 5670836#4 194923795#2 194923795#3" color="yellow" id="route2"/>
+    <route edges="116672333#1 116672333#2 384178812 420598407 420598415 465101198#0 465101198#1 465101198#2" color="red" id="route3"/>
+    <route edges="116672333#1 116672333#2 384178812 420598407 420598415 465101198#0 465101198#1 465101198#2" color="green" id="route4"/>
+
+    <vehicle id="0" depart="1.00" route="route3"/>
+    <vehicle id="1" depart="1.50" route="route3"/>
+    <vehicle id="2" depart="2.00" route="route3"/>
+    <vehicle id="3" depart="2.50" route="route3"/>
+    <vehicle id="4" depart="3.00" route="route3"/>
+    <vehicle id="15" depart="3.50" route="route4"/>
+    <vehicle id="16" depart="4.00" route="route4"/>
+    <vehicle id="17" depart="4.50" route="route4"/>
+    <vehicle id="18" depart="5.00" route="route4"/>
+    <vehicle id="19" depart="5.50" route="route4"/>
+    <vehicle id="20" depart="6.00" route="route4"/>
+    <vehicle id="21" depart="6.50" route="route4"/>
+    <vehicle id="22" depart="7.00" route="route4"/>
+    <vehicle id="23" depart="7.50" route="route4"/>
+    <vehicle id="24" depart="8.00" route="route4"/>
+    <vehicle id="25" depart="8.50" route="route4"/>
+    <vehicle id="26" depart="9.00" route="route4"/>
+    <vehicle id="27" depart="9.50" route="route4"/>
+    <vehicle id="28" depart="10.00" route="route4"/>
+    <vehicle id="29" depart="10.50" route="route4"/>
+    <vehicle id="30" depart="11.00" route="route4"/>
+    <vehicle id="31" depart="11.50" route="route4"/>
+    <vehicle id="32" depart="12.00" route="route4"/>
+    <vehicle id="33" depart="12.50" route="route4"/>
+    <vehicle id="34" depart="13.00" route="route4"/>
+    <vehicle id="35" depart="13.50" route="route4"/>
+    <vehicle id="36" depart="14.00" route="route4"/>
+    <vehicle id="37" depart="14.50" route="route4"/>
+    <vehicle id="38" depart="15.00" route="route4"/>
+    <vehicle id="39" depart="15.50" route="route4"/>
+    <vehicle id="40" depart="16.00" route="route4"/>
+    <vehicle id="41" depart="16.50" route="route4"/>
+    <vehicle id="42" depart="17.00" route="route4"/>
+    <vehicle id="43" depart="17.50" route="route4"/>
+    <vehicle id="44" depart="18.00" route="route4"/>
+    <vehicle id="45" depart="18.50" route="route4"/>
+    <vehicle id="46" depart="19.00" route="route4"/>
+    <vehicle id="47" depart="19.50" route="route4"/>
+    <vehicle id="48" depart="20.00" route="route4"/>
+    <vehicle id="49" depart="20.50" route="route4"/>
+    <vehicle id="50" depart="21.00" route="route4"/>
+    <vehicle id="51" depart="21.50" route="route4"/>
+    <vehicle id="52" depart="22.00" route="route4"/>
+    <vehicle id="53" depart="22.50" route="route4"/>
+    <vehicle id="54" depart="23.00" route="route4"/>
+    <vehicle id="55" depart="23.50" route="route4"/>
+    <vehicle id="56" depart="24.00" route="route4"/>
+    <vehicle id="57" depart="24.50" route="route4"/>
+    <vehicle id="58" depart="25.00" route="route4"/>
+    <vehicle id="59" depart="25.50" route="route4"/>
+    <vehicle id="60" depart="26.00" route="route4"/>
+    <vehicle id="61" depart="27.00" route="route4"/>
+    <vehicle id="62" depart="27.50" route="route4"/>
+    <vehicle id="63" depart="28.00" route="route4"/>
+    <vehicle id="64" depart="28.50" route="route4"/>
+    <vehicle id="65" depart="29.00" route="route4"/>
+    <vehicle id="66" depart="29.50" route="route4"/>
+    <vehicle id="67" depart="30.00" route="route4"/>
+    <vehicle id="68" depart="30.50" route="route4"/>
+    <vehicle id="69" depart="31.00" route="route4"/>
+    <vehicle id="70" depart="31.50" route="route4"/>
+    <vehicle id="71" depart="32.00" route="route4"/>
+    <vehicle id="72" depart="32.50" route="route4"/>
+    <vehicle id="73" depart="33.00" route="route4"/>
+    <vehicle id="74" depart="33.50" route="route4"/>
+    <vehicle id="75" depart="34.00" route="route4"/>
+    <vehicle id="76" depart="34.50" route="route4"/>
+    <vehicle id="77" depart="35.00" route="route4"/>
+    <vehicle id="78" depart="35.50" route="route4"/>
+    <vehicle id="79" depart="36.00" route="route4"/>
+    <vehicle id="80" depart="36.50" route="route4"/>
+
+    <vehicle id="5" depart="37.00" route="route3"/>
+    <vehicle id="6" depart="37.33" route="route3"/>
+    <vehicle id="7" depart="37.66" route="route3"/>
+    <vehicle id="8" depart="38.00" route="route3"/>
+    <vehicle id="9" depart="38.33" route="route3"/>
+    <vehicle id="10" depart="38.66" route="route3"/>
+    <vehicle id="81" depart="39.00" route="route4"/>
+    <vehicle id="82" depart="39.50" route="route4"/>
+    <vehicle id="83" depart="40.00" route="route4"/>
+    <vehicle id="84" depart="40.50" route="route4"/>
+    <vehicle id="85" depart="41.00" route="route4"/>
+    <vehicle id="86" depart="41.50" route="route4"/>
+    <vehicle id="87" depart="42.00" route="route4"/>
+    <vehicle id="88" depart="42.50" route="route4"/>
+    <vehicle id="89" depart="43.00" route="route4"/>
+    <vehicle id="90" depart="43.50" route="route4"/>
+    <vehicle id="91" depart="44.00" route="route4"/>
+    <vehicle id="92" depart="44.50" route="route4"/>
+    <vehicle id="93" depart="45.00" route="route4"/>
+    <vehicle id="94" depart="45.50" route="route4"/>
+    <vehicle id="95" depart="46.00" route="route4"/>
+    <vehicle id="96" depart="46.50" route="route4"/>
+    <vehicle id="97" depart="47.00" route="route4"/>
+    <vehicle id="98" depart="47.50" route="route4"/>
+    <vehicle id="99" depart="48.00" route="route4"/>
+    <vehicle id="100" depart="48.50" route="route4"/>
+    <vehicle id="101" depart="49.00" route="route4"/>
+    <vehicle id="102" depart="49.50" route="route4"/>
+    <vehicle id="103" depart="50.00" route="route4"/>
+    <vehicle id="104" depart="50.50" route="route4"/>
+    <vehicle id="105" depart="51.00" route="route4"/>
+    <vehicle id="106" depart="51.50" route="route4"/>
+    <vehicle id="107" depart="52.00" route="route4"/>
+    <vehicle id="108" depart="52.50" route="route4"/>
+    <vehicle id="109" depart="53.00" route="route4"/>
+    <vehicle id="110" depart="53.50" route="route4"/>
+    <vehicle id="111" depart="54.00" route="route4"/>
+    <vehicle id="112" depart="54.50" route="route4"/>
+    <vehicle id="113" depart="55.00" route="route4"/>
+    <vehicle id="114" depart="55.50" route="route4"/>
+    <vehicle id="115" depart="56.00" route="route4"/>
+    <vehicle id="116" depart="56.50" route="route4"/>
+    <vehicle id="117" depart="57.00" route="route4"/>
+    <vehicle id="118" depart="57.50" route="route4"/>
+    <vehicle id="119" depart="58.00" route="route4"/>
+    <vehicle id="120" depart="58.50" route="route4"/>
+    <vehicle id="121" depart="59.00" route="route4"/>
+    <vehicle id="122" depart="59.50" route="route4"/>
+    <vehicle id="123" depart="60.00" route="route4"/>
+    <vehicle id="124" depart="60.50" route="route4"/>
+    <vehicle id="125" depart="61.00" route="route4"/>
+    <vehicle id="126" depart="61.50" route="route4"/>
+    <vehicle id="127" depart="62.00" route="route4"/>
+    <vehicle id="128" depart="62.50" route="route4"/>
+    <vehicle id="129" depart="63.00" route="route4"/>
+    <vehicle id="130" depart="63.50" route="route4"/>
+    <vehicle id="131" depart="64.00" route="route4"/>
+    <vehicle id="132" depart="64.50" route="route4"/>
+    <vehicle id="133" depart="65.00" route="route4"/>
+    <vehicle id="134" depart="65.50" route="route4"/>
+    <vehicle id="135" depart="66.00" route="route4"/>
+    <vehicle id="136" depart="66.50" route="route4"/>
+    <vehicle id="137" depart="67.00" route="route4"/>
+    <vehicle id="138" depart="67.50" route="route4"/>
+    <vehicle id="139" depart="68.00" route="route4"/>
+    <vehicle id="140" depart="68.50" route="route4"/>
+    <vehicle id="141" depart="69.00" route="route4"/>
+    <vehicle id="142" depart="69.50" route="route4"/>
+    <vehicle id="143" depart="70.00" route="route4"/>
+    <vehicle id="144" depart="70.50" route="route4"/>
+    <vehicle id="145" depart="71.00" route="route4"/>
+    <vehicle id="146" depart="71.50" route="route4"/>
+
+    <vehicle id="11" depart="72.00" route="route3"/>
+    <vehicle id="12" depart="72.50" route="route3"/>
+    <vehicle id="13" depart="73.00" route="route3"/>
+    <vehicle id="14" depart="73.50" route="route3"/>
+    <vehicle id="147" depart="75.00" route="route4"/>
+    <vehicle id="148" depart="75.50" route="route4"/>
+    <vehicle id="149" depart="76.00" route="route4"/>
+    <vehicle id="150" depart="76.50" route="route4"/>
+    
+</routes>
