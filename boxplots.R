@@ -1,5 +1,0 @@
-texts<-c("FS", "FQ", "FN")
-boxplot(pdr1seg_e_fs[1:300], pdr1seg_e_fq[1:300], pdr1seg_e_fn[1:300], ylim = c(0.3,1.5), main = "PDR App E", lwd=2, ylab="PDR", names = texts)
-boxplot(pdr1seg_e2_fs[1:300], pdr1seg_e2_fq[1:300], pdr1seg_e2_fn[1:300], ylim = c(0,1.4), main = "PDR App E2", lwd=2, ylab="PDR", names = texts)
-boxplot(pdr1seg_s_fs[1:300], pdr1seg_s_fq[1:300], pdr1seg_s_fn[1:300], ylim = c(0.5,1.2), main = "PDR App S", lwd=2, ylab="PDR", names = texts)
-boxplot(pdr1seg_g_fs[1:300], pdr1seg_g_fq[1:300], pdr1seg_g_fn[1:300], ylim = c(0,1), main = "PDR App G", lwd=2, ylab="PDR", names = texts)
