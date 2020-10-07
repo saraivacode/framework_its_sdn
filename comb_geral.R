@@ -1,5 +1,6 @@
 #Combined 300 sec graphs
-t<-350
+t<-450
+#offset<-1
 
 #detach("package:Rmisc", unload=TRUE)
 #unloadNamespace("Rmisc")
@@ -27,7 +28,6 @@ xs<- tracecar_e_fs %>%
 mean1segcar_e_fs<-append(list(size = sum1segcar_e_fs$size), list(time =  as.numeric(sum1segcar_e_fs$segundos)))
 mean1segcar_e_fs$transmissores <- xs$transmissores
 mean1segcar_e_fs$size <- mean1segcar_e_fs$size / mean1segcar_e_fs$transmissores
-#mean1segcar_e_fs$size[1:12]<- mean1segcar_e_fs$size[1:12]/4
 
 #Compute Server E received
 traceserver_e_fs<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_etf_car_fs_tt.txt', sep=' ')
@@ -39,7 +39,6 @@ sum1segserver_e_fs<-aggregate(list(size = traceserver_e_fs$size), list(segundos 
 mean1segserver_e_fs<-append(list(size = sum1segserver_e_fs$size), list(time = as.numeric(sum1segserver_e_fs$segundos)))
 mean1segserver_e_fs$transmissores <- xs$transmissores
 mean1segserver_e_fs$size <- mean1segserver_e_fs$size[1:t] / mean1segserver_e_fs$transmissores[1:t]
-#mean1segserver_e_fs$size[1:12]<- mean1segserver_e_fs$size[1:12]/4
 
 #Compute Delay Server E
 tracedelay_e_fs<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_e_fs_tt.txt')
@@ -49,15 +48,15 @@ sum1segdelay_e_fs<-aggregate(list(delay = tracedelay_e_fs$delay), list(segundos 
 mean1segdelay_e_fs<-append(list(size = sum1segdelay_e_fs$delay), list(time = as.numeric(sum1segdelay_e_fs$segundos)))
 mean1segdelay_e_fs$transmissores <- xs$transmissores
 mean1segdelay_e_fs$size <- mean1segdelay_e_fs$size[1:t] / mean1segdelay_e_fs$transmissores[1:t]
-#mean1segdelay_e_fs$size[1:12]<- mean1segdelay_e_fs$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_e_fs$time[1:t], mean1segserver_e_fs$size[1:t], type="l", col="blue", main = "Application E (Framework)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_e_fs$time[1:t], mean1segserver_e_fs$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
-lines(mean1segcar_e_fs$time[1:t], mean1segcar_e_fs$size[1:t], col="red", lwd=2, ylim = c(0,700000), lty=6)
+plot(mean1segserver_e_fs$time[1:t], mean1segserver_e_fs$size[1:t], yaxt="n", type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+lines(mean1segcar_e_fs$time[1:t], mean1segcar_e_fs$size[1:t], col="red", lwd=2, xlim = c(offset,t), ylim = c(0,700000), lty=6)
+xpos <- seq(0, 600000, by=200000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
-plot(mean1segdelay_e_fs$time[1:t], mean1segdelay_e_fs$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,20000))
+plot(mean1segdelay_e_fs$time[1:t], mean1segdelay_e_fs$size[1:t], type="l", col="orange", lwd=2, xlim = c(offset,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,20000))
 axis(side = 4, cex.axis=1.5)
 mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
 legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
@@ -78,7 +77,6 @@ xq<- tracecar_e_fq %>%
 mean1segcar_e_fq<-append(list(size = sum1segcar_e_fq$size), list(time =  as.numeric(sum1segcar_e_fq$segundos)))
 mean1segcar_e_fq$transmissores <- xq$transmissores
 mean1segcar_e_fq$size <- mean1segcar_e_fq$size / mean1segcar_e_fq$transmissores
-#mean1segcar_e_fq$size[1:12]<- mean1segcar_e_fq$size[1:12]/4
 
 #Compute Server E received
 traceserver_e_fq<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_etf_car_fq_tt.txt', sep=' ')
@@ -90,7 +88,6 @@ sum1segserver_e_fq<-aggregate(list(size = traceserver_e_fq$size), list(segundos 
 mean1segserver_e_fq<-append(list(size = sum1segserver_e_fq$size), list(time = as.numeric(sum1segserver_e_fq$segundos)))
 mean1segserver_e_fq$transmissores <- xq$transmissores
 mean1segserver_e_fq$size <- mean1segserver_e_fq$size[1:t] / mean1segserver_e_fq$transmissores[1:t]
-#mean1segserver_e_fq$size[1:12]<- mean1segserver_e_fq$size[1:12]/4
 
 #Compute Delay Server E
 tracedelay_e_fq<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_e_fq_tt.txt')
@@ -100,13 +97,13 @@ sum1segdelay_e_fq<-aggregate(list(delay = tracedelay_e_fq$delay), list(segundos 
 mean1segdelay_e_fq<-append(list(size = sum1segdelay_e_fq$delay), list(time = as.numeric(sum1segdelay_e_fq$segundos)))
 mean1segdelay_e_fq$transmissores <- xq$transmissores
 mean1segdelay_e_fq$size <- mean1segdelay_e_fq$size[1:t] / mean1segdelay_e_fq$transmissores[1:t]
-#mean1segdelay_e_fq$size[1:12]<- mean1segdelay_e_fq$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_e_fq$time[1:t], mean1segserver_e_fq$size[1:t], type="l", col="blue", main = "Application E (QoS)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_e_fq$time[1:t], mean1segserver_e_fq$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+plot(mean1segserver_e_fq$time[1:t], mean1segserver_e_fq$size[1:t], yaxt="n", type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e_fq$time[1:t], mean1segcar_e_fq$size[1:t], col="red", lwd=2, ylim = c(0,700000), lty=6)
+xpos <- seq(0, 600000, by=200000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_e_fq$time[1:t], mean1segdelay_e_fq$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,20000))
 axis(side = 4, cex.axis=1.5)
@@ -129,11 +126,11 @@ xn<- tracecar_e_fn %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_e_fn<-append(list(size = sum1segcar_e_fn$size), list(time =  as.numeric(sum1segcar_e_fn$segundos)))
 mean1segcar_e_fn$transmissores <- xn$transmissores
-mean1segcar_e_fn$size <- mean1segcar_e_fn$size / mean1segcar_e_fn$transmissores
-#mean1segcar_e_fn$size[1:12]<- mean1segcar_e_fn$size[1:12]/4
+mean1segcar_e_fn$size <- mean1segcar_e_fn$size[1:t] / mean1segcar_e_fn$transmissores[1:t]
 
 #Compute Server E received
 traceserver_e_fn<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_etf_car_fn_tt.txt', sep=' ')
+
 names(traceserver_e_fn)<-c("time", "id", "size", "ori", "dest" )
 options(drigits.secs = 6)
 traceserver_e_fn$time <- as.POSIXlt(traceserver_e_fn$time, origin = "1987-10-05 11:00:00")
@@ -142,7 +139,6 @@ sum1segserver_e_fn<-aggregate(list(size = traceserver_e_fn$size), list(segundos 
 mean1segserver_e_fn<-append(list(size = sum1segserver_e_fn$size), list(time = as.numeric(sum1segserver_e_fn$segundos)))
 mean1segserver_e_fn$transmissores <- xn$transmissores
 mean1segserver_e_fn$size <- mean1segserver_e_fn$size[1:t] / mean1segserver_e_fn$transmissores[1:t]
-#mean1segserver_e_fn$size[1:12]<- mean1segserver_e_fn$size[1:12]/4
 
 #Compute Delay Server E
 tracedelay_e_fn<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_e_fn_tt.txt')
@@ -152,18 +148,19 @@ sum1segdelay_e_fn<-aggregate(list(delay = tracedelay_e_fn$delay), list(segundos 
 mean1segdelay_e_fn<-append(list(size = sum1segdelay_e_fn$delay), list(time = as.numeric(sum1segdelay_e_fn$segundos)))
 mean1segdelay_e_fn$transmissores <- xn$transmissores
 mean1segdelay_e_fn$size <- mean1segdelay_e_fn$size[1:t] / mean1segdelay_e_fn$transmissores[1:t]
-#mean1segdelay_e_fn$size[1:12]<- mean1segdelay_e_fn$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_e_fn$time[1:t], mean1segserver_e_fn$size[1:t], type="l", col="blue", main = "Application E (Best Effort)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_e_fn$time[1:t], mean1segserver_e_fn$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+plot(mean1segserver_e_fn$time[1:t], mean1segserver_e_fn$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e_fn$time[1:t], mean1segcar_e_fn$size[1:t], col="red", lwd=2, ylim = c(0,700000), lty=6)
+xpos <- seq(0, 600000, by=200000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_e_fn$time[1:t], mean1segdelay_e_fn$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,20000))
 axis(side = 4, cex.axis=1.5)
 mtext(side = 4, line = 3, 'RTT (ms)', cex=1.5)
 legend("topright", legend=c("Server received", "Car Sent", "RTT"), lty=c(2,6,1), col=c("blue", "red", "orange"), cex=1.3)
+
 
 ###########################################################App E2
 
@@ -183,8 +180,7 @@ xs<- tracecar_e2_fs %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_e2_fs<-append(list(size = sum1segcar_e2_fs$size), list(time =  as.numeric(sum1segcar_e2_fs$segundos)))
 mean1segcar_e2_fs$transmissores <- xs$transmissores
-mean1segcar_e2_fs$size <- mean1segcar_e2_fs$size / mean1segcar_e2_fs$transmissores
-#mean1segcar_e2_fs$size[1:12]<- mean1segcar_e2_fs$size[1:12]/4
+mean1segcar_e2_fs$size <- mean1segcar_e2_fs$size[1:t] / mean1segcar_e2_fs$transmissores[1:t]
 
 #Compute Server E2 received
 traceserver_e2_fs<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_e2tf_car_fs_tt.txt', sep=' ')
@@ -196,7 +192,6 @@ sum1segserver_e2_fs<-aggregate(list(size = traceserver_e2_fs$size), list(segundo
 mean1segserver_e2_fs<-append(list(size = sum1segserver_e2_fs$size), list(time = as.numeric(sum1segserver_e2_fs$segundos)))
 mean1segserver_e2_fs$transmissores <- xs$transmissores
 mean1segserver_e2_fs$size <- mean1segserver_e2_fs$size[1:t] / mean1segserver_e2_fs$transmissores[1:t]
-#mean1segserver_e2_fs$size[1:12]<- mean1segserver_e2_fs$size[1:12]/4
 
 #Compute Delay Server E2
 tracedelay_e2_fs<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_e2_fs_tt.txt')
@@ -206,13 +201,13 @@ sum1segdelay_e2_fs<-aggregate(list(delay = tracedelay_e2_fs$delay), list(segundo
 mean1segdelay_e2_fs<-append(list(size = sum1segdelay_e2_fs$delay), list(time = as.numeric(sum1segdelay_e2_fs$segundos)))
 mean1segdelay_e2_fs$transmissores <- xs$transmissores
 mean1segdelay_e2_fs$size <- mean1segdelay_e2_fs$size[1:t] / mean1segdelay_e2_fs$transmissores[1:t]
-#mean1segdelay_e2_fs$size[1:12]<- mean1segdelay_e2_fs$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_e2_fs$time[1:t], mean1segserver_e2_fs$size[1:t], type="l", col="blue", main = "Application E2 (Framework)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)")
-plot(mean1segserver_e2_fs$time[1:t], mean1segserver_e2_fs$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+plot(mean1segserver_e2_fs$time[1:t], mean1segserver_e2_fs$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,1300000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e2_fs$time[1:t], mean1segcar_e2_fs$size[1:t], col="red", lwd=2, ylim = c(0,1300000), lty=6)
+xpos <- seq(0, 1200000, by=400000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_e2_fs$time[1:t], mean1segdelay_e2_fs$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,10000))
 axis(side = 4, cex.axis=1.5)
@@ -234,7 +229,7 @@ xs<- tracecar_e2_fq %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_e2_fq<-append(list(size = sum1segcar_e2_fq$size), list(time =  as.numeric(sum1segcar_e2_fq$segundos)))
 mean1segcar_e2_fq$transmissores <- xs$transmissores
-mean1segcar_e2_fq$size <- mean1segcar_e2_fq$size / mean1segcar_e2_fq$transmissores
+mean1segcar_e2_fq$size <- mean1segcar_e2_fq$size[1:t] / mean1segcar_e2_fq$transmissores[1:t]
 #mean1segcar_e2_fq$size[1:12]<- mean1segcar_e2_fq$size[1:12]/4
 
 #Compute Server E2 received
@@ -247,7 +242,6 @@ sum1segserver_e2_fq<-aggregate(list(size = traceserver_e2_fq$size), list(segundo
 mean1segserver_e2_fq<-append(list(size = sum1segserver_e2_fq$size), list(time = as.numeric(sum1segserver_e2_fq$segundos)))
 mean1segserver_e2_fq$transmissores <- xs$transmissores
 mean1segserver_e2_fq$size <- mean1segserver_e2_fq$size[1:t] / mean1segserver_e2_fq$transmissores[1:t]
-#mean1segserver_e2_fq$size[1:12]<- mean1segserver_e2_fq$size[1:12]/4
 
 #Compute Delay Server E2
 tracedelay_e2_fq<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_e2_fq_tt.txt')
@@ -257,12 +251,13 @@ sum1segdelay_e2_fq<-aggregate(list(delay = tracedelay_e2_fq$delay), list(segundo
 mean1segdelay_e2_fq<-append(list(size = sum1segdelay_e2_fq$delay), list(time = as.numeric(sum1segdelay_e2_fq$segundos)))
 mean1segdelay_e2_fq$transmissores <- xs$transmissores
 mean1segdelay_e2_fq$size <- mean1segdelay_e2_fq$size[1:t] / mean1segdelay_e2_fq$transmissores[1:t]
-#mean1segdelay_e2_fq$size[1:12]<- mean1segdelay_e2_fq$size[1:12]/4
+
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_e2_fq$time[1:t], mean1segserver_e2_fq$size[1:t], type="l", col="blue", main = "Application E2 (QoS)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)")
-plot(mean1segserver_e2_fq$time[1:t], mean1segserver_e2_fq$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+plot(mean1segserver_e2_fq$time[1:t], mean1segserver_e2_fq$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e2_fq$time[1:t], mean1segcar_e2_fq$size[1:t], col="red", lwd=2, ylim = c(0,1300000), lty=6)
+xpos <- seq(0, 1200000, by=400000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_e2_fq$time[1:t], mean1segdelay_e2_fq$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,10000))
 axis(side = 4, cex.axis=1.5)
@@ -285,8 +280,7 @@ xs<- tracecar_e2_fn %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_e2_fn<-append(list(size = sum1segcar_e2_fn$size), list(time =  as.numeric(sum1segcar_e2_fn$segundos)))
 mean1segcar_e2_fn$transmissores <- xs$transmissores
-mean1segcar_e2_fn$size <- mean1segcar_e2_fn$size / mean1segcar_e2_fn$transmissores
-#mean1segcar_e2_fn$size[1:12]<- mean1segcar_e2_fn$size[1:12]/4
+mean1segcar_e2_fn$size <- mean1segcar_e2_fn$size[1:t] / mean1segcar_e2_fn$transmissores[1:t]
 
 #Compute Server E2 received
 traceserver_e2_fn<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_e2tf_car_fn_tt.txt', sep=' ')
@@ -298,7 +292,6 @@ sum1segserver_e2_fn<-aggregate(list(size = traceserver_e2_fn$size), list(segundo
 mean1segserver_e2_fn<-append(list(size = sum1segserver_e2_fn$size), list(time = as.numeric(sum1segserver_e2_fn$segundos)))
 mean1segserver_e2_fn$transmissores <- xs$transmissores
 mean1segserver_e2_fn$size <- mean1segserver_e2_fn$size[1:t] / mean1segserver_e2_fn$transmissores[1:t]
-#mean1segserver_e2_fn$size[1:12]<- mean1segserver_e2_fn$size[1:12]/4
 
 #Compute Delay Server E2
 tracedelay_e2_fn<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_e2_fn_tt.txt')
@@ -308,13 +301,13 @@ sum1segdelay_e2_fn<-aggregate(list(delay = tracedelay_e2_fn$delay), list(segundo
 mean1segdelay_e2_fn<-append(list(size = sum1segdelay_e2_fn$delay), list(time = as.numeric(sum1segdelay_e2_fn$segundos)))
 mean1segdelay_e2_fn$transmissores <- xs$transmissores
 mean1segdelay_e2_fn$size <- mean1segdelay_e2_fn$size[1:t] / mean1segdelay_e2_fn$transmissores[1:t]
-#mean1segdelay_e2_fn$size[1:12]<- mean1segdelay_e2_fn$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_e2_fn$time[1:t], mean1segserver_e2_fn$size[1:t], type="l", col="blue", main = "Application E2 (Best effort)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)")
-plot(mean1segserver_e2_fn$time[1:t], mean1segserver_e2_fn$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+plot(mean1segserver_e2_fn$time[1:t], mean1segserver_e2_fn$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,1300000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_e2_fn$time[1:t], mean1segcar_e2_fn$size[1:t], col="red", lwd=2, ylim = c(0,1300000), lty=6)
+xpos <- seq(0, 1200000, by=400000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_e2_fn$time[1:t], mean1segdelay_e2_fn$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,10000))
 axis(side = 4, cex.axis=1.5)
@@ -337,8 +330,7 @@ xs<- tracecar_g_fs %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_g_fs<-append(list(size = sum1segcar_g_fs$size), list(time =  as.numeric(sum1segcar_g_fs$segundos)))
 mean1segcar_g_fs$transmissores <- xs$transmissores
-mean1segcar_g_fs$size <- mean1segcar_g_fs$size / mean1segcar_g_fs$transmissores
-#mean1segcar_g_fs$size[1:12]<- mean1segcar_g_fs$size[1:12]/4
+mean1segcar_g_fs$size <- mean1segcar_g_fs$size[1:t] / mean1segcar_g_fs$transmissores[1:t]
 
 #Compute Server G received
 traceserver_g_fs<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_gtf_car_fs_tt.txt', sep=' ')
@@ -350,7 +342,6 @@ sum1segserver_g_fs<-aggregate(list(size = traceserver_g_fs$size), list(segundos 
 mean1segserver_g_fs<-append(list(size = sum1segserver_g_fs$size), list(time = as.numeric(sum1segserver_g_fs$segundos)))
 mean1segserver_g_fs$transmissores <- xs$transmissores
 mean1segserver_g_fs$size <- mean1segserver_g_fs$size[1:t] / mean1segserver_g_fs$transmissores[1:t]
-#mean1segserver_g_fs$size[1:12]<- mean1segserver_g_fs$size[1:12]/4
 
 #Compute Delay Server G
 tracedelay_g_fs<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_g_fs_tt.txt')
@@ -360,13 +351,13 @@ sum1segdelay_g_fs<-aggregate(list(delay = tracedelay_g_fs$delay), list(segundos 
 mean1segdelay_g_fs<-append(list(size = sum1segdelay_g_fs$delay), list(time = as.numeric(sum1segdelay_g_fs$segundos)))
 mean1segdelay_g_fs$transmissores <- xs$transmissores
 mean1segdelay_g_fs$size <- mean1segdelay_g_fs$size[1:t] / mean1segdelay_g_fs$transmissores[1:t]
-#mean1segdelay_g_fs$size[1:12]<- mean1segdelay_g_fs$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_g_fs$time[1:t], mean1segserver_g_fs$size[1:t], type="l", col="blue", main = "Application G (Framework)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_g_fs$time[1:t], mean1segserver_g_fs$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+plot(mean1segserver_g_fs$time[1:t], mean1segserver_g_fs$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_g_fs$time[1:t], mean1segcar_g_fs$size[1:t], col="red", lwd=2, ylim = c(0,700000), lty=6)
+xpos <- seq(0, 600000, by=200000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_g_fs$time[1:t], mean1segdelay_g_fs$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,80000))
 axis(side = 4, cex.axis=1.5)
@@ -388,8 +379,7 @@ xs<- tracecar_g_fq %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_g_fq<-append(list(size = sum1segcar_g_fq$size), list(time =  as.numeric(sum1segcar_g_fq$segundos)))
 mean1segcar_g_fq$transmissores <- xs$transmissores
-mean1segcar_g_fq$size <- mean1segcar_g_fq$size / mean1segcar_g_fq$transmissores
-#mean1segcar_g_fq$size[1:12]<- mean1segcar_g_fq$size[1:12]/4
+mean1segcar_g_fq$size <- mean1segcar_g_fq$size[1:t] / mean1segcar_g_fq$transmissores[1:t]
 
 #Compute Server G received
 traceserver_g_fq<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_gtf_car_fq_tt.txt', sep=' ')
@@ -401,7 +391,6 @@ sum1segserver_g_fq<-aggregate(list(size = traceserver_g_fq$size), list(segundos 
 mean1segserver_g_fq<-append(list(size = sum1segserver_g_fq$size), list(time = as.numeric(sum1segserver_g_fq$segundos)))
 mean1segserver_g_fq$transmissores <- xs$transmissores
 mean1segserver_g_fq$size <- mean1segserver_g_fq$size[1:t] / mean1segserver_g_fq$transmissores[1:t]
-#mean1segserver_g_fq$size[1:12]<- mean1segserver_g_fq$size[1:12]/4
 
 #Compute Delay Server G
 tracedelay_g_fq<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_g_fq_tt.txt')
@@ -411,13 +400,13 @@ sum1segdelay_g_fq<-aggregate(list(delay = tracedelay_g_fq$delay), list(segundos 
 mean1segdelay_g_fq<-append(list(size = sum1segdelay_g_fq$delay), list(time = as.numeric(sum1segdelay_g_fq$segundos)))
 mean1segdelay_g_fq$transmissores <- xs$transmissores
 mean1segdelay_g_fq$size <- mean1segdelay_g_fq$size[1:t] / mean1segdelay_g_fq$transmissores[1:t]
-#mean1segdelay_g_fq$size[1:12]<- mean1segdelay_g_fq$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_g_fq$time[1:t], mean1segserver_g_fq$size[1:t], type="l", col="blue", main = "Application G (QoS)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_g_fq$time[1:t], mean1segserver_g_fq$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+plot(mean1segserver_g_fq$time[1:t], mean1segserver_g_fq$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_g_fq$time[1:t], mean1segcar_g_fq$size[1:t], col="red", lwd=2, ylim = c(0,700000), lty=6)
+xpos <- seq(0, 600000, by=200000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_g_fq$time[1:t], mean1segdelay_g_fq$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,80000))
 axis(side = 4, cex.axis=1.5)
@@ -440,8 +429,7 @@ xs<- tracecar_g_fn %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_g_fn<-append(list(size = sum1segcar_g_fn$size), list(time =  as.numeric(sum1segcar_g_fn$segundos)))
 mean1segcar_g_fn$transmissores <- xs$transmissores
-mean1segcar_g_fn$size <- mean1segcar_g_fn$size / mean1segcar_g_fn$transmissores
-#mean1segcar_g_fn$size[1:12]<- mean1segcar_g_fn$size[1:12]/4
+mean1segcar_g_fn$size <- mean1segcar_g_fn$size[1:t] / mean1segcar_g_fn$transmissores[1:t]
 
 #Compute Server G received
 traceserver_g_fn<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_gtf_car_fn_tt.txt', sep=' ')
@@ -453,7 +441,6 @@ sum1segserver_g_fn<-aggregate(list(size = traceserver_g_fn$size), list(segundos 
 mean1segserver_g_fn<-append(list(size = sum1segserver_g_fn$size), list(time = as.numeric(sum1segserver_g_fn$segundos)))
 mean1segserver_g_fn$transmissores <- xs$transmissores
 mean1segserver_g_fn$size <- mean1segserver_g_fn$size[1:t] / mean1segserver_g_fn$transmissores[1:t]
-#mean1segserver_g_fn$size[1:12]<- mean1segserver_g_fn$size[1:12]/4
 
 #Compute Delay Server G
 tracedelay_g_fn<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_g_fn_tt.txt')
@@ -463,13 +450,13 @@ sum1segdelay_g_fn<-aggregate(list(delay = tracedelay_g_fn$delay), list(segundos 
 mean1segdelay_g_fn<-append(list(size = sum1segdelay_g_fn$delay), list(time = as.numeric(sum1segdelay_g_fn$segundos)))
 mean1segdelay_g_fn$transmissores <- xs$transmissores
 mean1segdelay_g_fn$size <- mean1segdelay_g_fn$size[1:t] / mean1segdelay_g_fn$transmissores[1:t]
-#mean1segdelay_g_fn$size[1:12]<- mean1segdelay_g_fn$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_g_fn$time[1:t], mean1segserver_g_fn$size[1:t], type="l", col="blue", main = "Application G (Best effort)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)")
-plot(mean1segserver_g_fn$time[1:t], mean1segserver_g_fn$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+plot(mean1segserver_g_fn$time[1:t], mean1segserver_g_fn$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,700000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
 lines(mean1segcar_g_fn$time[1:t], mean1segcar_g_fn$size[1:t], col="red", lwd=2, ylim = c(0,700000), lty=6)
+xpos <- seq(0, 600000, by=200000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_g_fn$time[1:t], mean1segdelay_g_fn$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,80000))
 axis(side = 4, cex.axis=1.5)
@@ -492,8 +479,7 @@ xs<- tracecar_s_fs %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_s_fs<-append(list(size = sum1segcar_s_fs$size), list(time =  as.numeric(sum1segcar_s_fs$segundos)))
 mean1segcar_s_fs$transmissores <- xs$transmissores
-mean1segcar_s_fs$size <- mean1segcar_s_fs$size / mean1segcar_s_fs$transmissores
-#mean1segcar_s_fs$size[1:12]<- mean1segcar_s_fs$size[1:12]/4
+mean1segcar_s_fs$size <- mean1segcar_s_fs$size[1:t] / mean1segcar_s_fs$transmissores[1:t]
 
 #Compute Server S received
 traceserver_s_fs<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_stf_car_fs_tt.txt', sep=' ')
@@ -505,7 +491,6 @@ sum1segserver_s_fs<-aggregate(list(size = traceserver_s_fs$size), list(segundos 
 mean1segserver_s_fs<-append(list(size = sum1segserver_s_fs$size), list(time = as.numeric(sum1segserver_s_fs$segundos)))
 mean1segserver_s_fs$transmissores <- xs$transmissores
 mean1segserver_s_fs$size <- mean1segserver_s_fs$size[1:t] / mean1segserver_s_fs$transmissores[1:t]
-#mean1segserver_s_fs$size[1:12]<- mean1segserver_s_fs$size[1:12]/4
 
 #Compute Delay Server S
 tracedelay_s_fs<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_s_fs_tt.txt')
@@ -515,13 +500,13 @@ sum1segdelay_s_fs<-aggregate(list(delay = tracedelay_s_fs$delay), list(segundos 
 mean1segdelay_s_fs<-append(list(size = sum1segdelay_s_fs$delay), list(time = as.numeric(sum1segdelay_s_fs$segundos)))
 mean1segdelay_s_fs$transmissores <- xs$transmissores
 mean1segdelay_s_fs$size <- mean1segdelay_s_fs$size[1:t] / mean1segdelay_s_fs$transmissores[1:t]
-#mean1segdelay_s_fs$size[1:12]<- mean1segdelay_s_fs$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_s_fs$time[1:t], mean1segserver_s_fs$size[1:t], type="l", col="blue", main = "Application S (Framework)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)")
-plot(mean1segserver_s_fs$time[1:t], mean1segserver_s_fs$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
-lines(mean1segcar_s_fs$time[1:t], mean1segcar_s_fs$size[1:t], col="red", lwd=2, ylim = c(0,900000), lty=6)
+plot(mean1segserver_s_fs$time[1:t], mean1segserver_s_fs$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,800000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+lines(mean1segcar_s_fs$time[1:t], mean1segcar_s_fs$size[1:t], col="red", lwd=2, ylim = c(0,800000), lty=6)
+xpos <- seq(0, 600000, by=200000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_s_fs$time[1:t], mean1segdelay_s_fs$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,5000))
 axis(side = 4, cex.axis=1.5)
@@ -543,8 +528,7 @@ xs<- tracecar_s_fq %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_s_fq<-append(list(size = sum1segcar_s_fq$size), list(time =  as.numeric(sum1segcar_s_fq$segundos)))
 mean1segcar_s_fq$transmissores <- xs$transmissores
-mean1segcar_s_fq$size <- mean1segcar_s_fq$size / mean1segcar_s_fq$transmissores
-#mean1segcar_s_fq$size[1:12]<- mean1segcar_s_fq$size[1:12]/4
+mean1segcar_s_fq$size <- mean1segcar_s_fq$size[1:t] / mean1segcar_s_fq$transmissores[1:t]
 
 #Compute Server S received
 traceserver_s_fq<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_stf_car_fq_tt.txt', sep=' ')
@@ -556,7 +540,6 @@ sum1segserver_s_fq<-aggregate(list(size = traceserver_s_fq$size), list(segundos 
 mean1segserver_s_fq<-append(list(size = sum1segserver_s_fq$size), list(time = as.numeric(sum1segserver_s_fq$segundos)))
 mean1segserver_s_fq$transmissores <- xs$transmissores
 mean1segserver_s_fq$size <- mean1segserver_s_fq$size[1:t] / mean1segserver_s_fq$transmissores[1:t]
-#mean1segserver_s_fq$size[1:12]<- mean1segserver_s_fq$size[1:12]/4
 
 #Compute Delay Server S
 tracedelay_s_fq<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_s_fq_tt.txt')
@@ -566,13 +549,13 @@ sum1segdelay_s_fq<-aggregate(list(delay = tracedelay_s_fq$delay), list(segundos 
 mean1segdelay_s_fq<-append(list(size = sum1segdelay_s_fq$delay), list(time = as.numeric(sum1segdelay_s_fq$segundos)))
 mean1segdelay_s_fq$transmissores <- xs$transmissores
 mean1segdelay_s_fq$size <- mean1segdelay_s_fq$size[1:t] / mean1segdelay_s_fq$transmissores[1:t]
-#mean1segdelay_s_fq$size[1:12]<- mean1segdelay_s_fq$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_s_fq$time[1:t], mean1segserver_s_fq$size[1:t], type="l", col="blue", main = "Application S (QoS)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)")
-plot(mean1segserver_s_fq$time[1:t], mean1segserver_s_fq$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
-lines(mean1segcar_s_fq$time[1:t], mean1segcar_s_fq$size[1:t], col="red", lwd=2, ylim = c(0,900000), lty=6)
+plot(mean1segserver_s_fq$time[1:t], mean1segserver_s_fq$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,800000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+lines(mean1segcar_s_fq$time[1:t], mean1segcar_s_fq$size[1:t], col="red", lwd=2, ylim = c(0,800000), lty=6)
+xpos <- seq(0, 600000, by=200000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_s_fq$time[1:t], mean1segdelay_s_fq$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,5000))
 axis(side = 4, cex.axis=1.5)
@@ -595,8 +578,7 @@ xs<- tracecar_s_fn %>%
   summarise(transmissores = n_distinct(ori))
 mean1segcar_s_fn<-append(list(size = sum1segcar_s_fn$size), list(time =  as.numeric(sum1segcar_s_fn$segundos)))
 mean1segcar_s_fn$transmissores <- xs$transmissores
-mean1segcar_s_fn$size <- mean1segcar_s_fn$size / mean1segcar_s_fn$transmissores
-#mean1segcar_s_fn$size[1:12]<- mean1segcar_s_fn$size[1:12]/4
+mean1segcar_s_fn$size <- mean1segcar_s_fn$size[1:t] / mean1segcar_s_fn$transmissores[1:t]
 
 #Compute Server S received
 traceserver_s_fn<-read.table(file = 'experimentos/framework_its_sdn-master/results/server_stf_car_fn_tt.txt', sep=' ')
@@ -608,7 +590,6 @@ sum1segserver_s_fn<-aggregate(list(size = traceserver_s_fn$size), list(segundos 
 mean1segserver_s_fn<-append(list(size = sum1segserver_s_fn$size), list(time = as.numeric(sum1segserver_s_fn$segundos)))
 mean1segserver_s_fn$transmissores <- xs$transmissores
 mean1segserver_s_fn$size <- mean1segserver_s_fn$size[1:t] / mean1segserver_s_fn$transmissores[1:t]
-#mean1segserver_s_fn$size[1:12]<- mean1segserver_s_fn$size[1:12]/4
 
 #Compute Delay Server S
 tracedelay_s_fn<-read.table(file = 'experimentos/framework_its_sdn-master/results/delay_s_fn_tt.txt')
@@ -618,13 +599,13 @@ sum1segdelay_s_fn<-aggregate(list(delay = tracedelay_s_fn$delay), list(segundos 
 mean1segdelay_s_fn<-append(list(size = sum1segdelay_s_fn$delay), list(time = as.numeric(sum1segdelay_s_fn$segundos)))
 mean1segdelay_s_fn$transmissores <- xs$transmissores
 mean1segdelay_s_fn$size <- mean1segdelay_s_fn$size[1:t] / mean1segdelay_s_fn$transmissores[1:t]
-#mean1segdelay_s_fn$size[1:12]<- mean1segdelay_s_fn$size[1:12]/4
 
 #Plot
 par(mar = c(5,5,2,5))
-#plot(mean1segserver_s_fn$time[1:t], mean1segserver_s_fn$size[1:t], type="l", col="blue", main = "Application S (Best effort)", lwd=2, xlim = c(1,300), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)")
-plot(mean1segserver_s_fn$time[1:t], mean1segserver_s_fn$size[1:t], type="l", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (bps)", ylim = c(0,900000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
-lines(mean1segcar_s_fn$time[1:t], mean1segcar_s_fn$size[1:t], col="red", lwd=2, ylim = c(0,900000), lty=6)
+plot(mean1segserver_s_fn$time[1:t], mean1segserver_s_fn$size[1:t], type="l", yaxt="n", col="blue", lwd=2, xlim = c(1,t), ylab="Throughput (Kbps)", ylim = c(0,800000), xlab = "time(s)", lty=2, cex.axis=1.5, cex.lab=1.5)
+lines(mean1segcar_s_fn$time[1:t], mean1segcar_s_fn$size[1:t], col="red", lwd=2, ylim = c(0,800000), lty=6)
+xpos <- seq(0, 600000, by=200000)
+axis(2, at=xpos, labels=sprintf("%.d", xpos /1000), cex.axis=1.5)
 par(new=T)
 plot(mean1segdelay_s_fn$time[1:t], mean1segdelay_s_fn$size[1:t], type="l", col="orange", lwd=2, xlim = c(0,t), axes=F, xlab=NA, ylab=NA, ylim = c(0,5000))
 axis(side = 4, cex.axis=1.5)
