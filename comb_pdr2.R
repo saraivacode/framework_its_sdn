@@ -383,8 +383,8 @@ e_app <- pdr_final %>%
         filter(app == "E" ) %>%
         select("pdr", "tipo")
   
-ggplot(e_app, aes(x=tipo, y=pdr, fill='blue')) +
-  geom_violin(trim=TRUE)+
+ggplot(e_app, aes(x=tipo, y=pdr, fill='#56B4E9')) +
+  geom_violin(trim=TRUE, fill='blue')+
   labs(title="",x="", y = "PDR")+
   geom_boxplot(width=0.1, lwd=1.5)+
   scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
@@ -400,7 +400,7 @@ e2_app <- pdr_final %>%
   select("pdr", "tipo")
 
 ggplot(e2_app, aes(x=tipo, y=pdr, fill='#56B4E9')) + 
-  geom_violin(trim=TRUE)+
+  geom_violin(trim=TRUE, fill='blue')+
   labs(title="",x="", y = "PDR")+
   geom_boxplot(width=0.05, lwd=1.5)+
   scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
@@ -416,7 +416,7 @@ g_app <- pdr_final %>%
   select("pdr", "tipo")
 
 ggplot(g_app, aes(x=tipo, y=pdr, fill='#56B4E9')) + 
-  geom_violin(trim=TRUE)+
+  geom_violin(trim=TRUE, fill='blue')+
   labs(title="",x="", y = "PDR")+
   geom_boxplot(width=0.05, lwd=1.5)+
   scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
@@ -432,7 +432,7 @@ s_app <- pdr_final %>%
   select("pdr", "tipo")
 
 ggplot(s_app, aes(x=tipo, y=pdr, fill='#56B4E9')) + 
-  geom_violin(trim=TRUE)+
+  geom_violin(trim=TRUE, fill='blue')+
   labs(title="",x="", y = "PDR")+
   geom_boxplot(width=0.1, lwd=1.5)+
   scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
