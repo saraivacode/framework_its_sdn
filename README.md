@@ -72,7 +72,7 @@ https://github.com/saraivacode/framework_its_sdn/blob/master/comb_geral.R
 
 ### Execution example
 
-<img src="https://github.com/saraivacode/framework_its_sdn/blob/master/running_sumo.png" width="480">
+<img src="https://github.com/saraivacode/framework_its_sdn/blob/master/running_sumo.png" width="960">
 
 
 ##### step 1 (Run ryu): # ryu-manager ryu.app.rest_qos ryu.app.qos_simple_switch_13 ryu.app.rest_conf_switch ryu.app.ofctl_rest
