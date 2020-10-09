@@ -383,28 +383,29 @@ e_app <- pdr_final %>%
         filter(app == "E" ) %>%
         select("pdr", "tipo")
   
-ggplot(e_app, aes(x=tipo, y=pdr)) + 
-  geom_violin(trim=TRUE, fill="gray")+
+ggplot(e_app, aes(x=tipo, y=pdr, fill='blue')) +
+  geom_violin(trim=TRUE)+
   labs(title="",x="", y = "PDR")+
-  geom_boxplot(width=0.1)+
+  geom_boxplot(width=0.1, lwd=1.5)+
   scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
   theme_bw() + theme(
-        axis.text.x=element_text(size=28,vjust=1),
-        axis.text.y=element_text(size=28, angle = 90, hjust=0.55,vjust=1),
-        axis.title.y = element_text(size=28, angle = 90))
-                     
+    legend.position="none",
+    axis.text.x=element_text(size=28,vjust=1),
+    axis.text.y=element_text(size=28, angle = 90, hjust=0.55,vjust=1),
+    axis.title.y = element_text(size=28, angle = 90)) 
 
 #E2
 e2_app <- pdr_final %>%
   filter(app == "E2" ) %>%
   select("pdr", "tipo")
 
-ggplot(e2_app, aes(x=tipo, y=pdr)) + 
-  geom_violin(trim=TRUE, fill="gray")+
+ggplot(e2_app, aes(x=tipo, y=pdr, fill='#56B4E9')) + 
+  geom_violin(trim=TRUE)+
   labs(title="",x="", y = "PDR")+
-  geom_boxplot(width=0.05)+
+  geom_boxplot(width=0.05, lwd=1.5)+
   scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
   theme_bw() + theme(
+    legend.position="none",
     axis.text.x=element_text(size=28,vjust=1),
     axis.text.y=element_text(size=28, angle = 90, hjust=0.55,vjust=1),
     axis.title.y = element_text(size=28, angle = 90))
@@ -414,28 +415,45 @@ g_app <- pdr_final %>%
   filter(app == "G" ) %>%
   select("pdr", "tipo")
 
-ggplot(g_app, aes(x=tipo, y=pdr)) + 
-  geom_violin(trim=TRUE, fill="gray")+
+ggplot(g_app, aes(x=tipo, y=pdr, fill='#56B4E9')) + 
+  geom_violin(trim=TRUE)+
   labs(title="",x="", y = "PDR")+
-  geom_boxplot(width=0.05)+
+  geom_boxplot(width=0.05, lwd=1.5)+
   scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
   theme_bw() + theme(
+    legend.position="none",
     axis.text.x=element_text(size=28,vjust=1),
     axis.text.y=element_text(size=28, angle = 90, hjust=0.55,vjust=1),
-    axis.title.y = element_text(size=28, angle = 90))
+    axis.title.y = element_text(size=28, angle = 90)) 
 
 #S
 s_app <- pdr_final %>%
   filter(app == "S" ) %>%
   select("pdr", "tipo")
 
-ggplot(s_app, aes(x=tipo, y=pdr)) + 
-  geom_violin(trim=TRUE, fill="gray")+
+ggplot(s_app, aes(x=tipo, y=pdr, fill='#56B4E9')) + 
+  geom_violin(trim=TRUE)+
   labs(title="",x="", y = "PDR")+
-  geom_boxplot(width=0.1)+
+  geom_boxplot(width=0.1, lwd=1.5)+
   scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +
   theme_bw() + theme(
+    legend.position="none",
     axis.text.x=element_text(size=28,vjust=1),
     axis.text.y=element_text(size=28, angle = 90, hjust=0.55,vjust=1),
     axis.title.y = element_text(size=28, angle = 90))
 
+
+
+##############################
+
+e_app %>%
+  group_by(tipo) %>%
+  summarise(mean = mean(pdr), n = n())
+
+e2_app %>%
+  group_by(tipo) %>%
+  summarise(mean = mean(pdr), n = n())
+
+s_app %>%
+  group_by(tipo) %>%
+  summarise(mean = mean(pdr), n = n())

@@ -83,7 +83,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e_fs)),
                      mean1segdelay_e_fq$size,
                      mean1segdelay_e_fn$size)) %>%
 ggplot(aes(value, colour=approach, shape=approach)) +
-  scale_colour_grey() +
+ # scale_colour_grey() +
   stat_ecdf(geo = "point", size = 4) +
 labs(title="",
      y = "PDR", x="RTT (ms)")+
@@ -96,6 +96,26 @@ labs(title="",
         legend.text = element_text(color = "black", size = 20),
         legend.position = c(0.85, 0.2))+
   guides(shape = guide_legend(override.aes = list(size = 5)))
+
+
+
+
+data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e_fs)),
+                        rep("QoS only", nrow(mean1segdelay_e_fq)),
+                        rep("Best effort", nrow(mean1segdelay_e_fn))),
+           value = c(mean1segdelay_e_fs$size,
+                     mean1segdelay_e_fq$size,
+                     mean1segdelay_e_fn$size)) %>%
+  group_by(approach) %>%
+  summarise(mean = mean(value), n = n(), median = quantile(value, c( 0.5)))
+
+
+
+
+
+
+
+
 
 #plot(ecdf(mean1segdelay_e_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,2000), ylim = c(0,1), main="CDF Delay Application E", ylab = "CDF", xlab = "delay")
 #abline( h= 0.8, lty =3, col = "gray60")
@@ -188,7 +208,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e2_fs)),
                      mean1segdelay_e2_fq$size,
                      mean1segdelay_e2_fn$size)) %>%
   ggplot(aes(value, colour=approach, shape=approach)) +
-  scale_colour_grey() +
+  #scale_colour_grey() +
   stat_ecdf(geo = "point", size = 4) +
   labs(title="",
        y = "PDR", x="RTT (ms)")+
@@ -201,6 +221,18 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e2_fs)),
         legend.text = element_text(color = "black", size = 20),
         legend.position = c(0.85, 0.2)) +
   guides(shape = guide_legend(override.aes = list(size = 5)))
+
+
+
+
+data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e2_fs)),
+                        rep("QoS only", nrow(mean1segdelay_e2_fq)),
+                        rep("Best effort", nrow(mean1segdelay_e2_fn))),
+           value = c(mean1segdelay_e2_fs$size,
+                     mean1segdelay_e2_fq$size,
+                     mean1segdelay_e2_fn$size)) %>%
+  group_by(approach) %>%
+  summarise(mean = mean(value), n = n(), median = quantile(value, c( 0.5)))
 
 
 #plot(ecdf(mean1segdelay_e2_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,2000), ylim = c(0,1), main="CDF Delay Application E", ylab = "CDF", xlab = "delay")
@@ -292,7 +324,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_g_fs)),
                      mean1segdelay_g_fq$size,
                      mean1segdelay_g_fn$size)) %>%
   ggplot(aes(value, colour=approach, shape=approach)) +
-  scale_colour_grey() +
+  #scale_colour_grey() +
   stat_ecdf(geo = "point", size = 4) +
   labs(title="",
        y = "PDR", x="RTT (ms)")+
@@ -305,6 +337,17 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_g_fs)),
         legend.text = element_text(color = "black", size = 20),
         legend.position = c(0.85, 0.2)) +
   guides(shape = guide_legend(override.aes = list(size = 5)))
+
+
+
+data.frame(approach = c(rep("Framework", nrow(mean1segdelay_g_fs)),
+                        rep("QoS only", nrow(mean1segdelay_g_fq)),
+                        rep("Best effort", nrow(mean1segdelay_g_fn))),
+           value = c(mean1segdelay_g_fs$size,
+                     mean1segdelay_g_fq$size,
+                     mean1segdelay_g_fn$size)) %>%
+  group_by(approach) %>%
+  summarise(mean = mean(value), n = n(), median = quantile(value, c( 0.5)))
 
 #plot(ecdf(mean1segdelay_g_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,2000), ylim = c(0,1), main="CDF Delay Application E", ylab = "CDF", xlab = "delay")
 #abline( h= 0.8, lty =3, col = "gray60")
@@ -398,7 +441,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_s_fs)),
                      mean1segdelay_s_fq$size,
                      mean1segdelay_s_fn$size)) %>%
   ggplot(aes(value, colour=approach, shape=approach)) +
-  scale_colour_grey() +
+  #scale_colour_grey() +
   stat_ecdf(geo = "point", size = 4) +
   labs(title="",
        y = "PDR", x="RTT (ms)")+
@@ -412,6 +455,17 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_s_fs)),
         legend.position = c(0.85, 0.2)) +
   guides(shape = guide_legend(override.aes = list(size = 5)))
 
+
+
+data.frame(approach = c(rep("Framework", nrow(mean1segdelay_s_fs)),
+                        rep("QoS only", nrow(mean1segdelay_s_fq)),
+                        rep("Best effort", nrow(mean1segdelay_s_fn))),
+           value = c(mean1segdelay_s_fs$size,
+                     mean1segdelay_s_fq$size,
+                     mean1segdelay_s_fn$size)) %>%
+  group_by(approach) %>%
+  summarise(mean = mean(value), n = n(), median = quantile(value, c( 0.5)))
+
 #plot(ecdf(mean1segdelay_s_fs$size), col.01line = "gray70", pch = 19, col="red", xlim = c(0,2000), ylim = c(0,1), main="CDF Delay Application E", ylab = "CDF", xlab = "delay")
 #abline( h= 0.8, lty =3, col = "gray60")
 #par(new=T)
@@ -419,3 +473,4 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_s_fs)),
 #par(new=T)
 #plot(ecdf(mean1segdelay_s_fn$size), col.01line = "gray70", pch = 19, col="orange", xlim = c(0,2000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA,  main ="")
 #legend("right", legend=c("Framework", "QoS only", "Best effort"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+

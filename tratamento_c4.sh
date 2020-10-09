@@ -52,4 +52,8 @@ for i in $(ls ping*); do rm -f s.txt; x=$(cat ping0_s.txt | grep 'from' |cut -d'
 
 cat delay*_g_$1.txt |sort -n > result/delay_g_$1\_tt.txt; cat delay*_e_$1.txt |sort -n > result/delay_e_$1\_tt.txt; cat delay*_e2_$1.txt |sort -n > result/delay_e2_$1\_tt.txt; cat delay*_s_$1.txt |sort -n > result/delay_s_$1\_tt.txt
 
+
+for i in $(ls okok*); do x=$(cat $i | wc -l); qtd=$(echo $x *64 *8 / 1024 |  bc); echo $i $qtd Kb; done >  result/random_$1\_tt.txt
+
+
 #testes#################################$$$$$$$$$$$$$$$$$$$$$$#####################

@@ -57,13 +57,13 @@ def topology(flag):
     for i in range(15, 50):
         print("mac='00:01:00:00:00:%s'" %((int(i)-1)*1)) #84 a 99
         cars[i] = net.addCar('car%s' %i,  wlans=1, ip='200.0.9.%s/8' %(int(i)+10), range = 50, mac='00:01:00:00:00:%s' %((int(i)-1)*1), encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
-    
+
     # for x in range(81, 97): #16 vehicles
     #     cars.append(x)
     # for i in range(81, 97):
     #     print("mac='00:01:00:00:00:%s'" %((int(i)-114)*-1)) #  17 a 33
     #     cars[i] = net.addCar('car%s' %i,  wlans=1, ip='200.0.9.%s/8' %(int(i)+10), range = 50, mac='00:01:00:00:00:%s' %((int(i)-114)*-1), encrypt=['wpa2'], bgscan_threshold=-60, s_interval=5, l_interval=10, bgscan_module="simple") #mudou
-    
+
     # for x in range(147, 151): #4 vehicles
     #     cars.append(x)
     # for i in range(147, 151):
@@ -99,10 +99,10 @@ def topology(flag):
     info("*** Configuring Propagation Model\n")
     #net.propagationModel(model="logDistance", exp=4.5)
     net.setPropagationModel(model="logDistance", exp=2.8) #mudou
-    
+
     info("*** Configuring wifi nodes\n")
     net.configureWifiNodes()
-    
+
     print("*** Creating links")
     net.addLink(rsu1, rsu2, 2, 2)
     net.addLink(rsu2, rsu3, 3, 2)
@@ -196,9 +196,9 @@ def topology(flag):
         in_port=3, actions=1" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,icmp \
         actions=5" -O Openflow13; ovs-ofctl add-flow rsu3 "table=1, priority=1, cookie=0x28,in_port=5, actions=1" -O Openflow13; ovs-ofctl \
         add-flow rsu3 "table=1, priority=1, cookie=0x28, in_port=1, nw_dst=200.0.10.2,udp,tp_dst=5002 actions=5" -O Openflow13;')
-    
+
     #Removing trace files and stopping network manager
-    os.system('rm -f car*; rm -f server*; rm -f ping*; rm -f delay*; rm log*; /etc/init.d/network-manager stop')
+    os.system('rm -f car*; rm -f server*; rm -f ping*; rm -f delay*; rm -f okok*; rm log*; /etc/init.d/network-manager stop')
     time.sleep(2)
 
     if flag == '-f':
@@ -281,7 +281,6 @@ def topology(flag):
     server_e2.cmd('tcpdump udp port 5004 -i server_e2-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_e2.txt &')
     server_g.cmd('tcpdump udp port 5005 -i server_g-eth0 --direction=in -tttttnnvS --immediate-mode -l > server_g.txt &')
 
-    
     time.sleep(3)
 
     for x in range(0,15):
@@ -290,7 +289,7 @@ def topology(flag):
 
     for x in range(15,50):
         cars[x].cmd('./framework_its_sdn/carcont2.sh &')
-        time.sleep(0.2)
+        time.sleep(1)
 
 
     info("*** Running CLI\n")
