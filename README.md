@@ -30,17 +30,23 @@ All options require the script that will start applications traffic in vehicles.
 #### 2. Shell script used to generate in vehicles the traffic related to the vehicular applications:
 https://github.com/saraivacode/framework_its_sdn/blob/master/carcon.sh
 
-#### 2. Shell script used to generate in part of the vehicles traffic related beacons:
+#### 3. Shell script used to generate in part of the vehicles traffic related beacons:
 https://github.com/saraivacode/framework_its_sdn/blob/master/carcont2.sh
 
-#### 3. SQL script that implements the shared database in Mysql server:
+#### 4. SQL script that implements the shared database in Mysql server:
 https://github.com/saraivacode/framework_its_sdn/blob/master/initialdb.sql
 
-#### 4. Shell script that implements the central controller application, interacting with Ryu SDN controller through its REST API to apply the general network QoS policies:
+#### 5. Shell script that implements the central controller application, interacting with Ryu SDN controller through its REST API to apply the general network QoS policies:
 https://github.com/saraivacode/framework_its_sdn/blob/master/central_controller2.sh
 
-#### 5. Shell script that acts on the RSUs, in the role of local controllers application, redirecting traffic and enforcing the policies defined by the central controller:
+#### 6. Shell script that acts on the RSUs, in the role of local controllers application, redirecting traffic and enforcing the policies defined by the central controller:
 https://github.com/saraivacode/framework_its_sdn/blob/master/local_controllers.sh
+
+#### 7. Configuration and XML files used by SUMO to configure the mobility of the vehicles in Manhattan map, according a traffic jam:
+https://github.com/saraivacode/framework_its_sdn/blob/master/map2.sumocfg
+https://github.com/saraivacode/framework_its_sdn/blob/master/new-york2.rou.xml.new2
+https://github.com/saraivacode/framework_its_sdn/blob/master/new-york2.net.xml
+https://github.com/saraivacode/framework_its_sdn/blob/master/new-york2.poly.xml
 
 #### Codes to compile the results:
 
