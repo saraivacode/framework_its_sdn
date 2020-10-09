@@ -4,19 +4,11 @@
 
 This framework uses a vehicular software-defined network to implement a 5G network slicing aproach to deal with the problem of how to provide a mobile infrastructure that can dinnamically meet the communication requirements of different vehicular network ITS applications.
 
-This implementation uses the Mininet-wifi emulator (https://github.com/intrig-unicamp/mininet-wifi) and the Ryu controller (https://osrg.github.io/ryu/).
+This implementation uses the Mininet-wifi emulator (https://github.com/intrig-unicamp/mininet-wifi), Ryu controller (https://osrg.github.io/ryu/), and SUMO Mobility simulator (https://sumo.dlr.de/docs/Installing.html).
 
 Before run the experiments, it is necessary configure the Ryu controller to accept OF 1.3 REST instructions, as described in https://osrg.github.io/ryu-book/en/html/rest_qos.html. 
 
-It is also necessary to add in the Mininet-wifi source code the parameters to reduce hostapd waiting time to recognize disconnections of vehicles outside the RSUs coverage. To do this, add the following in the [setHostapdConfig method](https://github.com/intrig-unicamp/mininet-wifi/blob/6d9d2466e5b345b5d8e5f5bce06637c968573b8a/mn_wifi/node.py#L1451) of the node.py file:
-
-##### cmd = cmd + ('\nap_max_inactivity=6')
-##### cmd = cmd + ('\nskip_inactivity_poll=1')
-##### cmd = cmd + ('\nmax_listen_interval=6')
-
-After this change is necessary run $ sudo make install.
-
-The codes here refer to a performance evaluation of the proposed framework in a scenario representing a traffic jam in a via with 15 vehicles, in a 300 seconds period, with four congestion levels over the time. The vehicles are associated with four applications, each one with different network requirements. 
+The codes here refer to a performance evaluation of the proposed framework in a scenario representing a traffic jam in a via with 158 vehicles, in a 450 seconds period, with diferrent congestion levels over the time. Part of th vehicles are associated with four applications, each one with different network requirements, other vehicles only generate traffic of beacons, and others only contribute to the experiment in the mobility. 
 
 <img src="https://github.com/saraivacode/framework_its_sdn/blob/master/topology.png" width="480">
 
@@ -25,18 +17,21 @@ This implementation permits to compare the results of PDR, throughput and RTT ob
 ### Implementation scripts
 
 #### 1. The main script that builds the topology in Mininet-wifi, with mobility and general emulation parameters:
-https://github.com/saraivacode/framework_its_sdn/blob/master/testef_14.py
+https://github.com/saraivacode/framework_its_sdn/blob/master/testes2020.py
 
-##### testef_14.py options:
+##### testes202.py options:
 
 -f: Proposed framework approach   
 -q: QoS only approach  
 -b: Best effort approach   
 
-All options require the script that will start applications traffic in vehicles. To use the -q option, it is necessary the database and Central Controller scripts. To use -f option, it is necessary the database, central controller and local controllers scripts. All these scripts are called by the main (testef_14.py).
+All options require the script that will start applications traffic in vehicles. To use the -q option, it is necessary the database and Central Controller scripts. To use -f option, it is necessary the database, central controller and local controllers scripts. All these scripts are called by the main (testes2020.py).
 
 #### 2. Shell script used to generate in vehicles the traffic related to the vehicular applications:
 https://github.com/saraivacode/framework_its_sdn/blob/master/carcon.sh
+
+#### 2. Shell script used to generate in part of the vehicles traffic related beacons:
+https://github.com/saraivacode/framework_its_sdn/blob/master/carcont2.sh
 
 #### 3. SQL script that implements the shared database in Mysql server:
 https://github.com/saraivacode/framework_its_sdn/blob/master/initialdb.sql
@@ -50,9 +45,9 @@ https://github.com/saraivacode/framework_its_sdn/blob/master/local_controllers.s
 #### Codes to compile the results:
 
 ##### Shell code that is used to extract, from the files generated in emulation, the information necessary to compile the results:
-https://github.com/saraivacode/framework_its_sdn/blob/master/tratamento_c3.sh
+https://github.com/saraivacode/framework_its_sdn/blob/master/tratamento_c4.sh
 
-###### tratamento_c3.sh options:
+###### tratamento_c4.sh options:
 
 fs: Proposed framework approach   
 fq: QoS only approach  
@@ -61,7 +56,7 @@ fn: Best effort approach
 ##### R codes to generate the graphs
 
 1 - PDR results
-https://github.com/saraivacode/framework_its_sdn/blob/master/comb_pdr.R
+https://github.com/saraivacode/framework_its_sdn/blob/master/comb_pdr2.R
 
 2 - RTT results (ECDF)
 https://github.com/saraivacode/framework_its_sdn/blob/master/comb_delay.R
@@ -73,19 +68,19 @@ https://github.com/saraivacode/framework_its_sdn/blob/master/comb_geral.R
 
 ##### step 1 (Run ryu): # ryu-manager ryu.app.rest_qos ryu.app.qos_simple_switch_13 ryu.app.rest_conf_switch ryu.app.ofctl_rest
 
-##### step 2 (Run experiment with best effort approach): # testef_14.py -b
+##### step 2 (Run experiment with best effort approach): # testes2020.py -b
 
-##### step 3 (Run experiment with QoS only approach): # testef_14.py -q
+##### step 3 (Run experiment with QoS only approach): # testes2020.py -q
 
-##### step 4 (Run experiment with proposed framework approach): # testef_14.py -f
+##### step 4 (Run experiment with proposed framework approach): # testes2020.py -f
 
-##### step 5 (Adjust best effort results): # tratamento_c3.sh fn
+##### step 5 (Adjust best effort results): # tratamento_c4.sh fn
 
-##### step 6 (Adjust QoS only results): # tratamento_c3.sh fq
+##### step 6 (Adjust QoS only results): # tratamento_c4.sh fq
 
-##### step 7 (Adjust proposed framework results): # tratamento_c3.sh fs
+##### step 7 (Adjust proposed framework results): # tratamento_c4.sh fs
 
-##### step 8 (Generate in R the PDR results graphs): execute in R the comb_pdr.R file
+##### step 8 (Generate in R the PDR results graphs): execute in R the comb_pdr2.R file
 
 ##### step 9 (Generate in R the RTT results (ECDFs) graphs): execute in R the comb_delay.R file
 
