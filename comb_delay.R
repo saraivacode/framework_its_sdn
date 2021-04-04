@@ -78,7 +78,7 @@ library(ggplot2)
 library(tidyverse)
 data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e_fs)),
                    rep("QoS only", nrow(mean1segdelay_e_fq)),
-                   rep("Best effort", nrow(mean1segdelay_e_fn))),
+                   rep("RMSDVN", nrow(mean1segdelay_e_fn))),
            value = c(mean1segdelay_e_fs$size,
                      mean1segdelay_e_fq$size,
                      mean1segdelay_e_fn$size)) %>%
@@ -102,7 +102,7 @@ labs(title="",
 
 data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e_fs)),
                         rep("QoS only", nrow(mean1segdelay_e_fq)),
-                        rep("Best effort", nrow(mean1segdelay_e_fn))),
+                        rep("RMSDVN", nrow(mean1segdelay_e_fn))),
            value = c(mean1segdelay_e_fs$size,
                      mean1segdelay_e_fq$size,
                      mean1segdelay_e_fn$size)) %>%
@@ -123,7 +123,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e_fs)),
 #plot(ecdf(mean1segdelay_e_fq$size), col.01line = "gray70", pch = 19, col="blue", xlim = c(0,2000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA, main ="")
 #par(new=T)
 #plot(ecdf(mean1segdelay_e_fn$size), col.01line = "gray70", pch = 19, col="orange", xlim = c(0,2000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA,  main ="")
-#legend("bottomright", legend=c("Framework", "QoS only", "Best effort"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+#legend("bottomright", legend=c("Framework", "QoS only", "RMSDVN"), lty=c(1,1,1), col=c("red", "blue", "orange"))
 
 #############################################
 ###################################################################################################AppE2
@@ -203,7 +203,7 @@ mean1segdelay_e2_fn <- data.frame(mean1segdelay_e2_fn)
 
 data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e2_fs)),
                         rep("QoS only", nrow(mean1segdelay_e2_fq)),
-                        rep("Best effort", nrow(mean1segdelay_e2_fn))),
+                        rep("RMSDVN", nrow(mean1segdelay_e2_fn))),
            value = c(mean1segdelay_e2_fs$size,
                      mean1segdelay_e2_fq$size,
                      mean1segdelay_e2_fn$size)) %>%
@@ -227,7 +227,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e2_fs)),
 
 data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e2_fs)),
                         rep("QoS only", nrow(mean1segdelay_e2_fq)),
-                        rep("Best effort", nrow(mean1segdelay_e2_fn))),
+                        rep("RMSDVN", nrow(mean1segdelay_e2_fn))),
            value = c(mean1segdelay_e2_fs$size,
                      mean1segdelay_e2_fq$size,
                      mean1segdelay_e2_fn$size)) %>%
@@ -241,7 +241,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_e2_fs)),
 #plot(ecdf(mean1segdelay_e2_fq$size), col.01line = "gray70", pch = 19, col="blue", xlim = c(0,2000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA, main ="")
 #par(new=T)
 #plot(ecdf(mean1segdelay_e2_fn$size), col.01line = "gray70", pch = 19, col="orange", xlim = c(0,2000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA,  main ="")
-#legend("bottomright", legend=c("Framework", "QoS only", "Best effort"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+#legend("bottomright", legend=c("Framework", "QoS only", "RMSDVN"), lty=c(1,1,1), col=c("red", "blue", "orange"))
 
 ##############################################################################3#App G
 
@@ -319,7 +319,7 @@ mean1segdelay_g_fn <- data.frame(mean1segdelay_g_fn)
 
 data.frame(approach = c(rep("Framework", nrow(mean1segdelay_g_fs)),
                         rep("QoS only", nrow(mean1segdelay_g_fq)),
-                        rep("Best effort", nrow(mean1segdelay_g_fn))),
+                        rep("RMSDVN", nrow(mean1segdelay_g_fn))),
            value = c(mean1segdelay_g_fs$size,
                      mean1segdelay_g_fq$size,
                      mean1segdelay_g_fn$size)) %>%
@@ -342,7 +342,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_g_fs)),
 
 data.frame(approach = c(rep("Framework", nrow(mean1segdelay_g_fs)),
                         rep("QoS only", nrow(mean1segdelay_g_fq)),
-                        rep("Best effort", nrow(mean1segdelay_g_fn))),
+                        rep("RMSDVN", nrow(mean1segdelay_g_fn))),
            value = c(mean1segdelay_g_fs$size,
                      mean1segdelay_g_fq$size,
                      mean1segdelay_g_fn$size)) %>%
@@ -355,7 +355,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_g_fs)),
 #plot(ecdf(mean1segdelay_g_fq$size), col.01line = "gray70", pch = 19, col="blue", xlim = c(0,2000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA, main ="")
 #par(new=T)
 #plot(ecdf(mean1segdelay_g_fn$size), col.01line = "gray70", pch = 19, col="orange", xlim = c(0,2000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA,  main ="")
-#legend("right", legend=c("Framework", "QoS only", "Best effort"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+#legend("right", legend=c("Framework", "QoS only", "RMSDVN"), lty=c(1,1,1), col=c("red", "blue", "orange"))
 
 ####################################################App S
 
@@ -436,7 +436,7 @@ library(ggplot2)
 library(tidyverse)
 data.frame(approach = c(rep("Framework", nrow(mean1segdelay_s_fs)),
                         rep("QoS only", nrow(mean1segdelay_s_fq)),
-                        rep("Best effort", nrow(mean1segdelay_s_fn))),
+                        rep("RMSDVN", nrow(mean1segdelay_s_fn))),
            value = c(mean1segdelay_s_fs$size,
                      mean1segdelay_s_fq$size,
                      mean1segdelay_s_fn$size)) %>%
@@ -459,7 +459,7 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_s_fs)),
 
 data.frame(approach = c(rep("Framework", nrow(mean1segdelay_s_fs)),
                         rep("QoS only", nrow(mean1segdelay_s_fq)),
-                        rep("Best effort", nrow(mean1segdelay_s_fn))),
+                        rep("RMSDVN", nrow(mean1segdelay_s_fn))),
            value = c(mean1segdelay_s_fs$size,
                      mean1segdelay_s_fq$size,
                      mean1segdelay_s_fn$size)) %>%
@@ -472,5 +472,6 @@ data.frame(approach = c(rep("Framework", nrow(mean1segdelay_s_fs)),
 #plot(ecdf(mean1segdelay_s_fq$size), col.01line = "gray70", pch = 19, col="blue", xlim = c(0,2000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA, main ="")
 #par(new=T)
 #plot(ecdf(mean1segdelay_s_fn$size), col.01line = "gray70", pch = 19, col="orange", xlim = c(0,2000), ylim = c(0,1), axes=F, xlab=NA, ylab=NA,  main ="")
-#legend("right", legend=c("Framework", "QoS only", "Best effort"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+#legend("right", legend=c("Framework", "QoS only", "RMSDVN"), lty=c(1,1,1), col=c("red", "blue", "orange"))
+
 
