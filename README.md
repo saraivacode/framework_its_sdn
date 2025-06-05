@@ -1,5 +1,5 @@
 # Application-driven Framework for Intelligent Transportation Systems
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 If you use this code in your research, please cite: T. do Vale Saraiva *et al.*, "[An Application-Driven Framework for Intelligent Transportation Systems Using 5G Network Slicing](https://ieeexplore.ieee.org/document/9455348)," *IEEE Transactions on Intelligent Transportation Systems*, vol. 22, no. 8, pp. 5247–5260, Aug. 2021. DOI: [10.1109/TITS.2021.3086064](https://doi.org/10.1109/TITS.2021.3086064).
 
