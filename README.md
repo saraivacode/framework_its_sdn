@@ -1,5 +1,21 @@
 # Application-driven Framework for Intelligent Transportation Systems
 
+
+If you use this code in your research, please cite: T. do Vale Saraiva *et al.*, "[An Application-Driven Framework for Intelligent Transportation Systems Using 5G Network Slicing](https://ieeexplore.ieee.org/document/9455348)," *IEEE Transactions on Intelligent Transportation Systems*, vol. 22, no. 8, pp. 5247–5260, Aug. 2021. DOI: [10.1109/TITS.2021.3086064](https://doi.org/10.1109/TITS.2021.3086064).
+
+```bibtex
+@ARTICLE{9455348,
+  author={do Vale Saraiva, Tiago and Campos, Carlos Alberto Vieira and Fontes, Ramon dos Reis and Rothenberg, Christian Esteve and Sorour, Sameh and Valaee, Shahrokh},
+  journal={IEEE Transactions on Intelligent Transportation Systems}, 
+  title={An Application-Driven Framework for Intelligent Transportation Systems Using 5G Network Slicing}, 
+  year={2021},
+  volume={22},
+  number={8},
+  pages={5247-5260},
+  keywords={Network slicing;5G mobile communication;Heuristic algorithms;Vehicle dynamics;Quality of service;Proposals;Intelligent transportation systems;Vehicular networks;network slicing;software-defined networking;application-driven networks;intelligent transportation systems},
+  doi={10.1109/TITS.2021.3086064}}
+```
+
 ## About this proposed solution 
 
 This framework uses a vehicular software-defined network to implement a 5G network slicing aproach to deal with the problem of how to provide a mobile infrastructure that can dinnamically meet the communication requirements of different vehicular network ITS applications.
@@ -96,26 +112,6 @@ https://github.com/saraivacode/framework_its_sdn/blob/master/comb_geral.R
 ##### step 10 (Generate in R the Throughput and RTT over time results graphs): execute in R the comb_geral.R file
 
 #### Note: steps 2 through 7 can not be run simultaneously
-
-
-
-
-## Citation
-
-If you use this code in your research, please cite: T. do Vale Saraiva *et al.*, "[An Application-Driven Framework for Intelligent Transportation Systems Using 5G Network Slicing](https://ieeexplore.ieee.org/document/9455348)," *IEEE Transactions on Intelligent Transportation Systems*, vol. 22, no. 8, pp. 5247–5260, Aug. 2021. DOI: [10.1109/TITS.2021.3086064](https://doi.org/10.1109/TITS.2021.3086064).
-
-```bibtex
-@ARTICLE{9455348,
-  author={do Vale Saraiva, Tiago and Campos, Carlos Alberto Vieira and Fontes, Ramon dos Reis and Rothenberg, Christian Esteve and Sorour, Sameh and Valaee, Shahrokh},
-  journal={IEEE Transactions on Intelligent Transportation Systems}, 
-  title={An Application-Driven Framework for Intelligent Transportation Systems Using 5G Network Slicing}, 
-  year={2021},
-  volume={22},
-  number={8},
-  pages={5247-5260},
-  keywords={Network slicing;5G mobile communication;Heuristic algorithms;Vehicle dynamics;Quality of service;Proposals;Intelligent transportation systems;Vehicular networks;network slicing;software-defined networking;application-driven networks;intelligent transportation systems},
-  doi={10.1109/TITS.2021.3086064}}
-```
 
 ## Contributing
 
