@@ -96,3 +96,38 @@ https://github.com/saraivacode/framework_its_sdn/blob/master/comb_geral.R
 ##### step 10 (Generate in R the Throughput and RTT over time results graphs): execute in R the comb_geral.R file
 
 #### Note: steps 2 through 7 can not be run simultaneously
+
+
+
+## Citation
+
+If you use this code in your research, please cite:
+
+```bibtex
+@ARTICLE{9455348,
+  author={do Vale Saraiva, Tiago and Campos, Carlos Alberto Vieira and Fontes, Ramon dos Reis and Rothenberg, Christian Esteve and Sorour, Sameh and Valaee, Shahrokh},
+  journal={IEEE Transactions on Intelligent Transportation Systems}, 
+  title={An Application-Driven Framework for Intelligent Transportation Systems Using 5G Network Slicing}, 
+  year={2021},
+  volume={22},
+  number={8},
+  pages={5247-5260},
+  keywords={Network slicing;5G mobile communication;Heuristic algorithms;Vehicle dynamics;Quality of service;Proposals;Intelligent transportation systems;Vehicular networks;network slicing;software-defined networking;application-driven networks;intelligent transportation systems},
+  doi={10.1109/TITS.2021.3086064}}
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue to discuss what you would like to change.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Federal University of State of Rio de Janeiro (UNIRIO)
+
+## Contact
+
+- **Tiago do Vale Saraiva** - [tiago.saraiva@uniriotec.br](mailto:tiago.saraiva@uniriotec.br)
